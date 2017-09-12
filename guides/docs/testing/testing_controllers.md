@@ -5,7 +5,7 @@ We're going to take a look at how we might test drive a controller which has end
 Phoenix has a generator for creating a JSON resource which looks like this:
 
 ```console
-mix phoenix.gen.json Stuff Thing things some_attr:string another_attr:string
+mix phx.gen.json Stuff Thing things some_attr:string another_attr:string
 ```
 
 Stuff is the context module name, Thing is the schema module name, things is the table name, and some_attr and another_attr are database columns on table things of type string. Don't run this command, we're going to explore test driving out a similar result to what a generator would give us.
