@@ -19,7 +19,7 @@ before_script:
   - nvm install 6.2 && nvm use 6.2
 script:
   - mix test
-  - cd installer && mix test
+  - cd installer && mix test --max-cases 1
   - cd ../ && npm install && npm test
 after_script:
   - cd $TRAVIS_BUILD_DIR
