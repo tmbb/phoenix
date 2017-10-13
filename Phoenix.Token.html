@@ -1,0 +1,372 @@
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.18.1">
+    <title>Phoenix.Token – Phoenix v1.4.0-dev</title>
+    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    
+    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    
+    <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
+    
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<section class="sidebar">
+
+  
+  <a href="http://www.phoenixframework.org" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        Phoenix
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v1.4.0-dev
+      </h2>
+    </div>
+    
+      <img src="assets/logo.png" alt="Phoenix" class="sidebar-projectImage">
+    
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">GUIDES</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+    
+
+    
+      <li><a id="tasks-list" href="#full-list">Mix Tasks</a></li>
+    
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">Phoenix v1.4.0-dev</small>
+        Phoenix.Token
+        
+          <a href="https://github.com/phoenixframework/phoenix/blob/v1.4.0-dev/lib/phoenix/token.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+        
+      </h1>
+
+      
+        <section id="moduledoc">
+          <p>Tokens provide a way to generate and verify bearer
+tokens for use in Channels or API authentication.</p>
+<p>The data stored in the token is signed to prevent tampering
+but not encrypted. This means it is safe to store identification
+information (such as user IDs) but should not be used to store
+confidential information (such as credit card numbers).</p>
+<h2 id="module-example" class="section-heading">
+  <a href="#module-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<p>When generating a unique token for use in an API or Channel
+it is advised to use a unique identifier for the user, typically
+the id from a database. For example:</p>
+<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="1990">(</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="1990">)</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="2066">(</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="2066">)</span><span class="w">
+</span><span class="p" data-group-id="2089">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="2089">}</span></code></pre>
+<p>In that example we have a user’s id, we generate a token and
+verify it using the secret key base configured in the given
+<code class="inline">endpoint</code>. We guarantee the token will only be valid for one day
+by setting a max age (recommended).</p>
+<p>The first argument to both <a href="#sign/4"><code class="inline">sign/4</code></a> and <a href="#verify/4"><code class="inline">verify/4</code></a> can be one of:</p>
+<ul>
+<li>the module name of a Phoenix endpoint (shown above) - where
+the secret key base is extracted from the endpoint
+</li>
+<li><a href="https://hexdocs.pm/plug/1.4.3/Plug.Conn.html"><code class="inline">Plug.Conn</code></a> - where the secret key base is extracted from the
+endpoint stored in the connection
+</li>
+<li><a href="Phoenix.Socket.html"><code class="inline">Phoenix.Socket</code></a> - where the secret key base is extracted from
+the endpoint stored in the socket
+</li>
+<li>a string, representing the secret key base itself. A key base
+with at least 20 randomly generated characters should be used
+to provide adequate entropy.
+</li>
+</ul>
+<p>The second argument is a <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">cryptographic salt</a>
+which must be the same in both calls to <a href="#sign/4"><code class="inline">sign/4</code></a> and <a href="#verify/4"><code class="inline">verify/4</code></a>.
+For instance, it may be called “user auth” when generating a token
+that will be used to authenticate users on channels or on your APIs.</p>
+<p>The third argument can be any term (string, int, list, etc.)
+that you wish to codify into the token. Upon valid verification,
+this same term will be extracted from the token.</p>
+<h2 id="module-usage" class="section-heading">
+  <a href="#module-usage" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Usage
+</h2>
+
+<p>Once a token is signed, we can send it to the client in multiple ways.</p>
+<p>One is via the meta tag:</p>
+<pre><code class="nohighlight makeup"><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="ss">:meta</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;channel_token&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="2044">(</span><span class="na">@conn</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="na">@current_user</span><span class="o">.</span><span class="n">id</span><span class="p" data-group-id="2044">)</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span></code></pre>
+<p>Or an endpoint that returns it:</p>
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">create</span><span class="p" data-group-id="1897">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="1897">)</span><span class="w"> </span><span class="k" data-group-id="2072">do</span><span class="w">
+  </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="1947">(</span><span class="n">params</span><span class="p" data-group-id="1947">)</span><span class="w">
+  </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;user.json&quot;</span><span class="p">,</span><span class="w">
+         </span><span class="p" data-group-id="2071">%{</span><span class="ss">token</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="2068">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p" data-group-id="2068">)</span><span class="p">,</span><span class="w"> </span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="2071">}</span><span class="w">
+</span><span class="k" data-group-id="2072">end</span></code></pre>
+<p>Once the token is sent, the client may now send it back to the server
+as an authentication mechanism. For example, we can use it to authenticate
+a user on a Phoenix channel:</p>
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="w"> </span><span class="k" data-group-id="2185">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Socket</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">connect</span><span class="p" data-group-id="1968">(</span><span class="p" data-group-id="1951">%{</span><span class="s2">&quot;token&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">token</span><span class="p" data-group-id="1951">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1968">)</span><span class="w"> </span><span class="k" data-group-id="2178">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="2057">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="2057">)</span><span class="w"> </span><span class="k" data-group-id="2175">do</span><span class="w">
+      </span><span class="p" data-group-id="2078">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="2078">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="2147">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user</span><span class="p">,</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="2146">(</span><span class="nc">User</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="2146">)</span><span class="p" data-group-id="2147">)</span><span class="w">
+        </span><span class="p" data-group-id="2153">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2153">}</span><span class="w">
+      </span><span class="p" data-group-id="2163">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="2163">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="ss">:error</span><span class="w">
+    </span><span class="k" data-group-id="2175">end</span><span class="w">
+  </span><span class="k" data-group-id="2178">end</span><span class="w">
+</span><span class="k" data-group-id="2185">end</span></code></pre>
+<p>In this example, the phoenix.js client will send the token in the
+<code class="inline">connect</code> command which is then validated by the server.</p>
+<p><a href="Phoenix.Token.html#content"><code class="inline">Phoenix.Token</code></a> can also be used for validating APIs, handling
+password resets, e-mail confirmation and more.</p>
+
+        </section>
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+          
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#sign/4">sign(context, salt, data, opts \\ [])</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Encodes data and signs it resulting in a token you can send to clients</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#verify/4">verify(context, salt, token, opts \\ [])</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Decodes the original data from the token and verifies its integrity</p>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+
+        </section>
+      
+
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="sign/4">
+  
+  
+    <span id="sign/3"></span>
+  
+  <div class="detail-header">
+    <a href="#sign/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">sign(context, salt, data, opts \\ [])</span>
+    
+      <a href="https://github.com/phoenixframework/phoenix/blob/v1.4.0-dev/lib/phoenix/token.ex#L108" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Encodes data and signs it resulting in a token you can send to clients.</p>
+<h2 id="sign/4-options" class="section-heading">
+  <a href="#sign/4-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+
+<ul>
+<li><code class="inline">:key_iterations</code> - option passed to <a href="https://hexdocs.pm/plug/1.4.3/Plug.Crypto.KeyGenerator.html"><code class="inline">Plug.Crypto.KeyGenerator</code></a>
+when generating the encryption and signing keys. Defaults to 1000
+</li>
+<li><code class="inline">:key_length</code> - option passed to <a href="https://hexdocs.pm/plug/1.4.3/Plug.Crypto.KeyGenerator.html"><code class="inline">Plug.Crypto.KeyGenerator</code></a>
+when generating the encryption and signing keys. Defaults to 32
+</li>
+<li><code class="inline">:key_digest</code> - option passed to <a href="https://hexdocs.pm/plug/1.4.3/Plug.Crypto.KeyGenerator.html"><code class="inline">Plug.Crypto.KeyGenerator</code></a>
+when generating the encryption and signing keys. Defaults to <code class="inline">:sha256</code>
+</li>
+<li><code class="inline">:signed_at</code> - set the timestamp of the token in seconds.
+Defaults to <code class="inline">System.system_time(:seconds)</code>
+</li>
+</ul>
+
+  </section>
+</div>
+<div class="detail" id="verify/4">
+  
+  
+    <span id="verify/3"></span>
+  
+  <div class="detail-header">
+    <a href="#verify/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">verify(context, salt, token, opts \\ [])</span>
+    
+      <a href="https://github.com/phoenixframework/phoenix/blob/v1.4.0-dev/lib/phoenix/token.ex#L198" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Decodes the original data from the token and verifies its integrity.</p>
+<h2 id="verify/4-examples" class="section-heading">
+  <a href="#verify/4-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<p>In this scenario we will create a token, sign it, then provide it to a client
+application. The client will then use this token to authenticate requests for
+resources from the server. (See <a href="Phoenix.Token.html#content"><code class="inline">Phoenix.Token</code></a> summary for more info about
+creating tokens.)</p>
+<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">user_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">99</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">secret</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;kjoy3o1zeidquwy1398juxzldjlksahdk3&quot;</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">user_salt</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;user salt&quot;</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">token</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="2286">(</span><span class="n">secret</span><span class="p">,</span><span class="w"> </span><span class="n">user_salt</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="2286">)</span></code></pre>
+<p>The mechanism for passing the token to the client is typically through a
+cookie, a JSON response body, or HTTP header. For now, assume the client has
+received a token it can use to validate requests for protected resources.</p>
+<p>When the server receives a request, it can use <a href="#verify/4"><code class="inline">verify/4</code></a> to determine if it
+should provide the requested resources to the client:</p>
+<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="2261">(</span><span class="n">secret</span><span class="p">,</span><span class="w"> </span><span class="n">user_salt</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="2261">)</span><span class="w">
+</span><span class="p" data-group-id="2278">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="mi">99</span><span class="p" data-group-id="2278">}</span></code></pre>
+<p>In this example, we know the client sent a valid token because <a href="#verify/4"><code class="inline">verify/4</code></a>
+returned a tuple of type <code class="inline">{:ok, user_id}</code>. The server can now proceed with
+the request.</p>
+<p>However, if the client had sent an expired or otherwise invalid token
+<a href="#verify/4"><code class="inline">verify/4</code></a> would have returned an error instead:</p>
+<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="2266">(</span><span class="n">secret</span><span class="p">,</span><span class="w"> </span><span class="n">user_salt</span><span class="p">,</span><span class="w"> </span><span class="n">expired</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="2266">)</span><span class="w">
+</span><span class="p" data-group-id="2275">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:expired</span><span class="p" data-group-id="2275">}</span><span class="w">
+
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="2292">(</span><span class="n">secret</span><span class="p">,</span><span class="w"> </span><span class="n">user_salt</span><span class="p">,</span><span class="w"> </span><span class="n">invalid</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="2292">)</span><span class="w">
+</span><span class="p" data-group-id="2294">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:invalid</span><span class="p" data-group-id="2294">}</span></code></pre>
+<h2 id="verify/4-options" class="section-heading">
+  <a href="#verify/4-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+
+<ul>
+<li><code class="inline">:max_age</code> - verifies the token only if it has been generated
+“max age” ago in seconds. A reasonable value is 1 day (<code class="inline">86400</code>
+seconds)
+</li>
+<li><code class="inline">:key_iterations</code> - option passed to <a href="https://hexdocs.pm/plug/1.4.3/Plug.Crypto.KeyGenerator.html"><code class="inline">Plug.Crypto.KeyGenerator</code></a>
+when generating the encryption and signing keys. Defaults to 1000
+</li>
+<li><code class="inline">:key_length</code> - option passed to <a href="https://hexdocs.pm/plug/1.4.3/Plug.Crypto.KeyGenerator.html"><code class="inline">Plug.Crypto.KeyGenerator</code></a>
+when generating the encryption and signing keys. Defaults to 32
+</li>
+<li><code class="inline">:key_digest</code> - option passed to <a href="https://hexdocs.pm/plug/1.4.3/Plug.Crypto.KeyGenerator.html"><code class="inline">Plug.Crypto.KeyGenerator</code></a>
+when generating the encryption and signing keys. Defaults to <code class="inline">:sha256</code>
+</li>
+</ul>
+
+  </section>
+</div>
+
+        </section>
+      
+
+      
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-778c9ef903.js"></script>
+  
+  <script src="dist/ex_doc_makeup-js.js"></script>
+  
+  
+  </body>
+</html>
+

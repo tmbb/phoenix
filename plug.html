@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.18.1">
+    <title>Plug – Phoenix v1.4.0-dev</title>
+    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    
+    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    
+    <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
+    
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+
+<div class="main">
+<button class="sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<section class="sidebar">
+
+  
+  <a href="http://www.phoenixframework.org" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        Phoenix
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v1.4.0-dev
+      </h2>
+    </div>
+    
+      <img src="assets/logo.png" alt="Phoenix" class="sidebar-projectImage">
+    
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">GUIDES</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+    
+
+    
+      <li><a id="tasks-list" href="#full-list">Mix Tasks</a></li>
+    
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>Plug</h1>
+<p>Plug lives at the heart of Phoenix’s HTTP layer, and Phoenix puts Plug front and center. We interact with plugs at every step of the connection lifecycle, and the core Phoenix components like Endpoints, Routers, and Controllers are all just Plugs internally. Let’s jump in and find out just what makes Plug so special.</p>
+<p><a href="https://github.com/elixir-lang/plug">Plug</a> is a specification for composable modules in between web applications. It is also an abstraction layer for connection adapters of different web servers. The basic idea of Plug is to unify the concept of a “connection” that we operate on. This differs from other HTTP middleware layers such as Rack, where the request and response are separated in the middleware stack.</p>
+<p>At the simplest level, the Plug specification comes in two flavors: <em>function plugs</em> and <em>module plugs</em>.</p>
+<h2 id="function-plugs" class="section-heading">
+  <a href="#function-plugs" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Function Plugs
+</h2>
+
+<p>In order to act as a plug, a function simply needs to accept a connection struct (<code class="inline">%Plug.Conn{}</code>) and options. It also needs to return a connection struct. Any function that meets those criteria will do. Here’s an example.</p>
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">put_headers</span><span class="p" data-group-id="1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">key_values</span><span class="p" data-group-id="1">)</span><span class="w"> </span><span class="k" data-group-id="22">do</span><span class="w">
+  </span><span class="nc">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="w"> </span><span class="n">key_values</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="21">fn</span><span class="w"> </span><span class="p" data-group-id="8">{</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p" data-group-id="8">}</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">Plug.Conn</span><span class="o">.</span><span class="n">put_resp_header</span><span class="p" data-group-id="19">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">to_string</span><span class="p" data-group-id="16">(</span><span class="n">k</span><span class="p" data-group-id="16">)</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p" data-group-id="19">)</span><span class="w">
+  </span><span class="k" data-group-id="21">end</span><span class="w">
+</span><span class="k" data-group-id="22">end</span></code></pre>
+<p>Pretty simple, right?</p>
+<p>This is how we use them to compose a series of transformations on our connection in Phoenix:</p>
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.MessageController</span><span class="w"> </span><span class="k" data-group-id="12">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
+
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_headers</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5">%{</span><span class="ss">content_encoding</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">cache_control</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;max-age=3600&quot;</span><span class="p" data-group-id="5">}</span><span class="w">
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_layout</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;bare.html&quot;</span><span class="w">
+
+  </span><span class="o">...</span><span class="w">
+</span><span class="k" data-group-id="12">end</span></code></pre>
+<p>By abiding by the plug contract, <code class="inline">put_headers/2</code>, <code class="inline">put_layout/2</code>, and even <code class="inline">action/2</code> turn an application request into a series of explicit transformations. It doesn’t stop there. To really see how effective Plug’s design is, let’s imagine a scenario where we need to check a series of conditions and then either redirect or halt if a condition fails. Without plug, we would end up with something like this:</p>
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.MessageController</span><span class="w"> </span><span class="k" data-group-id="59">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="2">)</span><span class="w"> </span><span class="k" data-group-id="58">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="n">authenticate</span><span class="p" data-group-id="6">(</span><span class="n">conn</span><span class="p" data-group-id="6">)</span><span class="w"> </span><span class="k" data-group-id="57">do</span><span class="w">
+      </span><span class="p" data-group-id="9">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="9">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="k">case</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="15">(</span><span class="n">params</span><span class="p" data-group-id="14">[</span><span class="s2">&quot;id&quot;</span><span class="p" data-group-id="14">]</span><span class="p" data-group-id="15">)</span><span class="w"> </span><span class="k" data-group-id="50">do</span><span class="w">
+          </span><span class="no">nil</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+            </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="25">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;That message wasn't found&quot;</span><span class="p" data-group-id="25">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="29">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="29">)</span><span class="w">
+          </span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+            </span><span class="k">case</span><span class="w"> </span><span class="n">authorize_message</span><span class="p" data-group-id="35">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="34">[</span><span class="s2">&quot;id&quot;</span><span class="p" data-group-id="34">]</span><span class="p" data-group-id="35">)</span><span class="w"> </span><span class="k" data-group-id="49">do</span><span class="w">
+              </span><span class="ss">:ok</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+                </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="43">(</span><span class="n">params</span><span class="p" data-group-id="42">[</span><span class="s2">&quot;id&quot;</span><span class="p" data-group-id="42">]</span><span class="p" data-group-id="43">)</span><span class="w">
+              </span><span class="ss">:error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+                </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="46">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;You can't access that page&quot;</span><span class="p" data-group-id="46">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="48">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="48">)</span><span class="w">
+            </span><span class="k" data-group-id="49">end</span><span class="w">
+        </span><span class="k" data-group-id="50">end</span><span class="w">
+      </span><span class="ss">:error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="54">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;You must be logged in&quot;</span><span class="p" data-group-id="54">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="56">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="56">)</span><span class="w">
+    </span><span class="k" data-group-id="57">end</span><span class="w">
+  </span><span class="k" data-group-id="58">end</span><span class="w">
+</span><span class="k" data-group-id="59">end</span></code></pre>
+<p>Notice how just a few steps of authentication and authorization require complicated nesting and duplication? Let’s improve this with a couple of plugs.</p>
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.MessageController</span><span class="w"> </span><span class="k" data-group-id="75">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
+
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:authenticate</span><span class="w">
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:find_message</span><span class="w">
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:authorize_message</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="3">)</span><span class="w"> </span><span class="k" data-group-id="13">do</span><span class="w">
+    </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="11">(</span><span class="n">params</span><span class="p" data-group-id="10">[</span><span class="s2">&quot;id&quot;</span><span class="p" data-group-id="10">]</span><span class="p" data-group-id="11">)</span><span class="w">
+  </span><span class="k" data-group-id="13">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="n">authenticate</span><span class="p" data-group-id="20">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="20">)</span><span class="w"> </span><span class="k" data-group-id="40">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="nc">Authenticator</span><span class="o">.</span><span class="n">find_user</span><span class="p" data-group-id="24">(</span><span class="n">conn</span><span class="p" data-group-id="24">)</span><span class="w"> </span><span class="k" data-group-id="39">do</span><span class="w">
+      </span><span class="p" data-group-id="26">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="26">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">assign</span><span class="p" data-group-id="31">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:user</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="31">)</span><span class="w">
+      </span><span class="ss">:error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="36">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;You must be logged in&quot;</span><span class="p" data-group-id="36">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="37">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="37">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">halt</span><span class="p" data-group-id="38">()</span><span class="w">
+    </span><span class="k" data-group-id="39">end</span><span class="w">
+  </span><span class="k" data-group-id="40">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="44">(</span><span class="n">id</span><span class="p" data-group-id="44">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="o">...</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="47">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="47">)</span><span class="w"> </span><span class="k" data-group-id="65">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="52">(</span><span class="n">conn</span><span class="o">.</span><span class="n">params</span><span class="p" data-group-id="51">[</span><span class="s2">&quot;id&quot;</span><span class="p" data-group-id="51">]</span><span class="p" data-group-id="52">)</span><span class="w"> </span><span class="k" data-group-id="64">do</span><span class="w">
+      </span><span class="no">nil</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="55">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;That message wasn't found&quot;</span><span class="p" data-group-id="55">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="61">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="61">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">halt</span><span class="p" data-group-id="62">()</span><span class="w">
+      </span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">assign</span><span class="p" data-group-id="63">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:message</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p" data-group-id="63">)</span><span class="w">
+    </span><span class="k" data-group-id="64">end</span><span class="w">
+  </span><span class="k" data-group-id="65">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="n">authorize_message</span><span class="p" data-group-id="66">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="66">)</span><span class="w"> </span><span class="k" data-group-id="74">do</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="nc">Authorizer</span><span class="o">.</span><span class="n">can_access?</span><span class="p" data-group-id="69">(</span><span class="n">conn</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="67">[</span><span class="ss">:user</span><span class="p" data-group-id="67">]</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="68">[</span><span class="ss">:message</span><span class="p" data-group-id="68">]</span><span class="p" data-group-id="69">)</span><span class="w"> </span><span class="k" data-group-id="73">do</span><span class="w">
+      </span><span class="n">conn</span><span class="w">
+    </span><span class="k" data-group-id="73">else</span><span class="w">
+      </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="70">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;You can't access that page&quot;</span><span class="p" data-group-id="70">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="71">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="71">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">halt</span><span class="p" data-group-id="72">()</span><span class="w">
+    </span><span class="k" data-group-id="73">end</span><span class="w">
+  </span><span class="k" data-group-id="74">end</span><span class="w">
+</span><span class="k" data-group-id="75">end</span></code></pre>
+<p>By replacing the nested blocks of code with a flattened series of plug transformations, we are able to achieve the same functionality in a much more composable, clear, and reusable way.</p>
+<p>Now let’s look at the other flavor plugs come in, module plugs.</p>
+<h2 id="module-plugs" class="section-heading">
+  <a href="#module-plugs" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Module Plugs
+</h2>
+
+<p>Module plugs are another type of Plug that let us define a connection transformation in a module. The module only needs to implement two functions:</p>
+<ul>
+<li><code class="inline">init/1</code> which initializes any arguments or options to be passed to <code class="inline">call/2</code>
+</li>
+<li><code class="inline">call/2</code> which carries out the connection transformation. <code class="inline">call/2</code> is just a function plug that we saw earlier
+</li>
+</ul>
+<p>To see this in action, let’s write a module plug that puts the <code class="inline">:locale</code> key and value into the connection assign for downstream use in other plugs, controller actions, and our views.</p>
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Plugs.Locale</span><span class="w"> </span><span class="k" data-group-id="33">do</span><span class="w">
+  </span><span class="kn">import</span><span class="w"> </span><span class="nc">Plug.Conn</span><span class="w">
+
+  </span><span class="na">@locales</span><span class="w"> </span><span class="p" data-group-id="4">[</span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;fr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;de&quot;</span><span class="p" data-group-id="4">]</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">init</span><span class="p" data-group-id="7">(</span><span class="n">default</span><span class="p" data-group-id="7">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">default</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="23">(</span><span class="p" data-group-id="18">%</span><span class="nc" data-group-id="18">Plug.Conn</span><span class="p" data-group-id="18">{</span><span class="ss">params</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="17">%{</span><span class="s2">&quot;locale&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">loc</span><span class="p" data-group-id="17">}</span><span class="p" data-group-id="18">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="bp">_default</span><span class="p" data-group-id="23">)</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">loc</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="na">@locales</span><span class="w"> </span><span class="k" data-group-id="28">do</span><span class="w">
+    </span><span class="n">assign</span><span class="p" data-group-id="27">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:locale</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="p" data-group-id="27">)</span><span class="w">
+  </span><span class="k" data-group-id="28">end</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="30">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">default</span><span class="p" data-group-id="30">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="32">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:locale</span><span class="p">,</span><span class="w"> </span><span class="n">default</span><span class="p" data-group-id="32">)</span><span class="w">
+</span><span class="k" data-group-id="33">end</span><span class="w">
+
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
+
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="60">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="53">[</span><span class="s2">&quot;html&quot;</span><span class="p" data-group-id="53">]</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_flash</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:protect_from_forgery</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_secure_browser_headers</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="nc">HelloWeb.Plugs.Locale</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="w">
+  </span><span class="k" data-group-id="60">end</span><span class="w">
+  </span><span class="o">...</span></code></pre>
+<p>We are able to add this module plug to our browser pipeline via <code class="inline">plug HelloWeb.Plugs.Locale, &quot;en&quot;</code>. In the <code class="inline">init/1</code> callback, we pass a default locale to use if none is present in the params. We also use pattern matching to define multiple <code class="inline">call/2</code> function heads to validate the locale in the params, and fall back to “en” if there is no match.</p>
+<p>That’s all there is to Plug. Phoenix embraces the plug design of composable transformations all the way up and down the stack. This is just the first taste. If we ask ourselves, “Could I put this in a plug?” The answer is usually, “Yes!”</p>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-778c9ef903.js"></script>
+  
+  <script src="dist/ex_doc_makeup-js.js"></script>
+  
+  
+  </body>
+</html>
+
