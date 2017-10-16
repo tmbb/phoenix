@@ -87,11 +87,11 @@
 <p>The router provides a set of macros for generating routes
 that dispatch to specific controllers and actions. Those
 macros are named after HTTP verbs. For example:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyAppWeb.Router</span><span class="w"> </span><span class="k" data-group-id="1956">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyAppWeb.Router</span><span class="w"> </span><span class="k" data-group-id="1957">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Router</span><span class="w">
 
   </span><span class="n">get</span><span class="w"> </span><span class="s2">&quot;/pages/:page&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="w">
-</span><span class="k" data-group-id="1956">end</span></code></pre>
+</span><span class="k" data-group-id="1957">end</span></code></pre>
 <p>The <a href="#get/3"><code class="inline">get/3</code></a> macro above accepts a request of format <code class="inline">&quot;/pages/VALUE&quot;</code> and
 dispatches it to the show action in the <code class="inline">PageController</code>.</p>
 <p>Routes can also match glob-like patterns, routing any path with a common
@@ -111,33 +111,33 @@ their routes up to date.</p>
 For example, the route:</p>
 <pre><code class="nohighlight makeup"><span class="n">get</span><span class="w"> </span><span class="s2">&quot;/pages/:page&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span></code></pre>
 <p>will generate the following named helper:</p>
-<pre><code class="nohighlight makeup"><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_path</span><span class="p" data-group-id="1891">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="1891">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_path</span><span class="p" data-group-id="1953">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="1953">)</span><span class="w">
 </span><span class="s2">&quot;/pages/hello&quot;</span><span class="w">
 
-</span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_path</span><span class="p" data-group-id="2001">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">some</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query&quot;</span><span class="p" data-group-id="2001">)</span><span class="w">
+</span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_path</span><span class="p" data-group-id="2038">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">some</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query&quot;</span><span class="p" data-group-id="2038">)</span><span class="w">
 </span><span class="s2">&quot;/pages/hello?some=query&quot;</span><span class="w">
 
-</span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_url</span><span class="p" data-group-id="2064">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="2064">)</span><span class="w">
+</span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_url</span><span class="p" data-group-id="2114">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="2114">)</span><span class="w">
 </span><span class="s2">&quot;http://example.com/pages/hello&quot;</span><span class="w">
 
-</span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_url</span><span class="p" data-group-id="2143">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">some</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query&quot;</span><span class="p" data-group-id="2143">)</span><span class="w">
+</span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_url</span><span class="p" data-group-id="2146">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">some</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query&quot;</span><span class="p" data-group-id="2146">)</span><span class="w">
 </span><span class="s2">&quot;http://example.com/pages/hello?some=query&quot;</span></code></pre>
 <p>If the route contains glob-like patterns, parameters for those have to be given as
 list:</p>
-<pre><code class="nohighlight makeup"><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">dynamic_path</span><span class="p" data-group-id="1943">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1942">[</span><span class="s2">&quot;dynamic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;something&quot;</span><span class="p" data-group-id="1942">]</span><span class="p" data-group-id="1943">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">dynamic_path</span><span class="p" data-group-id="1938">(</span><span class="n">conn_or_endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1937">[</span><span class="s2">&quot;dynamic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;something&quot;</span><span class="p" data-group-id="1937">]</span><span class="p" data-group-id="1938">)</span><span class="w">
 </span><span class="s2">&quot;/dynamic/something&quot;</span></code></pre>
 <p>The URL generated in the named URL helpers is based on the configuration for
 <code class="inline">:url</code>, <code class="inline">:http</code> and <code class="inline">:https</code>. However, if for some reason you need to manually
 control the URL generation, the url helpers also allow you to pass in a <a href="https://hexdocs.pm/elixir/URI.html"><code class="inline">URI</code></a>
 struct:</p>
-<pre><code class="nohighlight makeup"><span class="n">uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="1918">%</span><span class="nc" data-group-id="1918">URI</span><span class="p" data-group-id="1918">{</span><span class="ss">scheme</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;other.example.com&quot;</span><span class="p" data-group-id="1918">}</span><span class="w">
-</span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_url</span><span class="p" data-group-id="1992">(</span><span class="n">uri</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="1992">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="1944">%</span><span class="nc" data-group-id="1944">URI</span><span class="p" data-group-id="1944">{</span><span class="ss">scheme</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;other.example.com&quot;</span><span class="p" data-group-id="1944">}</span><span class="w">
+</span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_url</span><span class="p" data-group-id="2001">(</span><span class="n">uri</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="2001">)</span><span class="w">
 </span><span class="s2">&quot;https://other.example.com/pages/hello&quot;</span></code></pre>
 <p>The named helper can also be customized with the <code class="inline">:as</code> option. Given
 the route:</p>
 <pre><code class="nohighlight makeup"><span class="n">get</span><span class="w"> </span><span class="s2">&quot;/pages/:page&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:special_page</span></code></pre>
 <p>the named helper will be:</p>
-<pre><code class="nohighlight makeup"><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">special_page_path</span><span class="p" data-group-id="1932">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="1932">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">special_page_path</span><span class="p" data-group-id="1962">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="1962">)</span><span class="w">
 </span><span class="s2">&quot;/pages/hello&quot;</span></code></pre>
 <h2 id="module-scopes-and-resources" class="section-heading">
   <a href="#module-scopes-and-resources" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -146,9 +146,9 @@ the route:</p>
 
 <p>It is very common in Phoenix applications to namespace all of your
 routes under the application scope:</p>
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyAppWeb</span><span class="w"> </span><span class="k" data-group-id="1924">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyAppWeb</span><span class="w"> </span><span class="k" data-group-id="1960">do</span><span class="w">
   </span><span class="n">get</span><span class="w"> </span><span class="s2">&quot;/pages/:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="w">
-</span><span class="k" data-group-id="1924">end</span></code></pre>
+</span><span class="k" data-group-id="1960">end</span></code></pre>
 <p>The route above will dispatch to <code class="inline">MyAppWeb.PageController</code>. This syntax
 is not only convenient for developers, since we don’t have to repeat
 the <code class="inline">MyAppWeb.</code> prefix on all routes, but it also allows Phoenix to put
@@ -160,20 +160,20 @@ can properly hint to the Elixir compiler the controller is not an
 actual dependency of the router. This provides more efficient
 compilation times.</p>
 <p>Scopes allow us to scope on any path or even on the helper name:</p>
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/api/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyAppWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api_v1</span><span class="w"> </span><span class="k" data-group-id="1996">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/api/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyAppWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api_v1</span><span class="w"> </span><span class="k" data-group-id="1980">do</span><span class="w">
   </span><span class="n">get</span><span class="w"> </span><span class="s2">&quot;/pages/:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="w">
-</span><span class="k" data-group-id="1996">end</span></code></pre>
+</span><span class="k" data-group-id="1980">end</span></code></pre>
 <p>For example, the route above will match on the path <code class="inline">&quot;/api/v1/pages/:id&quot;</code>
 and the named route will be <code class="inline">api_v1_page_path</code>, as expected from the
 values given to <a href="#scope/2"><code class="inline">scope/2</code></a> option.</p>
 <p>Phoenix also provides a <a href="#resources/4"><code class="inline">resources/4</code></a> macro that allows developers
 to generate “RESTful” routes to a given resource:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyAppWeb.Router</span><span class="w"> </span><span class="k" data-group-id="2014">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyAppWeb.Router</span><span class="w"> </span><span class="k" data-group-id="2002">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Router</span><span class="w">
 
-  </span><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/pages&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1936">[</span><span class="ss">:show</span><span class="p" data-group-id="1936">]</span><span class="w">
-  </span><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="p">,</span><span class="w"> </span><span class="ss">except</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2011">[</span><span class="ss">:delete</span><span class="p" data-group-id="2011">]</span><span class="w">
-</span><span class="k" data-group-id="2014">end</span></code></pre>
+  </span><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/pages&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1955">[</span><span class="ss">:show</span><span class="p" data-group-id="1955">]</span><span class="w">
+  </span><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="p">,</span><span class="w"> </span><span class="ss">except</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1997">[</span><span class="ss">:delete</span><span class="p" data-group-id="1997">]</span><span class="w">
+</span><span class="k" data-group-id="2002">end</span></code></pre>
 <p>Finally, Phoenix ships with a <code class="inline">mix phx.routes</code> task that nicely
 formats all routes in a given router. We can use it to verify all
 routes included in the router above:</p>
@@ -201,23 +201,23 @@ request is dispatched to a desired end-point.</p>
 in the <a href="http://github.com/elixir-lang/plug">Plug</a> specification.
 Once a pipeline is defined, it can be piped through per scope.</p>
 <p>For example:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyAppWeb.Router</span><span class="w"> </span><span class="k" data-group-id="2006">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyAppWeb.Router</span><span class="w"> </span><span class="k" data-group-id="2020">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Router</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="1944">do</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="1977">do</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1941">[</span><span class="s2">&quot;html&quot;</span><span class="p" data-group-id="1941">]</span><span class="w">
-  </span><span class="k" data-group-id="1944">end</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1972">[</span><span class="s2">&quot;html&quot;</span><span class="p" data-group-id="1972">]</span><span class="w">
+  </span><span class="k" data-group-id="1977">end</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="k" data-group-id="1997">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="k" data-group-id="2015">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
     </span><span class="c1"># browser related routes and resources
-</span><span class="w">  </span><span class="k" data-group-id="1997">end</span><span class="w">
-</span><span class="k" data-group-id="2006">end</span></code></pre>
-<p><a href="Phoenix.Router.html#content"><code class="inline">Phoenix.Router</code></a> imports functions from both <a href="https://hexdocs.pm/plug/1.4.3/Plug.Conn.html"><code class="inline">Plug.Conn</code></a> and <a href="Phoenix.Controller.html"><code class="inline">Phoenix.Controller</code></a>
+</span><span class="w">  </span><span class="k" data-group-id="2015">end</span><span class="w">
+</span><span class="k" data-group-id="2020">end</span></code></pre>
+<p><a href="Phoenix.Router.html#content"><code class="inline">Phoenix.Router</code></a> imports functions from both <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html"><code class="inline">Plug.Conn</code></a> and <a href="Phoenix.Controller.html"><code class="inline">Phoenix.Controller</code></a>
 to help define plugs. In the example above, <code class="inline">fetch_session/2</code>
-comes from <a href="https://hexdocs.pm/plug/1.4.3/Plug.Conn.html"><code class="inline">Plug.Conn</code></a> while <code class="inline">accepts/2</code> comes from <a href="Phoenix.Controller.html"><code class="inline">Phoenix.Controller</code></a>.</p>
+comes from <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html"><code class="inline">Plug.Conn</code></a> while <code class="inline">accepts/2</code> comes from <a href="Phoenix.Controller.html"><code class="inline">Phoenix.Controller</code></a>.</p>
 <p>Note that router pipelines are only invoked after a route is found.
 No plug is invoked in case no matches were found.</p>
 
@@ -535,12 +535,12 @@ may lead to errors.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp</span><span class="w"> </span><span class="k" data-group-id="2274">do</span><span class="w">
-  </span><span class="n">pipe_through</span><span class="w"> </span><span class="p" data-group-id="2255">[</span><span class="ss">:browser</span><span class="p">,</span><span class="w"> </span><span class="ss">:admin</span><span class="p" data-group-id="2255">]</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp</span><span class="w"> </span><span class="k" data-group-id="2334">do</span><span class="w">
+  </span><span class="n">pipe_through</span><span class="w"> </span><span class="p" data-group-id="2321">[</span><span class="ss">:browser</span><span class="p">,</span><span class="w"> </span><span class="ss">:admin</span><span class="p" data-group-id="2321">]</span><span class="w">
 
   </span><span class="n">forward</span><span class="w"> </span><span class="s2">&quot;/admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">SomeLib.AdminDashboard</span><span class="w">
   </span><span class="n">forward</span><span class="w"> </span><span class="s2">&quot;/api&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ApiRouter</span><span class="w">
-</span><span class="k" data-group-id="2274">end</span></code></pre>
+</span><span class="k" data-group-id="2334">end</span></code></pre>
 
   </section>
 </div>
@@ -630,9 +630,9 @@ may lead to errors.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">match</span><span class="p" data-group-id="2297">(</span><span class="ss">:move</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/events/:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">EventController</span><span class="p">,</span><span class="w"> </span><span class="ss">:move</span><span class="p" data-group-id="2297">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">match</span><span class="p" data-group-id="2346">(</span><span class="ss">:move</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/events/:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">EventController</span><span class="p">,</span><span class="w"> </span><span class="ss">:move</span><span class="p" data-group-id="2346">)</span><span class="w">
 
-</span><span class="n">match</span><span class="p" data-group-id="2317">(</span><span class="ss">:*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/any&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">SomeController</span><span class="p">,</span><span class="w"> </span><span class="ss">:any</span><span class="p" data-group-id="2317">)</span></code></pre>
+</span><span class="n">match</span><span class="p" data-group-id="2364">(</span><span class="ss">:*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/any&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">SomeController</span><span class="p">,</span><span class="w"> </span><span class="ss">:any</span><span class="p" data-group-id="2364">)</span></code></pre>
 
   </section>
 </div>
@@ -745,14 +745,14 @@ from any scope.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">pipeline</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="2338">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">pipeline</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="2384">do</span><span class="w">
   </span><span class="n">plug</span><span class="w"> </span><span class="ss">:token_authentication</span><span class="w">
   </span><span class="n">plug</span><span class="w"> </span><span class="ss">:dispatch</span><span class="w">
-</span><span class="k" data-group-id="2338">end</span></code></pre>
+</span><span class="k" data-group-id="2384">end</span></code></pre>
 <p>A scope may then use this pipeline as:</p>
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="k" data-group-id="2339">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="k" data-group-id="2385">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:api</span><span class="w">
-</span><span class="k" data-group-id="2339">end</span></code></pre>
+</span><span class="k" data-group-id="2385">end</span></code></pre>
 <p>Every time <a href="#pipe_through/1"><code class="inline">pipe_through/1</code></a> is called, the new pipelines
 are appended to the ones previously given.</p>
 
@@ -983,7 +983,7 @@ such single resource:</p>
 </li>
 </ul>
 <p>Usage example:</p>
-<pre><code class="nohighlight makeup"><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/account&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">AccountController</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2379">[</span><span class="ss">:show</span><span class="p" data-group-id="2379">]</span><span class="p">,</span><span class="w"> </span><span class="ss">singleton</span><span class="p">:</span><span class="w"> </span><span class="no">true</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/account&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">AccountController</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2405">[</span><span class="ss">:show</span><span class="p" data-group-id="2405">]</span><span class="p">,</span><span class="w"> </span><span class="ss">singleton</span><span class="p">:</span><span class="w"> </span><span class="no">true</span></code></pre>
 <h2 id="resources/4-nested-resources" class="section-heading">
   <a href="#resources/4-nested-resources" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Nested Resources
@@ -993,9 +993,9 @@ such single resource:</p>
 This is helpful for nesting children resources within their parents to
 generate nested routes.</p>
 <p>The given definition:</p>
-<pre><code class="nohighlight makeup"><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="w"> </span><span class="k" data-group-id="2381">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="w"> </span><span class="k" data-group-id="2407">do</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/posts&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PostController</span><span class="w">
-</span><span class="k" data-group-id="2381">end</span></code></pre>
+</span><span class="k" data-group-id="2407">end</span></code></pre>
 <p>will include the following routes:</p>
 <pre><code class="nohighlight makeup"><span class="n">user_post_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="ss">:user_id</span><span class="o">/</span><span class="n">posts</span><span class="w">           </span><span class="nc">PostController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
 </span><span class="n">user_post_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="ss">:user_id</span><span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="ss">:id</span><span class="o">/</span><span class="n">edit</span><span class="w">  </span><span class="nc">PostController</span><span class="w"> </span><span class="ss">:edit</span><span class="w">
@@ -1035,9 +1035,9 @@ generate nested routes.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api_v1</span><span class="p">,</span><span class="w"> </span><span class="ss">alias</span><span class="p">:</span><span class="w"> </span><span class="nc">API.V1</span><span class="w"> </span><span class="k" data-group-id="2433">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api_v1</span><span class="p">,</span><span class="w"> </span><span class="ss">alias</span><span class="p">:</span><span class="w"> </span><span class="nc">API.V1</span><span class="w"> </span><span class="k" data-group-id="2459">do</span><span class="w">
   </span><span class="n">get</span><span class="w"> </span><span class="s2">&quot;/pages/:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="w">
-</span><span class="k" data-group-id="2433">end</span></code></pre>
+</span><span class="k" data-group-id="2459">end</span></code></pre>
 <p>The generated route above will match on the path <code class="inline">&quot;/api/v1/pages/:id&quot;</code>
 and will dispatch to <code class="inline">:show</code> action in <code class="inline">API.V1.PageController</code>. A named
 helper <code class="inline">api_v1_page_path</code> will also be generated.</p>
@@ -1088,17 +1088,17 @@ ie <code class="inline">&quot;foo.bar.com&quot;</code>, <code class="inline">&qu
   <section class="docstring">
     <p>Define a scope with the given path.</p>
 <p>This function is a shortcut for:</p>
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="k" data-group-id="2440">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="k" data-group-id="2466">do</span><span class="w">
   </span><span class="o">...</span><span class="w">
-</span><span class="k" data-group-id="2440">end</span></code></pre>
+</span><span class="k" data-group-id="2466">end</span></code></pre>
 <h2 id="scope/3-examples" class="section-heading">
   <a href="#scope/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/api/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api_v1</span><span class="p">,</span><span class="w"> </span><span class="ss">alias</span><span class="p">:</span><span class="w"> </span><span class="nc">API.V1</span><span class="w"> </span><span class="k" data-group-id="2449">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/api/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api_v1</span><span class="p">,</span><span class="w"> </span><span class="ss">alias</span><span class="p">:</span><span class="w"> </span><span class="nc">API.V1</span><span class="w"> </span><span class="k" data-group-id="2471">do</span><span class="w">
   </span><span class="n">get</span><span class="w"> </span><span class="s2">&quot;/pages/:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="w">
-</span><span class="k" data-group-id="2449">end</span></code></pre>
+</span><span class="k" data-group-id="2471">end</span></code></pre>
 
   </section>
 </div>
@@ -1125,17 +1125,17 @@ ie <code class="inline">&quot;foo.bar.com&quot;</code>, <code class="inline">&qu
   <section class="docstring">
     <p>Defines a scope with the given path and alias.</p>
 <p>This function is a shortcut for:</p>
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="ss">alias</span><span class="p">:</span><span class="w"> </span><span class="kn">alias</span><span class="w"> </span><span class="k" data-group-id="2458">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="ss">alias</span><span class="p">:</span><span class="w"> </span><span class="kn">alias</span><span class="w"> </span><span class="k" data-group-id="2477">do</span><span class="w">
   </span><span class="o">...</span><span class="w">
-</span><span class="k" data-group-id="2458">end</span></code></pre>
+</span><span class="k" data-group-id="2477">end</span></code></pre>
 <h2 id="scope/4-examples" class="section-heading">
   <a href="#scope/4-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/api/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">API.V1</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api_v1</span><span class="w"> </span><span class="k" data-group-id="2462">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/api/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">API.V1</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api_v1</span><span class="w"> </span><span class="k" data-group-id="2478">do</span><span class="w">
   </span><span class="n">get</span><span class="w"> </span><span class="s2">&quot;/pages/:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="w">
-</span><span class="k" data-group-id="2462">end</span></code></pre>
+</span><span class="k" data-group-id="2478">end</span></code></pre>
 
   </section>
 </div>

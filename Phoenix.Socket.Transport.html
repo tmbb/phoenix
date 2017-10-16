@@ -169,7 +169,7 @@ and represents the channel terminating against its will. The
 <a href="#on_exit_message/3"><code class="inline">on_exit_message/3</code></a> function aids in constructing the <code class="inline">&quot;phx_error&quot;</code> message.</p>
 <p>For graceful exits, the channel will notify the transort it is
 gracefully terminating via the following message:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="1984">{</span><span class="ss">:graceful_exit</span><span class="p">,</span><span class="w"> </span><span class="n">channel_pid</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1983">%</span><span class="nc" data-group-id="1983">Phoenix.Socket.Message</span><span class="p" data-group-id="1983">{}</span><span class="p" data-group-id="1984">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="1933">{</span><span class="ss">:graceful_exit</span><span class="p">,</span><span class="w"> </span><span class="n">channel_pid</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1932">%</span><span class="nc" data-group-id="1932">Phoenix.Socket.Message</span><span class="p" data-group-id="1932">{}</span><span class="p" data-group-id="1933">}</span></code></pre>
 <p>The <code class="inline">%Phoenix.Socket.Message{}</code> is the leave message for the transport
 to relay to the client.</p>
 <h2 id="module-duplicate-join-subscriptions" class="section-heading">
@@ -191,7 +191,7 @@ on duplicate joins.</p>
 </h2>
 
 <p>This module also provides functions to enable a secure environment
-on transports that, at some point, have access to a <a href="https://hexdocs.pm/plug/1.4.3/Plug.Conn.html"><code class="inline">Plug.Conn</code></a>.</p>
+on transports that, at some point, have access to a <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html"><code class="inline">Plug.Conn</code></a>.</p>
 <p>The functionality provided by this module helps in performing “origin”
 header checks and ensuring only SSL connections are allowed.</p>
 <h2 id="module-remote-client" class="section-heading">
@@ -389,7 +389,7 @@ It is a noop if the connection has been halted.</p>
     <p>Handles the socket connection.</p>
 <p>It builds a new <a href="Phoenix.Socket.html"><code class="inline">Phoenix.Socket</code></a>, invokes the handler
 <code class="inline">connect/2</code> callback and returns the result.</p>
-<p>If the connection was successful, generates <a href="https://hexdocs.pm/phoenix_pubsub/1.0.2/Phoenix.PubSub.html"><code class="inline">Phoenix.PubSub</code></a>
+<p>If the connection was successful, generates <a href="https://hexdocs.pm/phoenix_pubsub/1.0.1/Phoenix.PubSub.html"><code class="inline">Phoenix.PubSub</code></a>
 topic from the <code class="inline">id/1</code> callback.</p>
 
   </section>
@@ -437,7 +437,7 @@ must be sent as result
 <p>When logging parameters, Phoenix can filter out sensitive parameters
 such as passwords and tokens. Parameters to be filtered can be added
 via the <code class="inline">:filter_parameters</code> option:</p>
-<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:filter_parameters</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2135">[</span><span class="s2">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span><span class="p" data-group-id="2135">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:filter_parameters</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2097">[</span><span class="s2">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span><span class="p" data-group-id="2097">]</span></code></pre>
 <p>With the configuration above, Phoenix will filter any parameter
 that contains the terms <code class="inline">password</code> or <code class="inline">secret</code>. The match is
 case sensitive.</p>

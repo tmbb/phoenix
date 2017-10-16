@@ -543,7 +543,7 @@ worker(OurCustom.Repo, [])</code></pre>
 <pre><code class="nohighlight makeup"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
 </span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="579">[</span><span class="w">
   </span><span class="c1"># Start the endpoint when the application starts
-</span><span class="w">  </span><span class="n">supervisor</span><span class="p" data-group-id="567">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="566">[]</span><span class="p" data-group-id="567">)</span><span class="p">,</span><span class="w">
+</span><span class="w">  </span><span class="n">supervisor</span><span class="p" data-group-id="568">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="567">[]</span><span class="p" data-group-id="568">)</span><span class="p">,</span><span class="w">
   </span><span class="c1"># Start the Ecto repository
 </span><span class="w">  </span><span class="n">worker</span><span class="p" data-group-id="573">(</span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="572">[]</span><span class="p" data-group-id="573">)</span><span class="p">,</span><span class="w">
   </span><span class="c1"># Here you could define other workers and supervisors as children
@@ -559,17 +559,17 @@ worker(OurCustom.Repo, [])</code></pre>
 * creating priv/repo/migrations/20150318001628_add_comments_table.exs</code></pre>
 <p>Notice that the migration’s filename begins with a string representation of the date and time the file was created.</p>
 <p>Let’s take a look at the file <code class="inline">ecto.gen.migration</code> has generated for us at <code class="inline">priv/repo/migrations/20150318001628_add_comments_table.exs</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Repo.Migrations.AddCommentsTable</span><span class="w"> </span><span class="k" data-group-id="565">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Repo.Migrations.AddCommentsTable</span><span class="w"> </span><span class="k" data-group-id="564">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Migration</span><span class="w">
 
   </span><span class="kd">def</span><span class="w"> </span><span class="nf">change</span><span class="w"> </span><span class="k" data-group-id="563">do</span><span class="w">
   </span><span class="k" data-group-id="563">end</span><span class="w">
-</span><span class="k" data-group-id="565">end</span></code></pre>
+</span><span class="k" data-group-id="564">end</span></code></pre>
 <p>Notice that there is a single function <code class="inline">change/0</code> which will handle both forward migrations and rollbacks. We’ll define the schema changes that we want using ecto’s handy dsl, and ecto will figure out what to do depending on whether we are rolling forward or rolling back. Very nice indeed.</p>
 <p>What we want to do is create a <code class="inline">comments</code> table with a <code class="inline">body</code> column, a <code class="inline">word_count</code> column, and timestamp columns for <code class="inline">inserted_at</code> and <code class="inline">updated_at</code>.</p>
 <pre><code class="nohighlight makeup"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
 </span><span class="kd">def</span><span class="w"> </span><span class="nf">change</span><span class="w"> </span><span class="k" data-group-id="570">do</span><span class="w">
-  </span><span class="n">create</span><span class="w"> </span><span class="n">table</span><span class="p" data-group-id="564">(</span><span class="ss">:comments</span><span class="p" data-group-id="564">)</span><span class="w"> </span><span class="k" data-group-id="569">do</span><span class="w">
+  </span><span class="n">create</span><span class="w"> </span><span class="n">table</span><span class="p" data-group-id="565">(</span><span class="ss">:comments</span><span class="p" data-group-id="565">)</span><span class="w"> </span><span class="k" data-group-id="569">do</span><span class="w">
     </span><span class="n">add</span><span class="w"> </span><span class="ss">:body</span><span class="p">,</span><span class="w">       </span><span class="ss">:string</span><span class="w">
     </span><span class="n">add</span><span class="w"> </span><span class="ss">:word_count</span><span class="p">,</span><span class="w"> </span><span class="ss">:integer</span><span class="w">
     </span><span class="n">timestamps</span><span class="w">
@@ -640,9 +640,9 @@ version     |     inserted_at
     This is where we would put any long form documentation or doctests.
   &quot;&quot;&quot;</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="571">(</span><span class="bp">_args</span><span class="p" data-group-id="571">)</span><span class="w"> </span><span class="k" data-group-id="574">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="571">(</span><span class="bp">_args</span><span class="p" data-group-id="571">)</span><span class="w"> </span><span class="k" data-group-id="575">do</span><span class="w">
     </span><span class="nc">Mix</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Greetings from the Hello Phoenix Application!&quot;</span><span class="w">
-  </span><span class="k" data-group-id="574">end</span><span class="w">
+  </span><span class="k" data-group-id="575">end</span><span class="w">
 
   </span><span class="c1"># We can define other functions as needed here.
 </span><span class="k" data-group-id="576">end</span></code></pre>
@@ -668,10 +668,10 @@ Greetings from the Hello Phoenix Application!</code></pre>
 <p>Indeed it does.</p>
 <p>If you want to make your new mix task to use your application’s infrastructure, you need to make sure the application is started when mix task is being executed. This is particularly useful if you need to access your database from within the mix task. Thankfully, mix makes it really easy for us:</p>
 <pre><code class="nohighlight makeup"><span class="w">  </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="568">(</span><span class="bp">_args</span><span class="p" data-group-id="568">)</span><span class="w"> </span><span class="k" data-group-id="575">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="566">(</span><span class="bp">_args</span><span class="p" data-group-id="566">)</span><span class="w"> </span><span class="k" data-group-id="574">do</span><span class="w">
     </span><span class="nc">Mix.Task</span><span class="o">.</span><span class="n">run</span><span class="w"> </span><span class="s2">&quot;app.start&quot;</span><span class="w">
     </span><span class="nc">Mix</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Now I have access to Repo and other goodies!&quot;</span><span class="w">
-  </span><span class="k" data-group-id="575">end</span><span class="w">
+  </span><span class="k" data-group-id="574">end</span><span class="w">
   </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
 
       <footer class="footer">

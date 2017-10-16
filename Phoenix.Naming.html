@@ -207,10 +207,10 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="p" data-group-id="1881">(</span><span class="s2">&quot;my_app&quot;</span><span class="p" data-group-id="1881">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="p" data-group-id="1891">(</span><span class="s2">&quot;my_app&quot;</span><span class="p" data-group-id="1891">)</span><span class="w">
 </span><span class="s2">&quot;MyApp&quot;</span><span class="w">
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="p" data-group-id="1934">(</span><span class="s2">&quot;my_app&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:lower</span><span class="p" data-group-id="1934">)</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="p" data-group-id="1947">(</span><span class="s2">&quot;my_app&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:lower</span><span class="p" data-group-id="1947">)</span><span class="w">
 </span><span class="s2">&quot;myApp&quot;</span></code></pre>
 <p>In general, <code class="inline">camelize</code> can be thought of as the reverse of
 <code class="inline">underscore</code>, however, in some cases formatting may be lost:</p>
@@ -273,11 +273,11 @@
   </div>
   <section class="docstring">
     <p>Converts an attribute/form field into its humanize version.</p>
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="2018">(</span><span class="ss">:username</span><span class="p" data-group-id="2018">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="2012">(</span><span class="ss">:username</span><span class="p" data-group-id="2012">)</span><span class="w">
 </span><span class="s2">&quot;Username&quot;</span><span class="w">
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="2054">(</span><span class="ss">:created_at</span><span class="p" data-group-id="2054">)</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="2052">(</span><span class="ss">:created_at</span><span class="p" data-group-id="2052">)</span><span class="w">
 </span><span class="s2">&quot;Created at&quot;</span><span class="w">
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="2105">(</span><span class="s2">&quot;user_id&quot;</span><span class="p" data-group-id="2105">)</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="2104">(</span><span class="s2">&quot;user_id&quot;</span><span class="p" data-group-id="2104">)</span><span class="w">
 </span><span class="s2">&quot;User&quot;</span></code></pre>
 
   </section>
@@ -318,7 +318,7 @@
 <pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">resource_name</span><span class="p" data-group-id="2148">(</span><span class="nc">MyApp.User</span><span class="p" data-group-id="2148">)</span><span class="w">
 </span><span class="s2">&quot;user&quot;</span><span class="w">
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">resource_name</span><span class="p" data-group-id="2184">(</span><span class="nc">MyApp.UserView</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2184">)</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">resource_name</span><span class="p" data-group-id="2198">(</span><span class="nc">MyApp.UserView</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2198">)</span><span class="w">
 </span><span class="s2">&quot;user&quot;</span></code></pre>
 
   </section>
@@ -354,7 +354,7 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="p" data-group-id="2233">(</span><span class="s2">&quot;MyApp&quot;</span><span class="p" data-group-id="2233">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="p" data-group-id="2227">(</span><span class="s2">&quot;MyApp&quot;</span><span class="p" data-group-id="2227">)</span><span class="w">
 </span><span class="s2">&quot;my_app&quot;</span></code></pre>
 <p>In general, <code class="inline">underscore</code> can be thought of as the reverse of
 <code class="inline">camelize</code>, however, in some cases formatting may be lost:</p>
@@ -397,7 +397,7 @@
 <pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">unsuffix</span><span class="p" data-group-id="2260">(</span><span class="s2">&quot;MyApp.User&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2260">)</span><span class="w">
 </span><span class="s2">&quot;MyApp.User&quot;</span><span class="w">
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">unsuffix</span><span class="p" data-group-id="2285">(</span><span class="s2">&quot;MyApp.UserView&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2285">)</span><span class="w">
+</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">unsuffix</span><span class="p" data-group-id="2279">(</span><span class="s2">&quot;MyApp.UserView&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2279">)</span><span class="w">
 </span><span class="s2">&quot;MyApp.User&quot;</span></code></pre>
 
   </section>
