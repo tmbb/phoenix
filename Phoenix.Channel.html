@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Channel – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
     <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -96,19 +100,80 @@ want to listen to. The topic is just an identifier, but by convention it is
 often made of two parts: <code class="inline">&quot;topic:subtopic&quot;</code>. Using the <code class="inline">&quot;topic:subtopic&quot;</code>
 approach pairs nicely with the <a href="Phoenix.Socket.html#channel/2"><code class="inline">Phoenix.Socket.channel/2</code></a> allowing you to
 match on all topics starting with a given prefix:</p>
-<pre><code class="nohighlight makeup"><span class="n">channel</span><span class="w"> </span><span class="s2">&quot;room:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.RoomChannel</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>channel</span><span class="w"
+> </span><span class="s"
+>&quot;room:*&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp.RoomChannel</span></code></pre>
 <p>Any topic coming into the router with the <code class="inline">&quot;room:&quot;</code> prefix would dispatch
 to <code class="inline">MyApp.RoomChannel</code> in the above example. Topics can also be pattern
 matched in your channels’ <code class="inline">join/3</code> callback to pluck out the scoped pattern:</p>
-<pre><code class="nohighlight makeup"><span class="c1"># handles the special `&quot;lobby&quot;` subtopic
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="1989">(</span><span class="s2">&quot;room:lobby&quot;</span><span class="p">,</span><span class="w"> </span><span class="bp">_auth_message</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1989">)</span><span class="w"> </span><span class="k" data-group-id="2024">do</span><span class="w">
-  </span><span class="p" data-group-id="2018">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2018">}</span><span class="w">
-</span><span class="k" data-group-id="2024">end</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="c1"
+># handles the special `&quot;lobby&quot;` subtopic</span><span class="w"
+>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>join</span><span class="p" data-group-id="7357629244-1"
+>(</span><span class="s"
+>&quot;room:lobby&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="bp"
+>_auth_message</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7357629244-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7357629244-2"
+>do</span><span class="w"
+>
+  </span><span class="p" data-group-id="7357629244-3"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7357629244-3"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="7357629244-2"
+>end</span><span class="w"
+>
 
-</span><span class="c1"># handles any other subtopic as the room ID, for example `&quot;room:12&quot;`, `&quot;room:34&quot;`
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="2091">(</span><span class="s2">&quot;room:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">room_id</span><span class="p">,</span><span class="w"> </span><span class="n">auth_message</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2091">)</span><span class="w"> </span><span class="k" data-group-id="2116">do</span><span class="w">
-  </span><span class="p" data-group-id="2109">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2109">}</span><span class="w">
-</span><span class="k" data-group-id="2116">end</span></code></pre>
+</span><span class="c1"
+># handles any other subtopic as the room ID, for example `&quot;room:12&quot;`, `&quot;room:34&quot;`</span><span class="w"
+>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>join</span><span class="p" data-group-id="7357629244-4"
+>(</span><span class="s"
+>&quot;room:&quot;</span><span class="w"
+> </span><span class="o"
+>&lt;&gt;</span><span class="w"
+> </span><span class="n"
+>room_id</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>auth_message</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7357629244-4"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7357629244-5"
+>do</span><span class="w"
+>
+  </span><span class="p" data-group-id="7357629244-6"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7357629244-6"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="7357629244-5"
+>end</span></code></pre>
 <h2 id="module-authorization" class="section-heading">
   <a href="#module-authorization" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Authorization
@@ -133,16 +198,122 @@ the socket with <a href="#push/3"><code class="inline">push/3</code></a>. Incomi
 maintain ephemeral state.</p>
 <p>Here’s an example of receiving an incoming <code class="inline">&quot;new_msg&quot;</code> event from one client,
 and broadcasting the message to all topic subscribers for this socket.</p>
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="2037">(</span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2029">%{</span><span class="s2">&quot;uid&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;body&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="2029">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2037">)</span><span class="w"> </span><span class="k" data-group-id="2125">do</span><span class="w">
-  </span><span class="n">broadcast!</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2099">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="2099">}</span><span class="w">
-  </span><span class="p" data-group-id="2119">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2119">}</span><span class="w">
-</span><span class="k" data-group-id="2125">end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="8272264885-1"
+>(</span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="8272264885-2"
+>%{</span><span class="s"
+>&quot;uid&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="n"
+>uid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;body&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="n"
+>body</span><span class="p" data-group-id="8272264885-2"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="8272264885-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="8272264885-3"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>broadcast!</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="8272264885-4"
+>%{</span><span class="ss"
+>uid</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>uid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>body</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>body</span><span class="p" data-group-id="8272264885-4"
+>}</span><span class="w"
+>
+  </span><span class="p" data-group-id="8272264885-5"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="8272264885-5"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="8272264885-3"
+>end</span></code></pre>
 <p>You can also push a message directly down the socket:</p>
-<pre><code class="nohighlight makeup"><span class="c1"># client asks for their current rank, push sent directly as a new event.
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="1996">(</span><span class="s2">&quot;current_rank&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1996">)</span><span class="w"> </span><span class="k" data-group-id="2117">do</span><span class="w">
-  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;current_rank&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2094">%{</span><span class="ss">val</span><span class="p">:</span><span class="w"> </span><span class="nc">Game</span><span class="o">.</span><span class="n">get_rank</span><span class="p" data-group-id="2093">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="2092">[</span><span class="ss">:user</span><span class="p" data-group-id="2092">]</span><span class="p" data-group-id="2093">)</span><span class="p" data-group-id="2094">}</span><span class="w">
-  </span><span class="p" data-group-id="2112">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2112">}</span><span class="w">
-</span><span class="k" data-group-id="2117">end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="c1"
+># client asks for their current rank, push sent directly as a new event.</span><span class="w"
+>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="9814453588-1"
+>(</span><span class="s"
+>&quot;current_rank&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="9814453588-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="9814453588-2"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;current_rank&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="9814453588-3"
+>%{</span><span class="ss"
+>val</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>Game</span><span class="o"
+>.</span><span class="n"
+>get_rank</span><span class="p" data-group-id="9814453588-4"
+>(</span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>assigns</span><span class="p" data-group-id="9814453588-5"
+>[</span><span class="ss"
+>:user</span><span class="p" data-group-id="9814453588-5"
+>]</span><span class="p" data-group-id="9814453588-4"
+>)</span><span class="p" data-group-id="9814453588-3"
+>}</span><span class="w"
+>
+  </span><span class="p" data-group-id="9814453588-6"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="9814453588-6"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="9814453588-2"
+>end</span></code></pre>
 <h2 id="module-replies" class="section-heading">
   <a href="#module-replies" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Replies
@@ -153,29 +324,225 @@ you can also reply directly to a client event for request/response style
 messaging. This is useful when a client must know the result of an operation
 or to simply ack messages.</p>
 <p>For example, imagine creating a resource and replying with the created record:</p>
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="1979">(</span><span class="s2">&quot;create:post&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1979">)</span><span class="w"> </span><span class="k" data-group-id="2244">do</span><span class="w">
-  </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Post</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="2035">(</span><span class="p" data-group-id="2025">%</span><span class="nc" data-group-id="2025">Post</span><span class="p" data-group-id="2025">{}</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p" data-group-id="2035">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="2937016757-1"
+>(</span><span class="s"
+>&quot;create:post&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>attrs</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="2937016757-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="2937016757-2"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>changeset</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>Post</span><span class="o"
+>.</span><span class="n"
+>changeset</span><span class="p" data-group-id="2937016757-3"
+>(</span><span class="p" data-group-id="2937016757-4"
+>%</span><span class="nc" data-group-id="2937016757-4"
+>Post</span><span class="p" data-group-id="2937016757-4"
+>{</span><span class="p" data-group-id="2937016757-4"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>attrs</span><span class="p" data-group-id="2937016757-3"
+>)</span><span class="w"
+>
 
-  </span><span class="k">if</span><span class="w"> </span><span class="n">changeset</span><span class="o">.</span><span class="n">valid?</span><span class="w"> </span><span class="k" data-group-id="2243">do</span><span class="w">
-    </span><span class="n">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">insert!</span><span class="p" data-group-id="2090">(</span><span class="n">changeset</span><span class="p" data-group-id="2090">)</span><span class="w">
-    </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">MyApp.PostView</span><span class="o">.</span><span class="n">render</span><span class="p" data-group-id="2140">(</span><span class="s2">&quot;show.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2139">%{</span><span class="ss">post</span><span class="p">:</span><span class="w"> </span><span class="n">post</span><span class="p" data-group-id="2139">}</span><span class="p" data-group-id="2140">)</span><span class="w">
-    </span><span class="p" data-group-id="2180">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2167">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2167">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2180">}</span><span class="w">
-  </span><span class="k" data-group-id="2243">else</span><span class="w">
-    </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">MyApp.ChangesetView</span><span class="o">.</span><span class="n">render</span><span class="p" data-group-id="2222">(</span><span class="s2">&quot;errors.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2221">%{</span><span class="ss">changeset</span><span class="p">:</span><span class="w"> </span><span class="n">changeset</span><span class="p" data-group-id="2221">}</span><span class="p" data-group-id="2222">)</span><span class="w">
-    </span><span class="p" data-group-id="2239">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2237">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2237">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2239">}</span><span class="w">
-  </span><span class="k" data-group-id="2243">end</span><span class="w">
-</span><span class="k" data-group-id="2244">end</span></code></pre>
+  </span><span class="k"
+>if</span><span class="w"
+> </span><span class="n"
+>changeset</span><span class="o"
+>.</span><span class="n"
+>valid?</span><span class="w"
+> </span><span class="k" data-group-id="2937016757-5"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>post</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>Repo</span><span class="o"
+>.</span><span class="n"
+>insert!</span><span class="p" data-group-id="2937016757-6"
+>(</span><span class="n"
+>changeset</span><span class="p" data-group-id="2937016757-6"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>response</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>MyApp.PostView</span><span class="o"
+>.</span><span class="n"
+>render</span><span class="p" data-group-id="2937016757-7"
+>(</span><span class="s"
+>&quot;show.json&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2937016757-8"
+>%{</span><span class="ss"
+>post</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>post</span><span class="p" data-group-id="2937016757-8"
+>}</span><span class="p" data-group-id="2937016757-7"
+>)</span><span class="w"
+>
+    </span><span class="p" data-group-id="2937016757-9"
+>{</span><span class="ss"
+>:reply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2937016757-10"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>response</span><span class="p" data-group-id="2937016757-10"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="2937016757-9"
+>}</span><span class="w"
+>
+  </span><span class="k" data-group-id="2937016757-5"
+>else</span><span class="w"
+>
+    </span><span class="n"
+>response</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>MyApp.ChangesetView</span><span class="o"
+>.</span><span class="n"
+>render</span><span class="p" data-group-id="2937016757-11"
+>(</span><span class="s"
+>&quot;errors.json&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2937016757-12"
+>%{</span><span class="ss"
+>changeset</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>changeset</span><span class="p" data-group-id="2937016757-12"
+>}</span><span class="p" data-group-id="2937016757-11"
+>)</span><span class="w"
+>
+    </span><span class="p" data-group-id="2937016757-13"
+>{</span><span class="ss"
+>:reply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2937016757-14"
+>{</span><span class="ss"
+>:error</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>response</span><span class="p" data-group-id="2937016757-14"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="2937016757-13"
+>}</span><span class="w"
+>
+  </span><span class="k" data-group-id="2937016757-5"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="2937016757-2"
+>end</span></code></pre>
 <p>Alternatively, you may just want to ack the status of the operation:</p>
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="1981">(</span><span class="s2">&quot;create:post&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1981">)</span><span class="w"> </span><span class="k" data-group-id="2133">do</span><span class="w">
-  </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Post</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="2036">(</span><span class="p" data-group-id="2026">%</span><span class="nc" data-group-id="2026">Post</span><span class="p" data-group-id="2026">{}</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p" data-group-id="2036">)</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="7591332957-1"
+>(</span><span class="s"
+>&quot;create:post&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>attrs</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7591332957-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7591332957-2"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>changeset</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>Post</span><span class="o"
+>.</span><span class="n"
+>changeset</span><span class="p" data-group-id="7591332957-3"
+>(</span><span class="p" data-group-id="7591332957-4"
+>%</span><span class="nc" data-group-id="7591332957-4"
+>Post</span><span class="p" data-group-id="7591332957-4"
+>{</span><span class="p" data-group-id="7591332957-4"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>attrs</span><span class="p" data-group-id="7591332957-3"
+>)</span><span class="w"
+>
 
-  </span><span class="k">if</span><span class="w"> </span><span class="n">changeset</span><span class="o">.</span><span class="n">valid?</span><span class="w"> </span><span class="k" data-group-id="2131">do</span><span class="w">
-    </span><span class="nc">Repo</span><span class="o">.</span><span class="n">insert!</span><span class="p" data-group-id="2088">(</span><span class="n">changeset</span><span class="p" data-group-id="2088">)</span><span class="w">
-    </span><span class="p" data-group-id="2111">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2111">}</span><span class="w">
-  </span><span class="k" data-group-id="2131">else</span><span class="w">
-    </span><span class="p" data-group-id="2129">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2129">}</span><span class="w">
-  </span><span class="k" data-group-id="2131">end</span><span class="w">
-</span><span class="k" data-group-id="2133">end</span></code></pre>
+  </span><span class="k"
+>if</span><span class="w"
+> </span><span class="n"
+>changeset</span><span class="o"
+>.</span><span class="n"
+>valid?</span><span class="w"
+> </span><span class="k" data-group-id="7591332957-5"
+>do</span><span class="w"
+>
+    </span><span class="nc"
+>Repo</span><span class="o"
+>.</span><span class="n"
+>insert!</span><span class="p" data-group-id="7591332957-6"
+>(</span><span class="n"
+>changeset</span><span class="p" data-group-id="7591332957-6"
+>)</span><span class="w"
+>
+    </span><span class="p" data-group-id="7591332957-7"
+>{</span><span class="ss"
+>:reply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7591332957-7"
+>}</span><span class="w"
+>
+  </span><span class="k" data-group-id="7591332957-5"
+>else</span><span class="w"
+>
+    </span><span class="p" data-group-id="7591332957-8"
+>{</span><span class="ss"
+>:reply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:error</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7591332957-8"
+>}</span><span class="w"
+>
+  </span><span class="k" data-group-id="7591332957-5"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="7591332957-2"
+>end</span></code></pre>
 <h2 id="module-intercepting-outgoing-events" class="section-heading">
   <a href="#module-intercepting-outgoing-events" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Intercepting Outgoing Events
@@ -187,25 +554,159 @@ This allows the event’s payload to be customized on a socket by socket basis
 to append extra information, or conditionally filter the message from being
 delivered. If the event is not intercepted with <a href="Phoenix.Channel.html#intercept/1"><code class="inline">Phoenix.Channel.intercept/1</code></a>,
 then the message is pushed directly to the client:</p>
-<pre><code class="nohighlight makeup"><span class="n">intercept</span><span class="w"> </span><span class="p" data-group-id="1971">[</span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;user_joined&quot;</span><span class="p" data-group-id="1971">]</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n"
+>intercept</span><span class="w"
+> </span><span class="p" data-group-id="8419800124-1"
+>[</span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;user_joined&quot;</span><span class="p" data-group-id="8419800124-1"
+>]</span><span class="w"
+>
 
-</span><span class="c1"># for every socket subscribing to this topic, append an `is_editable`
-# value for client metadata.
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_out</span><span class="p" data-group-id="2030">(</span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2030">)</span><span class="w"> </span><span class="k" data-group-id="2161">do</span><span class="w">
-  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="2145">(</span><span class="n">msg</span><span class="p">,</span><span class="w">
-    </span><span class="p" data-group-id="2144">%{</span><span class="ss">is_editable</span><span class="p">:</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">can_edit_message?</span><span class="p" data-group-id="2143">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="2136">[</span><span class="ss">:user</span><span class="p" data-group-id="2136">]</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p" data-group-id="2143">)</span><span class="p" data-group-id="2144">}</span><span class="w">
-  </span><span class="p" data-group-id="2145">)</span><span class="w">
-  </span><span class="p" data-group-id="2156">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2156">}</span><span class="w">
-</span><span class="k" data-group-id="2161">end</span><span class="w">
+</span><span class="c1"
+># for every socket subscribing to this topic, append an `is_editable`</span><span class="w"
+>
+</span><span class="c1"
+># value for client metadata.</span><span class="w"
+>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_out</span><span class="p" data-group-id="8419800124-2"
+>(</span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>msg</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="8419800124-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="8419800124-3"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Map</span><span class="o"
+>.</span><span class="n"
+>merge</span><span class="p" data-group-id="8419800124-4"
+>(</span><span class="n"
+>msg</span><span class="p"
+>,</span><span class="w"
+>
+    </span><span class="p" data-group-id="8419800124-5"
+>%{</span><span class="ss"
+>is_editable</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>can_edit_message?</span><span class="p" data-group-id="8419800124-6"
+>(</span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>assigns</span><span class="p" data-group-id="8419800124-7"
+>[</span><span class="ss"
+>:user</span><span class="p" data-group-id="8419800124-7"
+>]</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>msg</span><span class="p" data-group-id="8419800124-6"
+>)</span><span class="p" data-group-id="8419800124-5"
+>}</span><span class="w"
+>
+  </span><span class="p" data-group-id="8419800124-4"
+>)</span><span class="w"
+>
+  </span><span class="p" data-group-id="8419800124-8"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="8419800124-8"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="8419800124-3"
+>end</span><span class="w"
+>
 
-</span><span class="c1"># do not send broadcasted `&quot;user_joined&quot;` events if this socket's user
-# is ignoring the user who joined.
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_out</span><span class="p" data-group-id="2209">(</span><span class="s2">&quot;user_joined&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2209">)</span><span class="w"> </span><span class="k" data-group-id="2264">do</span><span class="w">
-  </span><span class="k">unless</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">ignoring?</span><span class="p" data-group-id="2242">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="2236">[</span><span class="ss">:user</span><span class="p" data-group-id="2236">]</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">.</span><span class="n">user_id</span><span class="p" data-group-id="2242">)</span><span class="w"> </span><span class="k" data-group-id="2256">do</span><span class="w">
-    </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;user_joined&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="w">
-  </span><span class="k" data-group-id="2256">end</span><span class="w">
-  </span><span class="p" data-group-id="2262">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2262">}</span><span class="w">
-</span><span class="k" data-group-id="2264">end</span></code></pre>
+</span><span class="c1"
+># do not send broadcasted `&quot;user_joined&quot;` events if this socket's user</span><span class="w"
+>
+</span><span class="c1"
+># is ignoring the user who joined.</span><span class="w"
+>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_out</span><span class="p" data-group-id="8419800124-9"
+>(</span><span class="s"
+>&quot;user_joined&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>msg</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="8419800124-9"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="8419800124-10"
+>do</span><span class="w"
+>
+  </span><span class="k"
+>unless</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>ignoring?</span><span class="p" data-group-id="8419800124-11"
+>(</span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>assigns</span><span class="p" data-group-id="8419800124-12"
+>[</span><span class="ss"
+>:user</span><span class="p" data-group-id="8419800124-12"
+>]</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>msg</span><span class="o"
+>.</span><span class="n"
+>user_id</span><span class="p" data-group-id="8419800124-11"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="8419800124-13"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;user_joined&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>msg</span><span class="w"
+>
+  </span><span class="k" data-group-id="8419800124-13"
+>end</span><span class="w"
+>
+  </span><span class="p" data-group-id="8419800124-14"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="8419800124-14"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="8419800124-10"
+>end</span></code></pre>
 <h2 id="module-broadcasting-to-an-external-topic" class="section-heading">
   <a href="#module-broadcasting-to-an-external-topic" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Broadcasting to an external topic
@@ -215,22 +716,191 @@ then the message is pushed directly to the client:</p>
 a <code class="inline">socket</code>. This could be for broadcasting from within your channel to an
 external topic, or broadcasting from elsewhere in your application like a
 controller or another process. Such can be done via your endpoint:</p>
-<pre><code class="nohighlight makeup"><span class="c1"># within channel
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="2056">(</span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2044">%{</span><span class="s2">&quot;uid&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;body&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="2044">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2056">)</span><span class="w"> </span><span class="k" data-group-id="2211">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
-  </span><span class="n">broadcast_from!</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2128">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="2128">}</span><span class="w">
-  </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast_from!</span><span class="w"> </span><span class="n">self</span><span class="p" data-group-id="2142">()</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;room:superadmin&quot;</span><span class="p">,</span><span class="w">
-    </span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2199">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="2199">}</span><span class="w">
-  </span><span class="p" data-group-id="2210">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2210">}</span><span class="w">
-</span><span class="k" data-group-id="2211">end</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="c1"
+># within channel</span><span class="w"
+>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="2142625292-1"
+>(</span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2142625292-2"
+>%{</span><span class="s"
+>&quot;uid&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="n"
+>uid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;body&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="n"
+>body</span><span class="p" data-group-id="2142625292-2"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="2142625292-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="2142625292-3"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
+  </span><span class="n"
+>broadcast_from!</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2142625292-4"
+>%{</span><span class="ss"
+>uid</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>uid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>body</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>body</span><span class="p" data-group-id="2142625292-4"
+>}</span><span class="w"
+>
+  </span><span class="nc"
+>MyApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>broadcast_from!</span><span class="w"
+> </span><span class="n"
+>self</span><span class="p" data-group-id="2142625292-5"
+>(</span><span class="p" data-group-id="2142625292-5"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;room:superadmin&quot;</span><span class="p"
+>,</span><span class="w"
+>
+    </span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2142625292-6"
+>%{</span><span class="ss"
+>uid</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>uid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>body</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>body</span><span class="p" data-group-id="2142625292-6"
+>}</span><span class="w"
+>
+  </span><span class="p" data-group-id="2142625292-7"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="2142625292-7"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="2142625292-3"
+>end</span><span class="w"
+>
 
-</span><span class="c1"># within controller
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">create</span><span class="p" data-group-id="2223">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="2223">)</span><span class="w"> </span><span class="k" data-group-id="2293">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
-  </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast!</span><span class="w"> </span><span class="s2">&quot;room:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">rid</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2259">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="2259">}</span><span class="w">
-  </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast!</span><span class="w"> </span><span class="s2">&quot;room:superadmin&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2282">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="2282">}</span><span class="w">
-  </span><span class="n">redirect</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w">
-</span><span class="k" data-group-id="2293">end</span></code></pre>
+</span><span class="c1"
+># within controller</span><span class="w"
+>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>create</span><span class="p" data-group-id="2142625292-8"
+>(</span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>params</span><span class="p" data-group-id="2142625292-8"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="2142625292-9"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
+  </span><span class="nc"
+>MyApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>broadcast!</span><span class="w"
+> </span><span class="s"
+>&quot;room:&quot;</span><span class="w"
+> </span><span class="o"
+>&lt;&gt;</span><span class="w"
+> </span><span class="n"
+>rid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2142625292-10"
+>%{</span><span class="ss"
+>uid</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>uid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>body</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>body</span><span class="p" data-group-id="2142625292-10"
+>}</span><span class="w"
+>
+  </span><span class="nc"
+>MyApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>broadcast!</span><span class="w"
+> </span><span class="s"
+>&quot;room:superadmin&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2142625292-11"
+>%{</span><span class="ss"
+>uid</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>uid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>body</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>body</span><span class="p" data-group-id="2142625292-11"
+>}</span><span class="w"
+>
+  </span><span class="n"
+>redirect</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>to</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="w"
+>
+</span><span class="k" data-group-id="2142625292-9"
+>end</span></code></pre>
 <h2 id="module-terminate" class="section-heading">
   <a href="#module-terminate" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Terminate
@@ -256,8 +926,32 @@ is invoked. This practice is not encouraged though.</p>
 </h2>
 
 <p>When the channel callbacks return a <code class="inline">:stop</code> tuple, such as:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="1967">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="ss">:shutdown</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1967">}</span><span class="w">
-</span><span class="p" data-group-id="2014">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2000">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:enoent</span><span class="p" data-group-id="2000">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2014">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="0256452054-1"
+>{</span><span class="ss"
+>:stop</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:shutdown</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="0256452054-1"
+>}</span><span class="w"
+>
+</span><span class="p" data-group-id="0256452054-2"
+>{</span><span class="ss"
+>:stop</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="0256452054-3"
+>{</span><span class="ss"
+>:error</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:enoent</span><span class="p" data-group-id="0256452054-3"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="0256452054-2"
+>}</span></code></pre>
 <p>the second argument is the exit reason, which follows the same behaviour as
 standard <a href="https://hexdocs.pm/elixir/GenServer.html"><code class="inline">GenServer</code></a> exits.</p>
 <p>You have three options to choose from when shutting down a channel:</p>
@@ -286,46 +980,364 @@ preferences on products they want to receive bidding notifications on.
 Instead of requiring a unique channel process and topic per
 preference, a more efficient and simple approach would be to subscribe a
 single channel to relevant notifications via your endpoint. For example:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.Endpoint.NotificationChannel</span><span class="w"> </span><span class="k" data-group-id="2356">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Channel</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>MyApp.Endpoint.NotificationChannel</span><span class="w"
+> </span><span class="k" data-group-id="7853146728-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Channel</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="2059">(</span><span class="s2">&quot;notification:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2047">%{</span><span class="s2">&quot;ids&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ids</span><span class="p" data-group-id="2047">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2059">)</span><span class="w"> </span><span class="k" data-group-id="2171">do</span><span class="w">
-    </span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ids</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;product:</span><span class="si" data-group-id="2126">#{</span><span class="n">product_id</span><span class="si" data-group-id="2126">}</span><span class="s2">&quot;</span><span class="w">
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>join</span><span class="p" data-group-id="7853146728-2"
+>(</span><span class="s"
+>&quot;notification:&quot;</span><span class="w"
+> </span><span class="o"
+>&lt;&gt;</span><span class="w"
+> </span><span class="n"
+>user_id</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7853146728-3"
+>%{</span><span class="s"
+>&quot;ids&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="n"
+>ids</span><span class="p" data-group-id="7853146728-3"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7853146728-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7853146728-4"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>topics</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="k"
+>for</span><span class="w"
+> </span><span class="n"
+>product_id</span><span class="w"
+> </span><span class="o"
+>&lt;-</span><span class="w"
+> </span><span class="n"
+>ids</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>do</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;product:</span><span class="si" data-group-id="7853146728-5"
+>#{</span><span class="n"
+>product_id</span><span class="si" data-group-id="7853146728-5"
+>}</span><span class="s"
+>&quot;</span><span class="w"
+>
 
-    </span><span class="p" data-group-id="2165">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="w">
-          </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="2150">(</span><span class="ss">:topics</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2149">[]</span><span class="p" data-group-id="2150">)</span><span class="w">
-          </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_new_topics</span><span class="p" data-group-id="2164">(</span><span class="n">topics</span><span class="p" data-group-id="2164">)</span><span class="p" data-group-id="2165">}</span><span class="w">
-  </span><span class="k" data-group-id="2171">end</span><span class="w">
+    </span><span class="p" data-group-id="7853146728-6"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="w"
+>
+          </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>assign</span><span class="p" data-group-id="7853146728-7"
+>(</span><span class="ss"
+>:topics</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7853146728-8"
+>[</span><span class="p" data-group-id="7853146728-8"
+>]</span><span class="p" data-group-id="7853146728-7"
+>)</span><span class="w"
+>
+          </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>put_new_topics</span><span class="p" data-group-id="7853146728-9"
+>(</span><span class="n"
+>topics</span><span class="p" data-group-id="7853146728-9"
+>)</span><span class="p" data-group-id="7853146728-6"
+>}</span><span class="w"
+>
+  </span><span class="k" data-group-id="7853146728-4"
+>end</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="2219">(</span><span class="s2">&quot;watch&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2214">%{</span><span class="s2">&quot;product_id&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="2214">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2219">)</span><span class="w"> </span><span class="k" data-group-id="2253">do</span><span class="w">
-    </span><span class="p" data-group-id="2252">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">put_new_topics</span><span class="p" data-group-id="2251">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2250">[</span><span class="s2">&quot;product:</span><span class="si" data-group-id="2249">#{</span><span class="n">id</span><span class="si" data-group-id="2249">}</span><span class="s2">&quot;</span><span class="p" data-group-id="2250">]</span><span class="p" data-group-id="2251">)</span><span class="p" data-group-id="2252">}</span><span class="w">
-  </span><span class="k" data-group-id="2253">end</span><span class="w">
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="7853146728-10"
+>(</span><span class="s"
+>&quot;watch&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7853146728-11"
+>%{</span><span class="s"
+>&quot;product_id&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="n"
+>id</span><span class="p" data-group-id="7853146728-11"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7853146728-10"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7853146728-12"
+>do</span><span class="w"
+>
+    </span><span class="p" data-group-id="7853146728-13"
+>{</span><span class="ss"
+>:reply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>put_new_topics</span><span class="p" data-group-id="7853146728-14"
+>(</span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7853146728-15"
+>[</span><span class="s"
+>&quot;product:</span><span class="si" data-group-id="7853146728-16"
+>#{</span><span class="n"
+>id</span><span class="si" data-group-id="7853146728-16"
+>}</span><span class="s"
+>&quot;</span><span class="p" data-group-id="7853146728-15"
+>]</span><span class="p" data-group-id="7853146728-14"
+>)</span><span class="p" data-group-id="7853146728-13"
+>}</span><span class="w"
+>
+  </span><span class="k" data-group-id="7853146728-12"
+>end</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="2275">(</span><span class="s2">&quot;unwatch&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2271">%{</span><span class="s2">&quot;product_id&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="2271">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2275">)</span><span class="w"> </span><span class="k" data-group-id="2292">do</span><span class="w">
-    </span><span class="p" data-group-id="2291">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p" data-group-id="2290">(</span><span class="s2">&quot;product:</span><span class="si" data-group-id="2289">#{</span><span class="n">id</span><span class="si" data-group-id="2289">}</span><span class="s2">&quot;</span><span class="p" data-group-id="2290">)</span><span class="p" data-group-id="2291">}</span><span class="w">
-  </span><span class="k" data-group-id="2292">end</span><span class="w">
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="7853146728-17"
+>(</span><span class="s"
+>&quot;unwatch&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7853146728-18"
+>%{</span><span class="s"
+>&quot;product_id&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="n"
+>id</span><span class="p" data-group-id="7853146728-18"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7853146728-17"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7853146728-19"
+>do</span><span class="w"
+>
+    </span><span class="p" data-group-id="7853146728-20"
+>{</span><span class="ss"
+>:reply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>unsubscribe</span><span class="p" data-group-id="7853146728-21"
+>(</span><span class="s"
+>&quot;product:</span><span class="si" data-group-id="7853146728-22"
+>#{</span><span class="n"
+>id</span><span class="si" data-group-id="7853146728-22"
+>}</span><span class="s"
+>&quot;</span><span class="p" data-group-id="7853146728-21"
+>)</span><span class="p" data-group-id="7853146728-20"
+>}</span><span class="w"
+>
+  </span><span class="k" data-group-id="7853146728-19"
+>end</span><span class="w"
+>
 
-  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">put_new_topics</span><span class="p" data-group-id="2301">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">topics</span><span class="p" data-group-id="2301">)</span><span class="w"> </span><span class="k" data-group-id="2353">do</span><span class="w">
-    </span><span class="nc">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p" data-group-id="2351">(</span><span class="n">topics</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="2350">fn</span><span class="w"> </span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">acc</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-      </span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">topics</span><span class="w">
-      </span><span class="k">if</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">topics</span><span class="w"> </span><span class="k" data-group-id="2348">do</span><span class="w">
-        </span><span class="n">acc</span><span class="w">
-      </span><span class="k" data-group-id="2348">else</span><span class="w">
-        </span><span class="ss">:ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">subscribe</span><span class="p" data-group-id="2336">(</span><span class="n">topic</span><span class="p" data-group-id="2336">)</span><span class="w">
-        </span><span class="n">assign</span><span class="p" data-group-id="2345">(</span><span class="n">acc</span><span class="p">,</span><span class="w"> </span><span class="ss">:topics</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2344">[</span><span class="n">topic</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">topics</span><span class="p" data-group-id="2344">]</span><span class="p" data-group-id="2345">)</span><span class="w">
-      </span><span class="k" data-group-id="2348">end</span><span class="w">
-    </span><span class="k" data-group-id="2350">end</span><span class="p" data-group-id="2351">)</span><span class="w">
-  </span><span class="k" data-group-id="2353">end</span><span class="w">
-</span><span class="k" data-group-id="2356">end</span></code></pre>
+  </span><span class="kd"
+>defp</span><span class="w"
+> </span><span class="nf"
+>put_new_topics</span><span class="p" data-group-id="7853146728-23"
+>(</span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>topics</span><span class="p" data-group-id="7853146728-23"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7853146728-24"
+>do</span><span class="w"
+>
+    </span><span class="nc"
+>Enum</span><span class="o"
+>.</span><span class="n"
+>reduce</span><span class="p" data-group-id="7853146728-25"
+>(</span><span class="n"
+>topics</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="k" data-group-id="7853146728-26"
+>fn</span><span class="w"
+> </span><span class="n"
+>topic</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>acc</span><span class="w"
+> </span><span class="o"
+>-&gt;</span><span class="w"
+>
+      </span><span class="n"
+>topics</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>acc</span><span class="o"
+>.</span><span class="n"
+>assigns</span><span class="o"
+>.</span><span class="n"
+>topics</span><span class="w"
+>
+      </span><span class="k"
+>if</span><span class="w"
+> </span><span class="n"
+>topic</span><span class="w"
+> </span><span class="ow"
+>in</span><span class="w"
+> </span><span class="n"
+>topics</span><span class="w"
+> </span><span class="k" data-group-id="7853146728-27"
+>do</span><span class="w"
+>
+        </span><span class="n"
+>acc</span><span class="w"
+>
+      </span><span class="k" data-group-id="7853146728-27"
+>else</span><span class="w"
+>
+        </span><span class="ss"
+>:ok</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>MyApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>subscribe</span><span class="p" data-group-id="7853146728-28"
+>(</span><span class="n"
+>topic</span><span class="p" data-group-id="7853146728-28"
+>)</span><span class="w"
+>
+        </span><span class="n"
+>assign</span><span class="p" data-group-id="7853146728-29"
+>(</span><span class="n"
+>acc</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:topics</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7853146728-30"
+>[</span><span class="n"
+>topic</span><span class="w"
+> </span><span class="o"
+>|</span><span class="w"
+> </span><span class="n"
+>topics</span><span class="p" data-group-id="7853146728-30"
+>]</span><span class="p" data-group-id="7853146728-29"
+>)</span><span class="w"
+>
+      </span><span class="k" data-group-id="7853146728-27"
+>end</span><span class="w"
+>
+    </span><span class="k" data-group-id="7853146728-26"
+>end</span><span class="p" data-group-id="7853146728-25"
+>)</span><span class="w"
+>
+  </span><span class="k" data-group-id="7853146728-24"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="7853146728-1"
+>end</span></code></pre>
 <p>Note: the caller must be responsible for preventing duplicate subscriptions.
 After calling <code class="inline">subscribe/1</code> from your endpoint, the same flow applies to
 handling regular Elixir messages within your channel. Most often, you’ll
 simply relay the <code class="inline">%Phoenix.Socket.Broadcast{}</code> event and payload:</p>
-<pre><code class="nohighlight makeup"><span class="kn">alias</span><span class="w"> </span><span class="nc">Phoenix.Socket.Broadcast</span><span class="w">
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="2006">(</span><span class="p" data-group-id="1995">%</span><span class="nc" data-group-id="1995">Broadcast</span><span class="p" data-group-id="1995">{</span><span class="ss">topic</span><span class="p">:</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="ss">event</span><span class="p">:</span><span class="w"> </span><span class="n">ev</span><span class="p">,</span><span class="w"> </span><span class="ss">payload</span><span class="p">:</span><span class="w"> </span><span class="n">payload</span><span class="p" data-group-id="1995">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2006">)</span><span class="w"> </span><span class="k" data-group-id="2060">do</span><span class="w">
-  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">ev</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="w">
-  </span><span class="p" data-group-id="2054">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2054">}</span><span class="w">
-</span><span class="k" data-group-id="2060">end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kn"
+>alias</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Socket.Broadcast</span><span class="w"
+>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_info</span><span class="p" data-group-id="0113436978-1"
+>(</span><span class="p" data-group-id="0113436978-2"
+>%</span><span class="nc" data-group-id="0113436978-2"
+>Broadcast</span><span class="p" data-group-id="0113436978-2"
+>{</span><span class="ss"
+>topic</span><span
+>:</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>event</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>ev</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>payload</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>payload</span><span class="p" data-group-id="0113436978-2"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="0113436978-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="0113436978-3"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>ev</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>payload</span><span class="w"
+>
+  </span><span class="p" data-group-id="0113436978-4"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="0113436978-4"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="0113436978-3"
+>end</span></code></pre>
 <h2 id="module-logging" class="section-heading">
   <a href="#module-logging" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Logging
@@ -337,7 +1349,22 @@ event type or disabled by setting the <code class="inline">:log_join</code> and 
 options when using <a href="Phoenix.Channel.html#content"><code class="inline">Phoenix.Channel</code></a>. For example, the following
 configuration logs join events as <code class="inline">:info</code>, but disables logging for
 incoming events:</p>
-<pre><code class="nohighlight makeup"><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Channel</span><span class="p">,</span><span class="w"> </span><span class="ss">log_join</span><span class="p">:</span><span class="w"> </span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="ss">log_handle_in</span><span class="p">:</span><span class="w"> </span><span class="no">false</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Channel</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>log_join</span><span
+>:</span><span class="w"
+> </span><span class="ss"
+>:info</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>log_handle_in</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>false</span></code></pre>
 
         </section>
       
@@ -524,7 +1551,7 @@ incoming events:</p>
     
       <div class="specs">
         
-          <pre>reply() :: status :: atom() | {status :: atom(), response :: map()}</pre>
+          <pre>reply() :: status :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | {status :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), response :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
         
       </div>
     
@@ -552,7 +1579,9 @@ incoming events:</p>
     
       <div class="specs">
         
-          <pre>socket_ref() :: {transport_pid :: Pid, serializer :: module(), topic :: binary(), ref :: binary(), join_ref :: binary()}</pre>
+          <pre>socket_ref() ::
+  {transport_pid :: Pid, serializer :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), topic :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(),
+   ref :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), join_ref :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()}</pre>
         
       </div>
     
@@ -601,8 +1630,32 @@ incoming events:</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">broadcast</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_message&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2388">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="2388">}</span><span class="w">
-</span><span class="ss">:ok</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="n"
+>broadcast</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_message&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="8780656009-1"
+>%{</span><span class="ss"
+>id</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>1</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>content</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;hello&quot;</span><span class="p" data-group-id="8780656009-1"
+>}</span><span class="w"
+>
+</span><span class="ss"
+>:ok</span></code></pre>
 
   </section>
 </div>
@@ -656,8 +1709,32 @@ message. The event’s message must be a serializable map.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">broadcast_from</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_message&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2399">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="2399">}</span><span class="w">
-</span><span class="ss">:ok</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="n"
+>broadcast_from</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_message&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="1721529307-1"
+>%{</span><span class="ss"
+>id</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>1</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>content</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;hello&quot;</span><span class="p" data-group-id="1721529307-1"
+>}</span><span class="w"
+>
+</span><span class="ss"
+>:ok</span></code></pre>
 
   </section>
 </div>
@@ -718,17 +1795,107 @@ be encoded N times instead of a single shared encoding across all subscribers.</
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">intercept</span><span class="w"> </span><span class="p" data-group-id="2406">[</span><span class="s2">&quot;new_msg&quot;</span><span class="p" data-group-id="2406">]</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n"
+>intercept</span><span class="w"
+> </span><span class="p" data-group-id="1858178083-1"
+>[</span><span class="s"
+>&quot;new_msg&quot;</span><span class="p" data-group-id="1858178083-1"
+>]</span><span class="w"
+>
 
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_out</span><span class="p" data-group-id="2413">(</span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2413">)</span><span class="w"> </span><span class="k" data-group-id="2429">do</span><span class="w">
-  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="2426">(</span><span class="n">payload</span><span class="p">,</span><span class="w">
-    </span><span class="ss">is_editable</span><span class="p">:</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">can_edit_message?</span><span class="p" data-group-id="2425">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="2424">[</span><span class="ss">:user</span><span class="p" data-group-id="2424">]</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p" data-group-id="2425">)</span><span class="w">
-  </span><span class="p" data-group-id="2426">)</span><span class="w">
-  </span><span class="p" data-group-id="2428">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2428">}</span><span class="w">
-</span><span class="k" data-group-id="2429">end</span></code></pre>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_out</span><span class="p" data-group-id="1858178083-2"
+>(</span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>payload</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="1858178083-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="1858178083-3"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_msg&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Map</span><span class="o"
+>.</span><span class="n"
+>merge</span><span class="p" data-group-id="1858178083-4"
+>(</span><span class="n"
+>payload</span><span class="p"
+>,</span><span class="w"
+>
+    </span><span class="ss"
+>is_editable</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>can_edit_message?</span><span class="p" data-group-id="1858178083-5"
+>(</span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>assigns</span><span class="p" data-group-id="1858178083-6"
+>[</span><span class="ss"
+>:user</span><span class="p" data-group-id="1858178083-6"
+>]</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>payload</span><span class="p" data-group-id="1858178083-5"
+>)</span><span class="w"
+>
+  </span><span class="p" data-group-id="1858178083-4"
+>)</span><span class="w"
+>
+  </span><span class="p" data-group-id="1858178083-7"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="1858178083-7"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="1858178083-3"
+>end</span></code></pre>
 <p><code class="inline">handle_out/3</code> callbacks must return one of:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="2408">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="nc">Socket</span><span class="o">.</span><span class="n">t</span><span class="p" data-group-id="2408">}</span><span class="w"> </span><span class="o">|</span><span class="w">
-</span><span class="p" data-group-id="2414">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="nc">Socket</span><span class="o">.</span><span class="n">t</span><span class="p" data-group-id="2414">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="9126691794-1"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Socket</span><span class="o"
+>.</span><span class="n"
+>t</span><span class="p" data-group-id="9126691794-1"
+>}</span><span class="w"
+> </span><span class="o"
+>|</span><span class="w"
+>
+</span><span class="p" data-group-id="9126691794-2"
+>{</span><span class="ss"
+>:stop</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>reason</span><span class="w"
+> </span><span class="o"
+>::</span><span class="w"
+> </span><span class="n"
+>term</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Socket</span><span class="o"
+>.</span><span class="n"
+>t</span><span class="p" data-group-id="9126691794-2"
+>}</span></code></pre>
 
   </section>
 </div>
@@ -758,8 +1925,32 @@ be encoded N times instead of a single shared encoding across all subscribers.</
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_message&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2437">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="2437">}</span><span class="w">
-</span><span class="ss">:ok</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_message&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3463779512-1"
+>%{</span><span class="ss"
+>id</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>1</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>content</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;hello&quot;</span><span class="p" data-group-id="3463779512-1"
+>}</span><span class="w"
+>
+</span><span class="ss"
+>:ok</span></code></pre>
 
   </section>
 </div>
@@ -804,15 +1995,92 @@ channel that owns it.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="2444">(</span><span class="s2">&quot;work&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2444">)</span><span class="w"> </span><span class="k" data-group-id="2450">do</span><span class="w">
-  </span><span class="nc">Worker</span><span class="o">.</span><span class="n">perform</span><span class="p" data-group-id="2448">(</span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">socket_ref</span><span class="p" data-group-id="2447">(</span><span class="n">socket</span><span class="p" data-group-id="2447">)</span><span class="p" data-group-id="2448">)</span><span class="w">
-  </span><span class="p" data-group-id="2449">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2449">}</span><span class="w">
-</span><span class="k" data-group-id="2450">end</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="1700577601-1"
+>(</span><span class="s"
+>&quot;work&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>payload</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="1700577601-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="1700577601-2"
+>do</span><span class="w"
+>
+  </span><span class="nc"
+>Worker</span><span class="o"
+>.</span><span class="n"
+>perform</span><span class="p" data-group-id="1700577601-3"
+>(</span><span class="n"
+>payload</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket_ref</span><span class="p" data-group-id="1700577601-4"
+>(</span><span class="n"
+>socket</span><span class="p" data-group-id="1700577601-4"
+>)</span><span class="p" data-group-id="1700577601-3"
+>)</span><span class="w"
+>
+  </span><span class="p" data-group-id="1700577601-5"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="1700577601-5"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="1700577601-2"
+>end</span><span class="w"
+>
 
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="2457">(</span><span class="p" data-group-id="2456">{</span><span class="ss">:work_complete</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">ref</span><span class="p" data-group-id="2456">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2457">)</span><span class="w"> </span><span class="k" data-group-id="2462">do</span><span class="w">
-  </span><span class="n">reply</span><span class="w"> </span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2460">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="2460">}</span><span class="w">
-  </span><span class="p" data-group-id="2461">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2461">}</span><span class="w">
-</span><span class="k" data-group-id="2462">end</span></code></pre>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_info</span><span class="p" data-group-id="1700577601-6"
+>(</span><span class="p" data-group-id="1700577601-7"
+>{</span><span class="ss"
+>:work_complete</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>result</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>ref</span><span class="p" data-group-id="1700577601-7"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="1700577601-6"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="1700577601-8"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>reply</span><span class="w"
+> </span><span class="n"
+>ref</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="1700577601-9"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>result</span><span class="p" data-group-id="1700577601-9"
+>}</span><span class="w"
+>
+  </span><span class="p" data-group-id="1700577601-10"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="1700577601-10"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="1700577601-8"
+>end</span></code></pre>
 
   </section>
 </div>
@@ -878,9 +2146,9 @@ channel that owns it.</p>
     
       <div class="specs">
         
-          <pre>code_change(old_vsn, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>(), extra :: term()) ::
-  {:ok, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} |
-  {:error, reason :: term()} when old_vsn: term() | {:down, term()}</pre>
+          <pre>code_change(old_vsn, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>(), extra :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) ::
+  {:ok, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} | {:error, reason :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}
+when old_vsn: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>() | {:down, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
         
       </div>
     
@@ -908,11 +2176,11 @@ channel that owns it.</p>
     
       <div class="specs">
         
-          <pre>handle_in(event :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), msg :: map(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
-  {:noreply, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} |
-  {:reply, <a href="#t:reply/0">reply</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} |
-  {:stop, reason :: term(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} |
-  {:stop, reason :: term(), <a href="#t:reply/0">reply</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()}</pre>
+          <pre>handle_in(event :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), msg :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
+  {:noreply, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()}
+  | {:reply, <a href="#t:reply/0">reply</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()}
+  | {:stop, reason :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()}
+  | {:stop, reason :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="#t:reply/0">reply</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()}</pre>
         
       </div>
     
@@ -940,9 +2208,8 @@ channel that owns it.</p>
     
       <div class="specs">
         
-          <pre>handle_info(term(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
-  {:noreply, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} |
-  {:stop, reason :: term(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()}</pre>
+          <pre>handle_info(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
+  {:noreply, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} | {:stop, reason :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()}</pre>
         
       </div>
     
@@ -970,10 +2237,10 @@ channel that owns it.</p>
     
       <div class="specs">
         
-          <pre>join(topic :: binary(), auth_msg :: map(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
-  {:ok, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} |
-  {:ok, map(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} |
-  {:error, map()}</pre>
+          <pre>join(topic :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), auth_msg :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
+  {:ok, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()}
+  | {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()}
+  | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
         
       </div>
     
@@ -1001,9 +2268,8 @@ channel that owns it.</p>
     
       <div class="specs">
         
-          <pre>terminate(msg :: map(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
-  {:shutdown, :left | :closed} |
-  term()</pre>
+          <pre>terminate(msg :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
+  {:shutdown, :left | :closed} | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
         
       </div>
     
@@ -1019,20 +2285,19 @@ channel that owns it.</p>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

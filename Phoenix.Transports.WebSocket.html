@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Transports.WebSocket – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
     <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -90,10 +94,41 @@
 </h2>
 
 <p>The websocket is configurable in your socket:</p>
-<pre><code class="nohighlight makeup"><span class="n">transport</span><span class="w"> </span><span class="ss">:websocket</span><span class="p">,</span><span class="w"> </span><span class="nc">Phoenix.Transports.WebSocket</span><span class="p">,</span><span class="w">
-  </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="ss">:infinity</span><span class="p">,</span><span class="w">
-  </span><span class="ss">serializer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1940">[</span><span class="p" data-group-id="1939">{</span><span class="nc">Phoenix.Transports.WebSocketSerializer</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;~&gt; 2.0.0&quot;</span><span class="p" data-group-id="1939">}</span><span class="p" data-group-id="1940">]</span><span class="p">,</span><span class="w">
-  </span><span class="ss">transport_log</span><span class="p">:</span><span class="w"> </span><span class="no">false</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>transport</span><span class="w"
+> </span><span class="ss"
+>:websocket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Transports.WebSocket</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>timeout</span><span
+>:</span><span class="w"
+> </span><span class="ss"
+>:infinity</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>serializer</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="2891905059-1"
+>[</span><span class="p" data-group-id="2891905059-2"
+>{</span><span class="nc"
+>Phoenix.Transports.WebSocketSerializer</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;~&gt; 2.0.0&quot;</span><span class="p" data-group-id="2891905059-2"
+>}</span><span class="p" data-group-id="2891905059-1"
+>]</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>transport_log</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>false</span></code></pre>
 <ul>
 <li><p><code class="inline">:timeout</code> - the timeout for keeping websocket connections
 open after it last received data, defaults to 60_000ms</p>
@@ -108,7 +143,13 @@ it will check against the host value in <code class="inline">YourApp.Endpoint.co
 It may be set to <code class="inline">false</code> (not recommended) or to a list of explicitly
 allowed origins.</p>
 <p>check_origin: [“https://example.com”,</p>
-<pre><code class="nohighlight makeup"><span class="w">           </span><span class="s2">&quot;//another.com:888&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;//other.com&quot;</span><span class="p">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="w"
+>           </span><span class="s"
+>&quot;//another.com:888&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;//other.com&quot;</span><span class="err"
+>]</span></code></pre>
 <p>Note: To connect from a native app be sure to either have the native app
 set an origin or allow any origin via <code class="inline">check_origin: false</code></p>
 </li>
@@ -135,7 +176,15 @@ behaviour.</p>
 <p>It’s possible to force garbage collection in the transport process after
 processing large messages.</p>
 <p>Send <code class="inline">:garbage_collect</code> clause to the transport process:</p>
-<pre><code class="nohighlight makeup"><span class="n">send</span><span class="w"> </span><span class="n">socket</span><span class="o">.</span><span class="n">transport_pid</span><span class="p">,</span><span class="w"> </span><span class="ss">:garbage_collect</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>send</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>transport_pid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:garbage_collect</span></code></pre>
 
         </section>
       
@@ -218,20 +267,19 @@ processing large messages.</p>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

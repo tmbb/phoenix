@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.ChannelTest – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
     <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -98,15 +102,112 @@ or not.</p>
 in your test case pointing to your application endpoint.</p>
 <p>Then you can directly create a socket and
 <a href="#subscribe_and_join/4"><code class="inline">subscribe_and_join/4</code></a> topics and channels:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="1917">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1917">}</span><span class="w"> </span><span class="o">=</span><span class="w">
-  </span><span class="n">socket</span><span class="p" data-group-id="1976">(</span><span class="s2">&quot;user:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1975">%{</span><span class="ss">some_assigns</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1975">}</span><span class="p" data-group-id="1976">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">subscribe_and_join</span><span class="p" data-group-id="2066">(</span><span class="nc">RoomChannel</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;room:lobby&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2065">%{</span><span class="s2">&quot;id&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="2065">}</span><span class="p" data-group-id="2066">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="3961750514-1"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="3961750514-1"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+>
+  </span><span class="n"
+>socket</span><span class="p" data-group-id="3961750514-2"
+>(</span><span class="s"
+>&quot;user:id&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3961750514-3"
+>%{</span><span class="ss"
+>some_assigns</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>1</span><span class="p" data-group-id="3961750514-3"
+>}</span><span class="p" data-group-id="3961750514-2"
+>)</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>subscribe_and_join</span><span class="p" data-group-id="3961750514-4"
+>(</span><span class="nc"
+>RoomChannel</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;room:lobby&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3961750514-5"
+>%{</span><span class="s"
+>&quot;id&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="mi"
+>3</span><span class="p" data-group-id="3961750514-5"
+>}</span><span class="p" data-group-id="3961750514-4"
+>)</span></code></pre>
 <p>You usually want to set the same ID and assigns your
 <code class="inline">UserSocket.connect/2</code> callback would set. Alternatively,
 you can use the <a href="#connect/2"><code class="inline">connect/2</code></a> helper to call your <code class="inline">UserSocket.connect/2</code>
 callback and initialize the socket with the socket id:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="1904">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1904">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connect</span><span class="p" data-group-id="1994">(</span><span class="nc">UserSocket</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1993">%{</span><span class="s2">&quot;some&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;params&quot;</span><span class="p" data-group-id="1993">}</span><span class="p" data-group-id="1994">)</span><span class="w">
-</span><span class="p" data-group-id="2022">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2022">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subscribe_and_join</span><span class="p" data-group-id="2107">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;room:lobby&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2106">%{</span><span class="s2">&quot;id&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="2106">}</span><span class="p" data-group-id="2107">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="7579449159-1"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7579449159-1"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>connect</span><span class="p" data-group-id="7579449159-2"
+>(</span><span class="nc"
+>UserSocket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7579449159-3"
+>%{</span><span class="s"
+>&quot;some&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="s"
+>&quot;params&quot;</span><span class="p" data-group-id="7579449159-3"
+>}</span><span class="p" data-group-id="7579449159-2"
+>)</span><span class="w"
+>
+</span><span class="p" data-group-id="7579449159-4"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7579449159-4"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>subscribe_and_join</span><span class="p" data-group-id="7579449159-5"
+>(</span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;room:lobby&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7579449159-6"
+>%{</span><span class="s"
+>&quot;id&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="mi"
+>3</span><span class="p" data-group-id="7579449159-6"
+>}</span><span class="p" data-group-id="7579449159-5"
+>)</span></code></pre>
 <p>Once called, <a href="#subscribe_and_join/4"><code class="inline">subscribe_and_join/4</code></a> will subscribe the
 current test process to the “room:lobby” topic and start a
 channel in another process. It returns <code class="inline">{:ok, reply, socket}</code>
@@ -116,11 +217,43 @@ communication it will push to the client. Our test has a
 socket representing communication to be pushed to the server.</p>
 <p>For example, we can use the <a href="#push/3"><code class="inline">push/3</code></a> function in the test
 to push messages to the channel (it will invoke <code class="inline">handle_in/3</code>):</p>
-<pre><code class="nohighlight makeup"><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_event&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1959">%{</span><span class="s2">&quot;some&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p" data-group-id="1959">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;my_event&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="4551149375-1"
+>%{</span><span class="s"
+>&quot;some&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="s"
+>&quot;data&quot;</span><span class="p" data-group-id="4551149375-1"
+>}</span></code></pre>
 <p>Similarly, we can broadcast messages from the test itself
 on the topic that both test and channel are subscribed to,
 triggering <code class="inline">handle_out/3</code> on the channel:</p>
-<pre><code class="nohighlight makeup"><span class="n">broadcast_from</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_event&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1978">%{</span><span class="s2">&quot;some&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p" data-group-id="1978">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>broadcast_from</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;my_event&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="8061123054-1"
+>%{</span><span class="s"
+>&quot;some&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="s"
+>&quot;data&quot;</span><span class="p" data-group-id="8061123054-1"
+>}</span></code></pre>
 <blockquote><p>Note only <a href="#broadcast_from/3"><code class="inline">broadcast_from/3</code></a> and <a href="#broadcast_from!/3"><code class="inline">broadcast_from!/3</code></a> are
 available in tests to avoid broadcast messages to be resent
 to the test process.</p>
@@ -128,14 +261,71 @@ to the test process.</p>
 <p>While the functions above are pushing data to the channel
 (server) we can use <a href="#assert_push/3"><code class="inline">assert_push/3</code></a> to verify the channel
 pushed a message to the client:</p>
-<pre><code class="nohighlight makeup"><span class="n">assert_push</span><span class="w"> </span><span class="s2">&quot;my_event&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1942">%{</span><span class="s2">&quot;some&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p" data-group-id="1942">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>assert_push</span><span class="w"
+> </span><span class="s"
+>&quot;my_event&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="9113865730-1"
+>%{</span><span class="s"
+>&quot;some&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="s"
+>&quot;data&quot;</span><span class="p" data-group-id="9113865730-1"
+>}</span></code></pre>
 <p>Or even assert something was broadcast into pubsub:</p>
-<pre><code class="nohighlight makeup"><span class="n">assert_broadcast</span><span class="w"> </span><span class="s2">&quot;my_event&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1948">%{</span><span class="s2">&quot;some&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p" data-group-id="1948">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>assert_broadcast</span><span class="w"
+> </span><span class="s"
+>&quot;my_event&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="5682228009-1"
+>%{</span><span class="s"
+>&quot;some&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="s"
+>&quot;data&quot;</span><span class="p" data-group-id="5682228009-1"
+>}</span></code></pre>
 <p>Finally, every time a message is pushed to the channel,
 a reference is returned. We can use this reference to
 assert a particular reply was sent from the server:</p>
-<pre><code class="nohighlight makeup"><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1929">%{}</span><span class="w">
-</span><span class="n">assert_reply</span><span class="w"> </span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1999">%{</span><span class="s2">&quot;counter&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1999">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>ref</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;counter&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2941394168-1"
+>%{</span><span class="p" data-group-id="2941394168-1"
+>}</span><span class="w"
+>
+</span><span class="n"
+>assert_reply</span><span class="w"
+> </span><span class="n"
+>ref</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2941394168-2"
+>%{</span><span class="s"
+>&quot;counter&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="mi"
+>1</span><span class="p" data-group-id="2941394168-2"
+>}</span></code></pre>
 <h2 id="module-checking-side-effects" class="section-heading">
   <a href="#module-checking-side-effects" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Checking side-effects
@@ -145,27 +335,227 @@ assert a particular reply was sent from the server:</p>
 like writing to the database, and verify those side-effects
 during their tests.</p>
 <p>Imagine the following <code class="inline">handle_in/3</code> inside a channel:</p>
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="1974">(</span><span class="s2">&quot;publish&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1961">%{</span><span class="s2">&quot;id&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="1961">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1974">)</span><span class="w"> </span><span class="k" data-group-id="2108">do</span><span class="w">
-  </span><span class="nc">Repo</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="2021">(</span><span class="nc">Post</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="2021">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Post</span><span class="o">.</span><span class="n">publish</span><span class="p" data-group-id="2053">()</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">update!</span><span class="p" data-group-id="2086">()</span><span class="w">
-  </span><span class="p" data-group-id="2100">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2100">}</span><span class="w">
-</span><span class="k" data-group-id="2108">end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="6358382354-1"
+>(</span><span class="s"
+>&quot;publish&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="6358382354-2"
+>%{</span><span class="s"
+>&quot;id&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="n"
+>id</span><span class="p" data-group-id="6358382354-2"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="6358382354-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="6358382354-3"
+>do</span><span class="w"
+>
+  </span><span class="nc"
+>Repo</span><span class="o"
+>.</span><span class="n"
+>get!</span><span class="p" data-group-id="6358382354-4"
+>(</span><span class="nc"
+>Post</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>id</span><span class="p" data-group-id="6358382354-4"
+>)</span><span class="w"
+> </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="nc"
+>Post</span><span class="o"
+>.</span><span class="n"
+>publish</span><span class="p" data-group-id="6358382354-5"
+>(</span><span class="p" data-group-id="6358382354-5"
+>)</span><span class="w"
+> </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="nc"
+>Repo</span><span class="o"
+>.</span><span class="n"
+>update!</span><span class="p" data-group-id="6358382354-6"
+>(</span><span class="p" data-group-id="6358382354-6"
+>)</span><span class="w"
+>
+  </span><span class="p" data-group-id="6358382354-7"
+>{</span><span class="ss"
+>:noreply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="6358382354-7"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="6358382354-3"
+>end</span></code></pre>
 <p>Because the whole communication is asynchronous, the
 following test would be very brittle:</p>
-<pre><code class="nohighlight makeup"><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;publish&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1952">%{</span><span class="s2">&quot;id&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="1952">}</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">get_by</span><span class="p" data-group-id="2017">(</span><span class="nc">Post</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">published</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="2017">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;publish&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2019625912-1"
+>%{</span><span class="s"
+>&quot;id&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="mi"
+>3</span><span class="p" data-group-id="2019625912-1"
+>}</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="nc"
+>Repo</span><span class="o"
+>.</span><span class="n"
+>get_by</span><span class="p" data-group-id="2019625912-2"
+>(</span><span class="nc"
+>Post</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>id</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>3</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>published</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>true</span><span class="p" data-group-id="2019625912-2"
+>)</span></code></pre>
 <p>The issue is that we have no guarantees the channel has
 done processing our message after calling <a href="#push/3"><code class="inline">push/3</code></a>. The
 best solution is to assert the channel sent us a reply
 before doing any other assertion. First change the
 channel to send replies:</p>
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="1963">(</span><span class="s2">&quot;publish&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1951">%{</span><span class="s2">&quot;id&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="1951">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1963">)</span><span class="w"> </span><span class="k" data-group-id="2113">do</span><span class="w">
-  </span><span class="nc">Repo</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="2016">(</span><span class="nc">Post</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="2016">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Post</span><span class="o">.</span><span class="n">publish</span><span class="p" data-group-id="2045">()</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">update!</span><span class="p" data-group-id="2082">()</span><span class="w">
-  </span><span class="p" data-group-id="2105">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2105">}</span><span class="w">
-</span><span class="k" data-group-id="2113">end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_in</span><span class="p" data-group-id="7376158369-1"
+>(</span><span class="s"
+>&quot;publish&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7376158369-2"
+>%{</span><span class="s"
+>&quot;id&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="n"
+>id</span><span class="p" data-group-id="7376158369-2"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7376158369-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7376158369-3"
+>do</span><span class="w"
+>
+  </span><span class="nc"
+>Repo</span><span class="o"
+>.</span><span class="n"
+>get!</span><span class="p" data-group-id="7376158369-4"
+>(</span><span class="nc"
+>Post</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>id</span><span class="p" data-group-id="7376158369-4"
+>)</span><span class="w"
+> </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="nc"
+>Post</span><span class="o"
+>.</span><span class="n"
+>publish</span><span class="p" data-group-id="7376158369-5"
+>(</span><span class="p" data-group-id="7376158369-5"
+>)</span><span class="w"
+> </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="nc"
+>Repo</span><span class="o"
+>.</span><span class="n"
+>update!</span><span class="p" data-group-id="7376158369-6"
+>(</span><span class="p" data-group-id="7376158369-6"
+>)</span><span class="w"
+>
+  </span><span class="p" data-group-id="7376158369-7"
+>{</span><span class="ss"
+>:reply</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="7376158369-7"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="7376158369-3"
+>end</span></code></pre>
 <p>Then expect them in the test:</p>
-<pre><code class="nohighlight makeup"><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;publish&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1982">%{</span><span class="s2">&quot;id&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="1982">}</span><span class="w">
-</span><span class="n">assert_reply</span><span class="w"> </span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">get_by</span><span class="p" data-group-id="2062">(</span><span class="nc">Post</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">published</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="2062">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>ref</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;publish&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="1276521481-1"
+>%{</span><span class="s"
+>&quot;id&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="mi"
+>3</span><span class="p" data-group-id="1276521481-1"
+>}</span><span class="w"
+>
+</span><span class="n"
+>assert_reply</span><span class="w"
+> </span><span class="n"
+>ref</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:ok</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="nc"
+>Repo</span><span class="o"
+>.</span><span class="n"
+>get_by</span><span class="p" data-group-id="1276521481-2"
+>(</span><span class="nc"
+>Post</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>id</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>3</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>published</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>true</span><span class="p" data-group-id="1276521481-2"
+>)</span></code></pre>
 <h2 id="module-leave-and-close" class="section-heading">
   <a href="#module-leave-and-close" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Leave and close
@@ -175,32 +565,136 @@ channel to send replies:</p>
 and closing a channel. Once you leave or close a channel,
 because the channel is linked to the test process on join,
 it will crash the test process:</p>
-<pre><code class="nohighlight makeup"><span class="n">leave</span><span class="p" data-group-id="1901">(</span><span class="n">socket</span><span class="p" data-group-id="1901">)</span><span class="w">
-</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="nc">EXIT</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="c1">#PID&lt;...&gt;) {:shutdown, :leave}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>leave</span><span class="p" data-group-id="4395575615-1"
+>(</span><span class="n"
+>socket</span><span class="p" data-group-id="4395575615-1"
+>)</span><span class="w"
+>
+</span><span class="o"
+>*</span><span class="o"
+>*</span><span class="w"
+> </span><span class="err"
+>(</span><span class="nc"
+>EXIT</span><span class="w"
+> </span><span class="n"
+>from</span><span class="w"
+> </span><span class="c1"
+>#PID&lt;...&gt;) {:shutdown, :leave}</span></code></pre>
 <p>You can avoid this by unlinking the channel process in
 the test:</p>
-<pre><code class="nohighlight makeup"><span class="nc">Process</span><span class="o">.</span><span class="n">unlink</span><span class="p" data-group-id="1922">(</span><span class="n">socket</span><span class="o">.</span><span class="n">channel_pid</span><span class="p" data-group-id="1922">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc"
+>Process</span><span class="o"
+>.</span><span class="n"
+>unlink</span><span class="p" data-group-id="3602018213-1"
+>(</span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>channel_pid</span><span class="p" data-group-id="3602018213-1"
+>)</span></code></pre>
 <p>Notice <a href="#leave/1"><code class="inline">leave/1</code></a> is async, so it will also return a
 reference which you can use to check for a reply:</p>
-<pre><code class="nohighlight makeup"><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">leave</span><span class="p" data-group-id="1911">(</span><span class="n">socket</span><span class="p" data-group-id="1911">)</span><span class="w">
-</span><span class="n">assert_reply</span><span class="w"> </span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>ref</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>leave</span><span class="p" data-group-id="0973826546-1"
+>(</span><span class="n"
+>socket</span><span class="p" data-group-id="0973826546-1"
+>)</span><span class="w"
+>
+</span><span class="n"
+>assert_reply</span><span class="w"
+> </span><span class="n"
+>ref</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:ok</span></code></pre>
 <p>On the other hand, close is always sync and it will
 return only after the channel process is guaranteed to
 have been terminated:</p>
-<pre><code class="nohighlight makeup"><span class="ss">:ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">close</span><span class="p" data-group-id="1912">(</span><span class="n">socket</span><span class="p" data-group-id="1912">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="ss"
+>:ok</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>close</span><span class="p" data-group-id="8032834478-1"
+>(</span><span class="n"
+>socket</span><span class="p" data-group-id="8032834478-1"
+>)</span></code></pre>
 <p>This mimics the behaviour existing in clients.</p>
 <p>To assert that your channel closes or errors asynchronously,
 you can monitor the channel process with the tools provided
 by Elixir, and wait for the <code class="inline">:DOWN</code> message.
 Imagine an implementation of the <code class="inline">handle_info/2</code> function
 that closes the channel when it receives <code class="inline">:some_message</code>:</p>
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="1907">(</span><span class="ss">:some_message</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1907">)</span><span class="w"> </span><span class="k" data-group-id="1941">do</span><span class="w">
-  </span><span class="p" data-group-id="1931">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="ss">:normal</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1931">}</span><span class="w">
-</span><span class="k" data-group-id="1941">end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>handle_info</span><span class="p" data-group-id="4043682285-1"
+>(</span><span class="ss"
+>:some_message</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="4043682285-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="4043682285-2"
+>do</span><span class="w"
+>
+  </span><span class="p" data-group-id="4043682285-3"
+>{</span><span class="ss"
+>:stop</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:normal</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="4043682285-3"
+>}</span><span class="w"
+>
+</span><span class="k" data-group-id="4043682285-2"
+>end</span></code></pre>
 <p>In your test, you can assert that the close happened by:</p>
-<pre><code class="nohighlight makeup"><span class="nc">Process</span><span class="o">.</span><span class="n">monitor</span><span class="p" data-group-id="1919">(</span><span class="n">socket</span><span class="o">.</span><span class="n">channel_pid</span><span class="p" data-group-id="1919">)</span><span class="w">
-</span><span class="n">send</span><span class="p" data-group-id="1964">(</span><span class="n">socket</span><span class="o">.</span><span class="n">channel_pid</span><span class="p">,</span><span class="w"> </span><span class="ss">:some_message</span><span class="p" data-group-id="1964">)</span><span class="w">
-</span><span class="n">assert_receive</span><span class="w"> </span><span class="p" data-group-id="2031">{</span><span class="p">:</span><span class="nc">DOWN</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="ss">:normal</span><span class="p" data-group-id="2031">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc"
+>Process</span><span class="o"
+>.</span><span class="n"
+>monitor</span><span class="p" data-group-id="6941159293-1"
+>(</span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>channel_pid</span><span class="p" data-group-id="6941159293-1"
+>)</span><span class="w"
+>
+</span><span class="n"
+>send</span><span class="p" data-group-id="6941159293-2"
+>(</span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>channel_pid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:some_message</span><span class="p" data-group-id="6941159293-2"
+>)</span><span class="w"
+>
+</span><span class="n"
+>assert_receive</span><span class="w"
+> </span><span class="p" data-group-id="6941159293-3"
+>{</span><span class="ss"
+>:DOWN</span><span class="p"
+>,</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p"
+>,</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p"
+>,</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:normal</span><span class="p" data-group-id="6941159293-3"
+>}</span></code></pre>
 
         </section>
       
@@ -480,9 +974,28 @@ or throws an error</p>
     <p>Asserts the channel has broadcast a message within <code class="inline">timeout</code>.</p>
 <p>Before asserting anything was broadcast, we must first
 subscribe to the topic of the channel in the test process:</p>
-<pre><code class="nohighlight makeup"><span class="na">@endpoint</span><span class="o">.</span><span class="n">subscribe</span><span class="p" data-group-id="2220">(</span><span class="s2">&quot;foo:ok&quot;</span><span class="p" data-group-id="2220">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="na"
+>@endpoint</span><span class="o"
+>.</span><span class="n"
+>subscribe</span><span class="p" data-group-id="9914374006-1"
+>(</span><span class="s"
+>&quot;foo:ok&quot;</span><span class="p" data-group-id="9914374006-1"
+>)</span></code></pre>
 <p>Now we can match on event and payload as patterns:</p>
-<pre><code class="nohighlight makeup"><span class="n">assert_broadcast</span><span class="w"> </span><span class="s2">&quot;some_event&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2230">%{</span><span class="s2">&quot;data&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="2230">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>assert_broadcast</span><span class="w"
+> </span><span class="s"
+>&quot;some_event&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="6633410036-1"
+>%{</span><span class="s"
+>&quot;data&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p" data-group-id="6633410036-1"
+>}</span></code></pre>
 <p>In the assertion above, we don’t particularly care about
 the data being sent, as long as something was sent.</p>
 <p>The timeout is in milliseconds and defaults to 100ms.</p>
@@ -515,7 +1028,20 @@ the data being sent, as long as something was sent.</p>
     <p>Asserts the channel has pushed a message back to the client
 with the given event and payload within <code class="inline">timeout</code>.</p>
 <p>Notice event and payload are patterns. This means one can write:</p>
-<pre><code class="nohighlight makeup"><span class="n">assert_push</span><span class="w"> </span><span class="s2">&quot;some_event&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2258">%{</span><span class="s2">&quot;data&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="2258">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>assert_push</span><span class="w"
+> </span><span class="s"
+>&quot;some_event&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7979807031-1"
+>%{</span><span class="s"
+>&quot;data&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p" data-group-id="7979807031-1"
+>}</span></code></pre>
 <p>In the assertion above, we don’t particularly care about
 the data being sent, as long as something was sent.</p>
 <p>The timeout is in milliseconds and defaults to 100ms.</p>
@@ -524,12 +1050,49 @@ means that if you wish to assert that the received payload is equivalent to
 an existing variable, you need to pin the variable in the assertion
 expression.</p>
 <p>Good:</p>
-<pre><code class="nohighlight makeup"><span class="n">expected_payload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="2248">%{</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span><span class="p" data-group-id="2248">}</span><span class="w">
-</span><span class="n">assert_push</span><span class="w"> </span><span class="s2">&quot;some_event&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">^</span><span class="n">expected_payload</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>expected_payload</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="p" data-group-id="8964395525-1"
+>%{</span><span class="ss"
+>foo</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;bar&quot;</span><span class="p" data-group-id="8964395525-1"
+>}</span><span class="w"
+>
+</span><span class="n"
+>assert_push</span><span class="w"
+> </span><span class="s"
+>&quot;some_event&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="o"
+>^</span><span class="n"
+>expected_payload</span></code></pre>
 <p>Bad:</p>
-<pre><code class="nohighlight makeup"><span class="n">expected_payload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="2254">%{</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span><span class="p" data-group-id="2254">}</span><span class="w">
-</span><span class="n">assert_push</span><span class="w"> </span><span class="s2">&quot;some_event&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">expected_payload</span><span class="w">
-</span><span class="c1"># The code above does not assert the payload matches the described map.</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>expected_payload</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="p" data-group-id="5123237997-1"
+>%{</span><span class="ss"
+>foo</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;bar&quot;</span><span class="p" data-group-id="5123237997-1"
+>}</span><span class="w"
+>
+</span><span class="n"
+>assert_push</span><span class="w"
+> </span><span class="s"
+>&quot;some_event&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>expected_payload</span><span class="w"
+>
+</span><span class="c1"
+># The code above does not assert the payload matches the described map.</span></code></pre>
 
   </section>
 </div>
@@ -561,8 +1124,35 @@ expression.</p>
     <p>Asserts the channel has replied to the given message within
 <code class="inline">timeout</code>.</p>
 <p>Notice status and payload are patterns. This means one can write:</p>
-<pre><code class="nohighlight makeup"><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;some_event&quot;</span><span class="w">
-</span><span class="n">assert_reply</span><span class="w"> </span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2296">%{</span><span class="s2">&quot;data&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="2296">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>ref</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>channel</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;some_event&quot;</span><span class="w"
+>
+</span><span class="n"
+>assert_reply</span><span class="w"
+> </span><span class="n"
+>ref</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="5056104649-1"
+>%{</span><span class="s"
+>&quot;data&quot;</span><span class="w"
+> </span><span class="o"
+>=</span><span class="o"
+>&gt;</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p" data-group-id="5056104649-1"
+>}</span></code></pre>
 <p>In the assertion above, we don’t particularly care about
 the data being sent, as long as something was replied.</p>
 <p>The timeout is in milliseconds and defaults to 100ms.</p>
@@ -596,8 +1186,32 @@ the <code class="inline">handle_out/3</code> callback in the channel.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">broadcast_from</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_message&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2322">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="2322">}</span><span class="w">
-</span><span class="ss">:ok</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="n"
+>broadcast_from</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_message&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="4701329008-1"
+>%{</span><span class="ss"
+>id</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>1</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>content</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;hello&quot;</span><span class="p" data-group-id="4701329008-1"
+>}</span><span class="w"
+>
+</span><span class="ss"
+>:ok</span></code></pre>
 
   </section>
 </div>
@@ -771,7 +1385,7 @@ which is linked to the test process.</p>
     
       <div class="specs">
         
-          <pre>leave(<a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) :: reference()</pre>
+          <pre>leave(<a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">reference</a>()</pre>
         
       </div>
     
@@ -802,7 +1416,7 @@ which is linked to the test process.</p>
     
       <div class="specs">
         
-          <pre>push(<a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), map()) :: reference()</pre>
+          <pre>push(<a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">reference</a>()</pre>
         
       </div>
     
@@ -815,8 +1429,32 @@ which is linked to the test process.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;new_message&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2357">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p" data-group-id="2357">}</span><span class="w">
-</span><span class="n">reference</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="n"
+>push</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;new_message&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3066851206-1"
+>%{</span><span class="ss"
+>id</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>1</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>content</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;hello&quot;</span><span class="p" data-group-id="3066851206-1"
+>}</span><span class="w"
+>
+</span><span class="n"
+>reference</span></code></pre>
 
   </section>
 </div>
@@ -1140,20 +1778,19 @@ and just need the socket.</p>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

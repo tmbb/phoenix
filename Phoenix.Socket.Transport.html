@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Socket.Transport – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
     <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -169,7 +173,19 @@ and represents the channel terminating against its will. The
 <a href="#on_exit_message/3"><code class="inline">on_exit_message/3</code></a> function aids in constructing the <code class="inline">&quot;phx_error&quot;</code> message.</p>
 <p>For graceful exits, the channel will notify the transort it is
 gracefully terminating via the following message:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="1933">{</span><span class="ss">:graceful_exit</span><span class="p">,</span><span class="w"> </span><span class="n">channel_pid</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1932">%</span><span class="nc" data-group-id="1932">Phoenix.Socket.Message</span><span class="p" data-group-id="1932">{}</span><span class="p" data-group-id="1933">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="2766833055-1"
+>{</span><span class="ss"
+>:graceful_exit</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>channel_pid</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2766833055-2"
+>%</span><span class="nc" data-group-id="2766833055-2"
+>Phoenix.Socket.Message</span><span class="p" data-group-id="2766833055-2"
+>{</span><span class="p" data-group-id="2766833055-2"
+>}</span><span class="p" data-group-id="2766833055-1"
+>}</span></code></pre>
 <p>The <code class="inline">%Phoenix.Socket.Message{}</code> is the leave message for the transport
 to relay to the client.</p>
 <h2 id="module-duplicate-join-subscriptions" class="section-heading">
@@ -437,7 +453,21 @@ must be sent as result
 <p>When logging parameters, Phoenix can filter out sensitive parameters
 such as passwords and tokens. Parameters to be filtered can be added
 via the <code class="inline">:filter_parameters</code> option:</p>
-<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:filter_parameters</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2097">[</span><span class="s2">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span><span class="p" data-group-id="2097">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>config</span><span class="w"
+> </span><span class="ss"
+>:phoenix</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:filter_parameters</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="4830594204-1"
+>[</span><span class="s"
+>&quot;password&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;secret&quot;</span><span class="p" data-group-id="4830594204-1"
+>]</span></code></pre>
 <p>With the configuration above, Phoenix will filter any parameter
 that contains the terms <code class="inline">password</code> or <code class="inline">secret</code>. The match is
 case sensitive.</p>
@@ -589,20 +619,19 @@ noop if the connection has been halted.</p>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

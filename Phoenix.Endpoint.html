@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Endpoint – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
     <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -108,19 +112,52 @@ application.</p>
 of <a href="Phoenix.Endpoint.html#content"><code class="inline">Phoenix.Endpoint</code></a>. If you have used the <code class="inline">mix phx.new</code>
 generator, an endpoint was automatically generated as
 part of your application:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">YourApp.Endpoint</span><span class="w"> </span><span class="k" data-group-id="2169">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">otp_app</span><span class="p">:</span><span class="w"> </span><span class="ss">:your_app</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>YourApp.Endpoint</span><span class="w"
+> </span><span class="k" data-group-id="4332990375-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Endpoint</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>otp_app</span><span
+>:</span><span class="w"
+> </span><span class="ss"
+>:your_app</span><span class="w"
+>
 
-  </span><span class="c1"># plug ...
-</span><span class="w">  </span><span class="c1"># plug ...
-</span><span class="w">
-  </span><span class="n">plug</span><span class="w"> </span><span class="nc">YourApp.Router</span><span class="w">
-</span><span class="k" data-group-id="2169">end</span></code></pre>
+  </span><span class="c1"
+># plug ...</span><span class="w"
+>
+  </span><span class="c1"
+># plug ...</span><span class="w"
+>
+
+  </span><span class="n"
+>plug</span><span class="w"
+> </span><span class="nc"
+>YourApp.Router</span><span class="w"
+>
+</span><span class="k" data-group-id="4332990375-1"
+>end</span></code></pre>
 <p>Endpoints must be explicitly started as part of your application
 supervision tree. Endpoints are added by default
 to the supervision tree in generated applications. Endpoints can be
 added to the supervision tree as follows:</p>
-<pre><code class="nohighlight makeup"><span class="n">supervisor</span><span class="p" data-group-id="2158">(</span><span class="nc">YourApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2157">[]</span><span class="p" data-group-id="2158">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>supervisor</span><span class="p" data-group-id="3943660714-1"
+>(</span><span class="nc"
+>YourApp.Endpoint</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3943660714-2"
+>[</span><span class="p" data-group-id="3943660714-2"
+>]</span><span class="p" data-group-id="3943660714-1"
+>)</span></code></pre>
 <h3 id="module-endpoint-configuration" class="section-heading">
   <a href="#module-endpoint-configuration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Endpoint configuration
@@ -128,8 +165,20 @@ added to the supervision tree as follows:</p>
 
 <p>All endpoints are configured in your application environment.
 For example:</p>
-<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:your_app</span><span class="p">,</span><span class="w"> </span><span class="nc">YourApp.Endpoint</span><span class="p">,</span><span class="w">
-  </span><span class="ss">secret_key_base</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kjoy3o1zeidquwy1398juxzldjlksahdk3&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>config</span><span class="w"
+> </span><span class="ss"
+>:your_app</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>YourApp.Endpoint</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>secret_key_base</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;kjoy3o1zeidquwy1398juxzldjlksahdk3&quot;</span></code></pre>
 <p>Endpoint configuration is split into two categories. Compile-time
 configuration means the configuration is read during compilation
 and changing it at runtime has no effect. The compile-time
@@ -137,8 +186,24 @@ configuration is mostly related to error handling and instrumentation.</p>
 <p>Runtime configuration, instead, is accessed during or
 after your application is started and can be read through the
 <a href="#c:config/2"><code class="inline">config/2</code></a> function:</p>
-<pre><code class="nohighlight makeup"><span class="nc">YourApp.Endpoint</span><span class="o">.</span><span class="n">config</span><span class="p" data-group-id="2153">(</span><span class="ss">:port</span><span class="p" data-group-id="2153">)</span><span class="w">
-</span><span class="nc">YourApp.Endpoint</span><span class="o">.</span><span class="n">config</span><span class="p" data-group-id="2182">(</span><span class="ss">:some_config</span><span class="p">,</span><span class="w"> </span><span class="ss">:default_value</span><span class="p" data-group-id="2182">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc"
+>YourApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>config</span><span class="p" data-group-id="4812217345-1"
+>(</span><span class="ss"
+>:port</span><span class="p" data-group-id="4812217345-1"
+>)</span><span class="w"
+>
+</span><span class="nc"
+>YourApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>config</span><span class="p" data-group-id="4812217345-2"
+>(</span><span class="ss"
+>:some_config</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:default_value</span><span class="p" data-group-id="4812217345-2"
+>)</span></code></pre>
 <h3 id="module-dynamic-configuration" class="section-heading">
   <a href="#module-dynamic-configuration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Dynamic configuration
@@ -167,7 +232,25 @@ code during debugging. Defaults to <code class="inline">false</code>.</p>
 is a failure in the application. For example, if the application crashes
 with a 500 error during a HTML request, <code class="inline">render(&quot;500.html&quot;, assigns)</code>
 will be called in the view given to <code class="inline">:render_errors</code>. Defaults to:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="2168">[</span><span class="ss">view</span><span class="p">:</span><span class="w"> </span><span class="nc">MyApp.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="ss">accepts</span><span class="p">:</span><span class="w"> </span><span class="sx">~w(html)</span><span class="p">,</span><span class="w"> </span><span class="ss">layout</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="2168">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="4840718646-1"
+>[</span><span class="ss"
+>view</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>MyApp.ErrorView</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>accepts</span><span
+>:</span><span class="w"
+> </span><span class="sx"
+>~w(html)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>layout</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>false</span><span class="p" data-group-id="4840718646-1"
+>]</span></code></pre>
 <p>The default format is used when none is set in the connection.</p>
 </li>
 <li><p><code class="inline">:instrumenters</code> - a list of instrumenter modules whose callbacks will
@@ -189,7 +272,16 @@ by <code class="inline">mix phx.digest</code>.</p>
 <li><p><code class="inline">:check_origin</code> - configure transports to check origins or not. May
 be false, true or a list of hosts that are allowed. Hosts also support
 wildcards. For example:</p>
-<pre><code class="nohighlight makeup"><span class="ss">check_origin</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2160">[</span><span class="s2">&quot;//phoenixframework.org&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;//*.example.com&quot;</span><span class="p" data-group-id="2160">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="ss"
+>check_origin</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="2725151008-1"
+>[</span><span class="s"
+>&quot;//phoenixframework.org&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;//*.example.com&quot;</span><span class="p" data-group-id="2725151008-1"
+>]</span></code></pre>
 </li>
 <li><p><code class="inline">:http</code> - the configuration for the HTTP server. Currently uses
 Cowboy and accepts all options as defined by
@@ -221,7 +313,19 @@ task automatically sets this to <code class="inline">true</code>.</p>
 <li><p><code class="inline">:url</code> - configuration for generating URLs throughout the app.
 Accepts the <code class="inline">:host</code>, <code class="inline">:scheme</code>, <code class="inline">:path</code> and <code class="inline">:port</code> options. All
 keys except <code class="inline">:path</code> can be changed at runtime. Defaults to:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="2162">[</span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="2162">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="0681605429-1"
+>[</span><span class="ss"
+>host</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;localhost&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>path</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="p" data-group-id="0681605429-1"
+>]</span></code></pre>
 <p>The <code class="inline">:port</code> option requires either an integer, string, or
 <code class="inline">{:system, &quot;ENV_VAR&quot;}</code>. When given a tuple like <code class="inline">{:system, &quot;PORT&quot;}</code>,
 the port will be referenced from <code class="inline">System.get_env(&quot;PORT&quot;)</code> at runtime
@@ -241,21 +345,59 @@ Watchers are guaranteed to run in the application directory, but only
 when the server is enabled. For example, the watcher below will run
 the “watch” mode of the brunch build tool when the server starts.
 You can configure it to whatever build tool or command you want:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="2173">[</span><span class="ss">node</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2172">[</span><span class="s2">&quot;node_modules/brunch/bin/brunch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;watch&quot;</span><span class="p" data-group-id="2172">]</span><span class="p" data-group-id="2173">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="9773473635-1"
+>[</span><span class="ss"
+>node</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="9773473635-2"
+>[</span><span class="s"
+>&quot;node_modules/brunch/bin/brunch&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;watch&quot;</span><span class="p" data-group-id="9773473635-2"
+>]</span><span class="p" data-group-id="9773473635-1"
+>]</span></code></pre>
 </li>
 <li><p><code class="inline">:live_reload</code> - configuration for the live reload option.
 Configuration requires a <code class="inline">:patterns</code> option which should be a list of
 file patterns to watch. When these files change, it will trigger a reload.
 If you are using a tool like <a href="http://pow.cx">pow</a> in development,
 you may need to set the <code class="inline">:url</code> option appropriately.</p>
-<pre><code class="nohighlight makeup"><span class="ss">live_reload</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2208">[</span><span class="w">
-  </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ws://localhost:4000&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">patterns</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2207">[</span><span class="w">
-    </span><span class="sr">~r{priv/static/.*(js|css|png|jpeg|jpg|gif)$}</span><span class="p">,</span><span class="w">
-    </span><span class="sr">~r{web/views/.*(ex)$}</span><span class="p">,</span><span class="w">
-    </span><span class="sr">~r{web/templates/.*(eex)$}</span><span class="w">
-  </span><span class="p" data-group-id="2207">]</span><span class="w">
-</span><span class="p" data-group-id="2208">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="ss"
+>live_reload</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="0087993405-1"
+>[</span><span class="w"
+>
+  </span><span class="ss"
+>url</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;ws://localhost:4000&quot;</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>patterns</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="0087993405-2"
+>[</span><span class="w"
+>
+    </span><span class="sr"
+>~r{priv/static/.*(js|css|png|jpeg|jpg|gif)$}</span><span class="p"
+>,</span><span class="w"
+>
+    </span><span class="sr"
+>~r{web/views/.*(ex)$}</span><span class="p"
+>,</span><span class="w"
+>
+    </span><span class="sr"
+>~r{web/templates/.*(eex)$}</span><span class="w"
+>
+  </span><span class="p" data-group-id="0087993405-2"
+>]</span><span class="w"
+>
+</span><span class="p" data-group-id="0087993405-1"
+>]</span></code></pre>
 </li>
 <li><p><code class="inline">:pubsub</code> - configuration for this endpoint’s pubsub adapter.
 Configuration either requires a <code class="inline">:name</code> of the registered pubsub
@@ -264,10 +406,40 @@ are compile time configuration, while the remaining options are runtime.
 The given adapter and name pair will be started as part of the supervision
 tree. If no adapter is specified, the pubsub system will work by sending
 events and subscribing to the given name. Defaults to:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="2154">[</span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.PubSub.PG2</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="nc">MyApp.PubSub</span><span class="p" data-group-id="2154">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="2464972959-1"
+>[</span><span class="ss"
+>adapter</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>Phoenix.PubSub.PG2</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>MyApp.PubSub</span><span class="p" data-group-id="2464972959-1"
+>]</span></code></pre>
 <p>It also supports custom adapter configuration:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="2170">[</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:my_pubsub</span><span class="p">,</span><span class="w"> </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.PubSub.Redis</span><span class="p">,</span><span class="w">
- </span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.100.1&quot;</span><span class="p" data-group-id="2170">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="0838095073-1"
+>[</span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="ss"
+>:my_pubsub</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>adapter</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>Phoenix.PubSub.Redis</span><span class="p"
+>,</span><span class="w"
+>
+ </span><span class="ss"
+>host</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;192.168.100.1&quot;</span><span class="p" data-group-id="0838095073-1"
+>]</span></code></pre>
 </li>
 </ul>
 <h2 id="module-endpoint-api" class="section-heading">
@@ -342,7 +514,17 @@ may break before they’ve been called.</p>
 <h4>“Before” clause</h4>
 <p>When the first argument to an event callback is <code class="inline">:start</code>, the signature of
 that callback is:</p>
-<pre><code class="nohighlight makeup"><span class="n">event_callback</span><span class="p" data-group-id="2151">(</span><span class="ss">:start</span><span class="p">,</span><span class="w"> </span><span class="n">compile_metadata</span><span class="p">,</span><span class="w"> </span><span class="n">runtime_metadata</span><span class="p" data-group-id="2151">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>event_callback</span><span class="p" data-group-id="1232524023-1"
+>(</span><span class="ss"
+>:start</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>compile_metadata</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>runtime_metadata</span><span class="p" data-group-id="1232524023-1"
+>)</span></code></pre>
 <p>where:</p>
 <ul>
 <li><code class="inline">compile_metadata</code> is a map of compile-time metadata about the environment
@@ -363,7 +545,17 @@ being rendered (<code class="inline">instrument(:view_render, %{view: &quot;inde
 <h4>“After” clause</h4>
 <p>When the first argument to an event callback is <code class="inline">:stop</code>, the signature of that
 callback is:</p>
-<pre><code class="nohighlight makeup"><span class="n">event_callback</span><span class="p" data-group-id="2152">(</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="n">time_diff</span><span class="p">,</span><span class="w"> </span><span class="n">result_of_before_callback</span><span class="p" data-group-id="2152">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>event_callback</span><span class="p" data-group-id="6095261296-1"
+>(</span><span class="ss"
+>:stop</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>time_diff</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>result_of_before_callback</span><span class="p" data-group-id="6095261296-1"
+>)</span></code></pre>
 <p>where:</p>
 <ul>
 <li><p><code class="inline">time_diff</code> is an integer representing the time it took to execute the
@@ -383,10 +575,37 @@ the corresponding “after” callback.</p>
 
 <p>Each Phoenix endpoint defines its own <a href="#instrument/3"><code class="inline">instrument/3</code></a> macro. This macro is
 called like this:</p>
-<pre><code class="nohighlight makeup"><span class="kn">require</span><span class="w"> </span><span class="nc">MyApp.Endpoint</span><span class="w">
-</span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">instrument</span><span class="p" data-group-id="2201">(</span><span class="ss">:render_view</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2178">%{</span><span class="ss">view</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index.html&quot;</span><span class="p" data-group-id="2178">}</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="2200">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-  </span><span class="c1"># actual view rendering
-</span><span class="k" data-group-id="2200">end</span><span class="p" data-group-id="2201">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kn"
+>require</span><span class="w"
+> </span><span class="nc"
+>MyApp.Endpoint</span><span class="w"
+>
+</span><span class="nc"
+>MyApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>instrument</span><span class="p" data-group-id="0592831981-1"
+>(</span><span class="ss"
+>:render_view</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="0592831981-2"
+>%{</span><span class="ss"
+>view</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;index.html&quot;</span><span class="p" data-group-id="0592831981-2"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="k" data-group-id="0592831981-3"
+>fn</span><span class="w"
+> </span><span class="o"
+>-&gt;</span><span class="w"
+>
+  </span><span class="c1"
+># actual view rendering</span><span class="w"
+>
+</span><span class="k" data-group-id="0592831981-3"
+>end</span><span class="p" data-group-id="0592831981-1"
+>)</span></code></pre>
 <p>All the instrumenter modules that export a <code class="inline">render_view/3</code> function will be
 notified of the event so that they can perform their respective actions.</p>
 <h3 id="module-phoenix-default-events" class="section-heading">
@@ -714,7 +933,7 @@ the given endpoint</p>
     
       <div class="specs">
         
-          <pre>msg() :: map()</pre>
+          <pre>msg() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()</pre>
         
       </div>
     
@@ -812,8 +1031,31 @@ cases when the endpoint is dynamic and not known at compile time.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">MyApp.Endpoint</span><span class="w">
-</span><span class="nc">Phoenix.Endpoint</span><span class="o">.</span><span class="n">instrument</span><span class="w"> </span><span class="n">endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:render_view</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="2283">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="k" data-group-id="2283">end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>endpoint</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>MyApp.Endpoint</span><span class="w"
+>
+</span><span class="nc"
+>Phoenix.Endpoint</span><span class="o"
+>.</span><span class="n"
+>instrument</span><span class="w"
+> </span><span class="n"
+>endpoint</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:render_view</span><span class="p"
+>,</span><span class="w"
+> </span><span class="k" data-group-id="4723554089-1"
+>fn</span><span class="w"
+> </span><span class="o"
+>-&gt;</span><span class="w"
+> </span><span class="n"
+>...</span><span class="w"
+> </span><span class="k" data-group-id="4723554089-1"
+>end</span></code></pre>
 
   </section>
 </div>
@@ -848,8 +1090,21 @@ cases when the endpoint is dynamic and not known at compile time.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Endpoint</span><span class="o">.</span><span class="n">server?</span><span class="p" data-group-id="2306">(</span><span class="ss">:my_app</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.Endpoint</span><span class="p" data-group-id="2306">)</span><span class="w">
-</span><span class="no">true</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Endpoint</span><span class="o"
+>.</span><span class="n"
+>server?</span><span class="p" data-group-id="4223318245-1"
+>(</span><span class="ss"
+>:my_app</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp.Endpoint</span><span class="p" data-group-id="4223318245-1"
+>)</span><span class="w"
+>
+</span><span class="no"
+>true</span></code></pre>
 
   </section>
 </div>
@@ -880,8 +1135,21 @@ cases when the endpoint is dynamic and not known at compile time.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">socket</span><span class="w"> </span><span class="s2">&quot;/ws&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="w">
-</span><span class="n">socket</span><span class="w"> </span><span class="s2">&quot;/ws/admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.AdminUserSocket</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>socket</span><span class="w"
+> </span><span class="s"
+>&quot;/ws&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp.UserSocket</span><span class="w"
+>
+</span><span class="n"
+>socket</span><span class="w"
+> </span><span class="s"
+>&quot;/ws/admin&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp.AdminUserSocket</span></code></pre>
 <p>By default, the given path is a websocket upgrade endpoint,
 with long-polling fallback. The transports can be configured
 within the Socket handler. See <a href="Phoenix.Socket.html"><code class="inline">Phoenix.Socket</code></a> for more information
@@ -921,7 +1189,7 @@ on defining socket handlers.</p>
     
       <div class="specs">
         
-          <pre>broadcast(<a href="#t:topic/0">topic</a>(), <a href="#t:event/0">event</a>(), <a href="#t:msg/0">msg</a>()) :: :ok | {:error, term()}</pre>
+          <pre>broadcast(<a href="#t:topic/0">topic</a>(), <a href="#t:event/0">event</a>(), <a href="#t:msg/0">msg</a>()) :: :ok | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
         
       </div>
     
@@ -950,7 +1218,7 @@ on defining socket handlers.</p>
     
       <div class="specs">
         
-          <pre>broadcast!(<a href="#t:topic/0">topic</a>(), <a href="#t:event/0">event</a>(), <a href="#t:msg/0">msg</a>()) :: :ok | no_return()</pre>
+          <pre>broadcast!(<a href="#t:topic/0">topic</a>(), <a href="#t:event/0">event</a>(), <a href="#t:msg/0">msg</a>()) :: :ok | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
         
       </div>
     
@@ -980,9 +1248,8 @@ on defining socket handlers.</p>
     
       <div class="specs">
         
-          <pre>broadcast_from(from :: pid(), <a href="#t:topic/0">topic</a>(), <a href="#t:event/0">event</a>(), <a href="#t:msg/0">msg</a>()) ::
-  :ok |
-  {:error, term()}</pre>
+          <pre>broadcast_from(from :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>(), <a href="#t:topic/0">topic</a>(), <a href="#t:event/0">event</a>(), <a href="#t:msg/0">msg</a>()) ::
+  :ok | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
         
       </div>
     
@@ -1011,9 +1278,7 @@ on defining socket handlers.</p>
     
       <div class="specs">
         
-          <pre>broadcast_from!(from :: pid(), <a href="#t:topic/0">topic</a>(), <a href="#t:event/0">event</a>(), <a href="#t:msg/0">msg</a>()) ::
-  :ok |
-  no_return()</pre>
+          <pre>broadcast_from!(from :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>(), <a href="#t:topic/0">topic</a>(), <a href="#t:event/0">event</a>(), <a href="#t:msg/0">msg</a>()) :: :ok | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
         
       </div>
     
@@ -1043,7 +1308,7 @@ on defining socket handlers.</p>
     
       <div class="specs">
         
-          <pre>config(key :: atom(), default :: term()) :: term()</pre>
+          <pre>config(key :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), default :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
         
       </div>
     
@@ -1072,7 +1337,7 @@ on defining socket handlers.</p>
     
       <div class="specs">
         
-          <pre>config_change(changed :: term(), removed :: term()) :: term()</pre>
+          <pre>config_change(changed :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), removed :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
         
       </div>
     
@@ -1132,7 +1397,12 @@ configuring the endpoint from system environment or other runtime sources.</p>
     
       <div class="specs">
         
-          <pre>instrument(term(), instrument_event :: <a href="https://hexdocs.pm/elixir/Macro.html#t:t/0">Macro.t</a>(), runtime_metadata :: <a href="https://hexdocs.pm/elixir/Macro.html#t:t/0">Macro.t</a>(), funcion :: <a href="https://hexdocs.pm/elixir/Macro.html#t:t/0">Macro.t</a>()) :: <a href="https://hexdocs.pm/elixir/Macro.html#t:t/0">Macro.t</a>()</pre>
+          <pre>instrument(
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  instrument_event :: <a href="https://hexdocs.pm/elixir/Macro.html#t:t/0">Macro.t</a>(),
+  runtime_metadata :: <a href="https://hexdocs.pm/elixir/Macro.html#t:t/0">Macro.t</a>(),
+  funcion :: <a href="https://hexdocs.pm/elixir/Macro.html#t:t/0">Macro.t</a>()
+) :: <a href="https://hexdocs.pm/elixir/Macro.html#t:t/0">Macro.t</a>()</pre>
         
       </div>
     
@@ -1310,7 +1580,7 @@ handling requests.</p>
     
       <div class="specs">
         
-          <pre>subscribe(<a href="#t:topic/0">topic</a>(), opts :: <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok | {:error, term()}</pre>
+          <pre>subscribe(<a href="#t:topic/0">topic</a>(), opts :: <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
         
       </div>
     
@@ -1340,7 +1610,7 @@ handling requests.</p>
     
       <div class="specs">
         
-          <pre>unsubscribe(<a href="#t:topic/0">topic</a>()) :: :ok | {:error, term()}</pre>
+          <pre>unsubscribe(<a href="#t:topic/0">topic</a>()) :: :ok | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
         
       </div>
     
@@ -1386,20 +1656,19 @@ handling requests.</p>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Template – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
     <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -90,15 +94,61 @@ directory, typically “web/templates”.</p>
 <p>This module provides conveniences for reading all files from a
 particular directory and embedding them into a single module.
 Imagine you have a directory with templates:</p>
-<pre><code class="nohighlight makeup"><span class="c1"># templates/foo.html.eex
-</span><span class="nc">Hello</span><span class="w"> </span><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="na">@name</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="c1"
+># templates/foo.html.eex</span><span class="w"
+>
+</span><span class="nc"
+>Hello</span><span class="w"
+> </span><span class="o"
+>&lt;</span><span class="p"
+>%</span><span class="o"
+>=</span><span class="w"
+> </span><span class="na"
+>@name</span><span class="w"
+> </span><span class="p"
+>%</span><span class="o"
+>&gt;</span><span class="w"
+>
 
-</span><span class="c1"># templates.ex
-</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Templates</span><span class="w"> </span><span class="k" data-group-id="1973">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="p">,</span><span class="w"> </span><span class="ss">root</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;templates&quot;</span><span class="w">
-</span><span class="k" data-group-id="1973">end</span></code></pre>
+</span><span class="c1"
+># templates.ex</span><span class="w"
+>
+</span><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Templates</span><span class="w"
+> </span><span class="k" data-group-id="8189747670-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>root</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;templates&quot;</span><span class="w"
+>
+</span><span class="k" data-group-id="8189747670-1"
+>end</span></code></pre>
 <p>Now the template foo can be directly rendered with:</p>
-<pre><code class="nohighlight makeup"><span class="nc">Templates</span><span class="o">.</span><span class="n">render</span><span class="p" data-group-id="1921">(</span><span class="s2">&quot;foo.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1920">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p" data-group-id="1920">}</span><span class="p" data-group-id="1921">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc"
+>Templates</span><span class="o"
+>.</span><span class="n"
+>render</span><span class="p" data-group-id="6386059011-1"
+>(</span><span class="s"
+>&quot;foo.html&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="6386059011-2"
+>%{</span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;John Doe&quot;</span><span class="p" data-group-id="6386059011-2"
+>}</span><span class="p" data-group-id="6386059011-1"
+>)</span></code></pre>
 <h2 id="module-options" class="section-heading">
   <a href="#module-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Options
@@ -120,17 +170,86 @@ when finding templates. Default <code class="inline">&quot;*&quot;</code>
 to compose the assigns for the template before rendering. In such
 cases, you can render the template directly by calling the generated
 private function <code class="inline">render_template/2</code>. For example:</p>
-<pre><code class="nohighlight makeup"><span class="c1"># templates/foo.html.eex
-</span><span class="nc">Hello</span><span class="w"> </span><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="na">@name</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="c1"
+># templates/foo.html.eex</span><span class="w"
+>
+</span><span class="nc"
+>Hello</span><span class="w"
+> </span><span class="o"
+>&lt;</span><span class="p"
+>%</span><span class="o"
+>=</span><span class="w"
+> </span><span class="na"
+>@name</span><span class="w"
+> </span><span class="p"
+>%</span><span class="o"
+>&gt;</span><span class="w"
+>
 
-</span><span class="c1"># templates.ex
-</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Templates</span><span class="w"> </span><span class="k" data-group-id="2089">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="p">,</span><span class="w"> </span><span class="ss">root</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;templates&quot;</span><span class="w">
+</span><span class="c1"
+># templates.ex</span><span class="w"
+>
+</span><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Templates</span><span class="w"
+> </span><span class="k" data-group-id="6196070546-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>root</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;templates&quot;</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="2009">(</span><span class="s2">&quot;foo.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2008">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="n">name</span><span class="p" data-group-id="2008">}</span><span class="p" data-group-id="2009">)</span><span class="w"> </span><span class="k" data-group-id="2083">do</span><span class="w">
-    </span><span class="n">render_template</span><span class="p" data-group-id="2078">(</span><span class="s2">&quot;foo.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2077">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="o">.</span><span class="n">upcase</span><span class="p" data-group-id="2076">(</span><span class="n">name</span><span class="p" data-group-id="2076">)</span><span class="p" data-group-id="2077">}</span><span class="p" data-group-id="2078">)</span><span class="w">
-  </span><span class="k" data-group-id="2083">end</span><span class="w">
-</span><span class="k" data-group-id="2089">end</span></code></pre>
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>render</span><span class="p" data-group-id="6196070546-2"
+>(</span><span class="s"
+>&quot;foo.html&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="6196070546-3"
+>%{</span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>name</span><span class="p" data-group-id="6196070546-3"
+>}</span><span class="p" data-group-id="6196070546-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="6196070546-4"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>render_template</span><span class="p" data-group-id="6196070546-5"
+>(</span><span class="s"
+>&quot;foo.html&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="6196070546-6"
+>%{</span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>String</span><span class="o"
+>.</span><span class="n"
+>upcase</span><span class="p" data-group-id="6196070546-7"
+>(</span><span class="n"
+>name</span><span class="p" data-group-id="6196070546-7"
+>)</span><span class="p" data-group-id="6196070546-6"
+>}</span><span class="p" data-group-id="6196070546-5"
+>)</span><span class="w"
+>
+  </span><span class="k" data-group-id="6196070546-4"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="6196070546-1"
+>end</span></code></pre>
 <p>In practice, developers rarely use <a href="Phoenix.Template.html#content"><code class="inline">Phoenix.Template</code></a>
 directly. Instead they use <a href="Phoenix.View.html"><code class="inline">Phoenix.View</code></a> which wraps the template
 functionality and adds some extra conveniences.</p>
@@ -165,9 +284,27 @@ See <a href="Phoenix.Template.Engine.html"><code class="inline">Phoenix.Template
 the API required to be implemented by custom engines.</p>
 <p>Once a template engine is defined, you can tell Phoenix
 about it via the template engines option:</p>
-<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:template_engines</span><span class="p">,</span><span class="w">
-  </span><span class="ss">eex</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Template.EExEngine</span><span class="p">,</span><span class="w">
-  </span><span class="ss">exs</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Template.ExsEngine</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>config</span><span class="w"
+> </span><span class="ss"
+>:phoenix</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:template_engines</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>eex</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template.EExEngine</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>exs</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template.ExsEngine</span></code></pre>
 <h2 id="module-format-encoders" class="section-heading">
   <a href="#module-format-encoders" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Format encoders
@@ -179,9 +316,27 @@ given format to string once the view layer finishes processing.</p>
 <p>A format encoder must export a function called <code class="inline">encode_to_iodata!/1</code>
 which receives the rendering artifact and returns iodata.</p>
 <p>New encoders can be added via the format encoder option:</p>
-<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:format_encoders</span><span class="p">,</span><span class="w">
-  </span><span class="ss">html</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Template.HTML</span><span class="p">,</span><span class="w">
-  </span><span class="ss">json</span><span class="p">:</span><span class="w"> </span><span class="nc">Poison</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>config</span><span class="w"
+> </span><span class="ss"
+>:phoenix</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:format_encoders</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>html</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template.HTML</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>json</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>Poison</span></code></pre>
 
         </section>
       
@@ -320,7 +475,7 @@ extensions followed by their modules</p>
     
       <div class="specs">
         
-          <pre>name() :: binary()</pre>
+          <pre>name() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()</pre>
         
       </div>
     
@@ -348,7 +503,7 @@ extensions followed by their modules</p>
     
       <div class="specs">
         
-          <pre>path() :: binary()</pre>
+          <pre>path() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()</pre>
         
       </div>
     
@@ -376,7 +531,7 @@ extensions followed by their modules</p>
     
       <div class="specs">
         
-          <pre>root() :: binary()</pre>
+          <pre>root() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()</pre>
         
       </div>
     
@@ -418,7 +573,7 @@ extensions followed by their modules</p>
     
       <div class="specs">
         
-          <pre>engines() :: %{optional(atom()) => module()}</pre>
+          <pre>engines() :: %{optional(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) => <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>()}</pre>
         
       </div>
     
@@ -479,7 +634,7 @@ extensions followed by their modules.</p>
     
       <div class="specs">
         
-          <pre>format_encoder(<a href="#t:name/0">name</a>()) :: module() | nil</pre>
+          <pre>format_encoder(<a href="#t:name/0">name</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>() | nil</pre>
         
       </div>
     
@@ -510,7 +665,7 @@ extensions followed by their modules.</p>
     
       <div class="specs">
         
-          <pre>hash(<a href="#t:root/0">root</a>(), pattern :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: binary()</pre>
+          <pre>hash(<a href="#t:root/0">root</a>(), pattern :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()</pre>
         
       </div>
     
@@ -546,20 +701,104 @@ extensions followed by their modules.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="2194">(</span><span class="nc">MyApp.UserView</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2194">)</span><span class="w">
-</span><span class="s2">&quot;user&quot;</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template</span><span class="o"
+>.</span><span class="n"
+>module_to_template_root</span><span class="p" data-group-id="9865605646-1"
+>(</span><span class="nc"
+>MyApp.UserView</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;View&quot;</span><span class="p" data-group-id="9865605646-1"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;user&quot;</span><span class="w"
+>
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="2229">(</span><span class="nc">MyApp.Admin.User</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2229">)</span><span class="w">
-</span><span class="s2">&quot;admin/user&quot;</span><span class="w">
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template</span><span class="o"
+>.</span><span class="n"
+>module_to_template_root</span><span class="p" data-group-id="9865605646-2"
+>(</span><span class="nc"
+>MyApp.Admin.User</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;View&quot;</span><span class="p" data-group-id="9865605646-2"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;admin/user&quot;</span><span class="w"
+>
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="2255">(</span><span class="nc">MyApp.Admin.User</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.Admin</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2255">)</span><span class="w">
-</span><span class="s2">&quot;user&quot;</span><span class="w">
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template</span><span class="o"
+>.</span><span class="n"
+>module_to_template_root</span><span class="p" data-group-id="9865605646-3"
+>(</span><span class="nc"
+>MyApp.Admin.User</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp.Admin</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;View&quot;</span><span class="p" data-group-id="9865605646-3"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;user&quot;</span><span class="w"
+>
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="2274">(</span><span class="nc">MyApp.View</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2274">)</span><span class="w">
-</span><span class="s2">&quot;&quot;</span><span class="w">
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template</span><span class="o"
+>.</span><span class="n"
+>module_to_template_root</span><span class="p" data-group-id="9865605646-4"
+>(</span><span class="nc"
+>MyApp.View</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;View&quot;</span><span class="p" data-group-id="9865605646-4"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;&quot;</span><span class="w"
+>
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="2295">(</span><span class="nc">MyApp.View</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.View</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2295">)</span><span class="w">
-</span><span class="s2">&quot;&quot;</span></code></pre>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template</span><span class="o"
+>.</span><span class="n"
+>module_to_template_root</span><span class="p" data-group-id="9865605646-5"
+>(</span><span class="nc"
+>MyApp.View</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp.View</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;View&quot;</span><span class="p" data-group-id="9865605646-5"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;&quot;</span></code></pre>
 
   </section>
 </div>
@@ -594,10 +833,28 @@ extensions followed by their modules.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">template_path_to_name</span><span class="p" data-group-id="2324">(</span><span class="w">
-</span><span class="gp">...&gt;</span><span class="w">   </span><span class="s2">&quot;lib/templates/admin/users/show.html.eex&quot;</span><span class="p">,</span><span class="w">
-</span><span class="gp">...&gt;</span><span class="w">   </span><span class="s2">&quot;lib/templates&quot;</span><span class="p" data-group-id="2324">)</span><span class="w">
-</span><span class="s2">&quot;admin/users/show.html&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Template</span><span class="o"
+>.</span><span class="n"
+>template_path_to_name</span><span class="p" data-group-id="0041065582-1"
+>(</span><span class="w"
+>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>...&gt;</span><span class="w"
+>   </span><span class="s"
+>&quot;lib/templates/admin/users/show.html.eex&quot;</span><span class="p"
+>,</span><span class="w"
+>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>...&gt;</span><span class="w"
+>   </span><span class="s"
+>&quot;lib/templates&quot;</span><span class="p" data-group-id="0041065582-1"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;admin/users/show.html&quot;</span></code></pre>
 
   </section>
 </div>
@@ -610,20 +867,19 @@ extensions followed by their modules.</p>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

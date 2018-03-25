@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Mix Tasks – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
 <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -156,17 +160,69 @@ $ iex -S mix phx.server</code></pre>
 * creating task_tester/mix.exs
 . . .</code></pre>
 <p>If we look in the resulting <code class="inline">mix.exs</code> file, we will see that our project app name is <code class="inline">hello</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Mixfile</span><span class="w"> </span><span class="k">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Mix.Project</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Mixfile</span><span class="w"
+> </span><span class="k" data-group-id="5811680438-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Mix.Project</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">project</span><span class="w"> </span><span class="k">do</span><span class="w">
-    </span><span class="p">[</span><span class="ss">app</span><span class="p">:</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w">
-     </span><span class="ss">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span><span class="w">
-</span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>project</span><span class="w"
+> </span><span class="k" data-group-id="5811680438-2"
+>do</span><span class="w"
+>
+    </span><span class="err"
+>[</span><span class="ss"
+>app</span><span
+>:</span><span class="w"
+> </span><span class="ss"
+>:hello</span><span class="p"
+>,</span><span class="w"
+>
+     </span><span class="ss"
+>version</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;0.0.1&quot;</span><span class="p"
+>,</span><span class="w"
+>
+</span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span></code></pre>
 <p>A quick check will show that all of our module names are qualified with <code class="inline">Hello</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageController</span><span class="w"> </span><span class="k">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
-</span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>HelloWeb.PageController</span><span class="w"
+> </span><span class="k" data-group-id="3405697796-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>HelloWeb</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:controller</span><span class="w"
+>
+</span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span></code></pre>
 <p>We can also see that files related to the application as a whole - eg. files in <code class="inline">lib/</code> and the test seed file - have <code class="inline">hello</code> in their names.</p>
 <pre><code class="console">* creating task_tester/lib/hello.ex
 * creating task_tester/lib/hello/endpoint.ex
@@ -202,12 +258,40 @@ $ iex -S mix phx.server</code></pre>
 . . .</code></pre>
 <p>Notice that none of the files have <code class="inline">hello</code> in their names. All filenames related to the application name are <code class="inline">task_tester</code>.</p>
 <p>If we look at the project app name in <code class="inline">mix.exs</code>, we see that it is <code class="inline">task_tester</code>, but all the module qualifying names begin with <code class="inline">Hello</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Mixfile</span><span class="w"> </span><span class="k">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Mix.Project</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Mixfile</span><span class="w"
+> </span><span class="k" data-group-id="4302598552-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Mix.Project</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">project</span><span class="w"> </span><span class="k">do</span><span class="w">
-    </span><span class="p">[</span><span class="ss">app</span><span class="p">:</span><span class="w"> </span><span class="ss">:task_tester</span><span class="p">,</span><span class="w">
-</span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>project</span><span class="w"
+> </span><span class="k" data-group-id="4302598552-2"
+>do</span><span class="w"
+>
+    </span><span class="err"
+>[</span><span class="ss"
+>app</span><span
+>:</span><span class="w"
+> </span><span class="ss"
+>:task_tester</span><span class="p"
+>,</span><span class="w"
+>
+</span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span></code></pre>
 <h4><code class="inline">mix phx.gen.html</code></h4>
 <p>Phoenix now offers the ability to generate all the code to stand up a complete HTML resource - ecto migration, ecto context, controller with all the necessary actions, view, and templates. This can be a tremendous timesaver. Let’s take a look at how to make this happen.</p>
 <p>The <code class="inline">phx.gen.html</code> task takes a number of arguments, the module name of the context, the module name of the schema, the resource name, and a list of column_name:type attributes. The module name we pass in must conform to the Elixir rules of module naming, following proper capitalization.</p>
@@ -462,7 +546,16 @@ Check your digested files at 'priv/static'.</code></pre>
 </li>
 </ul>
 <p>We can optionally determine which files should be gzipped by using the <code class="inline">:gzippable_exts</code> option in the config file:</p>
-<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:gzippable_exts</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(.js .css)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>config</span><span class="w"
+> </span><span class="ss"
+>:phoenix</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:gzippable_exts</span><span class="p"
+>,</span><span class="w"
+> </span><span class="sx"
+>~w(.js .css)</span></code></pre>
 <blockquote><p>Note: We can specify a different output folder where <code class="inline">phx.digest</code> will put processed files. The first argument is the path where the static files are located.</p>
 </blockquote>
 <pre><code class="console">$ mix phx.digest priv/static -o www/public
@@ -530,27 +623,132 @@ Don't forget to add your new repo to your supervision tree
 
 worker(OurCustom.Repo, [])</code></pre>
 <p>Notice that this task has updated <code class="inline">config/config.exs</code>. If we take a look, we’ll see this extra configuration block for our new repo.</p>
-<pre><code class="nohighlight makeup"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-</span><span class="n">config</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="nc">OurCustom.Repo</span><span class="p">,</span><span class="w">
-</span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="nc">Ecto.Adapters.Postgres</span><span class="p">,</span><span class="w">
-</span><span class="ss">database</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hello_repo&quot;</span><span class="p">,</span><span class="w">
-</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="w">
-</span><span class="ss">password</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pass&quot;</span><span class="p">,</span><span class="w">
-</span><span class="ss">hostname</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="w">
-</span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+>
+</span><span class="n"
+>config</span><span class="w"
+> </span><span class="ss"
+>:hello</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>OurCustom.Repo</span><span class="p"
+>,</span><span class="w"
+>
+</span><span class="ss"
+>adapter</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>Ecto.Adapters.Postgres</span><span class="p"
+>,</span><span class="w"
+>
+</span><span class="ss"
+>database</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;hello_repo&quot;</span><span class="p"
+>,</span><span class="w"
+>
+</span><span class="ss"
+>username</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;user&quot;</span><span class="p"
+>,</span><span class="w"
+>
+</span><span class="ss"
+>password</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;pass&quot;</span><span class="p"
+>,</span><span class="w"
+>
+</span><span class="ss"
+>hostname</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;localhost&quot;</span><span class="w"
+>
+</span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span></code></pre>
 <p>Of course, we’ll need to change the login credentials to match what our database expects. We’ll also need to change the config for other environments.</p>
 <p>We certainly should follow the instructions and add our new repo to our supervision tree. In our <code class="inline">Hello</code> application, we would open up <code class="inline">lib/hello.ex</code>, and add our repo as a worker to the <code class="inline">children</code> list.</p>
-<pre><code class="nohighlight makeup"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-</span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="579">[</span><span class="w">
-  </span><span class="c1"># Start the endpoint when the application starts
-</span><span class="w">  </span><span class="n">supervisor</span><span class="p" data-group-id="568">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="567">[]</span><span class="p" data-group-id="568">)</span><span class="p">,</span><span class="w">
-  </span><span class="c1"># Start the Ecto repository
-</span><span class="w">  </span><span class="n">worker</span><span class="p" data-group-id="573">(</span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="572">[]</span><span class="p" data-group-id="573">)</span><span class="p">,</span><span class="w">
-  </span><span class="c1"># Here you could define other workers and supervisors as children
-</span><span class="w">  </span><span class="c1"># worker(Hello.Worker, [arg1, arg2, arg3]),
-</span><span class="w">  </span><span class="n">worker</span><span class="p" data-group-id="578">(</span><span class="nc">OurCustom.Repo</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="577">[]</span><span class="p" data-group-id="578">)</span><span class="p">,</span><span class="w">
-</span><span class="p" data-group-id="579">]</span><span class="w">
-</span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+>
+</span><span class="n"
+>children</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="p" data-group-id="3413130761-1"
+>[</span><span class="w"
+>
+  </span><span class="c1"
+># Start the endpoint when the application starts</span><span class="w"
+>
+  </span><span class="n"
+>supervisor</span><span class="p" data-group-id="3413130761-2"
+>(</span><span class="nc"
+>HelloWeb.Endpoint</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3413130761-3"
+>[</span><span class="p" data-group-id="3413130761-3"
+>]</span><span class="p" data-group-id="3413130761-2"
+>)</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="c1"
+># Start the Ecto repository</span><span class="w"
+>
+  </span><span class="n"
+>worker</span><span class="p" data-group-id="3413130761-4"
+>(</span><span class="nc"
+>Hello.Repo</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3413130761-5"
+>[</span><span class="p" data-group-id="3413130761-5"
+>]</span><span class="p" data-group-id="3413130761-4"
+>)</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="c1"
+># Here you could define other workers and supervisors as children</span><span class="w"
+>
+  </span><span class="c1"
+># worker(Hello.Worker, [arg1, arg2, arg3]),</span><span class="w"
+>
+  </span><span class="n"
+>worker</span><span class="p" data-group-id="3413130761-6"
+>(</span><span class="nc"
+>OurCustom.Repo</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3413130761-7"
+>[</span><span class="p" data-group-id="3413130761-7"
+>]</span><span class="p" data-group-id="3413130761-6"
+>)</span><span class="p"
+>,</span><span class="w"
+>
+</span><span class="p" data-group-id="3413130761-1"
+>]</span><span class="w"
+>
+</span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span></code></pre>
 <h4><code class="inline">ecto.gen.migration</code></h4>
 <p>Migrations are a programmatic, repeatable way to affect changes to a database schema. Migrations are also just modules, and we can create them with the <code class="inline">ecto.gen.migration</code> task. Let’s walk through the steps to create a migration for a new comments table.</p>
 <p>We simply need to invoke the task with a snake_case version of the module name that we want. Preferably, the name will describe what we want the migration to do.</p>
@@ -559,23 +757,88 @@ worker(OurCustom.Repo, [])</code></pre>
 * creating priv/repo/migrations/20150318001628_add_comments_table.exs</code></pre>
 <p>Notice that the migration’s filename begins with a string representation of the date and time the file was created.</p>
 <p>Let’s take a look at the file <code class="inline">ecto.gen.migration</code> has generated for us at <code class="inline">priv/repo/migrations/20150318001628_add_comments_table.exs</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Repo.Migrations.AddCommentsTable</span><span class="w"> </span><span class="k" data-group-id="564">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Migration</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Repo.Migrations.AddCommentsTable</span><span class="w"
+> </span><span class="k" data-group-id="4392335318-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Ecto.Migration</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">change</span><span class="w"> </span><span class="k" data-group-id="563">do</span><span class="w">
-  </span><span class="k" data-group-id="563">end</span><span class="w">
-</span><span class="k" data-group-id="564">end</span></code></pre>
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>change</span><span class="w"
+> </span><span class="k" data-group-id="4392335318-2"
+>do</span><span class="w"
+>
+  </span><span class="k" data-group-id="4392335318-2"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="4392335318-1"
+>end</span></code></pre>
 <p>Notice that there is a single function <code class="inline">change/0</code> which will handle both forward migrations and rollbacks. We’ll define the schema changes that we want using ecto’s handy dsl, and ecto will figure out what to do depending on whether we are rolling forward or rolling back. Very nice indeed.</p>
 <p>What we want to do is create a <code class="inline">comments</code> table with a <code class="inline">body</code> column, a <code class="inline">word_count</code> column, and timestamp columns for <code class="inline">inserted_at</code> and <code class="inline">updated_at</code>.</p>
-<pre><code class="nohighlight makeup"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">change</span><span class="w"> </span><span class="k" data-group-id="570">do</span><span class="w">
-  </span><span class="n">create</span><span class="w"> </span><span class="n">table</span><span class="p" data-group-id="565">(</span><span class="ss">:comments</span><span class="p" data-group-id="565">)</span><span class="w"> </span><span class="k" data-group-id="569">do</span><span class="w">
-    </span><span class="n">add</span><span class="w"> </span><span class="ss">:body</span><span class="p">,</span><span class="w">       </span><span class="ss">:string</span><span class="w">
-    </span><span class="n">add</span><span class="w"> </span><span class="ss">:word_count</span><span class="p">,</span><span class="w"> </span><span class="ss">:integer</span><span class="w">
-    </span><span class="n">timestamps</span><span class="w">
-  </span><span class="k" data-group-id="569">end</span><span class="w">
-</span><span class="k" data-group-id="570">end</span><span class="w">
-</span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+>
+</span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>change</span><span class="w"
+> </span><span class="k" data-group-id="4767060083-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>create</span><span class="w"
+> </span><span class="n"
+>table</span><span class="p" data-group-id="4767060083-2"
+>(</span><span class="ss"
+>:comments</span><span class="p" data-group-id="4767060083-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="4767060083-3"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>add</span><span class="w"
+> </span><span class="ss"
+>:body</span><span class="p"
+>,</span><span class="w"
+>       </span><span class="ss"
+>:string</span><span class="w"
+>
+    </span><span class="n"
+>add</span><span class="w"
+> </span><span class="ss"
+>:word_count</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:integer</span><span class="w"
+>
+    </span><span class="n"
+>timestamps</span><span class="w"
+>
+  </span><span class="k" data-group-id="4767060083-3"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="4767060083-1"
+>end</span><span class="w"
+>
+</span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span></code></pre>
 <p>Again, we can run this task with the <code class="inline">-r</code> flag and another repo if we need to.</p>
 <pre><code class="console">$ mix ecto.gen.migration -r OurCustom.Repo add_users
 * creating priv/repo/migrations
@@ -631,21 +894,61 @@ version     |     inserted_at
 <p>The first thing we need to do is create a <code class="inline">mix/tasks</code> directory inside of <code class="inline">lib</code>. This is where any of our application specific mix tasks will go.</p>
 <pre><code class="console">$ mkdir -p lib/mix/tasks</code></pre>
 <p>Inside that directory, let’s create a new file, <code class="inline">hello.greeting.ex</code>, that looks like this.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Mix.Tasks.Hello.Greeting</span><span class="w"> </span><span class="k" data-group-id="576">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Mix.Task</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Mix.Tasks.Hello.Greeting</span><span class="w"
+> </span><span class="k" data-group-id="7184177962-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Mix.Task</span><span class="w"
+>
 
-  </span><span class="na">@shortdoc</span><span class="w"> </span><span class="s2">&quot;Sends a greeting to us from Hello Phoenix&quot;</span><span class="w">
+  </span><span class="na"
+>@shortdoc</span><span class="w"
+> </span><span class="s"
+>&quot;Sends a greeting to us from Hello Phoenix&quot;</span><span class="w"
+>
 
-  </span><span class="na">@moduledoc</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;
+  </span><span class="na"
+>@moduledoc</span><span class="w"
+> </span><span class="s"
+>&quot;&quot;&quot;
     This is where we would put any long form documentation or doctests.
-  &quot;&quot;&quot;</span><span class="w">
+  &quot;&quot;&quot;</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="571">(</span><span class="bp">_args</span><span class="p" data-group-id="571">)</span><span class="w"> </span><span class="k" data-group-id="575">do</span><span class="w">
-    </span><span class="nc">Mix</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Greetings from the Hello Phoenix Application!&quot;</span><span class="w">
-  </span><span class="k" data-group-id="575">end</span><span class="w">
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>run</span><span class="p" data-group-id="7184177962-2"
+>(</span><span class="bp"
+>_args</span><span class="p" data-group-id="7184177962-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7184177962-3"
+>do</span><span class="w"
+>
+    </span><span class="nc"
+>Mix</span><span class="o"
+>.</span><span class="n"
+>shell</span><span class="o"
+>.</span><span class="n"
+>info</span><span class="w"
+> </span><span class="s"
+>&quot;Greetings from the Hello Phoenix Application!&quot;</span><span class="w"
+>
+  </span><span class="k" data-group-id="7184177962-3"
+>end</span><span class="w"
+>
 
-  </span><span class="c1"># We can define other functions as needed here.
-</span><span class="k" data-group-id="576">end</span></code></pre>
+  </span><span class="c1"
+># We can define other functions as needed here.</span><span class="w"
+>
+</span><span class="k" data-group-id="7184177962-1"
+>end</span></code></pre>
 <p>Let’s take a quick look at the moving parts involved in a working mix task.</p>
 <p>The first thing we need to do is name our module. In order to properly namespace it, we begin with <code class="inline">Mix.Tasks</code>. We’d like to invoke this as <code class="inline">mix hello.greeting</code>, so we complete the module name with
 <code class="inline">Hello.Greeting</code>.</p>
@@ -667,31 +970,67 @@ mix hello.greeting # Sends a greeting to us from Hello Phoenix</code></pre>
 Greetings from the Hello Phoenix Application!</code></pre>
 <p>Indeed it does.</p>
 <p>If you want to make your new mix task to use your application’s infrastructure, you need to make sure the application is started when mix task is being executed. This is particularly useful if you need to access your database from within the mix task. Thankfully, mix makes it really easy for us:</p>
-<pre><code class="nohighlight makeup"><span class="w">  </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="566">(</span><span class="bp">_args</span><span class="p" data-group-id="566">)</span><span class="w"> </span><span class="k" data-group-id="574">do</span><span class="w">
-    </span><span class="nc">Mix.Task</span><span class="o">.</span><span class="n">run</span><span class="w"> </span><span class="s2">&quot;app.start&quot;</span><span class="w">
-    </span><span class="nc">Mix</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Now I have access to Repo and other goodies!&quot;</span><span class="w">
-  </span><span class="k" data-group-id="574">end</span><span class="w">
-  </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="w"
+>  </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+>
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>run</span><span class="p" data-group-id="9583649132-1"
+>(</span><span class="bp"
+>_args</span><span class="p" data-group-id="9583649132-1"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="9583649132-2"
+>do</span><span class="w"
+>
+    </span><span class="nc"
+>Mix.Task</span><span class="o"
+>.</span><span class="n"
+>run</span><span class="w"
+> </span><span class="s"
+>&quot;app.start&quot;</span><span class="w"
+>
+    </span><span class="nc"
+>Mix</span><span class="o"
+>.</span><span class="n"
+>shell</span><span class="o"
+>.</span><span class="n"
+>info</span><span class="w"
+> </span><span class="s"
+>&quot;Now I have access to Repo and other goodies!&quot;</span><span class="w"
+>
+  </span><span class="k" data-group-id="9583649132-2"
+>end</span><span class="w"
+>
+  </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span><span class="w"
+> </span><span class="o"
+>.</span></code></pre>
 
       <footer class="footer">
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

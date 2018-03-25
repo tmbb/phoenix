@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Socket – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
     <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -92,10 +96,22 @@ It is the responsibility of the socket to tie transports and channels
 together.</p>
 <p>By default, Phoenix supports both websockets and longpoll transports.
 For example:</p>
-<pre><code class="nohighlight makeup"><span class="n">transport</span><span class="w"> </span><span class="ss">:websocket</span><span class="p">,</span><span class="w"> </span><span class="nc">Phoenix.Transports.WebSocket</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>transport</span><span class="w"
+> </span><span class="ss"
+>:websocket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Transports.WebSocket</span></code></pre>
 <p>The command above means incoming socket connections can be made via
 the WebSocket transport. Events are routed by topic to channels:</p>
-<pre><code class="nohighlight makeup"><span class="n">channel</span><span class="w"> </span><span class="s2">&quot;room:lobby&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.LobbyChannel</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>channel</span><span class="w"
+> </span><span class="s"
+>&quot;room:lobby&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp.LobbyChannel</span></code></pre>
 <p>See <a href="Phoenix.Channel.html"><code class="inline">Phoenix.Channel</code></a> for more information on channels. Check each
 transport module to find the options specific to each transport.</p>
 <h2 id="module-socket-behaviour" class="section-heading">
@@ -119,21 +135,122 @@ For sockets requiring no authentication, <code class="inline">nil</code> can be 
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="w"> </span><span class="k" data-group-id="2197">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Socket</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>MyApp.UserSocket</span><span class="w"
+> </span><span class="k" data-group-id="5445117186-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Socket</span><span class="w"
+>
 
-  </span><span class="n">transport</span><span class="w"> </span><span class="ss">:websocket</span><span class="p">,</span><span class="w"> </span><span class="nc">Phoenix.Transports.WebSocket</span><span class="w">
-  </span><span class="n">channel</span><span class="w"> </span><span class="s2">&quot;room:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.RoomChannel</span><span class="w">
+  </span><span class="n"
+>transport</span><span class="w"
+> </span><span class="ss"
+>:websocket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Transports.WebSocket</span><span class="w"
+>
+  </span><span class="n"
+>channel</span><span class="w"
+> </span><span class="s"
+>&quot;room:*&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyApp.RoomChannel</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">connect</span><span class="p" data-group-id="2033">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2033">)</span><span class="w"> </span><span class="k" data-group-id="2110">do</span><span class="w">
-    </span><span class="p" data-group-id="2103">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="2102">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user_id</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="2101">[</span><span class="s2">&quot;user_id&quot;</span><span class="p" data-group-id="2101">]</span><span class="p" data-group-id="2102">)</span><span class="p" data-group-id="2103">}</span><span class="w">
-  </span><span class="k" data-group-id="2110">end</span><span class="w">
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>connect</span><span class="p" data-group-id="5445117186-2"
+>(</span><span class="n"
+>params</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="p" data-group-id="5445117186-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="5445117186-3"
+>do</span><span class="w"
+>
+    </span><span class="p" data-group-id="5445117186-4"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>assign</span><span class="p" data-group-id="5445117186-5"
+>(</span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:user_id</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>params</span><span class="p" data-group-id="5445117186-6"
+>[</span><span class="s"
+>&quot;user_id&quot;</span><span class="p" data-group-id="5445117186-6"
+>]</span><span class="p" data-group-id="5445117186-5"
+>)</span><span class="p" data-group-id="5445117186-4"
+>}</span><span class="w"
+>
+  </span><span class="k" data-group-id="5445117186-3"
+>end</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">id</span><span class="p" data-group-id="2124">(</span><span class="n">socket</span><span class="p" data-group-id="2124">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;users_socket:</span><span class="si" data-group-id="2193">#{</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">user_id</span><span class="si" data-group-id="2193">}</span><span class="s2">&quot;</span><span class="w">
-</span><span class="k" data-group-id="2197">end</span><span class="w">
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>id</span><span class="p" data-group-id="5445117186-7"
+>(</span><span class="n"
+>socket</span><span class="p" data-group-id="5445117186-7"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>do</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;users_socket:</span><span class="si" data-group-id="5445117186-8"
+>#{</span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>assigns</span><span class="o"
+>.</span><span class="n"
+>user_id</span><span class="si" data-group-id="5445117186-8"
+>}</span><span class="s"
+>&quot;</span><span class="w"
+>
+</span><span class="k" data-group-id="5445117186-1"
+>end</span><span class="w"
+>
 
-</span><span class="c1"># Disconnect all user's socket connections and their multiplexed channels
-</span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="2241">(</span><span class="s2">&quot;users_socket:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;disconnect&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2240">%{}</span><span class="p" data-group-id="2241">)</span></code></pre>
+</span><span class="c1"
+># Disconnect all user's socket connections and their multiplexed channels</span><span class="w"
+>
+</span><span class="nc"
+>MyApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>broadcast</span><span class="p" data-group-id="5445117186-9"
+>(</span><span class="s"
+>&quot;users_socket:&quot;</span><span class="w"
+> </span><span class="o"
+>&lt;&gt;</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>id</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;disconnect&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="5445117186-10"
+>%{</span><span class="p" data-group-id="5445117186-10"
+>}</span><span class="p" data-group-id="5445117186-9"
+>)</span></code></pre>
 <h2 id="module-socket-fields" class="section-heading">
   <a href="#module-socket-fields" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Socket Fields
@@ -304,7 +421,25 @@ writing your own transports.</p>
     
       <div class="specs">
         
-          <pre>t() :: %Phoenix.Socket{assigns: map(), channel: atom(), channel_pid: pid(), endpoint: atom(), handler: atom(), id: nil, join_ref: term(), joined: boolean(), private: %{}, pubsub_server: atom(), ref: term(), serializer: atom(), topic: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), transport: atom(), transport_name: atom(), transport_pid: pid(), vsn: term()}</pre>
+          <pre>t() :: %Phoenix.Socket{
+  assigns: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(),
+  channel: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  channel_pid: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>(),
+  endpoint: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  handler: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  id: nil,
+  join_ref: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  joined: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  private: %{},
+  pubsub_server: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  ref: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  serializer: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  topic: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  transport: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  transport_name: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  transport_pid: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>(),
+  vsn: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()
+}</pre>
         
       </div>
     
@@ -352,11 +487,49 @@ writing your own transports.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="2261">[</span><span class="ss">:token</span><span class="p" data-group-id="2261">]</span><span class="w">
-</span><span class="no">nil</span><span class="w">
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="2277">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:token</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span><span class="p" data-group-id="2277">)</span><span class="w">
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="2281">[</span><span class="ss">:token</span><span class="p" data-group-id="2281">]</span><span class="w">
-</span><span class="s2">&quot;bar&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>assigns</span><span class="p" data-group-id="0145645974-1"
+>[</span><span class="ss"
+>:token</span><span class="p" data-group-id="0145645974-1"
+>]</span><span class="w"
+>
+</span><span class="no"
+>nil</span><span class="w"
+>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>assign</span><span class="p" data-group-id="0145645974-2"
+>(</span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:token</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;bar&quot;</span><span class="p" data-group-id="0145645974-2"
+>)</span><span class="w"
+>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>assigns</span><span class="p" data-group-id="0145645974-3"
+>[</span><span class="ss"
+>:token</span><span class="p" data-group-id="0145645974-3"
+>]</span><span class="w"
+>
+</span><span class="s"
+>&quot;bar&quot;</span></code></pre>
 
   </section>
 </div>
@@ -409,9 +582,45 @@ Defaults <code class="inline">[:websocket, :longpoll]</code>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">channel</span><span class="w"> </span><span class="s2">&quot;topic1:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyChannel</span><span class="w">
-</span><span class="n">channel</span><span class="w"> </span><span class="s2">&quot;topic2:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2323">[</span><span class="ss">:websocket</span><span class="p" data-group-id="2323">]</span><span class="w">
-</span><span class="n">channel</span><span class="w"> </span><span class="s2">&quot;topic&quot;</span><span class="p">,</span><span class="w">    </span><span class="nc">MyChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2335">[</span><span class="ss">:longpoll</span><span class="p" data-group-id="2335">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>channel</span><span class="w"
+> </span><span class="s"
+>&quot;topic1:*&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyChannel</span><span class="w"
+>
+</span><span class="n"
+>channel</span><span class="w"
+> </span><span class="s"
+>&quot;topic2:*&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>MyChannel</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>via</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="1239643853-1"
+>[</span><span class="ss"
+>:websocket</span><span class="p" data-group-id="1239643853-1"
+>]</span><span class="w"
+>
+</span><span class="n"
+>channel</span><span class="w"
+> </span><span class="s"
+>&quot;topic&quot;</span><span class="p"
+>,</span><span class="w"
+>    </span><span class="nc"
+>MyChannel</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>via</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="1239643853-2"
+>[</span><span class="ss"
+>:longpoll</span><span class="p" data-group-id="1239643853-2"
+>]</span></code></pre>
 <h2 id="channel/3-topic-patterns" class="section-heading">
   <a href="#channel/3-topic-patterns" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Topic Patterns
@@ -455,13 +664,42 @@ scoping.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="c1"># customize default `:websocket` transport options
-</span><span class="n">transport</span><span class="w"> </span><span class="ss">:websocket</span><span class="p">,</span><span class="w"> </span><span class="nc">Phoenix.Transports.WebSocket</span><span class="p">,</span><span class="w">
-  </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">10_000</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="c1"
+># customize default `:websocket` transport options</span><span class="w"
+>
+</span><span class="n"
+>transport</span><span class="w"
+> </span><span class="ss"
+>:websocket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Transports.WebSocket</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>timeout</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>10_000</span><span class="w"
+>
 
-</span><span class="c1"># define separate transport, using websocket handler
-</span><span class="n">transport</span><span class="w"> </span><span class="ss">:websocket_slow_clients</span><span class="p">,</span><span class="w"> </span><span class="nc">Phoenix.Transports.WebSocket</span><span class="p">,</span><span class="w">
-  </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">60_000</span></code></pre>
+</span><span class="c1"
+># define separate transport, using websocket handler</span><span class="w"
+>
+</span><span class="n"
+>transport</span><span class="w"
+> </span><span class="ss"
+>:websocket_slow_clients</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Transports.WebSocket</span><span class="p"
+>,</span><span class="w"
+>
+  </span><span class="ss"
+>timeout</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>60_000</span></code></pre>
 
   </section>
 </div>
@@ -497,9 +735,8 @@ scoping.</p>
     
       <div class="specs">
         
-          <pre>connect(params :: map(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
-  {:ok, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} |
-  :error</pre>
+          <pre>connect(params :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()) ::
+  {:ok, <a href="Phoenix.Socket.html#t:t/0">Phoenix.Socket.t</a>()} | :error</pre>
         
       </div>
     
@@ -515,7 +752,22 @@ scoping.</p>
 be used to verify and authenticate a user. After
 verification, you can put default assigns into
 the socket that will be set for all channels, ie</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="2371">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="2370">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user_id</span><span class="p">,</span><span class="w"> </span><span class="n">verified_user_id</span><span class="p" data-group-id="2370">)</span><span class="p" data-group-id="2371">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="3298965145-1"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>assign</span><span class="p" data-group-id="3298965145-2"
+>(</span><span class="n"
+>socket</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:user_id</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>verified_user_id</span><span class="p" data-group-id="3298965145-2"
+>)</span><span class="p" data-group-id="3298965145-1"
+>}</span></code></pre>
 <p>To deny connection, return <code class="inline">:error</code>.</p>
 <p>See <a href="Phoenix.Token.html"><code class="inline">Phoenix.Token</code></a> documentation for examples in
 performing token verification on connect.</p>
@@ -549,10 +801,49 @@ performing token verification on connect.</p>
   <section class="docstring">
     <p>Identifies the socket connection.</p>
 <p>Socket IDs are topics that allow you to identify all sockets for a given user:</p>
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">id</span><span class="p" data-group-id="2383">(</span><span class="n">socket</span><span class="p" data-group-id="2383">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;users_socket:</span><span class="si" data-group-id="2395">#{</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">user_id</span><span class="si" data-group-id="2395">}</span><span class="s2">&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>id</span><span class="p" data-group-id="0572158141-1"
+>(</span><span class="n"
+>socket</span><span class="p" data-group-id="0572158141-1"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>do</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;users_socket:</span><span class="si" data-group-id="0572158141-2"
+>#{</span><span class="n"
+>socket</span><span class="o"
+>.</span><span class="n"
+>assigns</span><span class="o"
+>.</span><span class="n"
+>user_id</span><span class="si" data-group-id="0572158141-2"
+>}</span><span class="s"
+>&quot;</span></code></pre>
 <p>Would allow you to broadcast a “disconnect” event and terminate
 all active sockets and channels for a given user:</p>
-<pre><code class="nohighlight makeup"><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="2390">(</span><span class="s2">&quot;users_socket:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;disconnect&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2389">%{}</span><span class="p" data-group-id="2390">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc"
+>MyApp.Endpoint</span><span class="o"
+>.</span><span class="n"
+>broadcast</span><span class="p" data-group-id="3460535537-1"
+>(</span><span class="s"
+>&quot;users_socket:&quot;</span><span class="w"
+> </span><span class="o"
+>&lt;&gt;</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>id</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;disconnect&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3460535537-2"
+>%{</span><span class="p" data-group-id="3460535537-2"
+>}</span><span class="p" data-group-id="3460535537-1"
+>)</span></code></pre>
 <p>Returning <code class="inline">nil</code> makes this socket anonymous.</p>
 
   </section>
@@ -564,20 +855,19 @@ all active sockets and channels for a given user:</p>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

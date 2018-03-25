@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Naming – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
     <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -207,15 +211,54 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="p" data-group-id="1891">(</span><span class="s2">&quot;my_app&quot;</span><span class="p" data-group-id="1891">)</span><span class="w">
-</span><span class="s2">&quot;MyApp&quot;</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>camelize</span><span class="p" data-group-id="5518261263-1"
+>(</span><span class="s"
+>&quot;my_app&quot;</span><span class="p" data-group-id="5518261263-1"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;MyApp&quot;</span><span class="w"
+>
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="p" data-group-id="1947">(</span><span class="s2">&quot;my_app&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:lower</span><span class="p" data-group-id="1947">)</span><span class="w">
-</span><span class="s2">&quot;myApp&quot;</span></code></pre>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>camelize</span><span class="p" data-group-id="5518261263-2"
+>(</span><span class="s"
+>&quot;my_app&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:lower</span><span class="p" data-group-id="5518261263-2"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;myApp&quot;</span></code></pre>
 <p>In general, <code class="inline">camelize</code> can be thought of as the reverse of
 <code class="inline">underscore</code>, however, in some cases formatting may be lost:</p>
-<pre><code class="nohighlight makeup"><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="w"> </span><span class="s2">&quot;SAPExample&quot;</span><span class="w">  </span><span class="c1">#=&gt; &quot;sap_example&quot;
-</span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="w">   </span><span class="s2">&quot;sap_example&quot;</span><span class="w"> </span><span class="c1">#=&gt; &quot;SapExample&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>underscore</span><span class="w"
+> </span><span class="s"
+>&quot;SAPExample&quot;</span><span class="w"
+>  </span><span class="c1"
+>#=&gt; &quot;sap_example&quot;</span><span class="w"
+>
+</span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>camelize</span><span class="w"
+>   </span><span class="s"
+>&quot;sap_example&quot;</span><span class="w"
+> </span><span class="c1"
+>#=&gt; &quot;SapExample&quot;</span></code></pre>
 
   </section>
 </div>
@@ -266,19 +309,51 @@
     
       <div class="specs">
         
-          <pre>humanize(atom() | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+          <pre>humanize(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
         
       </div>
     
   </div>
   <section class="docstring">
     <p>Converts an attribute/form field into its humanize version.</p>
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="2012">(</span><span class="ss">:username</span><span class="p" data-group-id="2012">)</span><span class="w">
-</span><span class="s2">&quot;Username&quot;</span><span class="w">
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="2052">(</span><span class="ss">:created_at</span><span class="p" data-group-id="2052">)</span><span class="w">
-</span><span class="s2">&quot;Created at&quot;</span><span class="w">
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="2104">(</span><span class="s2">&quot;user_id&quot;</span><span class="p" data-group-id="2104">)</span><span class="w">
-</span><span class="s2">&quot;User&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>humanize</span><span class="p" data-group-id="6580136575-1"
+>(</span><span class="ss"
+>:username</span><span class="p" data-group-id="6580136575-1"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;Username&quot;</span><span class="w"
+>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>humanize</span><span class="p" data-group-id="6580136575-2"
+>(</span><span class="ss"
+>:created_at</span><span class="p" data-group-id="6580136575-2"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;Created at&quot;</span><span class="w"
+>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>humanize</span><span class="p" data-group-id="6580136575-3"
+>(</span><span class="s"
+>&quot;user_id&quot;</span><span class="p" data-group-id="6580136575-3"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;User&quot;</span></code></pre>
 
   </section>
 </div>
@@ -315,11 +390,35 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">resource_name</span><span class="p" data-group-id="2148">(</span><span class="nc">MyApp.User</span><span class="p" data-group-id="2148">)</span><span class="w">
-</span><span class="s2">&quot;user&quot;</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>resource_name</span><span class="p" data-group-id="2081228475-1"
+>(</span><span class="nc"
+>MyApp.User</span><span class="p" data-group-id="2081228475-1"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;user&quot;</span><span class="w"
+>
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">resource_name</span><span class="p" data-group-id="2198">(</span><span class="nc">MyApp.UserView</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2198">)</span><span class="w">
-</span><span class="s2">&quot;user&quot;</span></code></pre>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>resource_name</span><span class="p" data-group-id="2081228475-2"
+>(</span><span class="nc"
+>MyApp.UserView</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;View&quot;</span><span class="p" data-group-id="2081228475-2"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;user&quot;</span></code></pre>
 
   </section>
 </div>
@@ -354,12 +453,37 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="p" data-group-id="2227">(</span><span class="s2">&quot;MyApp&quot;</span><span class="p" data-group-id="2227">)</span><span class="w">
-</span><span class="s2">&quot;my_app&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>underscore</span><span class="p" data-group-id="0394132572-1"
+>(</span><span class="s"
+>&quot;MyApp&quot;</span><span class="p" data-group-id="0394132572-1"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;my_app&quot;</span></code></pre>
 <p>In general, <code class="inline">underscore</code> can be thought of as the reverse of
 <code class="inline">camelize</code>, however, in some cases formatting may be lost:</p>
-<pre><code class="nohighlight makeup"><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="w"> </span><span class="s2">&quot;SAPExample&quot;</span><span class="w">  </span><span class="c1">#=&gt; &quot;sap_example&quot;
-</span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="w">   </span><span class="s2">&quot;sap_example&quot;</span><span class="w"> </span><span class="c1">#=&gt; &quot;SapExample&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>underscore</span><span class="w"
+> </span><span class="s"
+>&quot;SAPExample&quot;</span><span class="w"
+>  </span><span class="c1"
+>#=&gt; &quot;sap_example&quot;</span><span class="w"
+>
+</span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>camelize</span><span class="w"
+>   </span><span class="s"
+>&quot;sap_example&quot;</span><span class="w"
+> </span><span class="c1"
+>#=&gt; &quot;SapExample&quot;</span></code></pre>
 
   </section>
 </div>
@@ -394,11 +518,38 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">unsuffix</span><span class="p" data-group-id="2260">(</span><span class="s2">&quot;MyApp.User&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2260">)</span><span class="w">
-</span><span class="s2">&quot;MyApp.User&quot;</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>unsuffix</span><span class="p" data-group-id="1545602535-1"
+>(</span><span class="s"
+>&quot;MyApp.User&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;View&quot;</span><span class="p" data-group-id="1545602535-1"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;MyApp.User&quot;</span><span class="w"
+>
 
-</span><span class="gp">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">unsuffix</span><span class="p" data-group-id="2279">(</span><span class="s2">&quot;MyApp.UserView&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;View&quot;</span><span class="p" data-group-id="2279">)</span><span class="w">
-</span><span class="s2">&quot;MyApp.User&quot;</span></code></pre>
+</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
+>iex&gt;</span><span class="w"
+> </span><span class="nc"
+>Phoenix.Naming</span><span class="o"
+>.</span><span class="n"
+>unsuffix</span><span class="p" data-group-id="1545602535-2"
+>(</span><span class="s"
+>&quot;MyApp.UserView&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;View&quot;</span><span class="p" data-group-id="1545602535-2"
+>)</span><span class="w"
+>
+</span><span class="s"
+>&quot;MyApp.User&quot;</span></code></pre>
 
   </section>
 </div>
@@ -411,20 +562,19 @@
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

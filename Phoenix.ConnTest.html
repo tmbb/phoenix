@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.ConnTest – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
     <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -97,20 +101,99 @@ well as the functions in <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html">
 <p><a href="Phoenix.ConnTest.html#content"><code class="inline">Phoenix.ConnTest</code></a> typically works against endpoints. That’s
 the preferred way to test anything that your router dispatches
 to.</p>
-<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="1889">()</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">resp_body</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;Welcome!&quot;</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>get</span><span class="w"
+> </span><span class="n"
+>build_conn</span><span class="p" data-group-id="8344600969-1"
+>(</span><span class="p" data-group-id="8344600969-1"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="o"
+>.</span><span class="n"
+>resp_body</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;Welcome!&quot;</span><span class="w"
+>
 
-</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">post</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="1966">()</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/login&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2032">[</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">password</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;doe&quot;</span><span class="p" data-group-id="2032">]</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">resp_body</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;Logged in!&quot;</span></code></pre>
+</span><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>post</span><span class="w"
+> </span><span class="n"
+>build_conn</span><span class="p" data-group-id="8344600969-2"
+>(</span><span class="p" data-group-id="8344600969-2"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/login&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="8344600969-3"
+>[</span><span class="ss"
+>username</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;john&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>password</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;doe&quot;</span><span class="p" data-group-id="8344600969-3"
+>]</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="o"
+>.</span><span class="n"
+>resp_body</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;Logged in!&quot;</span></code></pre>
 <p>As in your application, the connection is also the main abstraction
 in testing. <code class="inline">build_conn()</code> returns a new connection and functions in this
 module can be used to manipulate the connection before dispatching
 to the endpoint.</p>
 <p>For example, one could set the accepts header for json requests as
 follows:</p>
-<pre><code class="nohighlight makeup"><span class="n">build_conn</span><span class="p" data-group-id="1888">()</span><span class="w">
-</span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_req_header</span><span class="p" data-group-id="1923">(</span><span class="s2">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p" data-group-id="1923">)</span><span class="w">
-</span><span class="o">|&gt;</span><span class="w"> </span><span class="n">get</span><span class="p" data-group-id="1950">(</span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="1950">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>build_conn</span><span class="p" data-group-id="9521108007-1"
+>(</span><span class="p" data-group-id="9521108007-1"
+>)</span><span class="w"
+>
+</span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>put_req_header</span><span class="p" data-group-id="9521108007-2"
+>(</span><span class="s"
+>&quot;accept&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;application/json&quot;</span><span class="p" data-group-id="9521108007-2"
+>)</span><span class="w"
+>
+</span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>get</span><span class="p" data-group-id="9521108007-3"
+>(</span><span class="s"
+>&quot;/&quot;</span><span class="p" data-group-id="9521108007-3"
+>)</span></code></pre>
 <p>The endpoint being tested is accessed via the <code class="inline">@endpoint</code> module
 attribute.</p>
 <h2 id="module-controller-testing" class="section-heading">
@@ -125,8 +208,30 @@ in the router and before, unit testing controllers may be helpful
 in some situations.</p>
 <p>For such cases, just pass an atom representing the action
 to dispatch:</p>
-<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="1892">()</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">resp_body</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;Welcome!&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>get</span><span class="w"
+> </span><span class="n"
+>build_conn</span><span class="p" data-group-id="5017171966-1"
+>(</span><span class="p" data-group-id="5017171966-1"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:index</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="o"
+>.</span><span class="n"
+>resp_body</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;Welcome!&quot;</span></code></pre>
 <h2 id="module-views-testing" class="section-heading">
   <a href="#module-views-testing" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Views testing
@@ -136,8 +241,25 @@ to dispatch:</p>
 another layer that requires a connection for processing.
 For such cases, a connection can be created using the
 <a href="#conn/3"><code class="inline">conn/3</code></a> helper:</p>
-<pre><code class="nohighlight makeup"><span class="nc">MyApp.UserView</span><span class="o">.</span><span class="n">render</span><span class="w"> </span><span class="s2">&quot;hello.html&quot;</span><span class="p">,</span><span class="w">
-                       </span><span class="ss">conn</span><span class="p">:</span><span class="w"> </span><span class="n">conn</span><span class="p" data-group-id="1918">(</span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="1918">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc"
+>MyApp.UserView</span><span class="o"
+>.</span><span class="n"
+>render</span><span class="w"
+> </span><span class="s"
+>&quot;hello.html&quot;</span><span class="p"
+>,</span><span class="w"
+>
+                       </span><span class="ss"
+>conn</span><span
+>:</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="p" data-group-id="3112123652-1"
+>(</span><span class="ss"
+>:get</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="p" data-group-id="3112123652-1"
+>)</span></code></pre>
 <h2 id="module-recycling" class="section-heading">
   <a href="#module-recycling" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Recycling
@@ -157,20 +279,84 @@ work.</p>
 between dispatches. This usually works out well most times, but
 it may discard information if you are modifying the connection
 before the next dispatch:</p>
-<pre><code class="nohighlight makeup"><span class="c1"># No recycling as the connection is fresh
-</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="1896">()</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="c1"
+># No recycling as the connection is fresh</span><span class="w"
+>
+</span><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>get</span><span class="w"
+> </span><span class="n"
+>build_conn</span><span class="p" data-group-id="7392729672-1"
+>(</span><span class="p" data-group-id="7392729672-1"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="w"
+>
 
-</span><span class="c1"># The connection is recycled, creating a new one behind the scenes
-</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">post</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/login&quot;</span><span class="w">
+</span><span class="c1"
+># The connection is recycled, creating a new one behind the scenes</span><span class="w"
+>
+</span><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>post</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/login&quot;</span><span class="w"
+>
 
-</span><span class="c1"># We can also recycle manually in case we want custom headers
-</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w">
-  </span><span class="n">conn</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">recycle</span><span class="p" data-group-id="2005">()</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_req_header</span><span class="p" data-group-id="2049">(</span><span class="s2">&quot;x-special&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;nice&quot;</span><span class="p" data-group-id="2049">)</span><span class="w">
+</span><span class="c1"
+># We can also recycle manually in case we want custom headers</span><span class="w"
+>
+</span><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+>
+  </span><span class="n"
+>conn</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>recycle</span><span class="p" data-group-id="7392729672-2"
+>(</span><span class="p" data-group-id="7392729672-2"
+>)</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>put_req_header</span><span class="p" data-group-id="7392729672-3"
+>(</span><span class="s"
+>&quot;x-special&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;nice&quot;</span><span class="p" data-group-id="7392729672-3"
+>)</span><span class="w"
+>
 
-</span><span class="c1"># No recycling as we did it explicitly
-</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">delete</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/logout&quot;</span></code></pre>
+</span><span class="c1"
+># No recycling as we did it explicitly</span><span class="w"
+>
+</span><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>delete</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/logout&quot;</span></code></pre>
 <p>Recycling also recycles the “accept” header.</p>
 
         </section>
@@ -533,7 +719,7 @@ returns the response body if one was set or sent</p>
     
       <div class="specs">
         
-          <pre>assert_error_sent(integer() | atom(), function()) :: {integer(), list(), term()}</pre>
+          <pre>assert_error_sent(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">function</a>()) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
         
       </div>
     
@@ -547,20 +733,105 @@ by your MyApp.ErrorView.</p>
 atom, such as <code class="inline">404</code> or <code class="inline">:not_found</code>. If an error is raised, a
 3-tuple of the wrapped response is returned matching the
 status, headers, and body of the response:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="2231">{</span><span class="mi">404</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2225">[</span><span class="p" data-group-id="2218">{</span><span class="s2">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text/html&quot;</span><span class="p" data-group-id="2218">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="2225">]</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Page not found&quot;</span><span class="p" data-group-id="2231">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="4803545857-1"
+>{</span><span class="mi"
+>404</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="4803545857-2"
+>[</span><span class="p" data-group-id="4803545857-3"
+>{</span><span class="s"
+>&quot;content-type&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;text/html&quot;</span><span class="p" data-group-id="4803545857-3"
+>}</span><span class="w"
+> </span><span class="o"
+>|</span><span class="w"
+> </span><span class="err"
+>_</span><span class="p" data-group-id="4803545857-2"
+>]</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;Page not found&quot;</span><span class="p" data-group-id="4803545857-1"
+>}</span></code></pre>
 <h2 id="assert_error_sent/2-examples" class="section-heading">
   <a href="#assert_error_sent/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">assert_error_sent</span><span class="w"> </span><span class="ss">:not_found</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="2212">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-  </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="2202">()</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/users/not-found&quot;</span><span class="w">
-</span><span class="k" data-group-id="2212">end</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n"
+>assert_error_sent</span><span class="w"
+> </span><span class="ss"
+>:not_found</span><span class="p"
+>,</span><span class="w"
+> </span><span class="k" data-group-id="3978788665-1"
+>fn</span><span class="w"
+> </span><span class="o"
+>-&gt;</span><span class="w"
+>
+  </span><span class="n"
+>get</span><span class="w"
+> </span><span class="n"
+>build_conn</span><span class="p" data-group-id="3978788665-2"
+>(</span><span class="p" data-group-id="3978788665-2"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/users/not-found&quot;</span><span class="w"
+>
+</span><span class="k" data-group-id="3978788665-1"
+>end</span><span class="w"
+>
 
-</span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">assert_error_sent</span><span class="w"> </span><span class="mi">404</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="2245">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-  </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="2238">()</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/users/not-found&quot;</span><span class="w">
-</span><span class="k" data-group-id="2245">end</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="2265">{</span><span class="mi">404</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2257">[</span><span class="bp">_h</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="bp">_t</span><span class="p" data-group-id="2257">]</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Page not found&quot;</span><span class="p" data-group-id="2265">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span></code></pre>
+</span><span class="n"
+>response</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>assert_error_sent</span><span class="w"
+> </span><span class="mi"
+>404</span><span class="p"
+>,</span><span class="w"
+> </span><span class="k" data-group-id="3978788665-3"
+>fn</span><span class="w"
+> </span><span class="o"
+>-&gt;</span><span class="w"
+>
+  </span><span class="n"
+>get</span><span class="w"
+> </span><span class="n"
+>build_conn</span><span class="p" data-group-id="3978788665-4"
+>(</span><span class="p" data-group-id="3978788665-4"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/users/not-found&quot;</span><span class="w"
+>
+</span><span class="k" data-group-id="3978788665-3"
+>end</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="p" data-group-id="3978788665-5"
+>{</span><span class="mi"
+>404</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="3978788665-6"
+>[</span><span class="bp"
+>_h</span><span class="w"
+> </span><span class="o"
+>|</span><span class="w"
+> </span><span class="bp"
+>_t</span><span class="p" data-group-id="3978788665-6"
+>]</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;Page not found&quot;</span><span class="p" data-group-id="3978788665-5"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>response</span></code></pre>
 
   </section>
 </div>
@@ -614,7 +885,8 @@ status, headers, and body of the response:</p>
     
       <div class="specs">
         
-          <pre>build_conn(atom() | binary(), binary(), binary() | list() | map()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+          <pre>build_conn(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) ::
+  <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
         
       </div>
     
@@ -664,26 +936,139 @@ router pipeline plugs are required for proper setup.</p>
 plug in isolation, but you need to invoke the Endpoint plugs
 and <code class="inline">:browser</code> pipeline of your Router for session and flash
 related dependencies:</p>
-<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w">
-  </span><span class="n">conn</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">bypass_through</span><span class="p" data-group-id="2298">(</span><span class="nc">MyAppWeb.Router</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2297">[</span><span class="ss">:browser</span><span class="p" data-group-id="2297">]</span><span class="p" data-group-id="2298">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">get</span><span class="p" data-group-id="2308">(</span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="2308">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">MyApp.RequireAuthentication</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="2320">(</span><span class="p" data-group-id="2319">[]</span><span class="p" data-group-id="2320">)</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">halted</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+>
+  </span><span class="n"
+>conn</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>bypass_through</span><span class="p" data-group-id="8366634535-1"
+>(</span><span class="nc"
+>MyAppWeb.Router</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="8366634535-2"
+>[</span><span class="ss"
+>:browser</span><span class="p" data-group-id="8366634535-2"
+>]</span><span class="p" data-group-id="8366634535-1"
+>)</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>get</span><span class="p" data-group-id="8366634535-3"
+>(</span><span class="s"
+>&quot;/&quot;</span><span class="p" data-group-id="8366634535-3"
+>)</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="nc"
+>MyApp.RequireAuthentication</span><span class="o"
+>.</span><span class="n"
+>call</span><span class="p" data-group-id="8366634535-4"
+>(</span><span class="p" data-group-id="8366634535-5"
+>[</span><span class="p" data-group-id="8366634535-5"
+>]</span><span class="p" data-group-id="8366634535-4"
+>)</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="o"
+>.</span><span class="n"
+>halted</span></code></pre>
 <p>Alternatively, you could invoke only the Endpoint, and Router:</p>
-<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w">
-  </span><span class="n">conn</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">bypass_through</span><span class="p" data-group-id="2300">(</span><span class="nc">MyAppWeb.Router</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2299">[]</span><span class="p" data-group-id="2300">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">get</span><span class="p" data-group-id="2307">(</span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="2307">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">MyApp.RequireAuthentication</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="2316">(</span><span class="p" data-group-id="2315">[]</span><span class="p" data-group-id="2316">)</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">halted</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+>
+  </span><span class="n"
+>conn</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>bypass_through</span><span class="p" data-group-id="9231200469-1"
+>(</span><span class="nc"
+>MyAppWeb.Router</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="9231200469-2"
+>[</span><span class="p" data-group-id="9231200469-2"
+>]</span><span class="p" data-group-id="9231200469-1"
+>)</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>get</span><span class="p" data-group-id="9231200469-3"
+>(</span><span class="s"
+>&quot;/&quot;</span><span class="p" data-group-id="9231200469-3"
+>)</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="nc"
+>MyApp.RequireAuthentication</span><span class="o"
+>.</span><span class="n"
+>call</span><span class="p" data-group-id="9231200469-4"
+>(</span><span class="p" data-group-id="9231200469-5"
+>[</span><span class="p" data-group-id="9231200469-5"
+>]</span><span class="p" data-group-id="9231200469-4"
+>)</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="o"
+>.</span><span class="n"
+>halted</span></code></pre>
 <p>Or only invoke the Endpoint’s plugs:</p>
-<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w">
-  </span><span class="n">conn</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">bypass_through</span><span class="p" data-group-id="2288">()</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">get</span><span class="p" data-group-id="2302">(</span><span class="s2">&quot;/&quot;</span><span class="p" data-group-id="2302">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">MyApp.RequireAuthentication</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="2314">(</span><span class="p" data-group-id="2313">[]</span><span class="p" data-group-id="2314">)</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">halted</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+>
+  </span><span class="n"
+>conn</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>bypass_through</span><span class="p" data-group-id="4463773183-1"
+>(</span><span class="p" data-group-id="4463773183-1"
+>)</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>get</span><span class="p" data-group-id="4463773183-2"
+>(</span><span class="s"
+>&quot;/&quot;</span><span class="p" data-group-id="4463773183-2"
+>)</span><span class="w"
+>
+  </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="nc"
+>MyApp.RequireAuthentication</span><span class="o"
+>.</span><span class="n"
+>call</span><span class="p" data-group-id="4463773183-3"
+>(</span><span class="p" data-group-id="4463773183-4"
+>[</span><span class="p" data-group-id="4463773183-4"
+>]</span><span class="p" data-group-id="4463773183-3"
+>)</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>conn</span><span class="o"
+>.</span><span class="n"
+>halted</span></code></pre>
 
   </section>
 </div>
@@ -708,7 +1093,7 @@ related dependencies:</p>
     
       <div class="specs">
         
-          <pre>bypass_through(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), module(), :atom | list()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+          <pre>bypass_through(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), :atom | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
         
       </div>
     
@@ -798,7 +1183,7 @@ related dependencies:</p>
     
       <div class="specs">
         
-          <pre>conn(atom() | binary(), binary(), binary() | list() | map()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+          <pre>conn(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
         
       </div>
     
@@ -883,7 +1268,7 @@ related dependencies:</p>
     
       <div class="specs">
         
-          <pre>delete_req_cookie(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), binary()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+          <pre>delete_req_cookie(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
         
       </div>
     
@@ -931,8 +1316,35 @@ to the given action.</p>
 
 <p>This function, as well as <a href="#get/3"><code class="inline">get/3</code></a>, <a href="#post/3"><code class="inline">post/3</code></a> and friends, accepts the
 request body or parameters as last argument:</p>
-<pre><code class="nohighlight makeup"><span class="w">  </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="2347">()</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">some</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;param&quot;</span><span class="w">
-  </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="2365">()</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;some=param&amp;url=encoded&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="w"
+>  </span><span class="n"
+>get</span><span class="w"
+> </span><span class="n"
+>build_conn</span><span class="p" data-group-id="8977448646-1"
+>(</span><span class="p" data-group-id="8977448646-1"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>some</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;param&quot;</span><span class="w"
+>
+  </span><span class="n"
+>get</span><span class="w"
+> </span><span class="n"
+>build_conn</span><span class="p" data-group-id="8977448646-2"
+>(</span><span class="p" data-group-id="8977448646-2"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;some=param&amp;url=encoded&quot;</span></code></pre>
 <p>The allowed values are:</p>
 <ul>
 <li><p><code class="inline">nil</code> - meaning there is no body</p>
@@ -1087,7 +1499,7 @@ without normalizing its entries</p>
     
       <div class="specs">
         
-          <pre>get_flash(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), term()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+          <pre>get_flash(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
         
       </div>
     
@@ -1144,9 +1556,8 @@ without normalizing its entries</p>
     
       <div class="specs">
         
-          <pre>html_response(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: integer() | atom()) ::
-  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() |
-  no_return()</pre>
+          <pre>html_response(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) ::
+  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
         
       </div>
     
@@ -1159,7 +1570,20 @@ returns the response body if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">assert</span><span class="w"> </span><span class="n">html_response</span><span class="p" data-group-id="2386">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="2386">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;&lt;html&gt;&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>html_response</span><span class="p" data-group-id="9691871059-1"
+>(</span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="mi"
+>200</span><span class="p" data-group-id="9691871059-1"
+>)</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;&lt;html&gt;&quot;</span></code></pre>
 
   </section>
 </div>
@@ -1182,9 +1606,8 @@ returns the response body if one was set or sent.</p>
     
       <div class="specs">
         
-          <pre>json_response(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: integer() | atom()) ::
-  map() |
-  no_return()</pre>
+          <pre>json_response(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) ::
+  <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
         
       </div>
     
@@ -1197,8 +1620,30 @@ returns the decoded JSON response if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json_response</span><span class="p" data-group-id="2396">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="2396">)</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="s2">&quot;can't be blank&quot;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="2397">[</span><span class="s2">&quot;errors&quot;</span><span class="p" data-group-id="2397">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>body</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>json_response</span><span class="p" data-group-id="4557747969-1"
+>(</span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="mi"
+>200</span><span class="p" data-group-id="4557747969-1"
+>)</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="s"
+>&quot;can't be blank&quot;</span><span class="w"
+> </span><span class="ow"
+>in</span><span class="w"
+> </span><span class="n"
+>body</span><span class="p" data-group-id="4557747969-2"
+>[</span><span class="s"
+>&quot;errors&quot;</span><span class="p" data-group-id="4557747969-2"
+>]</span></code></pre>
 
   </section>
 </div>
@@ -1333,7 +1778,7 @@ returns the decoded JSON response if one was set or sent.</p>
     
       <div class="specs">
         
-          <pre>put_flash(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), term(), term()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+          <pre>put_flash(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
         
       </div>
     
@@ -1362,7 +1807,7 @@ returns the decoded JSON response if one was set or sent.</p>
     
       <div class="specs">
         
-          <pre>put_req_cookie(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), binary(), binary()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+          <pre>put_req_cookie(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
         
       </div>
     
@@ -1427,7 +1872,7 @@ recycled.</p>
     
       <div class="specs">
         
-          <pre>redirected_params(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()) :: map()</pre>
+          <pre>redirected_params(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()</pre>
         
       </div>
     
@@ -1441,8 +1886,34 @@ Raises if the response’s location header is not set.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">assert</span><span class="w"> </span><span class="n">redirected_to</span><span class="p" data-group-id="2409">(</span><span class="n">conn</span><span class="p" data-group-id="2409">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;/posts/123&quot;</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="2415">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123&quot;</span><span class="p" data-group-id="2415">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redirected_params</span><span class="p" data-group-id="2416">(</span><span class="n">conn</span><span class="p" data-group-id="2416">)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>redirected_to</span><span class="p" data-group-id="2706100701-1"
+>(</span><span class="n"
+>conn</span><span class="p" data-group-id="2706100701-1"
+>)</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;/posts/123&quot;</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="p" data-group-id="2706100701-2"
+>%{</span><span class="ss"
+>id</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;123&quot;</span><span class="p" data-group-id="2706100701-2"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>redirected_params</span><span class="p" data-group-id="2706100701-3"
+>(</span><span class="n"
+>conn</span><span class="p" data-group-id="2706100701-3"
+>)</span></code></pre>
 
   </section>
 </div>
@@ -1467,7 +1938,7 @@ Raises if the response’s location header is not set.</p>
     
       <div class="specs">
         
-          <pre>redirected_to(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: non_neg_integer()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+          <pre>redirected_to(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()) :: <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
         
       </div>
     
@@ -1481,9 +1952,47 @@ Raises if the response’s location header is not set.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">assert</span><span class="w"> </span><span class="n">redirected_to</span><span class="p" data-group-id="2419">(</span><span class="n">conn</span><span class="p" data-group-id="2419">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;/foo/bar&quot;</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="n">redirected_to</span><span class="p" data-group-id="2427">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">301</span><span class="p" data-group-id="2427">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;/foo/bar&quot;</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="n">redirected_to</span><span class="p" data-group-id="2432">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:moved_permanently</span><span class="p" data-group-id="2432">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;/foo/bar&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>redirected_to</span><span class="p" data-group-id="7017998266-1"
+>(</span><span class="n"
+>conn</span><span class="p" data-group-id="7017998266-1"
+>)</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;/foo/bar&quot;</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>redirected_to</span><span class="p" data-group-id="7017998266-2"
+>(</span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="mi"
+>301</span><span class="p" data-group-id="7017998266-2"
+>)</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;/foo/bar&quot;</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>redirected_to</span><span class="p" data-group-id="7017998266-3"
+>(</span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:moved_permanently</span><span class="p" data-group-id="7017998266-3"
+>)</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;/foo/bar&quot;</span></code></pre>
 
   </section>
 </div>
@@ -1506,9 +2015,7 @@ Raises if the response’s location header is not set.</p>
     
       <div class="specs">
         
-          <pre>response(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: integer() | atom()) ::
-  binary() |
-  no_return()</pre>
+          <pre>response(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
         
       </div>
     
@@ -1521,8 +2028,34 @@ if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="2436">()</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2440">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="2440">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;hello world&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>conn</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>get</span><span class="w"
+> </span><span class="n"
+>build_conn</span><span class="p" data-group-id="0492996888-1"
+>(</span><span class="p" data-group-id="0492996888-1"
+>)</span><span class="p"
+>,</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>response</span><span class="p" data-group-id="0492996888-2"
+>(</span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="mi"
+>200</span><span class="p" data-group-id="0492996888-2"
+>)</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;hello world&quot;</span></code></pre>
 
   </section>
 </div>
@@ -1545,9 +2078,7 @@ if one was set or sent.</p>
     
       <div class="specs">
         
-          <pre>response_content_type(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), atom()) ::
-  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() |
-  no_return()</pre>
+          <pre>response_content_type(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
         
       </div>
     
@@ -1559,8 +2090,23 @@ if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="c1"># Assert we have an html response with utf-8 charset
-</span><span class="n">assert</span><span class="w"> </span><span class="n">response_content_type</span><span class="p" data-group-id="2446">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:html</span><span class="p" data-group-id="2446">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;charset=utf-8&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="c1"
+># Assert we have an html response with utf-8 charset</span><span class="w"
+>
+</span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>response_content_type</span><span class="p" data-group-id="6413191821-1"
+>(</span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:html</span><span class="p" data-group-id="6413191821-1"
+>)</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;charset=utf-8&quot;</span></code></pre>
 
   </section>
 </div>
@@ -1583,9 +2129,8 @@ if one was set or sent.</p>
     
       <div class="specs">
         
-          <pre>text_response(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: integer() | atom()) ::
-  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() |
-  no_return()</pre>
+          <pre>text_response(<a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), status :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) ::
+  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
         
       </div>
     
@@ -1598,7 +2143,20 @@ returns the response body if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n">assert</span><span class="w"> </span><span class="n">text_response</span><span class="p" data-group-id="2458">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="2458">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>text_response</span><span class="p" data-group-id="9987986698-1"
+>(</span><span class="n"
+>conn</span><span class="p"
+>,</span><span class="w"
+> </span><span class="mi"
+>200</span><span class="p" data-group-id="9987986698-1"
+>)</span><span class="w"
+> </span><span class="o"
+>=~</span><span class="w"
+> </span><span class="s"
+>&quot;hello&quot;</span></code></pre>
 
   </section>
 </div>
@@ -1639,20 +2197,19 @@ returns the response body if one was set or sent.</p>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

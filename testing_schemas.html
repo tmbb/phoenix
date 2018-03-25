@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.18.1">
+    <meta name="generator" content="ExDoc v0.18.3">
     <title>Testing Schemas – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
+    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-44310d1b40.js"></script>
+    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -18,9 +18,13 @@
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
 
 <div class="main">
-<button class="sidebar-toggle">
+<button class="sidebar-button sidebar-toggle">
   <span class="icon-menu" aria-hidden="true"></span>
   <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
 </button>
 <section class="sidebar">
 
@@ -43,7 +47,7 @@
     <button type="submit" class="search-button">
       <span class="icon-search" aria-hidden="true"></span>
     </button>
-    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
   </form>
 
   <ul class="sidebar-listNav">
@@ -88,24 +92,133 @@ Randomized with seed 638414</code></pre>
 </h2>
 
 <p>We’ll be adding additional validations to the schema module, so let’s create <code class="inline">test/hello/accounts/user_test.exs</code> with this content:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.UserTest</span><span class="w"> </span><span class="k" data-group-id="271">do</span><span class="w">
-  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Hello.DataCase</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.UserTest</span><span class="w"
+> </span><span class="k" data-group-id="4273675488-1"
+>do</span><span class="w"
+>
+  </span><span class="kn"
+>use</span><span class="w"
+> </span><span class="nc"
+>Hello.DataCase</span><span class="w"
+>
 
-  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">Hello.Accounts.User</span><span class="w">
+  </span><span class="kn"
+>alias</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.User</span><span class="w"
+>
 
-  </span><span class="na">@valid_attrs</span><span class="w"> </span><span class="p" data-group-id="187">%{</span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my life&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pat@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pat Example&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">number_of_pets</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="187">}</span><span class="w">
-  </span><span class="na">@invalid_attrs</span><span class="w"> </span><span class="p" data-group-id="191">%{}</span><span class="w">
+  </span><span class="na"
+>@valid_attrs</span><span class="w"
+> </span><span class="p" data-group-id="4273675488-2"
+>%{</span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;my life&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>email</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;pat@example.com&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;Pat Example&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>number_of_pets</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>4</span><span class="p" data-group-id="4273675488-2"
+>}</span><span class="w"
+>
+  </span><span class="na"
+>@invalid_attrs</span><span class="w"
+> </span><span class="p" data-group-id="4273675488-3"
+>%{</span><span class="p" data-group-id="4273675488-3"
+>}</span><span class="w"
+>
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s2">&quot;changeset with valid attributes&quot;</span><span class="w"> </span><span class="k" data-group-id="251">do</span><span class="w">
-    </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="238">(</span><span class="p" data-group-id="234">%</span><span class="nc" data-group-id="234">User</span><span class="p" data-group-id="234">{}</span><span class="p">,</span><span class="w"> </span><span class="na">@valid_attrs</span><span class="p" data-group-id="238">)</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">changeset</span><span class="o">.</span><span class="n">valid?</span><span class="w">
-  </span><span class="k" data-group-id="251">end</span><span class="w">
+  </span><span class="n"
+>test</span><span class="w"
+> </span><span class="s"
+>&quot;changeset with valid attributes&quot;</span><span class="w"
+> </span><span class="k" data-group-id="4273675488-4"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>changeset</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>changeset</span><span class="p" data-group-id="4273675488-5"
+>(</span><span class="p" data-group-id="4273675488-6"
+>%</span><span class="nc" data-group-id="4273675488-6"
+>User</span><span class="p" data-group-id="4273675488-6"
+>{</span><span class="p" data-group-id="4273675488-6"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="na"
+>@valid_attrs</span><span class="p" data-group-id="4273675488-5"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>changeset</span><span class="o"
+>.</span><span class="n"
+>valid?</span><span class="w"
+>
+  </span><span class="k" data-group-id="4273675488-4"
+>end</span><span class="w"
+>
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s2">&quot;changeset with invalid attributes&quot;</span><span class="w"> </span><span class="k" data-group-id="270">do</span><span class="w">
-    </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="269">(</span><span class="p" data-group-id="268">%</span><span class="nc" data-group-id="268">User</span><span class="p" data-group-id="268">{}</span><span class="p">,</span><span class="w"> </span><span class="na">@invalid_attrs</span><span class="p" data-group-id="269">)</span><span class="w">
-    </span><span class="n">refute</span><span class="w"> </span><span class="n">changeset</span><span class="o">.</span><span class="n">valid?</span><span class="w">
-  </span><span class="k" data-group-id="270">end</span><span class="w">
-</span><span class="k" data-group-id="271">end</span></code></pre>
+  </span><span class="n"
+>test</span><span class="w"
+> </span><span class="s"
+>&quot;changeset with invalid attributes&quot;</span><span class="w"
+> </span><span class="k" data-group-id="4273675488-7"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>changeset</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>changeset</span><span class="p" data-group-id="4273675488-8"
+>(</span><span class="p" data-group-id="4273675488-9"
+>%</span><span class="nc" data-group-id="4273675488-9"
+>User</span><span class="p" data-group-id="4273675488-9"
+>{</span><span class="p" data-group-id="4273675488-9"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="na"
+>@invalid_attrs</span><span class="p" data-group-id="4273675488-8"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>refute</span><span class="w"
+> </span><span class="n"
+>changeset</span><span class="o"
+>.</span><span class="n"
+>valid?</span><span class="w"
+>
+  </span><span class="k" data-group-id="4273675488-7"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="4273675488-1"
+>end</span></code></pre>
 <p>In the first line, we <code class="inline">use Hello.DataCase</code>, which is defined in <code class="inline">test/support/data_case.ex</code>. <code class="inline">Hello.DataCase</code> is responsible for importing and aliasing all the necessary modules for all of our schema cases. <code class="inline">Hello.DataCase</code> will also run all of our schema tests within a database transaction unless we’ve tagged an individual test case with <code class="inline">:async</code>.</p>
 <blockquote><p>Note: We should not tag any schema case that interacts with a database as <code class="inline">:async</code>. This may cause  erratic test results and possibly even deadlocks.</p>
 </blockquote>
@@ -117,14 +230,62 @@ Randomized with seed 638414</code></pre>
 <p>While Phoenix generated our model with all of the fields required, the number of pets a user has is optional in our domain.</p>
 <p>Let’s write a new test to verify that.</p>
 <p>To test this, we can delete the <code class="inline">:number_of_pets</code> key and value from the <code class="inline">@valid_attrs</code> map and make a <code class="inline">User</code> changeset from those new attributes. Then we can assert that the changeset is still valid.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.UserTest</span><span class="w"> </span><span class="k" data-group-id="217">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.UserTest</span><span class="w"
+> </span><span class="k" data-group-id="0315070314-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s2">&quot;number_of_pets is not required&quot;</span><span class="w"> </span><span class="k" data-group-id="216">do</span><span class="w">
-    </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="207">(</span><span class="p" data-group-id="184">%</span><span class="nc" data-group-id="184">User</span><span class="p" data-group-id="184">{}</span><span class="p">,</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">delete</span><span class="p" data-group-id="206">(</span><span class="na">@valid_attrs</span><span class="p">,</span><span class="w"> </span><span class="ss">:number_of_pets</span><span class="p" data-group-id="206">)</span><span class="p" data-group-id="207">)</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">changeset</span><span class="o">.</span><span class="n">valid?</span><span class="w">
-  </span><span class="k" data-group-id="216">end</span><span class="w">
-</span><span class="k" data-group-id="217">end</span></code></pre>
+  </span><span class="n"
+>test</span><span class="w"
+> </span><span class="s"
+>&quot;number_of_pets is not required&quot;</span><span class="w"
+> </span><span class="k" data-group-id="0315070314-2"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>changeset</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>changeset</span><span class="p" data-group-id="0315070314-3"
+>(</span><span class="p" data-group-id="0315070314-4"
+>%</span><span class="nc" data-group-id="0315070314-4"
+>User</span><span class="p" data-group-id="0315070314-4"
+>{</span><span class="p" data-group-id="0315070314-4"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>Map</span><span class="o"
+>.</span><span class="n"
+>delete</span><span class="p" data-group-id="0315070314-5"
+>(</span><span class="na"
+>@valid_attrs</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:number_of_pets</span><span class="p" data-group-id="0315070314-5"
+>)</span><span class="p" data-group-id="0315070314-3"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>changeset</span><span class="o"
+>.</span><span class="n"
+>valid?</span><span class="w"
+>
+  </span><span class="k" data-group-id="0315070314-2"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="0315070314-1"
+>end</span></code></pre>
 <p>Now, let’s run the tests again.</p>
 <pre><code class="console">$ mix test
 ....................
@@ -142,15 +303,81 @@ Finished in 0.4 seconds
 
 Randomized with seed 780208</code></pre>
 <p>It fails - which is exactly what it should do! We haven’t written the code to make it pass yet. To do that, we need to remove the <code class="inline">:number_of_pets</code> attribute from our <code class="inline">validate_required/3</code> function in <code class="inline">lib/hello_web/models/user.ex</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.User</span><span class="w"> </span><span class="k" data-group-id="237">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.User</span><span class="w"
+> </span><span class="k" data-group-id="0289285499-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">changeset</span><span class="p" data-group-id="171">(</span><span class="n">struct</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="170">%{}</span><span class="p" data-group-id="171">)</span><span class="w"> </span><span class="k" data-group-id="233">do</span><span class="w">
-    </span><span class="n">struct</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">cast</span><span class="p" data-group-id="204">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="203">[</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="ss">:bio</span><span class="p">,</span><span class="w"> </span><span class="ss">:number_of_pets</span><span class="p" data-group-id="203">]</span><span class="p" data-group-id="204">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">validate_required</span><span class="p" data-group-id="229">(</span><span class="p" data-group-id="228">[</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="ss">:bio</span><span class="p" data-group-id="228">]</span><span class="p" data-group-id="229">)</span><span class="w">
-  </span><span class="k" data-group-id="233">end</span><span class="w">
-</span><span class="k" data-group-id="237">end</span></code></pre>
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>changeset</span><span class="p" data-group-id="0289285499-2"
+>(</span><span class="n"
+>struct</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>params</span><span class="w"
+> </span><span class="o"
+>\\</span><span class="w"
+> </span><span class="p" data-group-id="0289285499-3"
+>%{</span><span class="p" data-group-id="0289285499-3"
+>}</span><span class="p" data-group-id="0289285499-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="0289285499-4"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>struct</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>cast</span><span class="p" data-group-id="0289285499-5"
+>(</span><span class="n"
+>params</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="0289285499-6"
+>[</span><span class="ss"
+>:name</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:email</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:bio</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:number_of_pets</span><span class="p" data-group-id="0289285499-6"
+>]</span><span class="p" data-group-id="0289285499-5"
+>)</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>validate_required</span><span class="p" data-group-id="0289285499-7"
+>(</span><span class="p" data-group-id="0289285499-8"
+>[</span><span class="ss"
+>:name</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:email</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:bio</span><span class="p" data-group-id="0289285499-8"
+>]</span><span class="p" data-group-id="0289285499-7"
+>)</span><span class="w"
+>
+  </span><span class="k" data-group-id="0289285499-4"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="0289285499-1"
+>end</span></code></pre>
 <p>Now our tests are all passing again.</p>
 <pre><code class="console">$ mix test
 .......................
@@ -162,15 +389,70 @@ Randomized with seed 963040</code></pre>
 <h4>The Bio Attribute</h4>
 <p>In the Ecto Guide, we learned that the user’s <code class="inline">:bio</code> attribute has two business requirements. The first is that it must be at least two characters long. Let’s write a test for that using the same pattern we’ve just used.</p>
 <p>First, we change the <code class="inline">:bio</code> attribute to have a value of a single character. Then we create a changeset with the new attributes and test its validity.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.UserTest</span><span class="w"> </span><span class="k" data-group-id="225">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.UserTest</span><span class="w"
+> </span><span class="k" data-group-id="7217856129-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s2">&quot;bio must be at least two characters long&quot;</span><span class="w"> </span><span class="k" data-group-id="219">do</span><span class="w">
-    </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="183">%{</span><span class="na">@valid_attrs</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I&quot;</span><span class="p" data-group-id="183">}</span><span class="w">
-    </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="214">(</span><span class="p" data-group-id="205">%</span><span class="nc" data-group-id="205">User</span><span class="p" data-group-id="205">{}</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p" data-group-id="214">)</span><span class="w">
-    </span><span class="n">refute</span><span class="w"> </span><span class="n">changeset</span><span class="o">.</span><span class="n">valid?</span><span class="w">
-  </span><span class="k" data-group-id="219">end</span><span class="w">
-</span><span class="k" data-group-id="225">end</span></code></pre>
+  </span><span class="n"
+>test</span><span class="w"
+> </span><span class="s"
+>&quot;bio must be at least two characters long&quot;</span><span class="w"
+> </span><span class="k" data-group-id="7217856129-2"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>attrs</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="p" data-group-id="7217856129-3"
+>%{</span><span class="na"
+>@valid_attrs</span><span class="w"
+> </span><span class="o"
+>|</span><span class="w"
+> </span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;I&quot;</span><span class="p" data-group-id="7217856129-3"
+>}</span><span class="w"
+>
+    </span><span class="n"
+>changeset</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>changeset</span><span class="p" data-group-id="7217856129-4"
+>(</span><span class="p" data-group-id="7217856129-5"
+>%</span><span class="nc" data-group-id="7217856129-5"
+>User</span><span class="p" data-group-id="7217856129-5"
+>{</span><span class="p" data-group-id="7217856129-5"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>attrs</span><span class="p" data-group-id="7217856129-4"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>refute</span><span class="w"
+> </span><span class="n"
+>changeset</span><span class="o"
+>.</span><span class="n"
+>valid?</span><span class="w"
+>
+  </span><span class="k" data-group-id="7217856129-2"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="7217856129-1"
+>end</span></code></pre>
 <p>When we run the test, it fails, as we would expect.</p>
 <pre><code class="console">$ mix test
 ...................
@@ -191,15 +473,82 @@ Randomized with seed 327779</code></pre>
 <p>Hmmm. Yes, this test behaved as we expected, but the error message doesn’t seem to reflect our test. We’re validating the length of the <code class="inline">:bio</code> attribute, and the message we get is “Expected false or nil, got true”. There’s no mention of our <code class="inline">:bio</code> attribute at all.</p>
 <p>We can do better.</p>
 <p>Let’s change our test to get a better message while still testing the same behavior. We can leave the code to set the new <code class="inline">:bio</code> value in place. In the <code class="inline">assert</code>, however, we’ll use the <code class="inline">errors_on/1</code> function we get from <code class="inline">DataCase</code> to generate a map of errors, and check that the <code class="inline">:bio</code> attribute error is in that map.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.UserTest</span><span class="w"> </span><span class="k" data-group-id="243">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.UserTest</span><span class="w"
+> </span><span class="k" data-group-id="7419728017-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s2">&quot;bio must be at least two characters long&quot;</span><span class="w"> </span><span class="k" data-group-id="241">do</span><span class="w">
-    </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="182">%{</span><span class="na">@valid_attrs</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I&quot;</span><span class="p" data-group-id="182">}</span><span class="w">
-    </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="209">(</span><span class="p" data-group-id="200">%</span><span class="nc" data-group-id="200">User</span><span class="p" data-group-id="200">{}</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p" data-group-id="209">)</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="227">%{</span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="226">[</span><span class="s2">&quot;should be at least 2 character(s)&quot;</span><span class="p" data-group-id="226">]</span><span class="p" data-group-id="227">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errors_on</span><span class="p" data-group-id="239">(</span><span class="n">changeset</span><span class="p" data-group-id="239">)</span><span class="w">
-  </span><span class="k" data-group-id="241">end</span><span class="w">
-</span><span class="k" data-group-id="243">end</span></code></pre>
+  </span><span class="n"
+>test</span><span class="w"
+> </span><span class="s"
+>&quot;bio must be at least two characters long&quot;</span><span class="w"
+> </span><span class="k" data-group-id="7419728017-2"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>attrs</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="p" data-group-id="7419728017-3"
+>%{</span><span class="na"
+>@valid_attrs</span><span class="w"
+> </span><span class="o"
+>|</span><span class="w"
+> </span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;I&quot;</span><span class="p" data-group-id="7419728017-3"
+>}</span><span class="w"
+>
+    </span><span class="n"
+>changeset</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>changeset</span><span class="p" data-group-id="7419728017-4"
+>(</span><span class="p" data-group-id="7419728017-5"
+>%</span><span class="nc" data-group-id="7419728017-5"
+>User</span><span class="p" data-group-id="7419728017-5"
+>{</span><span class="p" data-group-id="7419728017-5"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>attrs</span><span class="p" data-group-id="7419728017-4"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="p" data-group-id="7419728017-6"
+>%{</span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="7419728017-7"
+>[</span><span class="s"
+>&quot;should be at least 2 character(s)&quot;</span><span class="p" data-group-id="7419728017-7"
+>]</span><span class="p" data-group-id="7419728017-6"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>errors_on</span><span class="p" data-group-id="7419728017-8"
+>(</span><span class="n"
+>changeset</span><span class="p" data-group-id="7419728017-8"
+>)</span><span class="w"
+>
+  </span><span class="k" data-group-id="7419728017-2"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="7419728017-1"
+>end</span></code></pre>
 <p>When we run the tests again, we get a different message entirely.</p>
 <pre><code class="console">$ mix test
 ...................
@@ -224,16 +573,95 @@ Randomized with seed 435902</code></pre>
 <pre><code class="console">rhs:  %{}</code></pre>
 <p>That map is empty because we don’t yet validate the minimum length of the <code class="inline">:bio</code> attribute.</p>
 <p>Our test has pointed the way. Now let’s make it pass by adding that validation.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.User</span><span class="w"> </span><span class="k" data-group-id="249">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.User</span><span class="w"
+> </span><span class="k" data-group-id="4010725518-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">changeset</span><span class="p" data-group-id="169">(</span><span class="n">struct</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="168">%{}</span><span class="p" data-group-id="169">)</span><span class="w"> </span><span class="k" data-group-id="247">do</span><span class="w">
-    </span><span class="n">struct</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">cast</span><span class="p" data-group-id="197">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="196">[</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="ss">:bio</span><span class="p">,</span><span class="w"> </span><span class="ss">:number_of_pets</span><span class="p" data-group-id="196">]</span><span class="p" data-group-id="197">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">validate_required</span><span class="p" data-group-id="221">(</span><span class="p" data-group-id="220">[</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="ss">:bio</span><span class="p" data-group-id="220">]</span><span class="p" data-group-id="221">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">validate_length</span><span class="p" data-group-id="244">(</span><span class="ss">:bio</span><span class="p">,</span><span class="w"> </span><span class="ss">min</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="244">)</span><span class="w">
-  </span><span class="k" data-group-id="247">end</span><span class="w">
-</span><span class="k" data-group-id="249">end</span></code></pre>
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>changeset</span><span class="p" data-group-id="4010725518-2"
+>(</span><span class="n"
+>struct</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>params</span><span class="w"
+> </span><span class="o"
+>\\</span><span class="w"
+> </span><span class="p" data-group-id="4010725518-3"
+>%{</span><span class="p" data-group-id="4010725518-3"
+>}</span><span class="p" data-group-id="4010725518-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="4010725518-4"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>struct</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>cast</span><span class="p" data-group-id="4010725518-5"
+>(</span><span class="n"
+>params</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="4010725518-6"
+>[</span><span class="ss"
+>:name</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:email</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:bio</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:number_of_pets</span><span class="p" data-group-id="4010725518-6"
+>]</span><span class="p" data-group-id="4010725518-5"
+>)</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>validate_required</span><span class="p" data-group-id="4010725518-7"
+>(</span><span class="p" data-group-id="4010725518-8"
+>[</span><span class="ss"
+>:name</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:email</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:bio</span><span class="p" data-group-id="4010725518-8"
+>]</span><span class="p" data-group-id="4010725518-7"
+>)</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>validate_length</span><span class="p" data-group-id="4010725518-9"
+>(</span><span class="ss"
+>:bio</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>min</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>2</span><span class="p" data-group-id="4010725518-9"
+>)</span><span class="w"
+>
+  </span><span class="k" data-group-id="4010725518-4"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="4010725518-1"
+>end</span></code></pre>
 <p>When we run the tests again, they all pass.</p>
 <pre><code class="console">$ mix test
 ........................
@@ -244,15 +672,90 @@ Finished in 0.2 seconds
 Randomized with seed 305958</code></pre>
 <p>The other business requirement for the <code class="inline">:bio</code> field is that it be a maximum of one hundred and forty characters. Let’s write a test for that using the <code class="inline">errors_on/1</code> function again.</p>
 <p>We’ll use String.duplicate/2 to produce n-long “a” string here.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.UserTest</span><span class="w"> </span><span class="k" data-group-id="261">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.UserTest</span><span class="w"
+> </span><span class="k" data-group-id="8443590776-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s2">&quot;bio must be at most 140 characters long&quot;</span><span class="w"> </span><span class="k" data-group-id="259">do</span><span class="w">
-    </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="202">%{</span><span class="na">@valid_attrs</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="o">.</span><span class="n">duplicate</span><span class="p" data-group-id="201">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">141</span><span class="p" data-group-id="201">)</span><span class="p" data-group-id="202">}</span><span class="w">
-    </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="230">(</span><span class="p" data-group-id="222">%</span><span class="nc" data-group-id="222">User</span><span class="p" data-group-id="222">{}</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p" data-group-id="230">)</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="253">%{</span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="252">[</span><span class="s2">&quot;should be at most 140 character(s)&quot;</span><span class="p" data-group-id="252">]</span><span class="p" data-group-id="253">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errors_on</span><span class="p" data-group-id="258">(</span><span class="n">changeset</span><span class="p" data-group-id="258">)</span><span class="w">
-  </span><span class="k" data-group-id="259">end</span><span class="w">
-</span><span class="k" data-group-id="261">end</span></code></pre>
+  </span><span class="n"
+>test</span><span class="w"
+> </span><span class="s"
+>&quot;bio must be at most 140 characters long&quot;</span><span class="w"
+> </span><span class="k" data-group-id="8443590776-2"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>attrs</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="p" data-group-id="8443590776-3"
+>%{</span><span class="na"
+>@valid_attrs</span><span class="w"
+> </span><span class="o"
+>|</span><span class="w"
+> </span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="nc"
+>String</span><span class="o"
+>.</span><span class="n"
+>duplicate</span><span class="p" data-group-id="8443590776-4"
+>(</span><span class="s"
+>&quot;a&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="mi"
+>141</span><span class="p" data-group-id="8443590776-4"
+>)</span><span class="p" data-group-id="8443590776-3"
+>}</span><span class="w"
+>
+    </span><span class="n"
+>changeset</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>changeset</span><span class="p" data-group-id="8443590776-5"
+>(</span><span class="p" data-group-id="8443590776-6"
+>%</span><span class="nc" data-group-id="8443590776-6"
+>User</span><span class="p" data-group-id="8443590776-6"
+>{</span><span class="p" data-group-id="8443590776-6"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>attrs</span><span class="p" data-group-id="8443590776-5"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="p" data-group-id="8443590776-7"
+>%{</span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="8443590776-8"
+>[</span><span class="s"
+>&quot;should be at most 140 character(s)&quot;</span><span class="p" data-group-id="8443590776-8"
+>]</span><span class="p" data-group-id="8443590776-7"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>errors_on</span><span class="p" data-group-id="8443590776-9"
+>(</span><span class="n"
+>changeset</span><span class="p" data-group-id="8443590776-9"
+>)</span><span class="w"
+>
+  </span><span class="k" data-group-id="8443590776-2"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="8443590776-1"
+>end</span></code></pre>
 <p>When we run the test, it fails as we want it to.</p>
 <pre><code class="console">$ mix test
 .......................
@@ -272,16 +775,101 @@ Finished in 0.3 seconds
 
 Randomized with seed 593838</code></pre>
 <p>To make this test pass, we need to add a maximum to the length validation of the <code class="inline">:bio</code> attribute.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.User</span><span class="w"> </span><span class="k" data-group-id="260">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.User</span><span class="w"
+> </span><span class="k" data-group-id="1691673979-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">changeset</span><span class="p" data-group-id="178">(</span><span class="n">struct</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="177">%{}</span><span class="p" data-group-id="178">)</span><span class="w"> </span><span class="k" data-group-id="257">do</span><span class="w">
-    </span><span class="n">struct</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">cast</span><span class="p" data-group-id="211">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="210">[</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="ss">:bio</span><span class="p">,</span><span class="w"> </span><span class="ss">:number_of_pets</span><span class="p" data-group-id="210">]</span><span class="p" data-group-id="211">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">validate_required</span><span class="p" data-group-id="232">(</span><span class="p" data-group-id="231">[</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="ss">:bio</span><span class="p" data-group-id="231">]</span><span class="p" data-group-id="232">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">validate_length</span><span class="p" data-group-id="256">(</span><span class="ss">:bio</span><span class="p">,</span><span class="w"> </span><span class="ss">min</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">max</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p" data-group-id="256">)</span><span class="w">
-  </span><span class="k" data-group-id="257">end</span><span class="w">
-</span><span class="k" data-group-id="260">end</span></code></pre>
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>changeset</span><span class="p" data-group-id="1691673979-2"
+>(</span><span class="n"
+>struct</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>params</span><span class="w"
+> </span><span class="o"
+>\\</span><span class="w"
+> </span><span class="p" data-group-id="1691673979-3"
+>%{</span><span class="p" data-group-id="1691673979-3"
+>}</span><span class="p" data-group-id="1691673979-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="1691673979-4"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>struct</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>cast</span><span class="p" data-group-id="1691673979-5"
+>(</span><span class="n"
+>params</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="1691673979-6"
+>[</span><span class="ss"
+>:name</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:email</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:bio</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:number_of_pets</span><span class="p" data-group-id="1691673979-6"
+>]</span><span class="p" data-group-id="1691673979-5"
+>)</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>validate_required</span><span class="p" data-group-id="1691673979-7"
+>(</span><span class="p" data-group-id="1691673979-8"
+>[</span><span class="ss"
+>:name</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:email</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:bio</span><span class="p" data-group-id="1691673979-8"
+>]</span><span class="p" data-group-id="1691673979-7"
+>)</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>validate_length</span><span class="p" data-group-id="1691673979-9"
+>(</span><span class="ss"
+>:bio</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>min</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>2</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>max</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>140</span><span class="p" data-group-id="1691673979-9"
+>)</span><span class="w"
+>
+  </span><span class="k" data-group-id="1691673979-4"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="1691673979-1"
+>end</span></code></pre>
 <p>When we run the tests, they all pass.</p>
 <pre><code class="console">$ mix test
 .........................
@@ -293,15 +881,82 @@ Randomized with seed 468975</code></pre>
 <h4>The Email Attribute</h4>
 <p>We have one last attribute to validate. Currently, <code class="inline">:email</code> is just a string like any other. We’d like to make sure that it at least matches an “@”. This is no substitute for an email confirmation, but it will weed out some invalid addresses before we even try.</p>
 <p>This process will feel familiar by now. First, we change the value of the <code class="inline">:email</code> attribute to omit the “@”. Then we write an assertion which uses <code class="inline">errors_on/1</code> to check for the correct validation error on the <code class="inline">:email</code> attribute.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.UserTest</span><span class="w"> </span><span class="k" data-group-id="250">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.UserTest</span><span class="w"
+> </span><span class="k" data-group-id="9668151407-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s2">&quot;email must contain at least an @&quot;</span><span class="w"> </span><span class="k" data-group-id="248">do</span><span class="w">
-    </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="185">%{</span><span class="na">@valid_attrs</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fooexample.com&quot;</span><span class="p" data-group-id="185">}</span><span class="w">
-    </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="215">(</span><span class="p" data-group-id="208">%</span><span class="nc" data-group-id="208">User</span><span class="p" data-group-id="208">{}</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p" data-group-id="215">)</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="236">%{</span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="235">[</span><span class="s2">&quot;has invalid format&quot;</span><span class="p" data-group-id="235">]</span><span class="p" data-group-id="236">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errors_on</span><span class="p" data-group-id="246">(</span><span class="n">changeset</span><span class="p" data-group-id="246">)</span><span class="w">
-  </span><span class="k" data-group-id="248">end</span><span class="w">
-</span><span class="k" data-group-id="250">end</span></code></pre>
+  </span><span class="n"
+>test</span><span class="w"
+> </span><span class="s"
+>&quot;email must contain at least an @&quot;</span><span class="w"
+> </span><span class="k" data-group-id="9668151407-2"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>attrs</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="p" data-group-id="9668151407-3"
+>%{</span><span class="na"
+>@valid_attrs</span><span class="w"
+> </span><span class="o"
+>|</span><span class="w"
+> </span><span class="ss"
+>email</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;fooexample.com&quot;</span><span class="p" data-group-id="9668151407-3"
+>}</span><span class="w"
+>
+    </span><span class="n"
+>changeset</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>User</span><span class="o"
+>.</span><span class="n"
+>changeset</span><span class="p" data-group-id="9668151407-4"
+>(</span><span class="p" data-group-id="9668151407-5"
+>%</span><span class="nc" data-group-id="9668151407-5"
+>User</span><span class="p" data-group-id="9668151407-5"
+>{</span><span class="p" data-group-id="9668151407-5"
+>}</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>attrs</span><span class="p" data-group-id="9668151407-4"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="p" data-group-id="9668151407-6"
+>%{</span><span class="ss"
+>email</span><span
+>:</span><span class="w"
+> </span><span class="p" data-group-id="9668151407-7"
+>[</span><span class="s"
+>&quot;has invalid format&quot;</span><span class="p" data-group-id="9668151407-7"
+>]</span><span class="p" data-group-id="9668151407-6"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>errors_on</span><span class="p" data-group-id="9668151407-8"
+>(</span><span class="n"
+>changeset</span><span class="p" data-group-id="9668151407-8"
+>)</span><span class="w"
+>
+  </span><span class="k" data-group-id="9668151407-2"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="9668151407-1"
+>end</span></code></pre>
 <p>When we run the tests, it fails. We see that we’re getting an empty map of errors back from <code class="inline">errors_on/1</code>.</p>
 <pre><code class="console">$ mix test
 .......................
@@ -321,17 +976,112 @@ Finished in 0.4 seconds
 
 Randomized with seed 962127</code></pre>
 <p>Then we add the new validation to generate the error our test is looking for.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Accounts.User</span><span class="w"> </span><span class="k" data-group-id="267">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.Accounts.User</span><span class="w"
+> </span><span class="k" data-group-id="7977052452-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">changeset</span><span class="p" data-group-id="173">(</span><span class="n">struct</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="172">%{}</span><span class="p" data-group-id="173">)</span><span class="w"> </span><span class="k" data-group-id="265">do</span><span class="w">
-    </span><span class="n">struct</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">cast</span><span class="p" data-group-id="199">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="198">[</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="ss">:bio</span><span class="p">,</span><span class="w"> </span><span class="ss">:number_of_pets</span><span class="p" data-group-id="198">]</span><span class="p" data-group-id="199">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">validate_required</span><span class="p" data-group-id="224">(</span><span class="p" data-group-id="223">[</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="ss">:bio</span><span class="p" data-group-id="223">]</span><span class="p" data-group-id="224">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">validate_length</span><span class="p" data-group-id="255">(</span><span class="ss">:bio</span><span class="p">,</span><span class="w"> </span><span class="ss">min</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">max</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p" data-group-id="255">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">validate_format</span><span class="p" data-group-id="263">(</span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="sr">~r/@/</span><span class="p" data-group-id="263">)</span><span class="w">
-  </span><span class="k" data-group-id="265">end</span><span class="w">
-</span><span class="k" data-group-id="267">end</span></code></pre>
+  </span><span class="kd"
+>def</span><span class="w"
+> </span><span class="nf"
+>changeset</span><span class="p" data-group-id="7977052452-2"
+>(</span><span class="n"
+>struct</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>params</span><span class="w"
+> </span><span class="o"
+>\\</span><span class="w"
+> </span><span class="p" data-group-id="7977052452-3"
+>%{</span><span class="p" data-group-id="7977052452-3"
+>}</span><span class="p" data-group-id="7977052452-2"
+>)</span><span class="w"
+> </span><span class="k" data-group-id="7977052452-4"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>struct</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>cast</span><span class="p" data-group-id="7977052452-5"
+>(</span><span class="n"
+>params</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="7977052452-6"
+>[</span><span class="ss"
+>:name</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:email</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:bio</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:number_of_pets</span><span class="p" data-group-id="7977052452-6"
+>]</span><span class="p" data-group-id="7977052452-5"
+>)</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>validate_required</span><span class="p" data-group-id="7977052452-7"
+>(</span><span class="p" data-group-id="7977052452-8"
+>[</span><span class="ss"
+>:name</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:email</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:bio</span><span class="p" data-group-id="7977052452-8"
+>]</span><span class="p" data-group-id="7977052452-7"
+>)</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>validate_length</span><span class="p" data-group-id="7977052452-9"
+>(</span><span class="ss"
+>:bio</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>min</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>2</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>max</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>140</span><span class="p" data-group-id="7977052452-9"
+>)</span><span class="w"
+>
+    </span><span class="o"
+>|&gt;</span><span class="w"
+> </span><span class="n"
+>validate_format</span><span class="p" data-group-id="7977052452-10"
+>(</span><span class="ss"
+>:email</span><span class="p"
+>,</span><span class="w"
+> </span><span class="sr"
+>~r/@/</span><span class="p" data-group-id="7977052452-10"
+>)</span><span class="w"
+>
+  </span><span class="k" data-group-id="7977052452-4"
+>end</span><span class="w"
+>
+</span><span class="k" data-group-id="7977052452-1"
+>end</span></code></pre>
 <p>Now the schema tests are passing again, but other tests are now failing, if you haven’t touched the generated context &amp; controller tests. Here’s one failure (but because tests are run in random order, you might see a different failure first):</p>
 <pre><code class="console">$ mix test
 ....
@@ -350,44 +1100,396 @@ Finished in 0.1 seconds
 
 Randomized with seed 825065</code></pre>
 <p>We can fix these tests by editing the module attributes in the failing test files - first, in <code class="inline">test/hello_web/controllers/user_controller_test.exs</code>, add an “@” to the <code class="inline">:email</code> values in <code class="inline">@valid_attrs</code> and <code class="inline">@update_attrs</code>:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.UserControllerTest</span><span class="w"> </span><span class="k">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
-  </span><span class="na">@create_attrs</span><span class="w"> </span><span class="p" data-group-id="276">%{</span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some bio&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some@email&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some name&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">number_of_pets</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p" data-group-id="276">}</span><span class="w">
-  </span><span class="na">@update_attrs</span><span class="w"> </span><span class="p" data-group-id="282">%{</span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some updated bio&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some updated@email&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some updated name&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">number_of_pets</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p" data-group-id="282">}</span><span class="w">
-  </span><span class="na">@invalid_attrs</span><span class="w"> </span><span class="p" data-group-id="284">%{</span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="ss">number_of_pets</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="284">}</span><span class="w">
-  </span><span class="o">...</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>HelloWeb.UserControllerTest</span><span class="w"
+> </span><span class="k" data-group-id="4916513443-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
+  </span><span class="na"
+>@create_attrs</span><span class="w"
+> </span><span class="p" data-group-id="4916513443-2"
+>%{</span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some bio&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>email</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some@email&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some name&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>number_of_pets</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>42</span><span class="p" data-group-id="4916513443-2"
+>}</span><span class="w"
+>
+  </span><span class="na"
+>@update_attrs</span><span class="w"
+> </span><span class="p" data-group-id="4916513443-3"
+>%{</span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some updated bio&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>email</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some updated@email&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some updated name&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>number_of_pets</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>43</span><span class="p" data-group-id="4916513443-3"
+>}</span><span class="w"
+>
+  </span><span class="na"
+>@invalid_attrs</span><span class="w"
+> </span><span class="p" data-group-id="4916513443-4"
+>%{</span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>nil</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>email</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>nil</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>nil</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>number_of_pets</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>nil</span><span class="p" data-group-id="4916513443-4"
+>}</span><span class="w"
+>
+  </span><span class="n"
+>...</span></code></pre>
 <p>This will fix all of the HelloWeb.UserControllerTest failures.</p>
 <p>Make the same changes to the module attributes in <code class="inline">test/hello/accounts/accounts_test.exs</code>:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.AccountsTest</span><span class="w"> </span><span class="k">do</span><span class="w">
-    </span><span class="o">...</span><span class="w">
-    </span><span class="na">@valid_attrs</span><span class="w"> </span><span class="p" data-group-id="275">%{</span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some bio&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some@email&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some name&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">number_of_pets</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p" data-group-id="275">}</span><span class="w">
-    </span><span class="na">@update_attrs</span><span class="w"> </span><span class="p" data-group-id="281">%{</span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some updated bio&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;updated@email&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some updated name&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">number_of_pets</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p" data-group-id="281">}</span><span class="w">
-    </span><span class="na">@invalid_attrs</span><span class="w"> </span><span class="p" data-group-id="283">%{</span><span class="ss">bio</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="ss">number_of_pets</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="283">}</span><span class="w">
-    </span><span class="o">...</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.AccountsTest</span><span class="w"
+> </span><span class="k" data-group-id="8620625385-1"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>...</span><span class="w"
+>
+    </span><span class="na"
+>@valid_attrs</span><span class="w"
+> </span><span class="p" data-group-id="8620625385-2"
+>%{</span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some bio&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>email</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some@email&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some name&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>number_of_pets</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>42</span><span class="p" data-group-id="8620625385-2"
+>}</span><span class="w"
+>
+    </span><span class="na"
+>@update_attrs</span><span class="w"
+> </span><span class="p" data-group-id="8620625385-3"
+>%{</span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some updated bio&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>email</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;updated@email&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="s"
+>&quot;some updated name&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>number_of_pets</span><span
+>:</span><span class="w"
+> </span><span class="mi"
+>43</span><span class="p" data-group-id="8620625385-3"
+>}</span><span class="w"
+>
+    </span><span class="na"
+>@invalid_attrs</span><span class="w"
+> </span><span class="p" data-group-id="8620625385-4"
+>%{</span><span class="ss"
+>bio</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>nil</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>email</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>nil</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>name</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>nil</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>number_of_pets</span><span
+>:</span><span class="w"
+> </span><span class="no"
+>nil</span><span class="p" data-group-id="8620625385-4"
+>}</span><span class="w"
+>
+    </span><span class="n"
+>...</span></code></pre>
 <p>This will fix all but two of the failures - to fix those last two, we’ll need to fix the values those tests are comparing:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.AccountsTest</span><span class="w"> </span><span class="k" data-group-id="286">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
-  </span><span class="n">test</span><span class="w"> </span><span class="s2">&quot;create_user/1 with valid data creates a user&quot;</span><span class="w"> </span><span class="k" data-group-id="266">do</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="181">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="179">%</span><span class="nc" data-group-id="179">User</span><span class="p" data-group-id="179">{}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="181">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Accounts</span><span class="o">.</span><span class="n">create_user</span><span class="p" data-group-id="195">(</span><span class="na">@valid_attrs</span><span class="p" data-group-id="195">)</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">bio</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;some bio&quot;</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;some@email&quot;</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;some name&quot;</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">number_of_pets</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">42</span><span class="w">
-  </span><span class="k" data-group-id="266">end</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>Hello.AccountsTest</span><span class="w"
+> </span><span class="k" data-group-id="2605161576-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
+  </span><span class="n"
+>test</span><span class="w"
+> </span><span class="s"
+>&quot;create_user/1 with valid data creates a user&quot;</span><span class="w"
+> </span><span class="k" data-group-id="2605161576-2"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="p" data-group-id="2605161576-3"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="p" data-group-id="2605161576-4"
+>%</span><span class="nc" data-group-id="2605161576-4"
+>User</span><span class="p" data-group-id="2605161576-4"
+>{</span><span class="p" data-group-id="2605161576-4"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>user</span><span class="p" data-group-id="2605161576-3"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>Accounts</span><span class="o"
+>.</span><span class="n"
+>create_user</span><span class="p" data-group-id="2605161576-5"
+>(</span><span class="na"
+>@valid_attrs</span><span class="p" data-group-id="2605161576-5"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>bio</span><span class="w"
+> </span><span class="o"
+>==</span><span class="w"
+> </span><span class="s"
+>&quot;some bio&quot;</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>email</span><span class="w"
+> </span><span class="o"
+>==</span><span class="w"
+> </span><span class="s"
+>&quot;some@email&quot;</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>name</span><span class="w"
+> </span><span class="o"
+>==</span><span class="w"
+> </span><span class="s"
+>&quot;some name&quot;</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>number_of_pets</span><span class="w"
+> </span><span class="o"
+>==</span><span class="w"
+> </span><span class="mi"
+>42</span><span class="w"
+>
+  </span><span class="k" data-group-id="2605161576-2"
+>end</span><span class="w"
+>
 
-  </span><span class="o">...</span><span class="w">
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s2">&quot;update_user/2 with valid data updates the user&quot;</span><span class="w"> </span><span class="k" data-group-id="285">do</span><span class="w">
-    </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_fixture</span><span class="p" data-group-id="273">()</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="274">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="274">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Accounts</span><span class="o">.</span><span class="n">update_user</span><span class="p" data-group-id="278">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="na">@update_attrs</span><span class="p" data-group-id="278">)</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="280">%</span><span class="nc" data-group-id="280">User</span><span class="p" data-group-id="280">{}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">bio</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;some updated bio&quot;</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;some updated@email&quot;</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;some updated name&quot;</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">number_of_pets</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">43</span><span class="w">
-  </span><span class="k" data-group-id="285">end</span><span class="w">
+  </span><span class="n"
+>test</span><span class="w"
+> </span><span class="s"
+>&quot;update_user/2 with valid data updates the user&quot;</span><span class="w"
+> </span><span class="k" data-group-id="2605161576-6"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>user</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>user_fixture</span><span class="p" data-group-id="2605161576-7"
+>(</span><span class="p" data-group-id="2605161576-7"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="p" data-group-id="2605161576-8"
+>{</span><span class="ss"
+>:ok</span><span class="p"
+>,</span><span class="w"
+> </span><span class="n"
+>user</span><span class="p" data-group-id="2605161576-8"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="nc"
+>Accounts</span><span class="o"
+>.</span><span class="n"
+>update_user</span><span class="p" data-group-id="2605161576-9"
+>(</span><span class="n"
+>user</span><span class="p"
+>,</span><span class="w"
+> </span><span class="na"
+>@update_attrs</span><span class="p" data-group-id="2605161576-9"
+>)</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="p" data-group-id="2605161576-10"
+>%</span><span class="nc" data-group-id="2605161576-10"
+>User</span><span class="p" data-group-id="2605161576-10"
+>{</span><span class="p" data-group-id="2605161576-10"
+>}</span><span class="w"
+> </span><span class="o"
+>=</span><span class="w"
+> </span><span class="n"
+>user</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>bio</span><span class="w"
+> </span><span class="o"
+>==</span><span class="w"
+> </span><span class="s"
+>&quot;some updated bio&quot;</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>email</span><span class="w"
+> </span><span class="o"
+>==</span><span class="w"
+> </span><span class="s"
+>&quot;some updated@email&quot;</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>name</span><span class="w"
+> </span><span class="o"
+>==</span><span class="w"
+> </span><span class="s"
+>&quot;some updated name&quot;</span><span class="w"
+>
+    </span><span class="n"
+>assert</span><span class="w"
+> </span><span class="n"
+>user</span><span class="o"
+>.</span><span class="n"
+>number_of_pets</span><span class="w"
+> </span><span class="o"
+>==</span><span class="w"
+> </span><span class="mi"
+>43</span><span class="w"
+>
+  </span><span class="k" data-group-id="2605161576-6"
+>end</span><span class="w"
+>
 
-</span><span class="k" data-group-id="286">end</span></code></pre>
+</span><span class="k" data-group-id="2605161576-1"
+>end</span></code></pre>
 <p>Now all the tests pass again:</p>
 <pre><code class="console">$ mix test
 ..........................
@@ -429,21 +1531,72 @@ Remember to update your repository by running migrations:
 
     $ mix ecto.migrate</code></pre>
 <p>Then we need to follow the instructions the task gives us and insert the <code class="inline">resources &quot;/users&quot;, UserController</code> line in the router <code class="inline">lib/hello_web/router.ex</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="218">do</span><span class="w">
-  </span><span class="o">...</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd"
+>defmodule</span><span class="w"
+> </span><span class="nc"
+>HelloWeb.Router</span><span class="w"
+> </span><span class="k" data-group-id="7426443216-1"
+>do</span><span class="w"
+>
+  </span><span class="n"
+>...</span><span class="w"
+>
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="212">do</span><span class="w">
-    </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="c1"># Use the default browser stack
-</span><span class="w">
-    </span><span class="n">get</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
-    </span><span class="n">resources</span><span class="w"> </span><span class="s2">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="w">
-  </span><span class="k" data-group-id="212">end</span><span class="w">
+  </span><span class="n"
+>scope</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>HelloWeb</span><span class="w"
+> </span><span class="k" data-group-id="7426443216-2"
+>do</span><span class="w"
+>
+    </span><span class="n"
+>pipe_through</span><span class="w"
+> </span><span class="ss"
+>:browser</span><span class="w"
+> </span><span class="c1"
+># Use the default browser stack</span><span class="w"
+>
 
-  </span><span class="c1"># Other scopes may use custom stacks.
-</span><span class="w">  </span><span class="c1"># scope &quot;/api&quot;, HelloWeb do
-</span><span class="w">  </span><span class="c1">#   pipe_through :api
-</span><span class="w">  </span><span class="c1"># end
-</span><span class="k" data-group-id="218">end</span></code></pre>
+    </span><span class="n"
+>get</span><span class="w"
+> </span><span class="s"
+>&quot;/&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>PageController</span><span class="p"
+>,</span><span class="w"
+> </span><span class="ss"
+>:index</span><span class="w"
+>
+    </span><span class="n"
+>resources</span><span class="w"
+> </span><span class="s"
+>&quot;/users&quot;</span><span class="p"
+>,</span><span class="w"
+> </span><span class="nc"
+>UserController</span><span class="w"
+>
+  </span><span class="k" data-group-id="7426443216-2"
+>end</span><span class="w"
+>
+
+  </span><span class="c1"
+># Other scopes may use custom stacks.</span><span class="w"
+>
+  </span><span class="c1"
+># scope &quot;/api&quot;, HelloWeb do</span><span class="w"
+>
+  </span><span class="c1"
+>#   pipe_through :api</span><span class="w"
+>
+  </span><span class="c1"
+># end</span><span class="w"
+>
+</span><span class="k" data-group-id="7426443216-1"
+>end</span></code></pre>
 <p>With that done, we can create our database with <code class="inline">ecto.create</code>.</p>
 <pre><code class="console">$ mix ecto.create
 The database for Hello.Repo has been created.</code></pre>
@@ -461,20 +1614,19 @@ The database for Hello.Repo has been created.</code></pre>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.1),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
-        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
       </footer>
     </div>
   </div>
 </section>
 </div>
-  <script src="dist/app-778c9ef903.js"></script>
+  <script src="dist/app-9bd040e5e5.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   
