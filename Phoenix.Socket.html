@@ -139,7 +139,7 @@ For sockets requiring no authentication, <code class="inline">nil</code> can be 
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >MyApp.UserSocket</span><span class="w"
-> </span><span class="k" data-group-id="5385984927-1"
+> </span><span class="k" data-group-id="0616746351-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -168,22 +168,22 @@ For sockets requiring no authentication, <code class="inline">nil</code> can be 
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->connect</span><span class="p" data-group-id="5385984927-2"
+>connect</span><span class="p" data-group-id="0616746351-2"
 >(</span><span class="n"
 >params</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="5385984927-2"
+>socket</span><span class="p" data-group-id="0616746351-2"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="5385984927-3"
+> </span><span class="k" data-group-id="0616746351-3"
 >do</span><span class="w"
 >
-    </span><span class="p" data-group-id="5385984927-4"
+    </span><span class="p" data-group-id="0616746351-4"
 >{</span><span class="ss"
 >:ok</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->assign</span><span class="p" data-group-id="5385984927-5"
+>assign</span><span class="p" data-group-id="0616746351-5"
 >(</span><span class="n"
 >socket</span><span class="p"
 >,</span><span class="w"
@@ -191,40 +191,40 @@ For sockets requiring no authentication, <code class="inline">nil</code> can be 
 >:user_id</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->params</span><span class="p" data-group-id="5385984927-6"
+>params</span><span class="p" data-group-id="0616746351-6"
 >[</span><span class="s"
->&quot;user_id&quot;</span><span class="p" data-group-id="5385984927-6"
->]</span><span class="p" data-group-id="5385984927-5"
->)</span><span class="p" data-group-id="5385984927-4"
+>&quot;user_id&quot;</span><span class="p" data-group-id="0616746351-6"
+>]</span><span class="p" data-group-id="0616746351-5"
+>)</span><span class="p" data-group-id="0616746351-4"
 >}</span><span class="w"
 >
-  </span><span class="k" data-group-id="5385984927-3"
+  </span><span class="k" data-group-id="0616746351-3"
 >end</span><span class="w"
 >
 
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->id</span><span class="p" data-group-id="5385984927-7"
+>id</span><span class="p" data-group-id="0616746351-7"
 >(</span><span class="n"
->socket</span><span class="p" data-group-id="5385984927-7"
+>socket</span><span class="p" data-group-id="0616746351-7"
 >)</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->do</span><span
+>do</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
->&quot;users_socket:</span><span class="si" data-group-id="5385984927-8"
+>&quot;users_socket:</span><span class="si" data-group-id="0616746351-8"
 >#{</span><span class="n"
 >socket</span><span class="o"
 >.</span><span class="n"
 >assigns</span><span class="o"
 >.</span><span class="n"
->user_id</span><span class="si" data-group-id="5385984927-8"
+>user_id</span><span class="si" data-group-id="0616746351-8"
 >}</span><span class="s"
 >&quot;</span><span class="w"
 >
-</span><span class="k" data-group-id="5385984927-1"
+</span><span class="k" data-group-id="0616746351-1"
 >end</span><span class="w"
 >
 
@@ -234,7 +234,7 @@ For sockets requiring no authentication, <code class="inline">nil</code> can be 
 </span><span class="nc"
 >MyApp.Endpoint</span><span class="o"
 >.</span><span class="n"
->broadcast</span><span class="p" data-group-id="5385984927-9"
+>broadcast</span><span class="p" data-group-id="0616746351-9"
 >(</span><span class="s"
 >&quot;users_socket:&quot;</span><span class="w"
 > </span><span class="o"
@@ -247,9 +247,9 @@ For sockets requiring no authentication, <code class="inline">nil</code> can be 
 > </span><span class="s"
 >&quot;disconnect&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="5385984927-10"
->%{</span><span class="p" data-group-id="5385984927-10"
->}</span><span class="p" data-group-id="5385984927-9"
+> </span><span class="p" data-group-id="0616746351-10"
+>%{</span><span class="p" data-group-id="0616746351-10"
+>}</span><span class="p" data-group-id="0616746351-9"
 >)</span></code></pre>
 <h2 id="module-socket-fields" class="section-heading">
   <a href="#module-socket-fields" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -492,9 +492,9 @@ writing your own transports.</p>
 > </span><span class="n"
 >socket</span><span class="o"
 >.</span><span class="n"
->assigns</span><span class="p" data-group-id="3861212346-1"
+>assigns</span><span class="p" data-group-id="0857832693-1"
 >[</span><span class="ss"
->:token</span><span class="p" data-group-id="3861212346-1"
+>:token</span><span class="p" data-group-id="0857832693-1"
 >]</span><span class="w"
 >
 </span><span class="no"
@@ -507,7 +507,7 @@ writing your own transports.</p>
 > </span><span class="o"
 >=</span><span class="w"
 > </span><span class="n"
->assign</span><span class="p" data-group-id="3861212346-2"
+>assign</span><span class="p" data-group-id="0857832693-2"
 >(</span><span class="n"
 >socket</span><span class="p"
 >,</span><span class="w"
@@ -515,7 +515,7 @@ writing your own transports.</p>
 >:token</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;bar&quot;</span><span class="p" data-group-id="3861212346-2"
+>&quot;bar&quot;</span><span class="p" data-group-id="0857832693-2"
 >)</span><span class="w"
 >
 </span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
@@ -523,9 +523,9 @@ writing your own transports.</p>
 > </span><span class="n"
 >socket</span><span class="o"
 >.</span><span class="n"
->assigns</span><span class="p" data-group-id="3861212346-3"
+>assigns</span><span class="p" data-group-id="0857832693-3"
 >[</span><span class="ss"
->:token</span><span class="p" data-group-id="3861212346-3"
+>:token</span><span class="p" data-group-id="0857832693-3"
 >]</span><span class="w"
 >
 </span><span class="s"
@@ -599,11 +599,11 @@ Defaults <code class="inline">[:websocket, :longpoll]</code>
 >MyChannel</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->via</span><span
+>via</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9270026503-1"
+> </span><span class="p" data-group-id="5483394878-1"
 >[</span><span class="ss"
->:websocket</span><span class="p" data-group-id="9270026503-1"
+>:websocket</span><span class="p" data-group-id="5483394878-1"
 >]</span><span class="w"
 >
 </span><span class="n"
@@ -615,11 +615,11 @@ Defaults <code class="inline">[:websocket, :longpoll]</code>
 >MyChannel</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->via</span><span
+>via</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9270026503-2"
+> </span><span class="p" data-group-id="5483394878-2"
 >[</span><span class="ss"
->:longpoll</span><span class="p" data-group-id="9270026503-2"
+>:longpoll</span><span class="p" data-group-id="5483394878-2"
 >]</span></code></pre>
 <h2 id="channel/3-topic-patterns" class="section-heading">
   <a href="#channel/3-topic-patterns" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -677,7 +677,7 @@ scoping.</p>
 >,</span><span class="w"
 >
   </span><span class="ss"
->timeout</span><span
+>timeout</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
 >10_000</span><span class="w"
@@ -696,7 +696,7 @@ scoping.</p>
 >,</span><span class="w"
 >
   </span><span class="ss"
->timeout</span><span
+>timeout</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
 >60_000</span></code></pre>
@@ -752,12 +752,12 @@ scoping.</p>
 be used to verify and authenticate a user. After
 verification, you can put default assigns into
 the socket that will be set for all channels, ie</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="4238087632-1"
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="0125055511-1"
 >{</span><span class="ss"
 >:ok</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->assign</span><span class="p" data-group-id="4238087632-2"
+>assign</span><span class="p" data-group-id="0125055511-2"
 >(</span><span class="n"
 >socket</span><span class="p"
 >,</span><span class="w"
@@ -765,8 +765,8 @@ the socket that will be set for all channels, ie</p>
 >:user_id</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->verified_user_id</span><span class="p" data-group-id="4238087632-2"
->)</span><span class="p" data-group-id="4238087632-1"
+>verified_user_id</span><span class="p" data-group-id="0125055511-2"
+>)</span><span class="p" data-group-id="0125055511-1"
 >}</span></code></pre>
 <p>To deny connection, return <code class="inline">:error</code>.</p>
 <p>See <a href="Phoenix.Token.html"><code class="inline">Phoenix.Token</code></a> documentation for examples in
@@ -804,22 +804,22 @@ performing token verification on connect.</p>
 <pre><code class="nohighlight makeup"><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->id</span><span class="p" data-group-id="5020106571-1"
+>id</span><span class="p" data-group-id="3685137383-1"
 >(</span><span class="n"
->socket</span><span class="p" data-group-id="5020106571-1"
+>socket</span><span class="p" data-group-id="3685137383-1"
 >)</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->do</span><span
+>do</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
->&quot;users_socket:</span><span class="si" data-group-id="5020106571-2"
+>&quot;users_socket:</span><span class="si" data-group-id="3685137383-2"
 >#{</span><span class="n"
 >socket</span><span class="o"
 >.</span><span class="n"
 >assigns</span><span class="o"
 >.</span><span class="n"
->user_id</span><span class="si" data-group-id="5020106571-2"
+>user_id</span><span class="si" data-group-id="3685137383-2"
 >}</span><span class="s"
 >&quot;</span></code></pre>
 <p>Would allow you to broadcast a “disconnect” event and terminate
@@ -827,7 +827,7 @@ all active sockets and channels for a given user:</p>
 <pre><code class="nohighlight makeup"><span class="nc"
 >MyApp.Endpoint</span><span class="o"
 >.</span><span class="n"
->broadcast</span><span class="p" data-group-id="8326451273-1"
+>broadcast</span><span class="p" data-group-id="6293554066-1"
 >(</span><span class="s"
 >&quot;users_socket:&quot;</span><span class="w"
 > </span><span class="o"
@@ -840,9 +840,9 @@ all active sockets and channels for a given user:</p>
 > </span><span class="s"
 >&quot;disconnect&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="8326451273-2"
->%{</span><span class="p" data-group-id="8326451273-2"
->}</span><span class="p" data-group-id="8326451273-1"
+> </span><span class="p" data-group-id="6293554066-2"
+>%{</span><span class="p" data-group-id="6293554066-2"
+>}</span><span class="p" data-group-id="6293554066-1"
 >)</span></code></pre>
 <p>Returning <code class="inline">nil</code> makes this socket anonymous.</p>
 

@@ -92,7 +92,7 @@
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="3536464660-1"
+> </span><span class="k" data-group-id="3271881504-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -106,7 +106,7 @@
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="3536464660-2"
+> </span><span class="k" data-group-id="3271881504-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -139,7 +139,7 @@
 > </span><span class="ss"
 >:test</span><span class="w"
 >
-  </span><span class="k" data-group-id="3536464660-2"
+  </span><span class="k" data-group-id="3271881504-2"
 >end</span><span class="w"
 >
 
@@ -155,14 +155,14 @@
   </span><span class="c1"
 ># end</span><span class="w"
 >
-</span><span class="k" data-group-id="3536464660-1"
+</span><span class="k" data-group-id="3271881504-1"
 >end</span></code></pre>
 <p>Now, let’s define the controller action we specified in the route. We’ll add a <code class="inline">test/2</code> action in the <code class="inline">lib/hello_web/controllers/page_controller.ex</code> file.</p>
 <pre><code class="nohighlight makeup"><span class="kd"
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.PageController</span><span class="w"
-> </span><span class="k" data-group-id="8323333945-1"
+> </span><span class="k" data-group-id="8780503349-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -172,14 +172,14 @@
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->test</span><span class="p" data-group-id="8323333945-2"
+>test</span><span class="p" data-group-id="8780503349-2"
 >(</span><span class="n"
 >conn</span><span class="p"
 >,</span><span class="w"
 > </span><span class="bp"
->_params</span><span class="p" data-group-id="8323333945-2"
+>_params</span><span class="p" data-group-id="8780503349-2"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="8323333945-3"
+> </span><span class="k" data-group-id="8780503349-3"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -190,10 +190,10 @@
 > </span><span class="s"
 >&quot;test.html&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="8323333945-3"
+  </span><span class="k" data-group-id="8780503349-3"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="8323333945-1"
+</span><span class="k" data-group-id="8780503349-1"
 >end</span></code></pre>
 <p>We’re going to create a function that tells us which controller and action are handling our request.</p>
 <p>To do that, we need to import the <code class="inline">action_name/1</code> and <code class="inline">controller_module/1</code> functions from <a href="Phoenix.Controller.html"><code class="inline">Phoenix.Controller</code></a> in <code class="inline">lib/hello_web.ex</code>.</p>
@@ -202,12 +202,12 @@
 >def</span><span class="w"
 > </span><span class="nf"
 >view</span><span class="w"
-> </span><span class="k" data-group-id="7278975884-1"
+> </span><span class="k" data-group-id="1862161325-1"
 >do</span><span class="w"
 >
     </span><span class="k"
 >quote</span><span class="w"
-> </span><span class="k" data-group-id="7278975884-2"
+> </span><span class="k" data-group-id="1862161325-2"
 >do</span><span class="w"
 >
       </span><span class="kn"
@@ -216,14 +216,14 @@
 >Phoenix.View</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->root</span><span
+>root</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;lib/hello_web/templates&quot;</span><span class="p"
 >,</span><span class="w"
 >
                         </span><span class="ss"
->namespace</span><span
+>namespace</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
@@ -238,50 +238,50 @@
 >Phoenix.Controller</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->only</span><span
+>only</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="7278975884-3"
+> </span><span class="p" data-group-id="1862161325-3"
 >[</span><span class="ss"
->get_flash</span><span
+>get_flash</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
 >2</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->view_module</span><span
+>view_module</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
 >1</span><span class="p"
 >,</span><span class="w"
 >
                                         </span><span class="ss"
->action_name</span><span
+>action_name</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
 >1</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->controller_module</span><span
+>controller_module</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
->1</span><span class="p" data-group-id="7278975884-3"
+>1</span><span class="p" data-group-id="1862161325-3"
 >]</span><span class="w"
 >
 
       </span><span class="n"
 >...</span><span class="w"
 >
-    </span><span class="k" data-group-id="7278975884-2"
+    </span><span class="k" data-group-id="1862161325-2"
 >end</span><span class="w"
 >
-  </span><span class="k" data-group-id="7278975884-1"
+  </span><span class="k" data-group-id="1862161325-1"
 >end</span></code></pre>
 <p>Next, let’s define a <code class="inline">handler_info/1</code> function at the bottom of the <code class="inline">lib/hello_web/views/page_view.ex</code> which makes use of the <code class="inline">controller_module/1</code> and <code class="inline">action_name/1</code> functions we just imported. We’ll also define a <code class="inline">connection_keys/1</code> function that we’ll use in a moment.</p>
 <pre><code class="nohighlight makeup"><span class="kd"
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.PageView</span><span class="w"
-> </span><span class="k" data-group-id="6937857384-1"
+> </span><span class="k" data-group-id="4064894973-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -296,40 +296,40 @@
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->handler_info</span><span class="p" data-group-id="6937857384-2"
+>handler_info</span><span class="p" data-group-id="4064894973-2"
 >(</span><span class="n"
->conn</span><span class="p" data-group-id="6937857384-2"
+>conn</span><span class="p" data-group-id="4064894973-2"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="6937857384-3"
+> </span><span class="k" data-group-id="4064894973-3"
 >do</span><span class="w"
 >
     </span><span class="s"
->&quot;Request Handled By: </span><span class="si" data-group-id="6937857384-4"
+>&quot;Request Handled By: </span><span class="si" data-group-id="4064894973-4"
 >#{</span><span class="n"
 >controller_module</span><span class="w"
 > </span><span class="n"
->conn</span><span class="si" data-group-id="6937857384-4"
+>conn</span><span class="si" data-group-id="4064894973-4"
 >}</span><span class="s"
->.</span><span class="si" data-group-id="6937857384-5"
+>.</span><span class="si" data-group-id="4064894973-5"
 >#{</span><span class="n"
 >action_name</span><span class="w"
 > </span><span class="n"
->conn</span><span class="si" data-group-id="6937857384-5"
+>conn</span><span class="si" data-group-id="4064894973-5"
 >}</span><span class="s"
 >&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="6937857384-3"
+  </span><span class="k" data-group-id="4064894973-3"
 >end</span><span class="w"
 >
 
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->connection_keys</span><span class="p" data-group-id="6937857384-6"
+>connection_keys</span><span class="p" data-group-id="4064894973-6"
 >(</span><span class="n"
->conn</span><span class="p" data-group-id="6937857384-6"
+>conn</span><span class="p" data-group-id="4064894973-6"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="6937857384-7"
+> </span><span class="k" data-group-id="4064894973-7"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -340,8 +340,8 @@
 > </span><span class="nc"
 >Map</span><span class="o"
 >.</span><span class="n"
->from_struct</span><span class="p" data-group-id="6937857384-8"
->(</span><span class="p" data-group-id="6937857384-8"
+>from_struct</span><span class="p" data-group-id="4064894973-8"
+>(</span><span class="p" data-group-id="4064894973-8"
 >)</span><span class="w"
 >
     </span><span class="o"
@@ -349,14 +349,14 @@
 > </span><span class="nc"
 >Map</span><span class="o"
 >.</span><span class="n"
->keys</span><span class="p" data-group-id="6937857384-9"
->(</span><span class="p" data-group-id="6937857384-9"
+>keys</span><span class="p" data-group-id="4064894973-9"
+>(</span><span class="p" data-group-id="4064894973-9"
 >)</span><span class="w"
 >
-  </span><span class="k" data-group-id="6937857384-7"
+  </span><span class="k" data-group-id="4064894973-7"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="6937857384-1"
+</span><span class="k" data-group-id="4064894973-1"
 >end</span></code></pre>
 <p>We have a route. We created a new controller action. We have made modifications to the main application view. Now all we need is a new template to display the string we get from <code class="inline">handler_info/1</code>. Let’s create a new one at <code class="inline">lib/hello_web/templates/page/test.html.eex</code>.</p>
 <pre><code class="html">&lt;div class=&quot;jumbotron&quot;&gt;
@@ -416,7 +416,7 @@
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.SharedView</span><span class="w"
-> </span><span class="k" data-group-id="1137016453-1"
+> </span><span class="k" data-group-id="8363456841-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -427,7 +427,7 @@
 > </span><span class="ss"
 >:view</span><span class="w"
 >
-</span><span class="k" data-group-id="1137016453-1"
+</span><span class="k" data-group-id="8363456841-1"
 >end</span></code></pre>
 <p>Now we can move <code class="inline">key.html.eex</code> from the <code class="inline">lib/hello_web/templates/page</code> directory into the <code class="inline">lib/hello_web/templates/shared</code> directory. Once that happens, we can change the render call in <code class="inline">lib/hello_web/templates/page/test.html.eex</code> to use the new <code class="inline">HelloWeb.SharedView</code>.</p>
 <pre><code class="html">&lt;%= for key &lt;- connection_keys @conn do %&gt;

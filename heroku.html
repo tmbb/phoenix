@@ -221,53 +221,53 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 >,</span><span class="w"
 >
   </span><span class="ss"
->load_from_system_env</span><span
+>load_from_system_env</span><span class="p"
 >:</span><span class="w"
 > </span><span class="no"
 >true</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->url</span><span
+>url</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="0880216551-1"
+> </span><span class="p" data-group-id="1704798414-1"
 >[</span><span class="ss"
->host</span><span
+>host</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;example.com&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->port</span><span
+>port</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
->80</span><span class="p" data-group-id="0880216551-1"
+>80</span><span class="p" data-group-id="1704798414-1"
 >]</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->cache_static_manifest</span><span
+>cache_static_manifest</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;priv/static/cache_manifest.json&quot;</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->secret_key_base</span><span
+>secret_key_base</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >Map</span><span class="o"
 >.</span><span class="n"
->fetch!</span><span class="p" data-group-id="0880216551-2"
+>fetch!</span><span class="p" data-group-id="1704798414-2"
 >(</span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="0880216551-3"
->(</span><span class="p" data-group-id="0880216551-3"
+>get_env</span><span class="p" data-group-id="1704798414-3"
+>(</span><span class="p" data-group-id="1704798414-3"
 >)</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="0880216551-2"
+>&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="1704798414-2"
 >)</span></code></pre>
 <p>Then, we’ll add the production database configuration to <code class="inline">config/prod.exs</code>:</p>
 <pre><code class="nohighlight makeup"><span class="c1"
@@ -283,104 +283,104 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 >,</span><span class="w"
 >
   </span><span class="ss"
->adapter</span><span
+>adapter</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >Ecto.Adapters.Postgres</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->url</span><span
+>url</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="9609164405-1"
+>get_env</span><span class="p" data-group-id="5807134861-1"
 >(</span><span class="s"
->&quot;DATABASE_URL&quot;</span><span class="p" data-group-id="9609164405-1"
+>&quot;DATABASE_URL&quot;</span><span class="p" data-group-id="5807134861-1"
 >)</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->pool_size</span><span
+>pool_size</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >String</span><span class="o"
 >.</span><span class="n"
->to_integer</span><span class="p" data-group-id="9609164405-2"
+>to_integer</span><span class="p" data-group-id="5807134861-2"
 >(</span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="9609164405-3"
+>get_env</span><span class="p" data-group-id="5807134861-3"
 >(</span><span class="s"
->&quot;POOL_SIZE&quot;</span><span class="p" data-group-id="9609164405-3"
+>&quot;POOL_SIZE&quot;</span><span class="p" data-group-id="5807134861-3"
 >)</span><span class="w"
 > </span><span class="o"
 >||</span><span class="w"
 > </span><span class="s"
->&quot;10&quot;</span><span class="p" data-group-id="9609164405-2"
+>&quot;10&quot;</span><span class="p" data-group-id="5807134861-2"
 >)</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->ssl</span><span
+>ssl</span><span class="p"
 >:</span><span class="w"
 > </span><span class="no"
 >true</span></code></pre>
 <p>Now, let’s tell Phoenix to use our Heroku URL and enforce we only use the SSL version of the website. Find the url line:</p>
 <pre><code class="nohighlight makeup"><span class="ss"
->url</span><span
+>url</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9282244976-1"
+> </span><span class="p" data-group-id="8377970371-1"
 >[</span><span class="ss"
->host</span><span
+>host</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;example.com&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->port</span><span
+>port</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
->80</span><span class="p" data-group-id="9282244976-1"
+>80</span><span class="p" data-group-id="8377970371-1"
 >]</span><span class="p"
 >,</span></code></pre>
 <p>… and replace it with this (don’t forget to replace <code class="inline">mysterious-meadow-6277</code> with your application name):</p>
 <pre><code class="nohighlight makeup"><span class="ss"
->url</span><span
+>url</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9044890728-1"
+> </span><span class="p" data-group-id="9175083430-1"
 >[</span><span class="ss"
->scheme</span><span
+>scheme</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;https&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->host</span><span
+>host</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;mysterious-meadow-6277.herokuapp.com&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->port</span><span
+>port</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
->443</span><span class="p" data-group-id="9044890728-1"
+>443</span><span class="p" data-group-id="9175083430-1"
 >]</span><span class="p"
 >,</span><span class="w"
 >
 </span><span class="ss"
->force_ssl</span><span
+>force_ssl</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9044890728-2"
+> </span><span class="p" data-group-id="9175083430-2"
 >[</span><span class="ss"
->rewrite_on</span><span
+>rewrite_on</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9044890728-3"
+> </span><span class="p" data-group-id="9175083430-3"
 >[</span><span class="ss"
->:x_forwarded_proto</span><span class="p" data-group-id="9044890728-3"
->]</span><span class="p" data-group-id="9044890728-2"
+>:x_forwarded_proto</span><span class="p" data-group-id="9175083430-3"
+>]</span><span class="p" data-group-id="9175083430-2"
 >]</span><span class="p"
 >,</span></code></pre>
 <p>Since our configuration is now handled using Heroku’s environment variables, we don’t need to import the <code class="inline">config/prod.secret.exs</code> file in <code class="inline">/config/prod.exs</code> any longer, so we can delete the following line:</p>
@@ -409,73 +409,73 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 >,</span><span class="w"
 >
   </span><span class="ss"
->load_from_system_env</span><span
+>load_from_system_env</span><span class="p"
 >:</span><span class="w"
 > </span><span class="no"
 >true</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->url</span><span
+>url</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="7596052453-1"
+> </span><span class="p" data-group-id="0773868079-1"
 >[</span><span class="ss"
->scheme</span><span
+>scheme</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;https&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->host</span><span
+>host</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;mysterious-meadow-6277.herokuapp.com&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->port</span><span
+>port</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
->443</span><span class="p" data-group-id="7596052453-1"
+>443</span><span class="p" data-group-id="0773868079-1"
 >]</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->force_ssl</span><span
+>force_ssl</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="7596052453-2"
+> </span><span class="p" data-group-id="0773868079-2"
 >[</span><span class="ss"
->rewrite_on</span><span
+>rewrite_on</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="7596052453-3"
+> </span><span class="p" data-group-id="0773868079-3"
 >[</span><span class="ss"
->:x_forwarded_proto</span><span class="p" data-group-id="7596052453-3"
->]</span><span class="p" data-group-id="7596052453-2"
+>:x_forwarded_proto</span><span class="p" data-group-id="0773868079-3"
+>]</span><span class="p" data-group-id="0773868079-2"
 >]</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->cache_static_manifest</span><span
+>cache_static_manifest</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;priv/static/cache_manifest.json&quot;</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->secret_key_base</span><span
+>secret_key_base</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >Map</span><span class="o"
 >.</span><span class="n"
->fetch!</span><span class="p" data-group-id="7596052453-4"
+>fetch!</span><span class="p" data-group-id="0773868079-4"
 >(</span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="7596052453-5"
->(</span><span class="p" data-group-id="7596052453-5"
+>get_env</span><span class="p" data-group-id="0773868079-5"
+>(</span><span class="p" data-group-id="0773868079-5"
 >)</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="7596052453-4"
+>&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="0773868079-4"
 >)</span><span class="w"
 >
 
@@ -488,7 +488,7 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 >:logger</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->level</span><span
+>level</span><span class="p"
 >:</span><span class="w"
 > </span><span class="ss"
 >:info</span><span class="w"
@@ -507,47 +507,47 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 >,</span><span class="w"
 >
   </span><span class="ss"
->adapter</span><span
+>adapter</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >Ecto.Adapters.Postgres</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->url</span><span
+>url</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="7596052453-6"
+>get_env</span><span class="p" data-group-id="0773868079-6"
 >(</span><span class="s"
->&quot;DATABASE_URL&quot;</span><span class="p" data-group-id="7596052453-6"
+>&quot;DATABASE_URL&quot;</span><span class="p" data-group-id="0773868079-6"
 >)</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->pool_size</span><span
+>pool_size</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >String</span><span class="o"
 >.</span><span class="n"
->to_integer</span><span class="p" data-group-id="7596052453-7"
+>to_integer</span><span class="p" data-group-id="0773868079-7"
 >(</span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="7596052453-8"
+>get_env</span><span class="p" data-group-id="0773868079-8"
 >(</span><span class="s"
->&quot;POOL_SIZE&quot;</span><span class="p" data-group-id="7596052453-8"
+>&quot;POOL_SIZE&quot;</span><span class="p" data-group-id="0773868079-8"
 >)</span><span class="w"
 > </span><span class="o"
 >||</span><span class="w"
 > </span><span class="s"
->&quot;10&quot;</span><span class="p" data-group-id="7596052453-7"
+>&quot;10&quot;</span><span class="p" data-group-id="0773868079-7"
 >)</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->ssl</span><span
+>ssl</span><span class="p"
 >:</span><span class="w"
 > </span><span class="no"
 >true</span></code></pre>
@@ -556,7 +556,7 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.UserSocket</span><span class="w"
-> </span><span class="k" data-group-id="0581194043-1"
+> </span><span class="k" data-group-id="2964653418-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -582,7 +582,7 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 >,</span><span class="w"
 >
     </span><span class="ss"
->timeout</span><span
+>timeout</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
 >45_000</span><span class="w"
@@ -590,7 +590,7 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
     </span><span class="n"
 >...</span><span class="w"
 >
-</span><span class="k" data-group-id="0581194043-1"
+</span><span class="k" data-group-id="2964653418-1"
 >end</span></code></pre>
 <p>This ensures that any idle connections are closed by Phoenix before they reach Heroku’s 55-second timeout window.</p>
 <p>Lastly, we’ll need to create a <a href="https://devcenter.heroku.com/articles/procfile">Procfile</a> (a text file called “Procfile” in the root of our project’s folder) with the following line:</p>

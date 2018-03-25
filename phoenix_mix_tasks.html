@@ -164,7 +164,7 @@ $ iex -S mix phx.server</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >Hello.Mixfile</span><span class="w"
-> </span><span class="k" data-group-id="9622035871-1"
+> </span><span class="k" data-group-id="7856818264-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -177,19 +177,19 @@ $ iex -S mix phx.server</code></pre>
 >def</span><span class="w"
 > </span><span class="nf"
 >project</span><span class="w"
-> </span><span class="k" data-group-id="9622035871-2"
+> </span><span class="k" data-group-id="7856818264-2"
 >do</span><span class="w"
 >
     </span><span class="err"
 >[</span><span class="ss"
->app</span><span
+>app</span><span class="p"
 >:</span><span class="w"
 > </span><span class="ss"
 >:hello</span><span class="p"
 >,</span><span class="w"
 >
      </span><span class="ss"
->version</span><span
+>version</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;0.0.1&quot;</span><span class="p"
@@ -206,7 +206,7 @@ $ iex -S mix phx.server</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.PageController</span><span class="w"
-> </span><span class="k" data-group-id="0730879007-1"
+> </span><span class="k" data-group-id="5837823076-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -262,7 +262,7 @@ $ iex -S mix phx.server</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >Hello.Mixfile</span><span class="w"
-> </span><span class="k" data-group-id="6406815715-1"
+> </span><span class="k" data-group-id="7768025849-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -275,12 +275,12 @@ $ iex -S mix phx.server</code></pre>
 >def</span><span class="w"
 > </span><span class="nf"
 >project</span><span class="w"
-> </span><span class="k" data-group-id="6406815715-2"
+> </span><span class="k" data-group-id="7768025849-2"
 >do</span><span class="w"
 >
     </span><span class="err"
 >[</span><span class="ss"
->app</span><span
+>app</span><span class="p"
 >:</span><span class="w"
 > </span><span class="ss"
 >:task_tester</span><span class="p"
@@ -640,35 +640,35 @@ worker(OurCustom.Repo, [])</code></pre>
 >,</span><span class="w"
 >
 </span><span class="ss"
->adapter</span><span
+>adapter</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >Ecto.Adapters.Postgres</span><span class="p"
 >,</span><span class="w"
 >
 </span><span class="ss"
->database</span><span
+>database</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;hello_repo&quot;</span><span class="p"
 >,</span><span class="w"
 >
 </span><span class="ss"
->username</span><span
+>username</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;user&quot;</span><span class="p"
 >,</span><span class="w"
 >
 </span><span class="ss"
->password</span><span
+>password</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;pass&quot;</span><span class="p"
 >,</span><span class="w"
 >
 </span><span class="ss"
->hostname</span><span
+>hostname</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;localhost&quot;</span><span class="w"
@@ -692,20 +692,20 @@ worker(OurCustom.Repo, [])</code></pre>
 >children</span><span class="w"
 > </span><span class="o"
 >=</span><span class="w"
-> </span><span class="p" data-group-id="7209076545-1"
+> </span><span class="p" data-group-id="6080328215-1"
 >[</span><span class="w"
 >
   </span><span class="c1"
 ># Start the endpoint when the application starts</span><span class="w"
 >
   </span><span class="n"
->supervisor</span><span class="p" data-group-id="7209076545-2"
+>supervisor</span><span class="p" data-group-id="6080328215-2"
 >(</span><span class="nc"
 >HelloWeb.Endpoint</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="7209076545-3"
->[</span><span class="p" data-group-id="7209076545-3"
->]</span><span class="p" data-group-id="7209076545-2"
+> </span><span class="p" data-group-id="6080328215-3"
+>[</span><span class="p" data-group-id="6080328215-3"
+>]</span><span class="p" data-group-id="6080328215-2"
 >)</span><span class="p"
 >,</span><span class="w"
 >
@@ -713,13 +713,13 @@ worker(OurCustom.Repo, [])</code></pre>
 ># Start the Ecto repository</span><span class="w"
 >
   </span><span class="n"
->worker</span><span class="p" data-group-id="7209076545-4"
+>worker</span><span class="p" data-group-id="6080328215-4"
 >(</span><span class="nc"
 >Hello.Repo</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="7209076545-5"
->[</span><span class="p" data-group-id="7209076545-5"
->]</span><span class="p" data-group-id="7209076545-4"
+> </span><span class="p" data-group-id="6080328215-5"
+>[</span><span class="p" data-group-id="6080328215-5"
+>]</span><span class="p" data-group-id="6080328215-4"
 >)</span><span class="p"
 >,</span><span class="w"
 >
@@ -730,17 +730,17 @@ worker(OurCustom.Repo, [])</code></pre>
 ># worker(Hello.Worker, [arg1, arg2, arg3]),</span><span class="w"
 >
   </span><span class="n"
->worker</span><span class="p" data-group-id="7209076545-6"
+>worker</span><span class="p" data-group-id="6080328215-6"
 >(</span><span class="nc"
 >OurCustom.Repo</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="7209076545-7"
->[</span><span class="p" data-group-id="7209076545-7"
->]</span><span class="p" data-group-id="7209076545-6"
+> </span><span class="p" data-group-id="6080328215-7"
+>[</span><span class="p" data-group-id="6080328215-7"
+>]</span><span class="p" data-group-id="6080328215-6"
 >)</span><span class="p"
 >,</span><span class="w"
 >
-</span><span class="p" data-group-id="7209076545-1"
+</span><span class="p" data-group-id="6080328215-1"
 >]</span><span class="w"
 >
 </span><span class="o"
@@ -761,7 +761,7 @@ worker(OurCustom.Repo, [])</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >Hello.Repo.Migrations.AddCommentsTable</span><span class="w"
-> </span><span class="k" data-group-id="9448674155-1"
+> </span><span class="k" data-group-id="6924160262-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -774,13 +774,13 @@ worker(OurCustom.Repo, [])</code></pre>
 >def</span><span class="w"
 > </span><span class="nf"
 >change</span><span class="w"
-> </span><span class="k" data-group-id="9448674155-2"
+> </span><span class="k" data-group-id="6924160262-2"
 >do</span><span class="w"
 >
-  </span><span class="k" data-group-id="9448674155-2"
+  </span><span class="k" data-group-id="6924160262-2"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="9448674155-1"
+</span><span class="k" data-group-id="6924160262-1"
 >end</span></code></pre>
 <p>Notice that there is a single function <code class="inline">change/0</code> which will handle both forward migrations and rollbacks. We’ll define the schema changes that we want using ecto’s handy dsl, and ecto will figure out what to do depending on whether we are rolling forward or rolling back. Very nice indeed.</p>
 <p>What we want to do is create a <code class="inline">comments</code> table with a <code class="inline">body</code> column, a <code class="inline">word_count</code> column, and timestamp columns for <code class="inline">inserted_at</code> and <code class="inline">updated_at</code>.</p>
@@ -795,17 +795,17 @@ worker(OurCustom.Repo, [])</code></pre>
 >def</span><span class="w"
 > </span><span class="nf"
 >change</span><span class="w"
-> </span><span class="k" data-group-id="6097457138-1"
+> </span><span class="k" data-group-id="6374065456-1"
 >do</span><span class="w"
 >
   </span><span class="n"
 >create</span><span class="w"
 > </span><span class="n"
->table</span><span class="p" data-group-id="6097457138-2"
+>table</span><span class="p" data-group-id="6374065456-2"
 >(</span><span class="ss"
->:comments</span><span class="p" data-group-id="6097457138-2"
+>:comments</span><span class="p" data-group-id="6374065456-2"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="6097457138-3"
+> </span><span class="k" data-group-id="6374065456-3"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -827,10 +827,10 @@ worker(OurCustom.Repo, [])</code></pre>
     </span><span class="n"
 >timestamps</span><span class="w"
 >
-  </span><span class="k" data-group-id="6097457138-3"
+  </span><span class="k" data-group-id="6374065456-3"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="6097457138-1"
+</span><span class="k" data-group-id="6374065456-1"
 >end</span><span class="w"
 >
 </span><span class="o"
@@ -898,7 +898,7 @@ version     |     inserted_at
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >Mix.Tasks.Hello.Greeting</span><span class="w"
-> </span><span class="k" data-group-id="9448721838-1"
+> </span><span class="k" data-group-id="1025975373-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -924,11 +924,11 @@ version     |     inserted_at
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->run</span><span class="p" data-group-id="9448721838-2"
+>run</span><span class="p" data-group-id="1025975373-2"
 >(</span><span class="bp"
->_args</span><span class="p" data-group-id="9448721838-2"
+>_args</span><span class="p" data-group-id="1025975373-2"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="9448721838-3"
+> </span><span class="k" data-group-id="1025975373-3"
 >do</span><span class="w"
 >
     </span><span class="nc"
@@ -940,14 +940,14 @@ version     |     inserted_at
 > </span><span class="s"
 >&quot;Greetings from the Hello Phoenix Application!&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="9448721838-3"
+  </span><span class="k" data-group-id="1025975373-3"
 >end</span><span class="w"
 >
 
   </span><span class="c1"
 ># We can define other functions as needed here.</span><span class="w"
 >
-</span><span class="k" data-group-id="9448721838-1"
+</span><span class="k" data-group-id="1025975373-1"
 >end</span></code></pre>
 <p>Let’s take a quick look at the moving parts involved in a working mix task.</p>
 <p>The first thing we need to do is name our module. In order to properly namespace it, we begin with <code class="inline">Mix.Tasks</code>. We’d like to invoke this as <code class="inline">mix hello.greeting</code>, so we complete the module name with
@@ -981,11 +981,11 @@ Greetings from the Hello Phoenix Application!</code></pre>
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->run</span><span class="p" data-group-id="7722709325-1"
+>run</span><span class="p" data-group-id="0860792578-1"
 >(</span><span class="bp"
->_args</span><span class="p" data-group-id="7722709325-1"
+>_args</span><span class="p" data-group-id="0860792578-1"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="7722709325-2"
+> </span><span class="k" data-group-id="0860792578-2"
 >do</span><span class="w"
 >
     </span><span class="nc"
@@ -1004,7 +1004,7 @@ Greetings from the Hello Phoenix Application!</code></pre>
 > </span><span class="s"
 >&quot;Now I have access to Repo and other goodies!&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="7722709325-2"
+  </span><span class="k" data-group-id="0860792578-2"
 >end</span><span class="w"
 >
   </span><span class="o"

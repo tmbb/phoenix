@@ -116,7 +116,7 @@ part of your application:</p>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >YourApp.Endpoint</span><span class="w"
-> </span><span class="k" data-group-id="7170630591-1"
+> </span><span class="k" data-group-id="0585022273-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -125,7 +125,7 @@ part of your application:</p>
 >Phoenix.Endpoint</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->otp_app</span><span
+>otp_app</span><span class="p"
 >:</span><span class="w"
 > </span><span class="ss"
 >:your_app</span><span class="w"
@@ -143,20 +143,20 @@ part of your application:</p>
 > </span><span class="nc"
 >YourApp.Router</span><span class="w"
 >
-</span><span class="k" data-group-id="7170630591-1"
+</span><span class="k" data-group-id="0585022273-1"
 >end</span></code></pre>
 <p>Endpoints must be explicitly started as part of your application
 supervision tree. Endpoints are added by default
 to the supervision tree in generated applications. Endpoints can be
 added to the supervision tree as follows:</p>
 <pre><code class="nohighlight makeup"><span class="n"
->supervisor</span><span class="p" data-group-id="2730027022-1"
+>supervisor</span><span class="p" data-group-id="9944281140-1"
 >(</span><span class="nc"
 >YourApp.Endpoint</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="2730027022-2"
->[</span><span class="p" data-group-id="2730027022-2"
->]</span><span class="p" data-group-id="2730027022-1"
+> </span><span class="p" data-group-id="9944281140-2"
+>[</span><span class="p" data-group-id="9944281140-2"
+>]</span><span class="p" data-group-id="9944281140-1"
 >)</span></code></pre>
 <h3 id="module-endpoint-configuration" class="section-heading">
   <a href="#module-endpoint-configuration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -175,7 +175,7 @@ For example:</p>
 >,</span><span class="w"
 >
   </span><span class="ss"
->secret_key_base</span><span
+>secret_key_base</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;kjoy3o1zeidquwy1398juxzldjlksahdk3&quot;</span></code></pre>
@@ -189,20 +189,20 @@ after your application is started and can be read through the
 <pre><code class="nohighlight makeup"><span class="nc"
 >YourApp.Endpoint</span><span class="o"
 >.</span><span class="n"
->config</span><span class="p" data-group-id="3553124293-1"
+>config</span><span class="p" data-group-id="0138931369-1"
 >(</span><span class="ss"
->:port</span><span class="p" data-group-id="3553124293-1"
+>:port</span><span class="p" data-group-id="0138931369-1"
 >)</span><span class="w"
 >
 </span><span class="nc"
 >YourApp.Endpoint</span><span class="o"
 >.</span><span class="n"
->config</span><span class="p" data-group-id="3553124293-2"
+>config</span><span class="p" data-group-id="0138931369-2"
 >(</span><span class="ss"
 >:some_config</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:default_value</span><span class="p" data-group-id="3553124293-2"
+>:default_value</span><span class="p" data-group-id="0138931369-2"
 >)</span></code></pre>
 <h3 id="module-dynamic-configuration" class="section-heading">
   <a href="#module-dynamic-configuration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -232,24 +232,24 @@ code during debugging. Defaults to <code class="inline">false</code>.</p>
 is a failure in the application. For example, if the application crashes
 with a 500 error during a HTML request, <code class="inline">render(&quot;500.html&quot;, assigns)</code>
 will be called in the view given to <code class="inline">:render_errors</code>. Defaults to:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="1316254892-1"
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="6244031844-1"
 >[</span><span class="ss"
->view</span><span
+>view</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >MyApp.ErrorView</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->accepts</span><span
+>accepts</span><span class="p"
 >:</span><span class="w"
 > </span><span class="sx"
 >~w(html)</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->layout</span><span
+>layout</span><span class="p"
 >:</span><span class="w"
 > </span><span class="no"
->false</span><span class="p" data-group-id="1316254892-1"
+>false</span><span class="p" data-group-id="6244031844-1"
 >]</span></code></pre>
 <p>The default format is used when none is set in the connection.</p>
 </li>
@@ -273,14 +273,14 @@ by <code class="inline">mix phx.digest</code>.</p>
 be false, true or a list of hosts that are allowed. Hosts also support
 wildcards. For example:</p>
 <pre><code class="nohighlight makeup"><span class="ss"
->check_origin</span><span
+>check_origin</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="8831115255-1"
+> </span><span class="p" data-group-id="5710099384-1"
 >[</span><span class="s"
 >&quot;//phoenixframework.org&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;//*.example.com&quot;</span><span class="p" data-group-id="8831115255-1"
+>&quot;//*.example.com&quot;</span><span class="p" data-group-id="5710099384-1"
 >]</span></code></pre>
 </li>
 <li><p><code class="inline">:http</code> - the configuration for the HTTP server. Currently uses
@@ -313,18 +313,18 @@ task automatically sets this to <code class="inline">true</code>.</p>
 <li><p><code class="inline">:url</code> - configuration for generating URLs throughout the app.
 Accepts the <code class="inline">:host</code>, <code class="inline">:scheme</code>, <code class="inline">:path</code> and <code class="inline">:port</code> options. All
 keys except <code class="inline">:path</code> can be changed at runtime. Defaults to:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="1702526343-1"
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="6103189659-1"
 >[</span><span class="ss"
->host</span><span
+>host</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;localhost&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->path</span><span
+>path</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="1702526343-1"
+>&quot;/&quot;</span><span class="p" data-group-id="6103189659-1"
 >]</span></code></pre>
 <p>The <code class="inline">:port</code> option requires either an integer, string, or
 <code class="inline">{:system, &quot;ENV_VAR&quot;}</code>. When given a tuple like <code class="inline">{:system, &quot;PORT&quot;}</code>,
@@ -345,17 +345,17 @@ Watchers are guaranteed to run in the application directory, but only
 when the server is enabled. For example, the watcher below will run
 the “watch” mode of the brunch build tool when the server starts.
 You can configure it to whatever build tool or command you want:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="3010672443-1"
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="4892384540-1"
 >[</span><span class="ss"
->node</span><span
+>node</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="3010672443-2"
+> </span><span class="p" data-group-id="4892384540-2"
 >[</span><span class="s"
 >&quot;node_modules/brunch/bin/brunch&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;watch&quot;</span><span class="p" data-group-id="3010672443-2"
->]</span><span class="p" data-group-id="3010672443-1"
+>&quot;watch&quot;</span><span class="p" data-group-id="4892384540-2"
+>]</span><span class="p" data-group-id="4892384540-1"
 >]</span></code></pre>
 </li>
 <li><p><code class="inline">:live_reload</code> - configuration for the live reload option.
@@ -364,22 +364,22 @@ file patterns to watch. When these files change, it will trigger a reload.
 If you are using a tool like <a href="http://pow.cx">pow</a> in development,
 you may need to set the <code class="inline">:url</code> option appropriately.</p>
 <pre><code class="nohighlight makeup"><span class="ss"
->live_reload</span><span
+>live_reload</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="3777497395-1"
+> </span><span class="p" data-group-id="9658737006-1"
 >[</span><span class="w"
 >
   </span><span class="ss"
->url</span><span
+>url</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
 >&quot;ws://localhost:4000&quot;</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
->patterns</span><span
+>patterns</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="3777497395-2"
+> </span><span class="p" data-group-id="9658737006-2"
 >[</span><span class="w"
 >
     </span><span class="sr"
@@ -393,10 +393,10 @@ you may need to set the <code class="inline">:url</code> option appropriately.</
     </span><span class="sr"
 >~r{web/templates/.*(eex)$}</span><span class="w"
 >
-  </span><span class="p" data-group-id="3777497395-2"
+  </span><span class="p" data-group-id="9658737006-2"
 >]</span><span class="w"
 >
-</span><span class="p" data-group-id="3777497395-1"
+</span><span class="p" data-group-id="9658737006-1"
 >]</span></code></pre>
 </li>
 <li><p><code class="inline">:pubsub</code> - configuration for this endpoint’s pubsub adapter.
@@ -406,39 +406,39 @@ are compile time configuration, while the remaining options are runtime.
 The given adapter and name pair will be started as part of the supervision
 tree. If no adapter is specified, the pubsub system will work by sending
 events and subscribing to the given name. Defaults to:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="7388305027-1"
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="3374043219-1"
 >[</span><span class="ss"
->adapter</span><span
+>adapter</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >Phoenix.PubSub.PG2</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->name</span><span
+>name</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
->MyApp.PubSub</span><span class="p" data-group-id="7388305027-1"
+>MyApp.PubSub</span><span class="p" data-group-id="3374043219-1"
 >]</span></code></pre>
 <p>It also supports custom adapter configuration:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="1889172266-1"
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="6703427683-1"
 >[</span><span class="ss"
->name</span><span
+>name</span><span class="p"
 >:</span><span class="w"
 > </span><span class="ss"
 >:my_pubsub</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->adapter</span><span
+>adapter</span><span class="p"
 >:</span><span class="w"
 > </span><span class="nc"
 >Phoenix.PubSub.Redis</span><span class="p"
 >,</span><span class="w"
 >
  </span><span class="ss"
->host</span><span
+>host</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
->&quot;192.168.100.1&quot;</span><span class="p" data-group-id="1889172266-1"
+>&quot;192.168.100.1&quot;</span><span class="p" data-group-id="6703427683-1"
 >]</span></code></pre>
 </li>
 </ul>
@@ -515,7 +515,7 @@ may break before they’ve been called.</p>
 <p>When the first argument to an event callback is <code class="inline">:start</code>, the signature of
 that callback is:</p>
 <pre><code class="nohighlight makeup"><span class="n"
->event_callback</span><span class="p" data-group-id="7336342412-1"
+>event_callback</span><span class="p" data-group-id="6523271498-1"
 >(</span><span class="ss"
 >:start</span><span class="p"
 >,</span><span class="w"
@@ -523,7 +523,7 @@ that callback is:</p>
 >compile_metadata</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->runtime_metadata</span><span class="p" data-group-id="7336342412-1"
+>runtime_metadata</span><span class="p" data-group-id="6523271498-1"
 >)</span></code></pre>
 <p>where:</p>
 <ul>
@@ -546,7 +546,7 @@ being rendered (<code class="inline">instrument(:view_render, %{view: &quot;inde
 <p>When the first argument to an event callback is <code class="inline">:stop</code>, the signature of that
 callback is:</p>
 <pre><code class="nohighlight makeup"><span class="n"
->event_callback</span><span class="p" data-group-id="9193965382-1"
+>event_callback</span><span class="p" data-group-id="0755957744-1"
 >(</span><span class="ss"
 >:stop</span><span class="p"
 >,</span><span class="w"
@@ -554,7 +554,7 @@ callback is:</p>
 >time_diff</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->result_of_before_callback</span><span class="p" data-group-id="9193965382-1"
+>result_of_before_callback</span><span class="p" data-group-id="0755957744-1"
 >)</span></code></pre>
 <p>where:</p>
 <ul>
@@ -583,19 +583,19 @@ called like this:</p>
 </span><span class="nc"
 >MyApp.Endpoint</span><span class="o"
 >.</span><span class="n"
->instrument</span><span class="p" data-group-id="0614459660-1"
+>instrument</span><span class="p" data-group-id="9274796777-1"
 >(</span><span class="ss"
 >:render_view</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="0614459660-2"
+> </span><span class="p" data-group-id="9274796777-2"
 >%{</span><span class="ss"
->view</span><span
+>view</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
->&quot;index.html&quot;</span><span class="p" data-group-id="0614459660-2"
+>&quot;index.html&quot;</span><span class="p" data-group-id="9274796777-2"
 >}</span><span class="p"
 >,</span><span class="w"
-> </span><span class="k" data-group-id="0614459660-3"
+> </span><span class="k" data-group-id="9274796777-3"
 >fn</span><span class="w"
 > </span><span class="o"
 >-&gt;</span><span class="w"
@@ -603,8 +603,8 @@ called like this:</p>
   </span><span class="c1"
 ># actual view rendering</span><span class="w"
 >
-</span><span class="k" data-group-id="0614459660-3"
->end</span><span class="p" data-group-id="0614459660-1"
+</span><span class="k" data-group-id="9274796777-3"
+>end</span><span class="p" data-group-id="9274796777-1"
 >)</span></code></pre>
 <p>All the instrumenter modules that export a <code class="inline">render_view/3</code> function will be
 notified of the event so that they can perform their respective actions.</p>
@@ -1048,13 +1048,13 @@ cases when the endpoint is dynamic and not known at compile time.</p>
 > </span><span class="ss"
 >:render_view</span><span class="p"
 >,</span><span class="w"
-> </span><span class="k" data-group-id="5142748990-1"
+> </span><span class="k" data-group-id="4491895434-1"
 >fn</span><span class="w"
 > </span><span class="o"
 >-&gt;</span><span class="w"
 > </span><span class="n"
 >...</span><span class="w"
-> </span><span class="k" data-group-id="5142748990-1"
+> </span><span class="k" data-group-id="4491895434-1"
 >end</span></code></pre>
 
   </section>
@@ -1095,12 +1095,12 @@ cases when the endpoint is dynamic and not known at compile time.</p>
 > </span><span class="nc"
 >Phoenix.Endpoint</span><span class="o"
 >.</span><span class="n"
->server?</span><span class="p" data-group-id="5635907995-1"
+>server?</span><span class="p" data-group-id="7246917175-1"
 >(</span><span class="ss"
 >:my_app</span><span class="p"
 >,</span><span class="w"
 > </span><span class="nc"
->MyApp.Endpoint</span><span class="p" data-group-id="5635907995-1"
+>MyApp.Endpoint</span><span class="p" data-group-id="7246917175-1"
 >)</span><span class="w"
 >
 </span><span class="no"
