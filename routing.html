@@ -81,7 +81,7 @@
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="4044193916-1"
+> </span><span class="k" data-group-id="3251328252-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -97,7 +97,7 @@
 >pipeline</span><span class="w"
 > </span><span class="ss"
 >:browser</span><span class="w"
-> </span><span class="k" data-group-id="4044193916-2"
+> </span><span class="k" data-group-id="3251328252-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -105,9 +105,9 @@
 > </span><span class="ss"
 >:accepts</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="4044193916-3"
+> </span><span class="p" data-group-id="3251328252-3"
 >[</span><span class="s"
->&quot;html&quot;</span><span class="p" data-group-id="4044193916-3"
+>&quot;html&quot;</span><span class="p" data-group-id="3251328252-3"
 >]</span><span class="w"
 >
     </span><span class="n"
@@ -130,7 +130,7 @@
 > </span><span class="ss"
 >:put_secure_browser_headers</span><span class="w"
 >
-  </span><span class="k" data-group-id="4044193916-2"
+  </span><span class="k" data-group-id="3251328252-2"
 >end</span><span class="w"
 >
 
@@ -138,7 +138,7 @@
 >pipeline</span><span class="w"
 > </span><span class="ss"
 >:api</span><span class="w"
-> </span><span class="k" data-group-id="4044193916-4"
+> </span><span class="k" data-group-id="3251328252-4"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -146,12 +146,12 @@
 > </span><span class="ss"
 >:accepts</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="4044193916-5"
+> </span><span class="p" data-group-id="3251328252-5"
 >[</span><span class="s"
->&quot;json&quot;</span><span class="p" data-group-id="4044193916-5"
+>&quot;json&quot;</span><span class="p" data-group-id="3251328252-5"
 >]</span><span class="w"
 >
-  </span><span class="k" data-group-id="4044193916-4"
+  </span><span class="k" data-group-id="3251328252-4"
 >end</span><span class="w"
 >
 
@@ -162,7 +162,7 @@
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="4044193916-6"
+> </span><span class="k" data-group-id="3251328252-6"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -184,7 +184,7 @@
 > </span><span class="ss"
 >:index</span><span class="w"
 >
-  </span><span class="k" data-group-id="4044193916-6"
+  </span><span class="k" data-group-id="3251328252-6"
 >end</span><span class="w"
 >
 
@@ -200,7 +200,7 @@
   </span><span class="c1"
 ># end</span><span class="w"
 >
-</span><span class="k" data-group-id="4044193916-1"
+</span><span class="k" data-group-id="3251328252-1"
 >end</span></code></pre>
 <p>The name you gave your application will appear instead of <code class="inline">Hello</code> for both the router module and controller name.</p>
 <p>The first line of this module, <code class="inline">use HelloWeb, :router</code>, simply makes Phoenix router functions available in our particular router.</p>
@@ -224,7 +224,7 @@
 >  </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->match</span><span class="p" data-group-id="7599085307-1"
+>match</span><span class="p" data-group-id="8609664127-1"
 >(</span><span class="ss"
 >:get</span><span class="p"
 >,</span><span class="w"
@@ -237,9 +237,9 @@
 > </span><span class="ss"
 >:index</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="7599085307-2"
->[</span><span class="p" data-group-id="7599085307-2"
->]</span><span class="p" data-group-id="7599085307-1"
+> </span><span class="p" data-group-id="8609664127-2"
+>[</span><span class="p" data-group-id="8609664127-2"
+>]</span><span class="p" data-group-id="8609664127-1"
 >)</span></code></pre>
 <p>The body of the <code class="inline">match/5</code> function sets up the connection and invokes the matched controller action.</p>
 <p>As we add more routes, more clauses of the match function will be added to our router module. These will behave like any other multi-clause function in Elixir. They will be tried in order from the top, and the first clause to match the parameters given (verb and path) will be executed. After a match is found, the search will stop and no other clauses will be tried.</p>
@@ -282,7 +282,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="9392756756-1"
+> </span><span class="k" data-group-id="3538710897-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -312,7 +312,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >UserController</span><span class="w"
 >
-</span><span class="k" data-group-id="9392756756-1"
+</span><span class="k" data-group-id="3538710897-1"
 >end</span></code></pre>
 <p>For this purpose, it doesn’t matter that we don’t actually have a <code class="inline">HelloWeb.UserController</code>.</p>
 <p>Then go to the root of your project, and run <code class="inline">$ mix phx.routes</code></p>
@@ -462,12 +462,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >only</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="5026234171-1"
+> </span><span class="p" data-group-id="9690007689-1"
 >[</span><span class="ss"
 >:index</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:show</span><span class="p" data-group-id="5026234171-1"
+>:show</span><span class="p" data-group-id="9690007689-1"
 >]</span></code></pre>
 <p>Running <code class="inline">$ mix phx.routes</code> shows that we now only have the routes to the index and show actions defined.</p>
 <pre><code class="nohighlight makeup"><span class="n"
@@ -508,9 +508,9 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >except</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9876327042-1"
+> </span><span class="p" data-group-id="0735475184-1"
 >[</span><span class="ss"
->:delete</span><span class="p" data-group-id="9876327042-1"
+>:delete</span><span class="p" data-group-id="0735475184-1"
 >]</span></code></pre>
 <p>Running <code class="inline">$ mix phx.routes</code> now shows that we have all the routes except the DELETE request to the delete action.</p>
 <pre><code class="nohighlight makeup"><span class="n"
@@ -621,7 +621,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="8434554782-1"
+> </span><span class="k" data-group-id="5427576103-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -644,13 +644,13 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="8434554782-2"
+> </span><span class="k" data-group-id="5427576103-2"
 >do</span><span class="w"
 >
     </span><span class="c1"
 >#...</span><span class="w"
 >
-  </span><span class="k" data-group-id="8434554782-2"
+  </span><span class="k" data-group-id="5427576103-2"
 >end</span><span class="w"
 >
 
@@ -662,7 +662,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >BackgroundJob.Plug</span><span class="w"
 >
-</span><span class="k" data-group-id="8434554782-1"
+</span><span class="k" data-group-id="5427576103-1"
 >end</span></code></pre>
 <p>This means that all routes starting with <code class="inline">/jobs</code> will be sent to the <code class="inline">BackgroundJob.Plug</code> module.</p>
 <p>We can even use the <code class="inline">forward/4</code> macro in a pipeline. If we wanted to ensure that the user was authenticated and an administrator in order to see the jobs page, we could use the following in our router.</p>
@@ -670,7 +670,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="8387921446-1"
+> </span><span class="k" data-group-id="5801167940-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -690,17 +690,17 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >scope</span><span class="w"
 > </span><span class="s"
 >&quot;/&quot;</span><span class="w"
-> </span><span class="k" data-group-id="8387921446-2"
+> </span><span class="k" data-group-id="5801167940-2"
 >do</span><span class="w"
 >
     </span><span class="n"
 >pipe_through</span><span class="w"
-> </span><span class="p" data-group-id="8387921446-3"
+> </span><span class="p" data-group-id="5801167940-3"
 >[</span><span class="ss"
 >:authenticate_user</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:ensure_admin</span><span class="p" data-group-id="8387921446-3"
+>:ensure_admin</span><span class="p" data-group-id="5801167940-3"
 >]</span><span class="w"
 >
     </span><span class="n"
@@ -711,10 +711,10 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >BackgroundJob.Plug</span><span class="w"
 >
-  </span><span class="k" data-group-id="8387921446-2"
+  </span><span class="k" data-group-id="5801167940-2"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="8387921446-1"
+</span><span class="k" data-group-id="5801167940-1"
 >end</span></code></pre>
 <p>This means that the plugs in the <code class="inline">authenticate_user</code> and <code class="inline">ensure_admin</code> pipelines will be called before the <code class="inline">BackgroundJob.Plug</code> allowing them to send an appropriate response and call <code class="inline">halt()</code> .</p>
 <p>The <code class="inline">opts</code> that are passed to the <code class="inline">init/1</code> callback of a Plug can be passed as a 3rd argument. For example, maybe the background job page lets you set the name of your application to be displayed on the page. This could be passed with:</p>
@@ -739,15 +739,15 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >BackgroundJob.Plug</span><span class="w"
-> </span><span class="k" data-group-id="0551442056-1"
+> </span><span class="k" data-group-id="7375670450-1"
 >do</span><span class="w"
 >
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->init</span><span class="p" data-group-id="0551442056-2"
+>init</span><span class="p" data-group-id="7375670450-2"
 >(</span><span class="n"
->opts</span><span class="p" data-group-id="0551442056-2"
+>opts</span><span class="p" data-group-id="7375670450-2"
 >)</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
@@ -759,14 +759,14 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->call</span><span class="p" data-group-id="0551442056-3"
+>call</span><span class="p" data-group-id="7375670450-3"
 >(</span><span class="n"
 >conn</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->opts</span><span class="p" data-group-id="0551442056-3"
+>opts</span><span class="p" data-group-id="7375670450-3"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="0551442056-4"
+> </span><span class="k" data-group-id="7375670450-4"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -777,14 +777,14 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >Plug.Conn</span><span class="o"
 >.</span><span class="n"
->assign</span><span class="p" data-group-id="0551442056-5"
+>assign</span><span class="p" data-group-id="7375670450-5"
 >(</span><span class="ss"
 >:name</span><span class="p"
 >,</span><span class="w"
 > </span><span class="nc"
 >Keyword</span><span class="o"
 >.</span><span class="n"
->get</span><span class="p" data-group-id="0551442056-6"
+>get</span><span class="p" data-group-id="7375670450-6"
 >(</span><span class="n"
 >opts</span><span class="p"
 >,</span><span class="w"
@@ -792,8 +792,8 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:name</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;Background Job&quot;</span><span class="p" data-group-id="0551442056-6"
->)</span><span class="p" data-group-id="0551442056-5"
+>&quot;Background Job&quot;</span><span class="p" data-group-id="7375670450-6"
+>)</span><span class="p" data-group-id="7375670450-5"
 >)</span><span class="w"
 >
     </span><span class="o"
@@ -801,15 +801,15 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >BackgroundJob.Router</span><span class="o"
 >.</span><span class="n"
->call</span><span class="p" data-group-id="0551442056-7"
+>call</span><span class="p" data-group-id="7375670450-7"
 >(</span><span class="n"
->opts</span><span class="p" data-group-id="0551442056-7"
+>opts</span><span class="p" data-group-id="7375670450-7"
 >)</span><span class="w"
 >
-  </span><span class="k" data-group-id="0551442056-4"
+  </span><span class="k" data-group-id="7375670450-4"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="0551442056-1"
+</span><span class="k" data-group-id="7375670450-1"
 >end</span><span class="w"
 >
 
@@ -817,7 +817,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >BackgroundJob.Router</span><span class="w"
-> </span><span class="k" data-group-id="0551442056-8"
+> </span><span class="k" data-group-id="7375670450-8"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -846,7 +846,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >do</span><span
 >:</span><span class="w"
 > </span><span class="n"
->send_resp</span><span class="p" data-group-id="0551442056-9"
+>send_resp</span><span class="p" data-group-id="7375670450-9"
 >(</span><span class="n"
 >conn</span><span class="p"
 >,</span><span class="w"
@@ -854,15 +854,15 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >200</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;Welcome to </span><span class="si" data-group-id="0551442056-10"
+>&quot;Welcome to </span><span class="si" data-group-id="7375670450-10"
 >#{</span><span class="n"
 >conn</span><span class="o"
 >.</span><span class="n"
 >assigns</span><span class="o"
 >.</span><span class="n"
->name</span><span class="si" data-group-id="0551442056-10"
+>name</span><span class="si" data-group-id="7375670450-10"
 >}</span><span class="s"
->&quot;</span><span class="p" data-group-id="0551442056-9"
+>&quot;</span><span class="p" data-group-id="7375670450-9"
 >)</span><span class="w"
 >
   </span><span class="n"
@@ -874,7 +874,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >do</span><span
 >:</span><span class="w"
 > </span><span class="n"
->send_resp</span><span class="p" data-group-id="0551442056-11"
+>send_resp</span><span class="p" data-group-id="7375670450-11"
 >(</span><span class="n"
 >conn</span><span class="p"
 >,</span><span class="w"
@@ -882,7 +882,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >200</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;5 Active Jobs&quot;</span><span class="p" data-group-id="0551442056-11"
+>&quot;5 Active Jobs&quot;</span><span class="p" data-group-id="7375670450-11"
 >)</span><span class="w"
 >
   </span><span class="n"
@@ -894,7 +894,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >do</span><span
 >:</span><span class="w"
 > </span><span class="n"
->send_resp</span><span class="p" data-group-id="0551442056-12"
+>send_resp</span><span class="p" data-group-id="7375670450-12"
 >(</span><span class="n"
 >conn</span><span class="p"
 >,</span><span class="w"
@@ -902,7 +902,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >200</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;3 Pending Jobs&quot;</span><span class="p" data-group-id="0551442056-12"
+>&quot;3 Pending Jobs&quot;</span><span class="p" data-group-id="7375670450-12"
 >)</span><span class="w"
 >
   </span><span class="n"
@@ -914,7 +914,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >do</span><span
 >:</span><span class="w"
 > </span><span class="n"
->send_resp</span><span class="p" data-group-id="0551442056-13"
+>send_resp</span><span class="p" data-group-id="7375670450-13"
 >(</span><span class="n"
 >conn</span><span class="p"
 >,</span><span class="w"
@@ -922,10 +922,10 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >404</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;Not found&quot;</span><span class="p" data-group-id="0551442056-13"
+>&quot;Not found&quot;</span><span class="p" data-group-id="7375670450-13"
 >)</span><span class="w"
 >
-</span><span class="k" data-group-id="0551442056-8"
+</span><span class="k" data-group-id="7375670450-8"
 >end</span></code></pre>
 <h2 id="path-helpers" class="section-heading">
   <a href="#path-helpers" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -939,12 +939,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.Router.Helpers</span><span class="o"
 >.</span><span class="n"
->page_path</span><span class="p" data-group-id="2805875083-1"
+>page_path</span><span class="p" data-group-id="5790861635-1"
 >(</span><span class="nc"
 >HelloWeb.Endpoint</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:index</span><span class="p" data-group-id="2805875083-1"
+>:index</span><span class="p" data-group-id="5790861635-1"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -976,12 +976,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
 >iex&gt;</span><span class="w"
 > </span><span class="n"
->user_path</span><span class="p" data-group-id="4308636683-1"
+>user_path</span><span class="p" data-group-id="0411437845-1"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:index</span><span class="p" data-group-id="4308636683-1"
+>:index</span><span class="p" data-group-id="0411437845-1"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -991,7 +991,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
 >iex&gt;</span><span class="w"
 > </span><span class="n"
->user_path</span><span class="p" data-group-id="4308636683-2"
+>user_path</span><span class="p" data-group-id="0411437845-2"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
@@ -999,7 +999,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:show</span><span class="p"
 >,</span><span class="w"
 > </span><span class="mi"
->17</span><span class="p" data-group-id="4308636683-2"
+>17</span><span class="p" data-group-id="0411437845-2"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1009,12 +1009,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
 >iex&gt;</span><span class="w"
 > </span><span class="n"
->user_path</span><span class="p" data-group-id="4308636683-3"
+>user_path</span><span class="p" data-group-id="0411437845-3"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:new</span><span class="p" data-group-id="4308636683-3"
+>:new</span><span class="p" data-group-id="0411437845-3"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1024,12 +1024,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
 >iex&gt;</span><span class="w"
 > </span><span class="n"
->user_path</span><span class="p" data-group-id="4308636683-4"
+>user_path</span><span class="p" data-group-id="0411437845-4"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:create</span><span class="p" data-group-id="4308636683-4"
+>:create</span><span class="p" data-group-id="0411437845-4"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1039,7 +1039,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
 >iex&gt;</span><span class="w"
 > </span><span class="n"
->user_path</span><span class="p" data-group-id="4308636683-5"
+>user_path</span><span class="p" data-group-id="0411437845-5"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
@@ -1047,7 +1047,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:edit</span><span class="p"
 >,</span><span class="w"
 > </span><span class="mi"
->37</span><span class="p" data-group-id="4308636683-5"
+>37</span><span class="p" data-group-id="0411437845-5"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1057,7 +1057,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
 >iex&gt;</span><span class="w"
 > </span><span class="n"
->user_path</span><span class="p" data-group-id="4308636683-6"
+>user_path</span><span class="p" data-group-id="0411437845-6"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
@@ -1065,7 +1065,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:update</span><span class="p"
 >,</span><span class="w"
 > </span><span class="mi"
->37</span><span class="p" data-group-id="4308636683-6"
+>37</span><span class="p" data-group-id="0411437845-6"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1075,7 +1075,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
 >iex&gt;</span><span class="w"
 > </span><span class="n"
->user_path</span><span class="p" data-group-id="4308636683-7"
+>user_path</span><span class="p" data-group-id="0411437845-7"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
@@ -1083,7 +1083,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:delete</span><span class="p"
 >,</span><span class="w"
 > </span><span class="mi"
->17</span><span class="p" data-group-id="4308636683-7"
+>17</span><span class="p" data-group-id="0411437845-7"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1092,7 +1092,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 <pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
 >iex&gt;</span><span class="w"
 > </span><span class="n"
->user_path</span><span class="p" data-group-id="0973315891-1"
+>user_path</span><span class="p" data-group-id="2546592387-1"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
@@ -1112,7 +1112,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >active</span><span
 >:</span><span class="w"
 > </span><span class="no"
->false</span><span class="p" data-group-id="0973315891-1"
+>false</span><span class="p" data-group-id="2546592387-1"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1121,12 +1121,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 <pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
 >iex(3)&gt;</span><span class="w"
 > </span><span class="n"
->user_url</span><span class="p" data-group-id="4856036673-1"
+>user_url</span><span class="p" data-group-id="3912844294-1"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:index</span><span class="p" data-group-id="4856036673-1"
+>:index</span><span class="p" data-group-id="3912844294-1"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1146,7 +1146,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >UserController</span><span class="w"
-> </span><span class="k" data-group-id="0311516223-1"
+> </span><span class="k" data-group-id="2303952574-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -1157,7 +1157,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >PostController</span><span class="w"
 >
-</span><span class="k" data-group-id="0311516223-1"
+</span><span class="k" data-group-id="2303952574-1"
 >end</span></code></pre>
 <p>When we run <code class="inline">$ mix phx.routes</code> now, in addition to the routes we saw for <code class="inline">users</code> above, we get the following set of routes:</p>
 <pre><code class="nohighlight makeup"><span class="o"
@@ -1325,7 +1325,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.Router.Helpers</span><span class="o"
 >.</span><span class="n"
->user_post_path</span><span class="p" data-group-id="3330826784-1"
+>user_post_path</span><span class="p" data-group-id="7920545323-1"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
@@ -1336,7 +1336,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >42</span><span class="p"
 >,</span><span class="w"
 > </span><span class="mi"
->17</span><span class="p" data-group-id="3330826784-1"
+>17</span><span class="p" data-group-id="7920545323-1"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1347,7 +1347,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.Router.Helpers</span><span class="o"
 >.</span><span class="n"
->user_post_path</span><span class="p" data-group-id="3426604621-1"
+>user_post_path</span><span class="p" data-group-id="2477371890-1"
 >(</span><span class="nc"
 >Endpoint</span><span class="p"
 >,</span><span class="w"
@@ -1361,7 +1361,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >active</span><span
 >:</span><span class="w"
 > </span><span class="no"
->true</span><span class="p" data-group-id="3426604621-1"
+>true</span><span class="p" data-group-id="2477371890-1"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -1387,7 +1387,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >scope</span><span class="w"
 > </span><span class="s"
 >&quot;/admin&quot;</span><span class="w"
-> </span><span class="k" data-group-id="9426634344-1"
+> </span><span class="k" data-group-id="5995290359-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -1404,7 +1404,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.Admin.ReviewController</span><span class="w"
 >
-</span><span class="k" data-group-id="9426634344-1"
+</span><span class="k" data-group-id="5995290359-1"
 >end</span></code></pre>
 <p>Note also, that the way this scope is currently defined, we need to fully qualify our controller name, <code class="inline">HelloWeb.Admin.ReviewController</code>. We’ll fix that in a minute.</p>
 <p>Running <code class="inline">$ mix phx.routes</code> again, in addition to the previous set of routes we get the following:</p>
@@ -1551,7 +1551,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="0201590315-1"
+> </span><span class="k" data-group-id="4464737286-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -1581,7 +1581,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="o"
 >.</span><span class="w"
 >
-</span><span class="k" data-group-id="0201590315-1"
+</span><span class="k" data-group-id="4464737286-1"
 >end</span><span class="w"
 >
 
@@ -1589,7 +1589,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >scope</span><span class="w"
 > </span><span class="s"
 >&quot;/admin&quot;</span><span class="w"
-> </span><span class="k" data-group-id="0201590315-2"
+> </span><span class="k" data-group-id="4464737286-2"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -1600,7 +1600,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.Admin.ReviewController</span><span class="w"
 >
-</span><span class="k" data-group-id="0201590315-2"
+</span><span class="k" data-group-id="4464737286-2"
 >end</span></code></pre>
 <p>and we run <code class="inline">$ mix phx.routes</code>, we get this output:</p>
 <pre><code class="nohighlight makeup"><span class="o"
@@ -1866,7 +1866,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="3945090866-1"
+> </span><span class="k" data-group-id="3174135898-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -1896,7 +1896,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="o"
 >.</span><span class="w"
 >
-</span><span class="k" data-group-id="3945090866-1"
+</span><span class="k" data-group-id="3174135898-1"
 >end</span><span class="w"
 >
 
@@ -1910,7 +1910,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:</span><span class="w"
 > </span><span class="ss"
 >:admin</span><span class="w"
-> </span><span class="k" data-group-id="3945090866-2"
+> </span><span class="k" data-group-id="3174135898-2"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -1921,7 +1921,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.Admin.ReviewController</span><span class="w"
 >
-</span><span class="k" data-group-id="3945090866-2"
+</span><span class="k" data-group-id="3174135898-2"
 >end</span></code></pre>
 <p><code class="inline">$ mix phx.routes</code> now shows us we have what we are looking for.</p>
 <pre><code class="nohighlight makeup"><span class="o"
@@ -2185,12 +2185,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.Router.Helpers</span><span class="o"
 >.</span><span class="n"
->review_path</span><span class="p" data-group-id="1524209984-1"
+>review_path</span><span class="p" data-group-id="7227363214-1"
 >(</span><span class="nc"
 >HelloWeb.Endpoint</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:index</span><span class="p" data-group-id="1524209984-1"
+>:index</span><span class="p" data-group-id="7227363214-1"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -2202,7 +2202,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.Router.Helpers</span><span class="o"
 >.</span><span class="n"
->admin_review_path</span><span class="p" data-group-id="1524209984-2"
+>admin_review_path</span><span class="p" data-group-id="7227363214-2"
 >(</span><span class="nc"
 >HelloWeb.Endpoint</span><span class="p"
 >,</span><span class="w"
@@ -2210,7 +2210,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:show</span><span class="p"
 >,</span><span class="w"
 > </span><span class="mi"
->1234</span><span class="p" data-group-id="1524209984-2"
+>1234</span><span class="p" data-group-id="7227363214-2"
 >)</span><span class="w"
 >
 </span><span class="s"
@@ -2226,7 +2226,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:</span><span class="w"
 > </span><span class="ss"
 >:admin</span><span class="w"
-> </span><span class="k" data-group-id="6007080505-1"
+> </span><span class="k" data-group-id="1670918315-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -2259,7 +2259,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >   </span><span class="nc"
 >HelloWeb.Admin.UserController</span><span class="w"
 >
-</span><span class="k" data-group-id="6007080505-1"
+</span><span class="k" data-group-id="1670918315-1"
 >end</span></code></pre>
 <p>Here’s what <code class="inline">$ mix phx.routes</code> tells us:</p>
 <pre><code class="nohighlight makeup"><span class="o"
@@ -2669,7 +2669,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:</span><span class="w"
 > </span><span class="ss"
 >:admin</span><span class="w"
-> </span><span class="k" data-group-id="3914339325-1"
+> </span><span class="k" data-group-id="2557527319-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -2702,7 +2702,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >   </span><span class="nc"
 >UserController</span><span class="w"
 >
-</span><span class="k" data-group-id="3914339325-1"
+</span><span class="k" data-group-id="2557527319-1"
 >end</span></code></pre>
 <p>Now run <code class="inline">$ mix phx.routes</code> again and you can see that we get the same result as above when we qualified each controller name individually.</p>
 <p>This doesn’t just apply to nested routes, we can even nest all of the routes for our application inside a scope that simply has an alias for the name of our Phoenix app, and eliminate the duplication of our application name in our controller names.</p>
@@ -2711,7 +2711,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="5557619276-1"
+> </span><span class="k" data-group-id="9143183029-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -2730,7 +2730,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="5557619276-2"
+> </span><span class="k" data-group-id="9143183029-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -2766,10 +2766,10 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >   </span><span class="nc"
 >UserController</span><span class="w"
 >
-  </span><span class="k" data-group-id="5557619276-2"
+  </span><span class="k" data-group-id="9143183029-2"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="5557619276-1"
+</span><span class="k" data-group-id="9143183029-1"
 >end</span></code></pre>
 <p>Again <code class="inline">$ mix phx.routes</code> tells us that all of our controllers now have the correct, fully-qualified names.</p>
 <pre><code class="nohighlight makeup"><span class="n"
@@ -3023,7 +3023,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:</span><span class="w"
 > </span><span class="ss"
 >:api</span><span class="w"
-> </span><span class="k" data-group-id="9664810895-1"
+> </span><span class="k" data-group-id="9114097705-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -3045,7 +3045,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:</span><span class="w"
 > </span><span class="ss"
 >:v1</span><span class="w"
-> </span><span class="k" data-group-id="9664810895-2"
+> </span><span class="k" data-group-id="9114097705-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -3072,10 +3072,10 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >   </span><span class="nc"
 >UserController</span><span class="w"
 >
-  </span><span class="k" data-group-id="9664810895-2"
+  </span><span class="k" data-group-id="9114097705-2"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="9664810895-1"
+</span><span class="k" data-group-id="9114097705-1"
 >end</span></code></pre>
 <p><code class="inline">$ mix phx.routes</code> tells us that we have the routes we’re looking for.</p>
 <pre><code class="nohighlight makeup"><span class="w"
@@ -3520,7 +3520,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="1216017266-1"
+> </span><span class="k" data-group-id="7799865618-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -3542,7 +3542,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="1216017266-2"
+> </span><span class="k" data-group-id="7799865618-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -3559,7 +3559,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >UserController</span><span class="w"
 >
-  </span><span class="k" data-group-id="1216017266-2"
+  </span><span class="k" data-group-id="7799865618-2"
 >end</span><span class="w"
 >
 
@@ -3570,7 +3570,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >AnotherAppWeb</span><span class="w"
-> </span><span class="k" data-group-id="1216017266-3"
+> </span><span class="k" data-group-id="7799865618-3"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -3587,7 +3587,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >PostController</span><span class="w"
 >
-  </span><span class="k" data-group-id="1216017266-3"
+  </span><span class="k" data-group-id="7799865618-3"
 >end</span><span class="w"
 >
   </span><span class="o"
@@ -3597,7 +3597,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="o"
 >.</span><span class="w"
 >
-</span><span class="k" data-group-id="1216017266-1"
+</span><span class="k" data-group-id="7799865618-1"
 >end</span></code></pre>
 <p>And when we run <code class="inline">$ mix phx.routes</code>, we see the following output.</p>
 <pre><code class="nohighlight makeup"><span class="n"
@@ -3870,7 +3870,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="3491616723-1"
+> </span><span class="k" data-group-id="6806067336-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -3886,7 +3886,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >pipeline</span><span class="w"
 > </span><span class="ss"
 >:browser</span><span class="w"
-> </span><span class="k" data-group-id="3491616723-2"
+> </span><span class="k" data-group-id="6806067336-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -3894,9 +3894,9 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:accepts</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="3491616723-3"
+> </span><span class="p" data-group-id="6806067336-3"
 >[</span><span class="s"
->&quot;html&quot;</span><span class="p" data-group-id="3491616723-3"
+>&quot;html&quot;</span><span class="p" data-group-id="6806067336-3"
 >]</span><span class="w"
 >
     </span><span class="n"
@@ -3919,7 +3919,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:put_secure_browser_headers</span><span class="w"
 >
-  </span><span class="k" data-group-id="3491616723-2"
+  </span><span class="k" data-group-id="6806067336-2"
 >end</span><span class="w"
 >
 
@@ -3927,7 +3927,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >pipeline</span><span class="w"
 > </span><span class="ss"
 >:api</span><span class="w"
-> </span><span class="k" data-group-id="3491616723-4"
+> </span><span class="k" data-group-id="6806067336-4"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -3935,12 +3935,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:accepts</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="3491616723-5"
+> </span><span class="p" data-group-id="6806067336-5"
 >[</span><span class="s"
->&quot;json&quot;</span><span class="p" data-group-id="3491616723-5"
+>&quot;json&quot;</span><span class="p" data-group-id="6806067336-5"
 >]</span><span class="w"
 >
-  </span><span class="k" data-group-id="3491616723-4"
+  </span><span class="k" data-group-id="6806067336-4"
 >end</span><span class="w"
 >
 
@@ -3951,7 +3951,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="3491616723-6"
+> </span><span class="k" data-group-id="6806067336-6"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -3971,7 +3971,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:index</span><span class="w"
 >
-  </span><span class="k" data-group-id="3491616723-6"
+  </span><span class="k" data-group-id="6806067336-6"
 >end</span><span class="w"
 >
 
@@ -3985,7 +3985,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="3491616723-7"
+> </span><span class="k" data-group-id="6806067336-7"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -4002,10 +4002,10 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >ReviewController</span><span class="w"
 >
-  </span><span class="k" data-group-id="3491616723-7"
+  </span><span class="k" data-group-id="6806067336-7"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="3491616723-1"
+</span><span class="k" data-group-id="6806067336-1"
 >end</span></code></pre>
 <p>When the server accepts a request, the request will always first pass through the plugs in our Endpoint, after which it will attempt to match on the path and HTTP verb.</p>
 <p>Let’s say that the request matches our first route: a GET to <code class="inline">/</code>. The router will first pipe that request through the <code class="inline">:browser</code> pipeline - which will fetch the session data, fetch the flash, and execute forgery protection - before it dispatches the request to the <code class="inline">PageController</code> <code class="inline">index</code> action.</p>
@@ -4015,7 +4015,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="4973629812-1"
+> </span><span class="k" data-group-id="4213291962-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -4031,7 +4031,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >pipeline</span><span class="w"
 > </span><span class="ss"
 >:browser</span><span class="w"
-> </span><span class="k" data-group-id="4973629812-2"
+> </span><span class="k" data-group-id="4213291962-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -4039,9 +4039,9 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:accepts</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="4973629812-3"
+> </span><span class="p" data-group-id="4213291962-3"
 >[</span><span class="s"
->&quot;html&quot;</span><span class="p" data-group-id="4973629812-3"
+>&quot;html&quot;</span><span class="p" data-group-id="4213291962-3"
 >]</span><span class="w"
 >
     </span><span class="n"
@@ -4064,7 +4064,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:put_secure_browser_headers</span><span class="w"
 >
-  </span><span class="k" data-group-id="4973629812-2"
+  </span><span class="k" data-group-id="4213291962-2"
 >end</span><span class="w"
 >
 
@@ -4094,7 +4094,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.ReviewController</span><span class="w"
 >
-</span><span class="k" data-group-id="4973629812-1"
+</span><span class="k" data-group-id="4213291962-1"
 >end</span></code></pre>
 <p>Removing all scopes forces the router to invoke the <code class="inline">:browser</code> pipeline on all routes.</p>
 <p>Let’s stretch these ideas out a little bit more. What if we need to pipe requests through both <code class="inline">:browser</code> and one or more custom pipelines? We simply <code class="inline">pipe_through</code> a list of pipelines, and Phoenix will invoke them in order.</p>
@@ -4102,7 +4102,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="7194695974-1"
+> </span><span class="k" data-group-id="5540723757-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -4118,7 +4118,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >pipeline</span><span class="w"
 > </span><span class="ss"
 >:browser</span><span class="w"
-> </span><span class="k" data-group-id="7194695974-2"
+> </span><span class="k" data-group-id="5540723757-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -4126,9 +4126,9 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:accepts</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="7194695974-3"
+> </span><span class="p" data-group-id="5540723757-3"
 >[</span><span class="s"
->&quot;html&quot;</span><span class="p" data-group-id="7194695974-3"
+>&quot;html&quot;</span><span class="p" data-group-id="5540723757-3"
 >]</span><span class="w"
 >
     </span><span class="n"
@@ -4151,7 +4151,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:put_secure_browser_headers</span><span class="w"
 >
-  </span><span class="k" data-group-id="7194695974-2"
+  </span><span class="k" data-group-id="5540723757-2"
 >end</span><span class="w"
 >
   </span><span class="n"
@@ -4162,7 +4162,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >scope</span><span class="w"
 > </span><span class="s"
 >&quot;/reviews&quot;</span><span class="w"
-> </span><span class="k" data-group-id="7194695974-4"
+> </span><span class="k" data-group-id="5540723757-4"
 >do</span><span class="w"
 >
     </span><span class="c1"
@@ -4170,7 +4170,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >
     </span><span class="n"
 >pipe_through</span><span class="w"
-> </span><span class="p" data-group-id="7194695974-5"
+> </span><span class="p" data-group-id="5540723757-5"
 >[</span><span class="ss"
 >:browser</span><span class="p"
 >,</span><span class="w"
@@ -4178,7 +4178,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >:review_checks</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:other_great_stuff</span><span class="p" data-group-id="7194695974-5"
+>:other_great_stuff</span><span class="p" data-group-id="5540723757-5"
 >]</span><span class="w"
 >
 
@@ -4190,17 +4190,17 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >HelloWeb.ReviewController</span><span class="w"
 >
-  </span><span class="k" data-group-id="7194695974-4"
+  </span><span class="k" data-group-id="5540723757-4"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="7194695974-1"
+</span><span class="k" data-group-id="5540723757-1"
 >end</span></code></pre>
 <p>Here’s another example with two scopes that have different pipelines:</p>
 <pre><code class="nohighlight makeup"><span class="kd"
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="9119631102-1"
+> </span><span class="k" data-group-id="4012827144-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -4216,7 +4216,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >pipeline</span><span class="w"
 > </span><span class="ss"
 >:browser</span><span class="w"
-> </span><span class="k" data-group-id="9119631102-2"
+> </span><span class="k" data-group-id="4012827144-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -4224,9 +4224,9 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:accepts</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="9119631102-3"
+> </span><span class="p" data-group-id="4012827144-3"
 >[</span><span class="s"
->&quot;html&quot;</span><span class="p" data-group-id="9119631102-3"
+>&quot;html&quot;</span><span class="p" data-group-id="4012827144-3"
 >]</span><span class="w"
 >
     </span><span class="n"
@@ -4249,7 +4249,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:put_secure_browser_headers</span><span class="w"
 >
-  </span><span class="k" data-group-id="9119631102-2"
+  </span><span class="k" data-group-id="4012827144-2"
 >end</span><span class="w"
 >
   </span><span class="n"
@@ -4263,7 +4263,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="9119631102-4"
+> </span><span class="k" data-group-id="4012827144-4"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -4280,7 +4280,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >PostController</span><span class="w"
 >
-  </span><span class="k" data-group-id="9119631102-4"
+  </span><span class="k" data-group-id="4012827144-4"
 >end</span><span class="w"
 >
 
@@ -4291,17 +4291,17 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="9119631102-5"
+> </span><span class="k" data-group-id="4012827144-5"
 >do</span><span class="w"
 >
     </span><span class="n"
 >pipe_through</span><span class="w"
-> </span><span class="p" data-group-id="9119631102-6"
+> </span><span class="p" data-group-id="4012827144-6"
 >[</span><span class="ss"
 >:browser</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:review_checks</span><span class="p" data-group-id="9119631102-6"
+>:review_checks</span><span class="p" data-group-id="4012827144-6"
 >]</span><span class="w"
 >
 
@@ -4313,10 +4313,10 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >ReviewController</span><span class="w"
 >
-  </span><span class="k" data-group-id="9119631102-5"
+  </span><span class="k" data-group-id="4012827144-5"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="9119631102-1"
+</span><span class="k" data-group-id="4012827144-1"
 >end</span></code></pre>
 <p>In general, the scoping rules for pipelines behave as you might expect. In this example, all routes will pipe through the <code class="inline">:browser</code> pipeline. However, only the <code class="inline">reviews</code> resources routes will  pipe through the <code class="inline">:review_checks</code> pipeline. Since we declared both pipes <code class="inline">pipe_through [:browser, :review_checks]</code> in a list of pipelines, Phoenix will <code class="inline">pipe_through</code> each of them as it invokes them in order.</p>
 <h4>Creating New Pipelines</h4>
@@ -4325,7 +4325,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="4018020142-1"
+> </span><span class="k" data-group-id="6820515779-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -4341,7 +4341,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >pipeline</span><span class="w"
 > </span><span class="ss"
 >:browser</span><span class="w"
-> </span><span class="k" data-group-id="4018020142-2"
+> </span><span class="k" data-group-id="6820515779-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -4349,9 +4349,9 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:accepts</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="4018020142-3"
+> </span><span class="p" data-group-id="6820515779-3"
 >[</span><span class="s"
->&quot;html&quot;</span><span class="p" data-group-id="4018020142-3"
+>&quot;html&quot;</span><span class="p" data-group-id="6820515779-3"
 >]</span><span class="w"
 >
     </span><span class="n"
@@ -4374,7 +4374,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:put_secure_browser_headers</span><span class="w"
 >
-  </span><span class="k" data-group-id="4018020142-2"
+  </span><span class="k" data-group-id="6820515779-2"
 >end</span><span class="w"
 >
 
@@ -4382,7 +4382,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >pipeline</span><span class="w"
 > </span><span class="ss"
 >:review_checks</span><span class="w"
-> </span><span class="k" data-group-id="4018020142-4"
+> </span><span class="k" data-group-id="6820515779-4"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -4395,7 +4395,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >:ensure_user_owns_review</span><span class="w"
 >
-  </span><span class="k" data-group-id="4018020142-4"
+  </span><span class="k" data-group-id="6820515779-4"
 >end</span><span class="w"
 >
 
@@ -4406,7 +4406,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >,</span><span class="w"
 > </span><span class="nc"
 >HelloWeb</span><span class="w"
-> </span><span class="k" data-group-id="4018020142-5"
+> </span><span class="k" data-group-id="6820515779-5"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -4423,10 +4423,10 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="nc"
 >ReviewController</span><span class="w"
 >
-  </span><span class="k" data-group-id="4018020142-5"
+  </span><span class="k" data-group-id="6820515779-5"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="4018020142-1"
+</span><span class="k" data-group-id="6820515779-1"
 >end</span></code></pre>
 <h2 id="channel-routes" class="section-heading">
   <a href="#channel-routes" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -4439,7 +4439,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Endpoint</span><span class="w"
-> </span><span class="k" data-group-id="4980197636-1"
+> </span><span class="k" data-group-id="4883259290-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -4459,14 +4459,14 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
   </span><span class="n"
 >...</span><span class="w"
 >
-</span><span class="k" data-group-id="4980197636-1"
+</span><span class="k" data-group-id="4883259290-1"
 >end</span></code></pre>
 <p>Next, we need to open our <code class="inline">lib/hello_web/channels/user_socket.ex</code> file and use the <code class="inline">channel/3</code> macro to define our channel routes. The routes will match a topic pattern to a channel to handle events. If we have a channel module called <code class="inline">RoomChannel</code> and a topic called <code class="inline">&quot;rooms:*&quot;</code>, the code to do this is straightforward.</p>
 <pre><code class="nohighlight makeup"><span class="kd"
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.UserSocket</span><span class="w"
-> </span><span class="k" data-group-id="0696578937-1"
+> </span><span class="k" data-group-id="0251409017-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -4486,7 +4486,7 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
   </span><span class="n"
 >...</span><span class="w"
 >
-</span><span class="k" data-group-id="0696578937-1"
+</span><span class="k" data-group-id="0251409017-1"
 >end</span></code></pre>
 <p>Topics are just string identifiers. The form we are using here is a convention which allows us to define topics and subtopics in the same string - “topic:subtopic”. The <code class="inline">*</code> is a wildcard character which allows us to match on any subtopic, so <code class="inline">&quot;rooms:lobby&quot;</code> and <code class="inline">&quot;rooms:kitchen&quot;</code> would both match this route.</p>
 <p>Phoenix abstracts the socket transport layer and includes two transport mechanisms out of the box - WebSockets and Long-Polling. If we wanted to make sure that our channel is handled by only one type of transport, we could specify that using the <code class="inline">via</code> option, like this.</p>
@@ -4501,9 +4501,9 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >via</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="0307523026-1"
+> </span><span class="p" data-group-id="2973883184-1"
 >[</span><span class="nc"
->Phoenix.TransportsWebSocket</span><span class="p" data-group-id="0307523026-1"
+>Phoenix.TransportsWebSocket</span><span class="p" data-group-id="2973883184-1"
 >]</span></code></pre>
 <p>Each socket can handle requests for multiple channels.</p>
 <pre><code class="nohighlight makeup"><span class="n"
@@ -4517,9 +4517,9 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 > </span><span class="ss"
 >via</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="5649282293-1"
+> </span><span class="p" data-group-id="9483278254-1"
 >[</span><span class="nc"
->Phoenix.TransportsWebSocket</span><span class="p" data-group-id="5649282293-1"
+>Phoenix.TransportsWebSocket</span><span class="p" data-group-id="9483278254-1"
 >]</span><span class="w"
 >
 </span><span class="n"

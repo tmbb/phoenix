@@ -80,7 +80,7 @@
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >Hello.Application</span><span class="w"
-> </span><span class="k" data-group-id="9260267604-1"
+> </span><span class="k" data-group-id="2638470828-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -91,14 +91,14 @@
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->start</span><span class="p" data-group-id="9260267604-2"
+>start</span><span class="p" data-group-id="2638470828-2"
 >(</span><span class="bp"
 >_type</span><span class="p"
 >,</span><span class="w"
 > </span><span class="bp"
->_args</span><span class="p" data-group-id="9260267604-2"
+>_args</span><span class="p" data-group-id="2638470828-2"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="9260267604-3"
+> </span><span class="k" data-group-id="2638470828-3"
 >do</span><span class="w"
 >
     </span><span class="c1"
@@ -109,21 +109,21 @@
 >children</span><span class="w"
 > </span><span class="o"
 >=</span><span class="w"
-> </span><span class="p" data-group-id="9260267604-4"
+> </span><span class="p" data-group-id="2638470828-4"
 >[</span><span class="w"
 >
       </span><span class="n"
->supervisor</span><span class="p" data-group-id="9260267604-5"
+>supervisor</span><span class="p" data-group-id="2638470828-5"
 >(</span><span class="nc"
 >HelloWeb.Endpoint</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="9260267604-6"
->[</span><span class="p" data-group-id="9260267604-6"
->]</span><span class="p" data-group-id="9260267604-5"
+> </span><span class="p" data-group-id="2638470828-6"
+>[</span><span class="p" data-group-id="2638470828-6"
+>]</span><span class="p" data-group-id="2638470828-5"
 >)</span><span class="p"
 >,</span><span class="w"
 >
-    </span><span class="p" data-group-id="9260267604-4"
+    </span><span class="p" data-group-id="2638470828-4"
 >]</span><span class="w"
 >
 
@@ -131,7 +131,7 @@
 >opts</span><span class="w"
 > </span><span class="o"
 >=</span><span class="w"
-> </span><span class="p" data-group-id="9260267604-7"
+> </span><span class="p" data-group-id="2638470828-7"
 >[</span><span class="ss"
 >strategy</span><span
 >:</span><span class="w"
@@ -142,24 +142,24 @@
 >name</span><span
 >:</span><span class="w"
 > </span><span class="nc"
->Hello.Supervisor</span><span class="p" data-group-id="9260267604-7"
+>Hello.Supervisor</span><span class="p" data-group-id="2638470828-7"
 >]</span><span class="w"
 >
     </span><span class="nc"
 >Supervisor</span><span class="o"
 >.</span><span class="n"
->start_link</span><span class="p" data-group-id="9260267604-8"
+>start_link</span><span class="p" data-group-id="2638470828-8"
 >(</span><span class="n"
 >children</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->opts</span><span class="p" data-group-id="9260267604-8"
+>opts</span><span class="p" data-group-id="2638470828-8"
 >)</span><span class="w"
 >
-  </span><span class="k" data-group-id="9260267604-3"
+  </span><span class="k" data-group-id="2638470828-3"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="9260267604-1"
+</span><span class="k" data-group-id="2638470828-1"
 >end</span></code></pre>
 <h3 id="endpoint-contents" class="section-heading">
   <a href="#endpoint-contents" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -172,13 +172,13 @@
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Endpoint</span><span class="w"
-> </span><span class="k" data-group-id="1219415962-1"
+> </span><span class="k" data-group-id="2095482790-1"
 >do</span><span class="w"
 >
   </span><span class="n"
 >...</span><span class="w"
 >
-</span><span class="k" data-group-id="1219415962-1"
+</span><span class="k" data-group-id="2095482790-1"
 >end</span></code></pre>
 <p>The first call inside of our Endpoint module is the <code class="inline">use Phoenix.Endpoint</code> macro with the <code class="inline">otp_app</code>. The <code class="inline">otp_app</code> is used for the configuration. This defines several functions on the <code class="inline">HelloWeb.Endpoint</code> module, including the <code class="inline">start_link</code> function which is called in the supervision tree.</p>
 <pre><code class="nohighlight makeup"><span class="w"
@@ -240,7 +240,7 @@
 >if</span><span class="w"
 > </span><span class="n"
 >code_reloading?</span><span class="w"
-> </span><span class="k" data-group-id="6676625063-1"
+> </span><span class="k" data-group-id="5406773670-1"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -261,7 +261,7 @@
 > </span><span class="nc"
 >Phoenix.CodeReloader</span><span class="w"
 >
-  </span><span class="k" data-group-id="6676625063-1"
+  </span><span class="k" data-group-id="5406773670-1"
 >end</span></code></pre>
 <p><a href="https://hexdocs.pm/plug/Plug.RequestId.html">Plug.RequestId</a> generates a unique id for each request and <a href="https://hexdocs.pm/plug/Plug.Logger.html">Plug.Logger</a> logs the request path, status code and request time by default.</p>
 <pre><code class="nohighlight makeup"><span class="w"
@@ -312,24 +312,24 @@
 <pre><code class="nohighlight makeup"><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->init</span><span class="p" data-group-id="3866024379-1"
+>init</span><span class="p" data-group-id="6468356256-1"
 >(</span><span class="bp"
 >_key</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->config</span><span class="p" data-group-id="3866024379-1"
+>config</span><span class="p" data-group-id="6468356256-1"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="3866024379-2"
+> </span><span class="k" data-group-id="6468356256-2"
 >do</span><span class="w"
 >
   </span><span class="k"
 >if</span><span class="w"
 > </span><span class="n"
->config</span><span class="p" data-group-id="3866024379-3"
+>config</span><span class="p" data-group-id="6468356256-3"
 >[</span><span class="ss"
->:load_from_system_env</span><span class="p" data-group-id="3866024379-3"
+>:load_from_system_env</span><span class="p" data-group-id="6468356256-3"
 >]</span><span class="w"
-> </span><span class="k" data-group-id="3866024379-4"
+> </span><span class="k" data-group-id="6468356256-4"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -339,9 +339,9 @@
 > </span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="3866024379-5"
+>get_env</span><span class="p" data-group-id="6468356256-5"
 >(</span><span class="s"
->&quot;PORT&quot;</span><span class="p" data-group-id="3866024379-5"
+>&quot;PORT&quot;</span><span class="p" data-group-id="6468356256-5"
 >)</span><span class="w"
 > </span><span class="o"
 >||</span><span class="w"
@@ -350,21 +350,21 @@
 > </span><span class="s"
 >&quot;expected the PORT environment variable to be set&quot;</span><span class="w"
 >
-    </span><span class="p" data-group-id="3866024379-6"
+    </span><span class="p" data-group-id="6468356256-6"
 >{</span><span class="ss"
 >:ok</span><span class="p"
 >,</span><span class="w"
 > </span><span class="nc"
 >Keyword</span><span class="o"
 >.</span><span class="n"
->put</span><span class="p" data-group-id="3866024379-7"
+>put</span><span class="p" data-group-id="6468356256-7"
 >(</span><span class="n"
 >config</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
 >:http</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="3866024379-8"
+> </span><span class="p" data-group-id="6468356256-8"
 >[</span><span class="ss"
 >:inet6</span><span class="p"
 >,</span><span class="w"
@@ -372,26 +372,26 @@
 >port</span><span
 >:</span><span class="w"
 > </span><span class="n"
->port</span><span class="p" data-group-id="3866024379-8"
->]</span><span class="p" data-group-id="3866024379-7"
->)</span><span class="p" data-group-id="3866024379-6"
+>port</span><span class="p" data-group-id="6468356256-8"
+>]</span><span class="p" data-group-id="6468356256-7"
+>)</span><span class="p" data-group-id="6468356256-6"
 >}</span><span class="w"
 >
-  </span><span class="k" data-group-id="3866024379-4"
+  </span><span class="k" data-group-id="6468356256-4"
 >else</span><span class="w"
 >
-    </span><span class="p" data-group-id="3866024379-9"
+    </span><span class="p" data-group-id="6468356256-9"
 >{</span><span class="ss"
 >:ok</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->config</span><span class="p" data-group-id="3866024379-9"
+>config</span><span class="p" data-group-id="6468356256-9"
 >}</span><span class="w"
 >
-  </span><span class="k" data-group-id="3866024379-4"
+  </span><span class="k" data-group-id="6468356256-4"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="3866024379-2"
+</span><span class="k" data-group-id="6468356256-2"
 >end</span></code></pre>
 <p>Faults in the different parts of the supervision tree, such as the Ecto Repo, will not immediately impact the main application. The supervisor is therefore able to restart those processes separately after unexpected faults. It is also possible for an application to have multiple endpoints, each with its own supervision tree.</p>
 <p>There are many functions defined in the endpoint module for path helpers, channel subscriptions and broadcasts, instrumentation, and endpoint configuration. These are all covered in the <a href="Phoenix.Endpoint.html#module-endpoints-api">Endpoint API of the [<code class="inline">Phoenix.Endpoint</code>](Phoenix.Endpoint.html) docs</a>.</p>
@@ -428,29 +428,29 @@
   </span><span class="ss"
 >http</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9690622563-1"
+> </span><span class="p" data-group-id="8131303602-1"
 >[</span><span class="ss"
 >port</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9690622563-2"
+> </span><span class="p" data-group-id="8131303602-2"
 >{</span><span class="ss"
 >:system</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;PORT&quot;</span><span class="p" data-group-id="9690622563-2"
->}</span><span class="p" data-group-id="9690622563-1"
+>&quot;PORT&quot;</span><span class="p" data-group-id="8131303602-2"
+>}</span><span class="p" data-group-id="8131303602-1"
 >]</span><span class="p"
 >,</span><span class="w"
 >
   </span><span class="ss"
 >url</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9690622563-3"
+> </span><span class="p" data-group-id="8131303602-3"
 >[</span><span class="ss"
 >host</span><span
 >:</span><span class="w"
 > </span><span class="s"
->&quot;example.com&quot;</span><span class="p" data-group-id="9690622563-3"
+>&quot;example.com&quot;</span><span class="p" data-group-id="8131303602-3"
 >]</span><span class="p"
 >,</span><span class="w"
 >
@@ -464,7 +464,7 @@
   </span><span class="ss"
 >https</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="9690622563-4"
+> </span><span class="p" data-group-id="8131303602-4"
 >[</span><span class="ss"
 >port</span><span
 >:</span><span class="w"
@@ -485,9 +485,9 @@
 > </span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="9690622563-5"
+>get_env</span><span class="p" data-group-id="8131303602-5"
 >(</span><span class="s"
->&quot;SOME_APP_SSL_KEY_PATH&quot;</span><span class="p" data-group-id="9690622563-5"
+>&quot;SOME_APP_SSL_KEY_PATH&quot;</span><span class="p" data-group-id="8131303602-5"
 >)</span><span class="p"
 >,</span><span class="w"
 >
@@ -497,9 +497,9 @@
 > </span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="9690622563-6"
+>get_env</span><span class="p" data-group-id="8131303602-6"
 >(</span><span class="s"
->&quot;SOME_APP_SSL_CERT_PATH&quot;</span><span class="p" data-group-id="9690622563-6"
+>&quot;SOME_APP_SSL_CERT_PATH&quot;</span><span class="p" data-group-id="8131303602-6"
 >)</span><span class="p"
 >,</span><span class="w"
 >
@@ -509,14 +509,14 @@
 > </span><span class="nc"
 >System</span><span class="o"
 >.</span><span class="n"
->get_env</span><span class="p" data-group-id="9690622563-7"
+>get_env</span><span class="p" data-group-id="8131303602-7"
 >(</span><span class="s"
->&quot;INTERMEDIATE_CERTFILE_PATH&quot;</span><span class="p" data-group-id="9690622563-7"
+>&quot;INTERMEDIATE_CERTFILE_PATH&quot;</span><span class="p" data-group-id="8131303602-7"
 >)</span><span class="w"
 > </span><span class="c1"
 ># OPTIONAL Key for intermediate certificates</span><span class="w"
 >
-          </span><span class="p" data-group-id="9690622563-4"
+          </span><span class="p" data-group-id="8131303602-4"
 >]</span><span class="w"
 >
 </span></code></pre>
@@ -524,14 +524,14 @@
 <pre><code class="nohighlight makeup"><span class="nc"
 >Path</span><span class="o"
 >.</span><span class="n"
->expand</span><span class="p" data-group-id="3022534902-1"
+>expand</span><span class="p" data-group-id="9019616433-1"
 >(</span><span class="s"
 >&quot;../../../some/path/to/ssl/key.pem&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="err"
 >_</span><span class="err"
 >_</span><span class="nc"
->DIR__</span><span class="p" data-group-id="3022534902-1"
+>DIR__</span><span class="p" data-group-id="9019616433-1"
 >)</span></code></pre>
 <h3 id="force-ssl" class="section-heading">
   <a href="#force-ssl" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -551,14 +551,14 @@
   </span><span class="ss"
 >force_ssl</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="5288003122-1"
+> </span><span class="p" data-group-id="1319423824-1"
 >[</span><span class="ss"
 >rewrite_on</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="5288003122-2"
+> </span><span class="p" data-group-id="1319423824-2"
 >[</span><span class="ss"
->:x_forwarded_proto</span><span class="p" data-group-id="5288003122-2"
->]</span><span class="p" data-group-id="5288003122-1"
+>:x_forwarded_proto</span><span class="p" data-group-id="1319423824-2"
+>]</span><span class="p" data-group-id="1319423824-1"
 >]</span></code></pre>
 <p>To dynamically redirect to the <code class="inline">host</code> of the current request, set <code class="inline">:host</code> in the <code class="inline">:force_ssl</code> configuration to <code class="inline">nil</code>.</p>
 <pre><code class="nohighlight makeup"><span class="n"
@@ -573,20 +573,20 @@
   </span><span class="ss"
 >force_ssl</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="7914373525-1"
+> </span><span class="p" data-group-id="6384351379-1"
 >[</span><span class="ss"
 >rewrite_on</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="7914373525-2"
+> </span><span class="p" data-group-id="6384351379-2"
 >[</span><span class="ss"
->:x_forwarded_proto</span><span class="p" data-group-id="7914373525-2"
+>:x_forwarded_proto</span><span class="p" data-group-id="6384351379-2"
 >]</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
 >host</span><span
 >:</span><span class="w"
 > </span><span class="no"
->nil</span><span class="p" data-group-id="7914373525-1"
+>nil</span><span class="p" data-group-id="6384351379-1"
 >]</span></code></pre>
 <h3 id="releasing-with-exrm" class="section-heading">
   <a href="#releasing-with-exrm" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -598,27 +598,27 @@
 >def</span><span class="w"
 > </span><span class="nf"
 >application</span><span class="w"
-> </span><span class="k" data-group-id="4823107913-1"
+> </span><span class="k" data-group-id="7619673357-1"
 >do</span><span class="w"
 >
-  </span><span class="p" data-group-id="4823107913-2"
+  </span><span class="p" data-group-id="7619673357-2"
 >[</span><span class="ss"
 >mod</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="4823107913-3"
+> </span><span class="p" data-group-id="7619673357-3"
 >{</span><span class="nc"
 >MyApp</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="4823107913-4"
->[</span><span class="p" data-group-id="4823107913-4"
->]</span><span class="p" data-group-id="4823107913-3"
+> </span><span class="p" data-group-id="7619673357-4"
+>[</span><span class="p" data-group-id="7619673357-4"
+>]</span><span class="p" data-group-id="7619673357-3"
 >}</span><span class="p"
 >,</span><span class="w"
 >
    </span><span class="ss"
 >applications</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="4823107913-5"
+> </span><span class="p" data-group-id="7619673357-5"
 >[</span><span class="ss"
 >:phoenix</span><span class="p"
 >,</span><span class="w"
@@ -642,11 +642,11 @@
 >:postgrex</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:ssl</span><span class="p" data-group-id="4823107913-5"
->]</span><span class="p" data-group-id="4823107913-2"
+>:ssl</span><span class="p" data-group-id="7619673357-5"
+>]</span><span class="p" data-group-id="7619673357-2"
 >]</span><span class="w"
 >
-</span><span class="k" data-group-id="4823107913-1"
+</span><span class="k" data-group-id="7619673357-1"
 >end</span></code></pre>
 <p>Or else you might run into errors:</p>
 <pre><code class="">** (MatchError) no match of right hand side value: {:error, {:ssl, {'no such file or directory', 'ssl.app'}}}</code></pre>

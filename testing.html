@@ -116,7 +116,7 @@ Randomized with seed 652656</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.PageControllerTest</span><span class="w"
-> </span><span class="k" data-group-id="4383616736-1"
+> </span><span class="k" data-group-id="2951665767-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -130,14 +130,14 @@ Randomized with seed 652656</code></pre>
 > </span><span class="s"
 >&quot;GET /&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="4383616736-2"
+> </span><span class="p" data-group-id="2951665767-2"
 >%{</span><span class="ss"
 >conn</span><span
 >:</span><span class="w"
 > </span><span class="n"
->conn</span><span class="p" data-group-id="4383616736-2"
+>conn</span><span class="p" data-group-id="2951665767-2"
 >}</span><span class="w"
-> </span><span class="k" data-group-id="4383616736-3"
+> </span><span class="k" data-group-id="2951665767-3"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -155,22 +155,22 @@ Randomized with seed 652656</code></pre>
     </span><span class="n"
 >assert</span><span class="w"
 > </span><span class="n"
->html_response</span><span class="p" data-group-id="4383616736-4"
+>html_response</span><span class="p" data-group-id="2951665767-4"
 >(</span><span class="n"
 >conn</span><span class="p"
 >,</span><span class="w"
 > </span><span class="mi"
->200</span><span class="p" data-group-id="4383616736-4"
+>200</span><span class="p" data-group-id="2951665767-4"
 >)</span><span class="w"
 > </span><span class="o"
 >=~</span><span class="w"
 > </span><span class="s"
 >&quot;Welcome to Phoenix!&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="4383616736-3"
+  </span><span class="k" data-group-id="2951665767-3"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="4383616736-1"
+</span><span class="k" data-group-id="2951665767-1"
 >end</span></code></pre>
 <p>There are a couple of interesting things happening here.</p>
 <p>The <code class="inline">get/2</code> function gives us a connection struct set up as if it had been used for a get request to “/“. This saves us a considerable amount of tedious setup.</p>
@@ -180,7 +180,7 @@ Randomized with seed 652656</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.ErrorViewTest</span><span class="w"
-> </span><span class="k" data-group-id="6023512779-1"
+> </span><span class="k" data-group-id="4409513772-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -208,22 +208,22 @@ Randomized with seed 652656</code></pre>
 >test</span><span class="w"
 > </span><span class="s"
 >&quot;renders 404.html&quot;</span><span class="w"
-> </span><span class="k" data-group-id="6023512779-2"
+> </span><span class="k" data-group-id="4409513772-2"
 >do</span><span class="w"
 >
     </span><span class="n"
 >assert</span><span class="w"
 > </span><span class="n"
->render_to_string</span><span class="p" data-group-id="6023512779-3"
+>render_to_string</span><span class="p" data-group-id="4409513772-3"
 >(</span><span class="nc"
 >HelloWeb.ErrorView</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
 >&quot;404.html&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="6023512779-4"
->[</span><span class="p" data-group-id="6023512779-4"
->]</span><span class="p" data-group-id="6023512779-3"
+> </span><span class="p" data-group-id="4409513772-4"
+>[</span><span class="p" data-group-id="4409513772-4"
+>]</span><span class="p" data-group-id="4409513772-3"
 >)</span><span class="w"
 > </span><span class="o"
 >==</span><span class="w"
@@ -231,7 +231,7 @@ Randomized with seed 652656</code></pre>
            </span><span class="s"
 >&quot;Page not found&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="6023512779-2"
+  </span><span class="k" data-group-id="4409513772-2"
 >end</span><span class="w"
 >
 
@@ -239,22 +239,22 @@ Randomized with seed 652656</code></pre>
 >test</span><span class="w"
 > </span><span class="s"
 >&quot;render 500.html&quot;</span><span class="w"
-> </span><span class="k" data-group-id="6023512779-5"
+> </span><span class="k" data-group-id="4409513772-5"
 >do</span><span class="w"
 >
     </span><span class="n"
 >assert</span><span class="w"
 > </span><span class="n"
->render_to_string</span><span class="p" data-group-id="6023512779-6"
+>render_to_string</span><span class="p" data-group-id="4409513772-6"
 >(</span><span class="nc"
 >HelloWeb.ErrorView</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
 >&quot;500.html&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="6023512779-7"
->[</span><span class="p" data-group-id="6023512779-7"
->]</span><span class="p" data-group-id="6023512779-6"
+> </span><span class="p" data-group-id="4409513772-7"
+>[</span><span class="p" data-group-id="4409513772-7"
+>]</span><span class="p" data-group-id="4409513772-6"
 >)</span><span class="w"
 > </span><span class="o"
 >==</span><span class="w"
@@ -262,7 +262,7 @@ Randomized with seed 652656</code></pre>
            </span><span class="s"
 >&quot;Internal server error&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="6023512779-5"
+  </span><span class="k" data-group-id="4409513772-5"
 >end</span><span class="w"
 >
 
@@ -270,22 +270,22 @@ Randomized with seed 652656</code></pre>
 >test</span><span class="w"
 > </span><span class="s"
 >&quot;render any other&quot;</span><span class="w"
-> </span><span class="k" data-group-id="6023512779-8"
+> </span><span class="k" data-group-id="4409513772-8"
 >do</span><span class="w"
 >
     </span><span class="n"
 >assert</span><span class="w"
 > </span><span class="n"
->render_to_string</span><span class="p" data-group-id="6023512779-9"
+>render_to_string</span><span class="p" data-group-id="4409513772-9"
 >(</span><span class="nc"
 >HelloWeb.ErrorView</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
 >&quot;505.html&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="6023512779-10"
->[</span><span class="p" data-group-id="6023512779-10"
->]</span><span class="p" data-group-id="6023512779-9"
+> </span><span class="p" data-group-id="4409513772-10"
+>[</span><span class="p" data-group-id="4409513772-10"
+>]</span><span class="p" data-group-id="4409513772-9"
 >)</span><span class="w"
 > </span><span class="o"
 >==</span><span class="w"
@@ -293,10 +293,10 @@ Randomized with seed 652656</code></pre>
            </span><span class="s"
 >&quot;Internal server error&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="6023512779-8"
+  </span><span class="k" data-group-id="4409513772-8"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="6023512779-1"
+</span><span class="k" data-group-id="4409513772-1"
 >end</span></code></pre>
 <p><code class="inline">HelloWeb.ErrorViewTest</code> sets <code class="inline">async: true</code> which means that each individual test will run in parallel, greatly speeding up the test run. This works because none of the tests access any resources which share state, such as a database. If we set <code class="inline">async: true</code> for a test case which does access a database, different test processes might modify the same data, corrupting the test results.</p>
 <p>It also imports <a href="Phoenix.View.html"><code class="inline">Phoenix.View</code></a> in order to use the <code class="inline">render_to_string/3</code> function. With that, all the assertions can be simple string equality tests.</p>
@@ -305,7 +305,7 @@ Randomized with seed 652656</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.PageViewTest</span><span class="w"
-> </span><span class="k" data-group-id="5372134329-1"
+> </span><span class="k" data-group-id="5255970211-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -319,7 +319,7 @@ Randomized with seed 652656</code></pre>
 > </span><span class="no"
 >true</span><span class="w"
 >
-</span><span class="k" data-group-id="5372134329-1"
+</span><span class="k" data-group-id="5255970211-1"
 >end</span></code></pre>
 <p>Let’s also take a look at the support and helper files Phoenix provides us.</p>
 <p>The default test helper file, <code class="inline">test/test_helper.exs</code>, creates and migrates our test database for us. It also starts a transaction for each test to run in. This will “clean” the database by rolling back the transaction as each test completes.</p>
@@ -333,12 +333,12 @@ Randomized with seed 652656</code></pre>
 </span><span class="nc"
 >Ecto.Adapters.SQL.Sandbox</span><span class="o"
 >.</span><span class="n"
->mode</span><span class="p" data-group-id="9435141218-1"
+>mode</span><span class="p" data-group-id="4639324699-1"
 >(</span><span class="nc"
 >Hello.Repo</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:manual</span><span class="p" data-group-id="9435141218-1"
+>:manual</span><span class="p" data-group-id="4639324699-1"
 >)</span></code></pre>
 <p>The files in <code class="inline">test/support</code> are there to help us get our modules into a testable state. They provide convenience functions for tasks like setting up a connection struct and finding errors on an Ecto changeset. We’ll take a closer look at them in action throughout the rest of the testing guides.</p>
 <h3 id="running-tests" class="section-heading">
@@ -396,7 +396,7 @@ Randomized with seed 288117</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.ErrorViewTest</span><span class="w"
-> </span><span class="k" data-group-id="3799453759-1"
+> </span><span class="k" data-group-id="7909438906-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -419,14 +419,14 @@ Randomized with seed 288117</code></pre>
   </span><span class="n"
 >...</span><span class="w"
 >
-</span><span class="k" data-group-id="3799453759-1"
+</span><span class="k" data-group-id="7909438906-1"
 >end</span></code></pre>
 <p>If we use only an atom for our module tag, ExUnit assumes that it has a value of <code class="inline">true</code>. We could also specify a different value if we wanted.</p>
 <pre><code class="nohighlight makeup"><span class="kd"
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.ErrorViewTest</span><span class="w"
-> </span><span class="k" data-group-id="6291839320-1"
+> </span><span class="k" data-group-id="6406713412-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -452,7 +452,7 @@ Randomized with seed 288117</code></pre>
   </span><span class="n"
 >...</span><span class="w"
 >
-</span><span class="k" data-group-id="6291839320-1"
+</span><span class="k" data-group-id="6406713412-1"
 >end</span></code></pre>
 <p>For now, let’s leave it as a simple atom <code class="inline">@moduletag :error_view_case</code>.</p>
 <p>We can run only the tests from the error view case by passing <code class="inline">--only error_view_case</code> into <code class="inline">mix test</code>.</p>
@@ -516,7 +516,7 @@ Randomized with seed 682868</code></pre>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.ErrorViewTest</span><span class="w"
-> </span><span class="k" data-group-id="4203370382-1"
+> </span><span class="k" data-group-id="3229318779-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -558,22 +558,22 @@ Randomized with seed 682868</code></pre>
 >test</span><span class="w"
 > </span><span class="s"
 >&quot;renders 404.html&quot;</span><span class="w"
-> </span><span class="k" data-group-id="4203370382-2"
+> </span><span class="k" data-group-id="3229318779-2"
 >do</span><span class="w"
 >
     </span><span class="n"
 >assert</span><span class="w"
 > </span><span class="n"
->render_to_string</span><span class="p" data-group-id="4203370382-3"
+>render_to_string</span><span class="p" data-group-id="3229318779-3"
 >(</span><span class="nc"
 >HelloWeb.ErrorView</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
 >&quot;404.html&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="4203370382-4"
->[</span><span class="p" data-group-id="4203370382-4"
->]</span><span class="p" data-group-id="4203370382-3"
+> </span><span class="p" data-group-id="3229318779-4"
+>[</span><span class="p" data-group-id="3229318779-4"
+>]</span><span class="p" data-group-id="3229318779-3"
 >)</span><span class="w"
 > </span><span class="o"
 >==</span><span class="w"
@@ -581,7 +581,7 @@ Randomized with seed 682868</code></pre>
            </span><span class="s"
 >&quot;Page not found&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="4203370382-2"
+  </span><span class="k" data-group-id="3229318779-2"
 >end</span><span class="w"
 >
 
@@ -597,22 +597,22 @@ Randomized with seed 682868</code></pre>
 >test</span><span class="w"
 > </span><span class="s"
 >&quot;render 500.html&quot;</span><span class="w"
-> </span><span class="k" data-group-id="4203370382-5"
+> </span><span class="k" data-group-id="3229318779-5"
 >do</span><span class="w"
 >
     </span><span class="n"
 >assert</span><span class="w"
 > </span><span class="n"
->render_to_string</span><span class="p" data-group-id="4203370382-6"
+>render_to_string</span><span class="p" data-group-id="3229318779-6"
 >(</span><span class="nc"
 >HelloWeb.ErrorView</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
 >&quot;500.html&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="4203370382-7"
->[</span><span class="p" data-group-id="4203370382-7"
->]</span><span class="p" data-group-id="4203370382-6"
+> </span><span class="p" data-group-id="3229318779-7"
+>[</span><span class="p" data-group-id="3229318779-7"
+>]</span><span class="p" data-group-id="3229318779-6"
 >)</span><span class="w"
 > </span><span class="o"
 >==</span><span class="w"
@@ -620,13 +620,13 @@ Randomized with seed 682868</code></pre>
            </span><span class="s"
 >&quot;Server internal error&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="4203370382-5"
+  </span><span class="k" data-group-id="3229318779-5"
 >end</span><span class="w"
 >
   </span><span class="n"
 >...</span><span class="w"
 >
-</span><span class="k" data-group-id="4203370382-1"
+</span><span class="k" data-group-id="3229318779-1"
 >end</span></code></pre>
 <p>If we would like to run only tests tagged as <code class="inline">individual_test</code>, regardless of their value, this will work.</p>
 <pre><code class="console">$ mix test --only individual_test
@@ -693,29 +693,29 @@ Randomized with seed 61472</code></pre>
 </span><span class="nc"
 >Ecto.Adapters.SQL.Sandbox</span><span class="o"
 >.</span><span class="n"
->mode</span><span class="p" data-group-id="4784212831-1"
+>mode</span><span class="p" data-group-id="7853836227-1"
 >(</span><span class="nc"
 >Hello.Repo</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:manual</span><span class="p" data-group-id="4784212831-1"
+>:manual</span><span class="p" data-group-id="7853836227-1"
 >)</span><span class="w"
 >
 
 </span><span class="nc"
 >ExUnit</span><span class="o"
 >.</span><span class="n"
->configure</span><span class="p" data-group-id="4784212831-2"
+>configure</span><span class="p" data-group-id="7853836227-2"
 >(</span><span class="ss"
 >exclude</span><span
 >:</span><span class="w"
-> </span><span class="p" data-group-id="4784212831-3"
+> </span><span class="p" data-group-id="7853836227-3"
 >[</span><span class="ss"
 >error_view_case</span><span
 >:</span><span class="w"
 > </span><span class="no"
->true</span><span class="p" data-group-id="4784212831-3"
->]</span><span class="p" data-group-id="4784212831-2"
+>true</span><span class="p" data-group-id="7853836227-3"
+>]</span><span class="p" data-group-id="7853836227-2"
 >)</span></code></pre>
 <p>Now when we run <code class="inline">mix test</code>, it only runs one spec from our <code class="inline">page_controller_test.exs</code>.</p>
 <pre><code class="console">$ mix test
@@ -793,7 +793,7 @@ Remember to update your repository by running migrations:
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="0820934251-1"
+> </span><span class="k" data-group-id="0406922098-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -816,7 +816,7 @@ Remember to update your repository by running migrations:
 >,</span><span class="w"
 > </span><span class="nc"
 >Hello</span><span class="w"
-> </span><span class="k" data-group-id="0820934251-2"
+> </span><span class="k" data-group-id="0406922098-2"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -846,7 +846,7 @@ Remember to update your repository by running migrations:
 > </span><span class="nc"
 >UserController</span><span class="w"
 >
-  </span><span class="k" data-group-id="0820934251-2"
+  </span><span class="k" data-group-id="0406922098-2"
 >end</span><span class="w"
 >
 
@@ -862,7 +862,7 @@ Remember to update your repository by running migrations:
   </span><span class="c1"
 ># end</span><span class="w"
 >
-</span><span class="k" data-group-id="0820934251-1"
+</span><span class="k" data-group-id="0406922098-1"
 >end</span></code></pre>
 <p>When we run <code class="inline">mix test</code> again, we see that we already have twenty tests!</p>
 <pre><code class="console">$ mix test
