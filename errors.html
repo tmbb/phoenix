@@ -8,7 +8,7 @@
     <title>Custom Errors – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
+    <script src="dist/sidebar_items-4b89e9c553.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -83,7 +83,7 @@
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >Hello.ErrorView</span><span class="w"
-> </span><span class="k" data-group-id="7628983667-1"
+> </span><span class="k" data-group-id="3435146207-1"
 >do</span><span class="w"
 >
   </span><span class="kn"
@@ -98,40 +98,40 @@
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->render</span><span class="p" data-group-id="7628983667-2"
+>render</span><span class="p" data-group-id="3435146207-2"
 >(</span><span class="s"
 >&quot;404.html&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="bp"
->_assigns</span><span class="p" data-group-id="7628983667-2"
+>_assigns</span><span class="p" data-group-id="3435146207-2"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="7628983667-3"
+> </span><span class="k" data-group-id="3435146207-3"
 >do</span><span class="w"
 >
     </span><span class="s"
 >&quot;Page not found&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="7628983667-3"
+  </span><span class="k" data-group-id="3435146207-3"
 >end</span><span class="w"
 >
 
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->render</span><span class="p" data-group-id="7628983667-4"
+>render</span><span class="p" data-group-id="3435146207-4"
 >(</span><span class="s"
 >&quot;500.html&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="bp"
->_assigns</span><span class="p" data-group-id="7628983667-4"
+>_assigns</span><span class="p" data-group-id="3435146207-4"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="7628983667-5"
+> </span><span class="k" data-group-id="3435146207-5"
 >do</span><span class="w"
 >
     </span><span class="s"
 >&quot;Server internal error&quot;</span><span class="w"
 >
-  </span><span class="k" data-group-id="7628983667-5"
+  </span><span class="k" data-group-id="3435146207-5"
 >end</span><span class="w"
 >
 
@@ -144,14 +144,14 @@
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->template_not_found</span><span class="p" data-group-id="7628983667-6"
+>template_not_found</span><span class="p" data-group-id="3435146207-6"
 >(</span><span class="bp"
 >_template</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->assigns</span><span class="p" data-group-id="7628983667-6"
+>assigns</span><span class="p" data-group-id="3435146207-6"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="7628983667-7"
+> </span><span class="k" data-group-id="3435146207-7"
 >do</span><span class="w"
 >
     </span><span class="n"
@@ -162,10 +162,10 @@
 > </span><span class="n"
 >assigns</span><span class="w"
 >
-  </span><span class="k" data-group-id="7628983667-7"
+  </span><span class="k" data-group-id="3435146207-7"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="7628983667-1"
+</span><span class="k" data-group-id="3435146207-1"
 >end</span></code></pre>
 <blockquote><p>NOTE: In the development environment, this behavior will be overridden. Instead, we will get a really great debugging page. In order to see the <code class="inline">ErrorView</code> in action, we’ll need to set <code class="inline">debug_errors:</code> to <code class="inline">false</code> in <code class="inline">config/dev.exs</code>. The server must be restarted for the changes to become effective.</p>
 </blockquote>
@@ -181,12 +181,12 @@
   </span><span class="ss"
 >http</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="2625336021-1"
+> </span><span class="p" data-group-id="3321762695-1"
 >[</span><span class="ss"
 >port</span><span class="p"
 >:</span><span class="w"
 > </span><span class="mi"
->4000</span><span class="p" data-group-id="2625336021-1"
+>4000</span><span class="p" data-group-id="3321762695-1"
 >]</span><span class="p"
 >,</span><span class="w"
 >
@@ -214,17 +214,17 @@
   </span><span class="ss"
 >watchers</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="2625336021-2"
+> </span><span class="p" data-group-id="3321762695-2"
 >[</span><span class="ss"
 >node</span><span class="p"
 >:</span><span class="w"
-> </span><span class="p" data-group-id="2625336021-3"
+> </span><span class="p" data-group-id="3321762695-3"
 >[</span><span class="s"
 >&quot;node_modules/brunch/bin/brunch&quot;</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;watch&quot;</span><span class="p" data-group-id="2625336021-3"
->]</span><span class="p" data-group-id="2625336021-2"
+>&quot;watch&quot;</span><span class="p" data-group-id="3321762695-3"
+>]</span><span class="p" data-group-id="3321762695-2"
 >]</span></code></pre>
 <p>To learn more about custom error pages, please see <a href="views.html#the-errorview">The Error View</a> section of the View Guide.</p>
 <h4>Custom Errors</h4>
@@ -236,14 +236,14 @@
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >Phoenix.Router</span><span class="w"
-> </span><span class="k" data-group-id="2004857399-1"
+> </span><span class="k" data-group-id="2572684467-1"
 >do</span><span class="w"
 >
   </span><span class="kd"
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >NoRouteError</span><span class="w"
-> </span><span class="k" data-group-id="2004857399-2"
+> </span><span class="k" data-group-id="2572684467-2"
 >do</span><span class="w"
 >
     </span><span class="na"
@@ -283,11 +283,11 @@
     </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->exception</span><span class="p" data-group-id="2004857399-3"
+>exception</span><span class="p" data-group-id="2572684467-3"
 >(</span><span class="n"
->opts</span><span class="p" data-group-id="2004857399-3"
+>opts</span><span class="p" data-group-id="2572684467-3"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="2004857399-4"
+> </span><span class="k" data-group-id="2572684467-4"
 >do</span><span class="w"
 >
       </span><span class="n"
@@ -297,12 +297,12 @@
 > </span><span class="nc"
 >Keyword</span><span class="o"
 >.</span><span class="n"
->fetch!</span><span class="p" data-group-id="2004857399-5"
+>fetch!</span><span class="p" data-group-id="2572684467-5"
 >(</span><span class="n"
 >opts</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:conn</span><span class="p" data-group-id="2004857399-5"
+>:conn</span><span class="p" data-group-id="2572684467-5"
 >)</span><span class="w"
 >
       </span><span class="n"
@@ -312,12 +312,12 @@
 > </span><span class="nc"
 >Keyword</span><span class="o"
 >.</span><span class="n"
->fetch!</span><span class="p" data-group-id="2004857399-6"
+>fetch!</span><span class="p" data-group-id="2572684467-6"
 >(</span><span class="n"
 >opts</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:router</span><span class="p" data-group-id="2004857399-6"
+>:router</span><span class="p" data-group-id="2572684467-6"
 >)</span><span class="w"
 >
       </span><span class="n"
@@ -331,39 +331,39 @@
 > </span><span class="nc"
 >Enum</span><span class="o"
 >.</span><span class="n"
->join</span><span class="p" data-group-id="2004857399-7"
+>join</span><span class="p" data-group-id="2572684467-7"
 >(</span><span class="n"
 >conn</span><span class="o"
 >.</span><span class="n"
 >path_info</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="2004857399-7"
+>&quot;/&quot;</span><span class="p" data-group-id="2572684467-7"
 >)</span><span class="w"
 >
 
-      </span><span class="p" data-group-id="2004857399-8"
->%</span><span class="nc" data-group-id="2004857399-8"
->NoRouteError</span><span class="p" data-group-id="2004857399-8"
+      </span><span class="p" data-group-id="2572684467-8"
+>%</span><span class="nc" data-group-id="2572684467-8"
+>NoRouteError</span><span class="p" data-group-id="2572684467-8"
 >{</span><span class="ss"
 >message</span><span class="p"
 >:</span><span class="w"
 > </span><span class="s"
->&quot;no route found for </span><span class="si" data-group-id="2004857399-9"
+>&quot;no route found for </span><span class="si" data-group-id="2572684467-9"
 >#{</span><span class="n"
 >conn</span><span class="o"
 >.</span><span class="n"
->method</span><span class="si" data-group-id="2004857399-9"
+>method</span><span class="si" data-group-id="2572684467-9"
 >}</span><span class="s"
-> </span><span class="si" data-group-id="2004857399-10"
+> </span><span class="si" data-group-id="2572684467-10"
 >#{</span><span class="n"
->path</span><span class="si" data-group-id="2004857399-10"
+>path</span><span class="si" data-group-id="2572684467-10"
 >}</span><span class="s"
-> (</span><span class="si" data-group-id="2004857399-11"
+> (</span><span class="si" data-group-id="2572684467-11"
 >#{</span><span class="n"
 >inspect</span><span class="w"
 > </span><span class="n"
->router</span><span class="si" data-group-id="2004857399-11"
+>router</span><span class="si" data-group-id="2572684467-11"
 >}</span><span class="s"
 >)&quot;</span><span class="p"
 >,</span><span class="w"
@@ -378,13 +378,13 @@
 >router</span><span class="p"
 >:</span><span class="w"
 > </span><span class="n"
->router</span><span class="p" data-group-id="2004857399-8"
+>router</span><span class="p" data-group-id="2572684467-8"
 >}</span><span class="w"
 >
-    </span><span class="k" data-group-id="2004857399-4"
+    </span><span class="k" data-group-id="2572684467-4"
 >end</span><span class="w"
 >
-  </span><span class="k" data-group-id="2004857399-2"
+  </span><span class="k" data-group-id="2572684467-2"
 >end</span><span class="w"
 >
 </span><span class="o"
@@ -394,7 +394,7 @@
 > </span><span class="o"
 >.</span><span class="w"
 >
-</span><span class="k" data-group-id="2004857399-1"
+</span><span class="k" data-group-id="2572684467-1"
 >end</span></code></pre>
 <p>Plug provides a protocol called <code class="inline">Plug.Exception</code> specifically for adding a status to exception structs.</p>
 <p>If we wanted to supply a status of 404 for an <code class="inline">Ecto.NoResultsError</code>, we could do it by defining an implementation for the <code class="inline">Plug.Exception</code> protocol like this:</p>
@@ -408,15 +408,15 @@
 >:</span><span class="w"
 > </span><span class="nc"
 >Ecto.NoResultsError</span><span class="w"
-> </span><span class="k" data-group-id="1114087216-1"
+> </span><span class="k" data-group-id="5502044274-1"
 >do</span><span class="w"
 >
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->status</span><span class="p" data-group-id="1114087216-2"
+>status</span><span class="p" data-group-id="5502044274-2"
 >(</span><span class="bp"
->_exception</span><span class="p" data-group-id="1114087216-2"
+>_exception</span><span class="p" data-group-id="5502044274-2"
 >)</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
@@ -425,7 +425,7 @@
 > </span><span class="mi"
 >404</span><span class="w"
 >
-</span><span class="k" data-group-id="1114087216-1"
+</span><span class="k" data-group-id="5502044274-1"
 >end</span></code></pre>
 <p>Note that this is just an example: Phoenix <a href="https://github.com/phoenixframework/phoenix_ecto/blob/master/lib/phoenix_ecto/plug.ex">already does this</a> for <code class="inline">Ecto.NoResultsError</code>, so you don’t have to.</p>
 

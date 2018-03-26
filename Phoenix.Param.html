@@ -8,7 +8,7 @@
     <title>Phoenix.Param – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
+    <script src="dist/sidebar_items-4b89e9c553.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -91,7 +91,7 @@
 <p>This protocol is used by URL helpers and other parts of the
 Phoenix stack. For example, when you write:</p>
 <pre><code class="nohighlight makeup"><span class="n"
->user_path</span><span class="p" data-group-id="0047925714-1"
+>user_path</span><span class="p" data-group-id="9537263606-1"
 >(</span><span class="n"
 >conn</span><span class="p"
 >,</span><span class="w"
@@ -99,7 +99,7 @@ Phoenix stack. For example, when you write:</p>
 >:edit</span><span class="p"
 >,</span><span class="w"
 > </span><span class="na"
->@user</span><span class="p" data-group-id="0047925714-1"
+>@user</span><span class="p" data-group-id="9537263606-1"
 >)</span></code></pre>
 <p>Phoenix knows how to extract the <code class="inline">:id</code> from <code class="inline">@user</code> thanks
 to this protocol.</p>
@@ -120,7 +120,7 @@ derivable. For example:</p>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >User</span><span class="w"
-> </span><span class="k" data-group-id="7620121033-1"
+> </span><span class="k" data-group-id="0986148931-1"
 >do</span><span class="w"
 >
   </span><span class="na"
@@ -130,15 +130,15 @@ derivable. For example:</p>
 >
   </span><span class="kd"
 >defstruct</span><span class="w"
-> </span><span class="p" data-group-id="7620121033-2"
+> </span><span class="p" data-group-id="0986148931-2"
 >[</span><span class="ss"
 >:id</span><span class="p"
 >,</span><span class="w"
 > </span><span class="ss"
->:username</span><span class="p" data-group-id="7620121033-2"
+>:username</span><span class="p" data-group-id="0986148931-2"
 >]</span><span class="w"
 >
-</span><span class="k" data-group-id="7620121033-1"
+</span><span class="k" data-group-id="0986148931-1"
 >end</span></code></pre>
 <p>By default, the derived implementation will also use
 the <code class="inline">:id</code> key. In case the user does not contain an
@@ -147,12 +147,12 @@ the <code class="inline">:id</code> key. In case the user does not contain an
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >User</span><span class="w"
-> </span><span class="k" data-group-id="4186426160-1"
+> </span><span class="k" data-group-id="1339119721-1"
 >do</span><span class="w"
 >
   </span><span class="na"
 >@derive</span><span class="w"
-> </span><span class="p" data-group-id="4186426160-2"
+> </span><span class="p" data-group-id="1339119721-2"
 >{</span><span class="nc"
 >Phoenix.Param</span><span class="p"
 >,</span><span class="w"
@@ -160,24 +160,24 @@ the <code class="inline">:id</code> key. In case the user does not contain an
 >key</span><span class="p"
 >:</span><span class="w"
 > </span><span class="ss"
->:username</span><span class="p" data-group-id="4186426160-2"
+>:username</span><span class="p" data-group-id="1339119721-2"
 >}</span><span class="w"
 >
   </span><span class="kd"
 >defstruct</span><span class="w"
-> </span><span class="p" data-group-id="4186426160-3"
+> </span><span class="p" data-group-id="1339119721-3"
 >[</span><span class="ss"
->:username</span><span class="p" data-group-id="4186426160-3"
+>:username</span><span class="p" data-group-id="1339119721-3"
 >]</span><span class="w"
 >
-</span><span class="k" data-group-id="4186426160-1"
+</span><span class="k" data-group-id="1339119721-1"
 >end</span></code></pre>
 <p>will automatically use <code class="inline">:username</code> in URLs.</p>
 <p>When using Ecto, you must call <code class="inline">@derive</code> before
 your <code class="inline">schema</code> call:</p>
 <pre><code class="nohighlight makeup"><span class="na"
 >@derive</span><span class="w"
-> </span><span class="p" data-group-id="9499802281-1"
+> </span><span class="p" data-group-id="0240308032-1"
 >{</span><span class="nc"
 >Phoenix.Param</span><span class="p"
 >,</span><span class="w"
@@ -185,14 +185,14 @@ your <code class="inline">schema</code> call:</p>
 >key</span><span class="p"
 >:</span><span class="w"
 > </span><span class="ss"
->:username</span><span class="p" data-group-id="9499802281-1"
+>:username</span><span class="p" data-group-id="0240308032-1"
 >}</span><span class="w"
 >
 </span><span class="n"
 >schema</span><span class="w"
 > </span><span class="s"
 >&quot;users&quot;</span><span class="w"
-> </span><span class="k" data-group-id="9499802281-2"
+> </span><span class="k" data-group-id="0240308032-2"
 >do</span></code></pre>
 
         </section>

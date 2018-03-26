@@ -8,7 +8,7 @@
     <title>Testing Channels – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-ad66b3c94c.js"></script>
+    <script src="dist/sidebar_items-4b89e9c553.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -118,7 +118,7 @@ is imported every time it is <code class="inline">use</code>d. For example:</p>
 >defmodule</span><span class="w"
 > </span><span class="nc"
 >MyAppWeb.ChannelCase</span><span class="w"
-> </span><span class="k" data-group-id="3447769364-1"
+> </span><span class="k" data-group-id="8415759612-1"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -127,12 +127,12 @@ is imported every time it is <code class="inline">use</code>d. For example:</p>
 
   </span><span class="n"
 >using</span><span class="w"
-> </span><span class="k" data-group-id="3447769364-2"
+> </span><span class="k" data-group-id="8415759612-2"
 >do</span><span class="w"
 >
     </span><span class="k"
 >quote</span><span class="w"
-> </span><span class="k" data-group-id="3447769364-3"
+> </span><span class="k" data-group-id="8415759612-3"
 >do</span><span class="w"
 >
       </span><span class="n"
@@ -143,29 +143,29 @@ is imported every time it is <code class="inline">use</code>d. For example:</p>
 > </span><span class="nc"
 >MyAppWeb.ChannelCase</span><span class="w"
 >
-    </span><span class="k" data-group-id="3447769364-3"
+    </span><span class="k" data-group-id="8415759612-3"
 >end</span><span class="w"
 >
-  </span><span class="k" data-group-id="3447769364-2"
+  </span><span class="k" data-group-id="8415759612-2"
 >end</span><span class="w"
 >
 
   </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->a_channel_test_helper</span><span class="p" data-group-id="3447769364-4"
->(</span><span class="p" data-group-id="3447769364-4"
+>a_channel_test_helper</span><span class="p" data-group-id="8415759612-4"
+>(</span><span class="p" data-group-id="8415759612-4"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="3447769364-5"
+> </span><span class="k" data-group-id="8415759612-5"
 >do</span><span class="w"
 >
     </span><span class="c1"
 ># code here</span><span class="w"
 >
-  </span><span class="k" data-group-id="3447769364-5"
+  </span><span class="k" data-group-id="8415759612-5"
 >end</span><span class="w"
 >
-</span><span class="k" data-group-id="3447769364-1"
+</span><span class="k" data-group-id="8415759612-1"
 >end</span></code></pre>
 <h4>The Setup Block</h4>
 <p>Now that we know that Phoenix provides with a custom Test Case just for channels and what it
@@ -173,10 +173,10 @@ provides, we can move on to understanding the rest of <code class="inline">test/
 <p>First off, is the setup block:</p>
 <pre><code class="nohighlight makeup"><span class="n"
 >setup</span><span class="w"
-> </span><span class="k" data-group-id="0552257813-1"
+> </span><span class="k" data-group-id="9284608427-1"
 >do</span><span class="w"
 >
-  </span><span class="p" data-group-id="0552257813-2"
+  </span><span class="p" data-group-id="9284608427-2"
 >{</span><span class="ss"
 >:ok</span><span class="p"
 >,</span><span class="w"
@@ -184,38 +184,38 @@ provides, we can move on to understanding the rest of <code class="inline">test/
 >_</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="0552257813-2"
+>socket</span><span class="p" data-group-id="9284608427-2"
 >}</span><span class="w"
 > </span><span class="o"
 >=</span><span class="w"
 >
     </span><span class="n"
->socket</span><span class="p" data-group-id="0552257813-3"
+>socket</span><span class="p" data-group-id="9284608427-3"
 >(</span><span class="s"
 >&quot;user_id&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="0552257813-4"
+> </span><span class="p" data-group-id="9284608427-4"
 >%{</span><span class="ss"
 >some</span><span class="p"
 >:</span><span class="w"
 > </span><span class="ss"
->:assign</span><span class="p" data-group-id="0552257813-4"
->}</span><span class="p" data-group-id="0552257813-3"
+>:assign</span><span class="p" data-group-id="9284608427-4"
+>}</span><span class="p" data-group-id="9284608427-3"
 >)</span><span class="w"
 >
     </span><span class="o"
 >|&gt;</span><span class="w"
 > </span><span class="n"
->subscribe_and_join</span><span class="p" data-group-id="0552257813-5"
+>subscribe_and_join</span><span class="p" data-group-id="9284608427-5"
 >(</span><span class="nc"
 >RoomChannel</span><span class="p"
 >,</span><span class="w"
 > </span><span class="s"
->&quot;room:lobby&quot;</span><span class="p" data-group-id="0552257813-5"
+>&quot;room:lobby&quot;</span><span class="p" data-group-id="9284608427-5"
 >)</span><span class="w"
 >
 
-  </span><span class="p" data-group-id="0552257813-6"
+  </span><span class="p" data-group-id="9284608427-6"
 >{</span><span class="ss"
 >:ok</span><span class="p"
 >,</span><span class="w"
@@ -223,10 +223,10 @@ provides, we can move on to understanding the rest of <code class="inline">test/
 >socket</span><span class="p"
 >:</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="0552257813-6"
+>socket</span><span class="p" data-group-id="9284608427-6"
 >}</span><span class="w"
 >
-</span><span class="k" data-group-id="0552257813-1"
+</span><span class="k" data-group-id="9284608427-1"
 >end</span></code></pre>
 <p>The <code class="inline">setup/2</code> macro comes with <a href="https://hexdocs.pm/ex_unit/ExUnit.html"><code class="inline">ExUnit</code></a>which comes out of the box with Elixir. The <code class="inline">do</code> block
 passed to <code class="inline">setup/2</code> will get run for each of our tests. Note the line <code class="inline">{:ok, socket: socket}</code>.
@@ -243,14 +243,14 @@ can send and receive events on that channel.</p>
 > </span><span class="s"
 >&quot;ping replies with status ok&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="6222477828-1"
+> </span><span class="p" data-group-id="8082634977-1"
 >%{</span><span class="ss"
 >socket</span><span class="p"
 >:</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="6222477828-1"
+>socket</span><span class="p" data-group-id="8082634977-1"
 >}</span><span class="w"
-> </span><span class="k" data-group-id="6222477828-2"
+> </span><span class="k" data-group-id="8082634977-2"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -265,14 +265,14 @@ can send and receive events on that channel.</p>
 > </span><span class="s"
 >&quot;ping&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="6222477828-3"
+> </span><span class="p" data-group-id="8082634977-3"
 >%{</span><span class="s"
 >&quot;hello&quot;</span><span class="w"
 > </span><span class="o"
 >=</span><span class="o"
 >&gt;</span><span class="w"
 > </span><span class="s"
->&quot;there&quot;</span><span class="p" data-group-id="6222477828-3"
+>&quot;there&quot;</span><span class="p" data-group-id="8082634977-3"
 >}</span><span class="w"
 >
   </span><span class="n"
@@ -283,17 +283,17 @@ can send and receive events on that channel.</p>
 > </span><span class="ss"
 >:ok</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="6222477828-4"
+> </span><span class="p" data-group-id="8082634977-4"
 >%{</span><span class="s"
 >&quot;hello&quot;</span><span class="w"
 > </span><span class="o"
 >=</span><span class="o"
 >&gt;</span><span class="w"
 > </span><span class="s"
->&quot;there&quot;</span><span class="p" data-group-id="6222477828-4"
+>&quot;there&quot;</span><span class="p" data-group-id="8082634977-4"
 >}</span><span class="w"
 >
-</span><span class="k" data-group-id="6222477828-2"
+</span><span class="k" data-group-id="8082634977-2"
 >end</span></code></pre>
 <p>This tests the following code in our <code class="inline">MyAppWeb.RoomChannel</code>:</p>
 <pre><code class="nohighlight makeup"><span class="c1"
@@ -305,7 +305,7 @@ can send and receive events on that channel.</p>
 </span><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->handle_in</span><span class="p" data-group-id="8557808307-1"
+>handle_in</span><span class="p" data-group-id="4128794694-1"
 >(</span><span class="s"
 >&quot;ping&quot;</span><span class="p"
 >,</span><span class="w"
@@ -313,28 +313,28 @@ can send and receive events on that channel.</p>
 >payload</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="8557808307-1"
+>socket</span><span class="p" data-group-id="4128794694-1"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="8557808307-2"
+> </span><span class="k" data-group-id="4128794694-2"
 >do</span><span class="w"
 >
-  </span><span class="p" data-group-id="8557808307-3"
+  </span><span class="p" data-group-id="4128794694-3"
 >{</span><span class="ss"
 >:reply</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="8557808307-4"
+> </span><span class="p" data-group-id="4128794694-4"
 >{</span><span class="ss"
 >:ok</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->payload</span><span class="p" data-group-id="8557808307-4"
+>payload</span><span class="p" data-group-id="4128794694-4"
 >}</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="8557808307-3"
+>socket</span><span class="p" data-group-id="4128794694-3"
 >}</span><span class="w"
 >
-</span><span class="k" data-group-id="8557808307-2"
+</span><span class="k" data-group-id="4128794694-2"
 >end</span></code></pre>
 <p>As is stated in the comment above, we see that a <code class="inline">reply</code> is synchronous since it mimics the request/
 response pattern we are familiar with in HTTP. This synchronous reply is best used when we only
@@ -357,7 +357,7 @@ current topic. This common pattern is simple to express in Phoenix and is one of
 <pre><code class="nohighlight makeup"><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->handle_in</span><span class="p" data-group-id="4121490600-1"
+>handle_in</span><span class="p" data-group-id="3748283534-1"
 >(</span><span class="s"
 >&quot;shout&quot;</span><span class="p"
 >,</span><span class="w"
@@ -365,9 +365,9 @@ current topic. This common pattern is simple to express in Phoenix and is one of
 >payload</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="4121490600-1"
+>socket</span><span class="p" data-group-id="3748283534-1"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="4121490600-2"
+> </span><span class="k" data-group-id="3748283534-2"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -381,15 +381,15 @@ current topic. This common pattern is simple to express in Phoenix and is one of
 > </span><span class="n"
 >payload</span><span class="w"
 >
-  </span><span class="p" data-group-id="4121490600-3"
+  </span><span class="p" data-group-id="3748283534-3"
 >{</span><span class="ss"
 >:noreply</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="4121490600-3"
+>socket</span><span class="p" data-group-id="3748283534-3"
 >}</span><span class="w"
 >
-</span><span class="k" data-group-id="4121490600-2"
+</span><span class="k" data-group-id="3748283534-2"
 >end</span></code></pre>
 <p>Its corresponding test looks like:</p>
 <pre><code class="nohighlight makeup"><span class="n"
@@ -397,14 +397,14 @@ current topic. This common pattern is simple to express in Phoenix and is one of
 > </span><span class="s"
 >&quot;shout broadcasts to room:lobby&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="3373528435-1"
+> </span><span class="p" data-group-id="9550957656-1"
 >%{</span><span class="ss"
 >socket</span><span class="p"
 >:</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="3373528435-1"
+>socket</span><span class="p" data-group-id="9550957656-1"
 >}</span><span class="w"
-> </span><span class="k" data-group-id="3373528435-2"
+> </span><span class="k" data-group-id="9550957656-2"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -415,14 +415,14 @@ current topic. This common pattern is simple to express in Phoenix and is one of
 > </span><span class="s"
 >&quot;shout&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="3373528435-3"
+> </span><span class="p" data-group-id="9550957656-3"
 >%{</span><span class="s"
 >&quot;hello&quot;</span><span class="w"
 > </span><span class="o"
 >=</span><span class="o"
 >&gt;</span><span class="w"
 > </span><span class="s"
->&quot;all&quot;</span><span class="p" data-group-id="3373528435-3"
+>&quot;all&quot;</span><span class="p" data-group-id="9550957656-3"
 >}</span><span class="w"
 >
   </span><span class="n"
@@ -430,17 +430,17 @@ current topic. This common pattern is simple to express in Phoenix and is one of
 > </span><span class="s"
 >&quot;shout&quot;</span><span class="p"
 >,</span><span class="w"
-> </span><span class="p" data-group-id="3373528435-4"
+> </span><span class="p" data-group-id="9550957656-4"
 >%{</span><span class="s"
 >&quot;hello&quot;</span><span class="w"
 > </span><span class="o"
 >=</span><span class="o"
 >&gt;</span><span class="w"
 > </span><span class="s"
->&quot;all&quot;</span><span class="p" data-group-id="3373528435-4"
+>&quot;all&quot;</span><span class="p" data-group-id="9550957656-4"
 >}</span><span class="w"
 >
-</span><span class="k" data-group-id="3373528435-2"
+</span><span class="k" data-group-id="9550957656-2"
 >end</span></code></pre>
 <p>We notice that we access the same <code class="inline">socket</code> that is from the setup block. How handy! We also do the
 same <code class="inline">push/3</code> as we did in the synchronous reply test. So we <code class="inline">push</code> the <code class="inline">&quot;shout&quot;</code> event with the
@@ -455,7 +455,7 @@ to the client. Unlike the previous tests discussed, we are indirectly testing th
 <pre><code class="nohighlight makeup"><span class="kd"
 >def</span><span class="w"
 > </span><span class="nf"
->handle_out</span><span class="p" data-group-id="6963411637-1"
+>handle_out</span><span class="p" data-group-id="6678993792-1"
 >(</span><span class="n"
 >event</span><span class="p"
 >,</span><span class="w"
@@ -463,9 +463,9 @@ to the client. Unlike the previous tests discussed, we are indirectly testing th
 >payload</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="6963411637-1"
+>socket</span><span class="p" data-group-id="6678993792-1"
 >)</span><span class="w"
-> </span><span class="k" data-group-id="6963411637-2"
+> </span><span class="k" data-group-id="6678993792-2"
 >do</span><span class="w"
 >
   </span><span class="n"
@@ -479,15 +479,15 @@ to the client. Unlike the previous tests discussed, we are indirectly testing th
 > </span><span class="n"
 >payload</span><span class="w"
 >
-  </span><span class="p" data-group-id="6963411637-3"
+  </span><span class="p" data-group-id="6678993792-3"
 >{</span><span class="ss"
 >:noreply</span><span class="p"
 >,</span><span class="w"
 > </span><span class="n"
->socket</span><span class="p" data-group-id="6963411637-3"
+>socket</span><span class="p" data-group-id="6678993792-3"
 >}</span><span class="w"
 >
-</span><span class="k" data-group-id="6963411637-2"
+</span><span class="k" data-group-id="6678993792-2"
 >end</span></code></pre>
 <p>Since the <code class="inline">handle_out/3</code> event is only triggered when we call <code class="inline">broadcast/3</code> from our channel,
 we will need to emulate that in our test. We do that by calling <code class="inline">broadcast_from</code> or
