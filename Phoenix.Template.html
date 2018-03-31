@@ -8,7 +8,7 @@
     <title>Phoenix.Template – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-4b89e9c553.js"></script>
+    <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -94,61 +94,15 @@ directory, typically “web/templates”.</p>
 <p>This module provides conveniences for reading all files from a
 particular directory and embedding them into a single module.
 Imagine you have a directory with templates:</p>
-<pre><code class="nohighlight makeup"><span class="c1"
-># templates/foo.html.eex</span><span class="w"
->
-</span><span class="nc"
->Hello</span><span class="w"
-> </span><span class="o"
->&lt;</span><span class="p"
->%</span><span class="o"
->=</span><span class="w"
-> </span><span class="na"
->@name</span><span class="w"
-> </span><span class="p"
->%</span><span class="o"
->&gt;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="c1"># templates/foo.html.eex</span><span class="w">
+</span><span class="nc">Hello</span><span class="w"> </span><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="na">@name</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span><span class="w">
 
-</span><span class="c1"
-># templates.ex</span><span class="w"
->
-</span><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->Templates</span><span class="w"
-> </span><span class="k" data-group-id="3549737804-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->root</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;templates&quot;</span><span class="w"
->
-</span><span class="k" data-group-id="3549737804-1"
->end</span></code></pre>
+</span><span class="c1"># templates.ex</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Templates</span><span class="w"> </span><span class="k" data-group-id="5392762798-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="p">,</span><span class="w"> </span><span class="ss">root</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;templates&quot;</span><span class="w">
+</span><span class="k" data-group-id="5392762798-1">end</span></code></pre>
 <p>Now the template foo can be directly rendered with:</p>
-<pre><code class="nohighlight makeup"><span class="nc"
->Templates</span><span class="o"
->.</span><span class="n"
->render</span><span class="p" data-group-id="1867934876-1"
->(</span><span class="s"
->&quot;foo.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="1867934876-2"
->%{</span><span class="ss"
->name</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;John Doe&quot;</span><span class="p" data-group-id="1867934876-2"
->}</span><span class="p" data-group-id="1867934876-1"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc">Templates</span><span class="o">.</span><span class="n">render</span><span class="p" data-group-id="6405699957-1">(</span><span class="s">&quot;foo.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6405699957-2">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;John Doe&quot;</span><span class="p" data-group-id="6405699957-2">}</span><span class="p" data-group-id="6405699957-1">)</span></code></pre>
 <h2 id="module-options" class="section-heading">
   <a href="#module-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Options
@@ -170,86 +124,17 @@ when finding templates. Default <code class="inline">&quot;*&quot;</code>
 to compose the assigns for the template before rendering. In such
 cases, you can render the template directly by calling the generated
 private function <code class="inline">render_template/2</code>. For example:</p>
-<pre><code class="nohighlight makeup"><span class="c1"
-># templates/foo.html.eex</span><span class="w"
->
-</span><span class="nc"
->Hello</span><span class="w"
-> </span><span class="o"
->&lt;</span><span class="p"
->%</span><span class="o"
->=</span><span class="w"
-> </span><span class="na"
->@name</span><span class="w"
-> </span><span class="p"
->%</span><span class="o"
->&gt;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="c1"># templates/foo.html.eex</span><span class="w">
+</span><span class="nc">Hello</span><span class="w"> </span><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="na">@name</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span><span class="w">
 
-</span><span class="c1"
-># templates.ex</span><span class="w"
->
-</span><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->Templates</span><span class="w"
-> </span><span class="k" data-group-id="2722982362-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->root</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;templates&quot;</span><span class="w"
->
+</span><span class="c1"># templates.ex</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Templates</span><span class="w"> </span><span class="k" data-group-id="6290362413-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="p">,</span><span class="w"> </span><span class="ss">root</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;templates&quot;</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="2722982362-2"
->(</span><span class="s"
->&quot;foo.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="2722982362-3"
->%{</span><span class="ss"
->name</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->name</span><span class="p" data-group-id="2722982362-3"
->}</span><span class="p" data-group-id="2722982362-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2722982362-4"
->do</span><span class="w"
->
-    </span><span class="n"
->render_template</span><span class="p" data-group-id="2722982362-5"
->(</span><span class="s"
->&quot;foo.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="2722982362-6"
->%{</span><span class="ss"
->name</span><span class="p"
->:</span><span class="w"
-> </span><span class="nc"
->String</span><span class="o"
->.</span><span class="n"
->upcase</span><span class="p" data-group-id="2722982362-7"
->(</span><span class="n"
->name</span><span class="p" data-group-id="2722982362-7"
->)</span><span class="p" data-group-id="2722982362-6"
->}</span><span class="p" data-group-id="2722982362-5"
->)</span><span class="w"
->
-  </span><span class="k" data-group-id="2722982362-4"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="2722982362-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="6290362413-2">(</span><span class="s">&quot;foo.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6290362413-3">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="n">name</span><span class="p" data-group-id="6290362413-3">}</span><span class="p" data-group-id="6290362413-2">)</span><span class="w"> </span><span class="k" data-group-id="6290362413-4">do</span><span class="w">
+    </span><span class="n">render_template</span><span class="p" data-group-id="6290362413-5">(</span><span class="s">&quot;foo.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6290362413-6">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="o">.</span><span class="n">upcase</span><span class="p" data-group-id="6290362413-7">(</span><span class="n">name</span><span class="p" data-group-id="6290362413-7">)</span><span class="p" data-group-id="6290362413-6">}</span><span class="p" data-group-id="6290362413-5">)</span><span class="w">
+  </span><span class="k" data-group-id="6290362413-4">end</span><span class="w">
+</span><span class="k" data-group-id="6290362413-1">end</span></code></pre>
 <p>In practice, developers rarely use <a href="Phoenix.Template.html#content"><code class="inline">Phoenix.Template</code></a>
 directly. Instead they use <a href="Phoenix.View.html"><code class="inline">Phoenix.View</code></a> which wraps the template
 functionality and adds some extra conveniences.</p>
@@ -284,27 +169,9 @@ See <a href="Phoenix.Template.Engine.html"><code class="inline">Phoenix.Template
 the API required to be implemented by custom engines.</p>
 <p>Once a template engine is defined, you can tell Phoenix
 about it via the template engines option:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->config</span><span class="w"
-> </span><span class="ss"
->:phoenix</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:template_engines</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->eex</span><span class="p"
->:</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template.EExEngine</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->exs</span><span class="p"
->:</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template.ExsEngine</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:template_engines</span><span class="p">,</span><span class="w">
+  </span><span class="ss">eex</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Template.EExEngine</span><span class="p">,</span><span class="w">
+  </span><span class="ss">exs</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Template.ExsEngine</span></code></pre>
 <h2 id="module-format-encoders" class="section-heading">
   <a href="#module-format-encoders" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Format encoders
@@ -316,27 +183,9 @@ given format to string once the view layer finishes processing.</p>
 <p>A format encoder must export a function called <code class="inline">encode_to_iodata!/1</code>
 which receives the rendering artifact and returns iodata.</p>
 <p>New encoders can be added via the format encoder option:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->config</span><span class="w"
-> </span><span class="ss"
->:phoenix</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:format_encoders</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->html</span><span class="p"
->:</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template.HTML</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->json</span><span class="p"
->:</span><span class="w"
-> </span><span class="nc"
->Poison</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:format_encoders</span><span class="p">,</span><span class="w">
+  </span><span class="ss">html</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Template.HTML</span><span class="p">,</span><span class="w">
+  </span><span class="ss">json</span><span class="p">:</span><span class="w"> </span><span class="nc">Poison</span></code></pre>
 
         </section>
       
@@ -701,104 +550,20 @@ extensions followed by their modules.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template</span><span class="o"
->.</span><span class="n"
->module_to_template_root</span><span class="p" data-group-id="3282543998-1"
->(</span><span class="nc"
->MyApp.UserView</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->MyApp</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;View&quot;</span><span class="p" data-group-id="3282543998-1"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;user&quot;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="5992592888-1">(</span><span class="nc">MyApp.UserView</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;View&quot;</span><span class="p" data-group-id="5992592888-1">)</span><span class="w">
+</span><span class="s">&quot;user&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template</span><span class="o"
->.</span><span class="n"
->module_to_template_root</span><span class="p" data-group-id="3282543998-2"
->(</span><span class="nc"
->MyApp.Admin.User</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->MyApp</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;View&quot;</span><span class="p" data-group-id="3282543998-2"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;admin/user&quot;</span><span class="w"
->
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="5992592888-2">(</span><span class="nc">MyApp.Admin.User</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;View&quot;</span><span class="p" data-group-id="5992592888-2">)</span><span class="w">
+</span><span class="s">&quot;admin/user&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template</span><span class="o"
->.</span><span class="n"
->module_to_template_root</span><span class="p" data-group-id="3282543998-3"
->(</span><span class="nc"
->MyApp.Admin.User</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->MyApp.Admin</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;View&quot;</span><span class="p" data-group-id="3282543998-3"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;user&quot;</span><span class="w"
->
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="5992592888-3">(</span><span class="nc">MyApp.Admin.User</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.Admin</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;View&quot;</span><span class="p" data-group-id="5992592888-3">)</span><span class="w">
+</span><span class="s">&quot;user&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template</span><span class="o"
->.</span><span class="n"
->module_to_template_root</span><span class="p" data-group-id="3282543998-4"
->(</span><span class="nc"
->MyApp.View</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->MyApp</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;View&quot;</span><span class="p" data-group-id="3282543998-4"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;&quot;</span><span class="w"
->
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="5992592888-4">(</span><span class="nc">MyApp.View</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;View&quot;</span><span class="p" data-group-id="5992592888-4">)</span><span class="w">
+</span><span class="s">&quot;&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template</span><span class="o"
->.</span><span class="n"
->module_to_template_root</span><span class="p" data-group-id="3282543998-5"
->(</span><span class="nc"
->MyApp.View</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->MyApp.View</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;View&quot;</span><span class="p" data-group-id="3282543998-5"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;&quot;</span></code></pre>
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">module_to_template_root</span><span class="p" data-group-id="5992592888-5">(</span><span class="nc">MyApp.View</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.View</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;View&quot;</span><span class="p" data-group-id="5992592888-5">)</span><span class="w">
+</span><span class="s">&quot;&quot;</span></code></pre>
 
   </section>
 </div>
@@ -833,28 +598,10 @@ extensions followed by their modules.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.Template</span><span class="o"
->.</span><span class="n"
->template_path_to_name</span><span class="p" data-group-id="3220721256-1"
->(</span><span class="w"
->
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->...&gt;</span><span class="w"
->   </span><span class="s"
->&quot;lib/templates/admin/users/show.html.eex&quot;</span><span class="p"
->,</span><span class="w"
->
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->...&gt;</span><span class="w"
->   </span><span class="s"
->&quot;lib/templates&quot;</span><span class="p" data-group-id="3220721256-1"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;admin/users/show.html&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Template</span><span class="o">.</span><span class="n">template_path_to_name</span><span class="p" data-group-id="9026577264-1">(</span><span class="w">
+</span><span class="gp unselectable">...&gt;</span><span class="w">   </span><span class="s">&quot;lib/templates/admin/users/show.html.eex&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt;</span><span class="w">   </span><span class="s">&quot;lib/templates&quot;</span><span class="p" data-group-id="9026577264-1">)</span><span class="w">
+</span><span class="s">&quot;admin/users/show.html&quot;</span></code></pre>
 
   </section>
 </div>

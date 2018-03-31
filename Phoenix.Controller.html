@@ -8,7 +8,7 @@
     <title>Phoenix.Controller – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-4b89e9c553.js"></script>
+    <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -90,87 +90,16 @@
           <p>Controllers are used to group common functionality in the same
 (pluggable) module.</p>
 <p>For example, the route:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->get</span><span class="w"
-> </span><span class="s"
->&quot;/users/:id&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->MyApp.UserController</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:show</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">get</span><span class="w"> </span><span class="s">&quot;/users/:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.UserController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span></code></pre>
 <p>will invoke the <code class="inline">show/2</code> action in the <code class="inline">MyApp.UserController</code>:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyApp.UserController</span><span class="w"
-> </span><span class="k" data-group-id="3301446786-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->MyAppWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserController</span><span class="w"> </span><span class="k" data-group-id="5762069259-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">MyAppWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="3301446786-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3301446786-3"
->%{</span><span class="s"
->&quot;id&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->id</span><span class="p" data-group-id="3301446786-3"
->}</span><span class="p" data-group-id="3301446786-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3301446786-4"
->do</span><span class="w"
->
-    </span><span class="n"
->user</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Repo</span><span class="o"
->.</span><span class="n"
->get</span><span class="p" data-group-id="3301446786-5"
->(</span><span class="nc"
->User</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->id</span><span class="p" data-group-id="3301446786-5"
->)</span><span class="w"
->
-    </span><span class="n"
->render</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;show.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->user</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->user</span><span class="w"
->
-  </span><span class="k" data-group-id="3301446786-4"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="3301446786-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="5762069259-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5762069259-3">%{</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="5762069259-3">}</span><span class="p" data-group-id="5762069259-2">)</span><span class="w"> </span><span class="k" data-group-id="5762069259-4">do</span><span class="w">
+    </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="5762069259-5">(</span><span class="nc">User</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="5762069259-5">)</span><span class="w">
+    </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;show.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="n">user</span><span class="w">
+  </span><span class="k" data-group-id="5762069259-4">end</span><span class="w">
+</span><span class="k" data-group-id="5762069259-1">end</span></code></pre>
 <p>An action is a regular function that receives the connection
 and the request parameters as arguments. The connection is a
 <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html"><code class="inline">Plug.Conn</code></a> struct, as specified by the Plug library.</p>
@@ -215,128 +144,23 @@ modules directly instead of <code class="inline">use Phoenix.Controller</code>.<
 
 <p>As with routers, controllers also have their own plug pipeline.
 However, different from routers, controllers have a single pipeline:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyApp.UserController</span><span class="w"
-> </span><span class="k" data-group-id="4462450445-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->MyAppWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserController</span><span class="w"> </span><span class="k" data-group-id="7137908931-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">MyAppWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
 
-  </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:authenticate</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->usernames</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="4462450445-2"
->[</span><span class="s"
->&quot;jose&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;eric&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;sonny&quot;</span><span class="p" data-group-id="4462450445-2"
->]</span><span class="w"
->
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:authenticate</span><span class="p">,</span><span class="w"> </span><span class="ss">usernames</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7137908931-2">[</span><span class="s">&quot;jose&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;eric&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sonny&quot;</span><span class="p" data-group-id="7137908931-2">]</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="4462450445-3"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->params</span><span class="p" data-group-id="4462450445-3"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4462450445-4"
->do</span><span class="w"
->
-    </span><span class="c1"
-># authenticated users only</span><span class="w"
->
-  </span><span class="k" data-group-id="4462450445-4"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="7137908931-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="7137908931-3">)</span><span class="w"> </span><span class="k" data-group-id="7137908931-4">do</span><span class="w">
+    </span><span class="c1"># authenticated users only</span><span class="w">
+  </span><span class="k" data-group-id="7137908931-4">end</span><span class="w">
 
-  </span><span class="kd"
->defp</span><span class="w"
-> </span><span class="nf"
->authenticate</span><span class="p" data-group-id="4462450445-5"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->options</span><span class="p" data-group-id="4462450445-5"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4462450445-6"
->do</span><span class="w"
->
-    </span><span class="k"
->if</span><span class="w"
-> </span><span class="n"
->get_session</span><span class="p" data-group-id="4462450445-7"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:username</span><span class="p" data-group-id="4462450445-7"
->)</span><span class="w"
-> </span><span class="ow"
->in</span><span class="w"
-> </span><span class="n"
->options</span><span class="p" data-group-id="4462450445-8"
->[</span><span class="ss"
->:usernames</span><span class="p" data-group-id="4462450445-8"
->]</span><span class="w"
-> </span><span class="k" data-group-id="4462450445-9"
->do</span><span class="w"
->
-      </span><span class="n"
->conn</span><span class="w"
->
-    </span><span class="k" data-group-id="4462450445-9"
->else</span><span class="w"
->
-      </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->redirect</span><span class="p" data-group-id="4462450445-10"
->(</span><span class="ss"
->to</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="4462450445-10"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->halt</span><span class="p" data-group-id="4462450445-11"
->(</span><span class="p" data-group-id="4462450445-11"
->)</span><span class="w"
->
-    </span><span class="k" data-group-id="4462450445-9"
->end</span><span class="w"
->
-  </span><span class="k" data-group-id="4462450445-6"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="4462450445-1"
->end</span></code></pre>
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">authenticate</span><span class="p" data-group-id="7137908931-5">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p" data-group-id="7137908931-5">)</span><span class="w"> </span><span class="k" data-group-id="7137908931-6">do</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="n">get_session</span><span class="p" data-group-id="7137908931-7">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="7137908931-7">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">options</span><span class="p" data-group-id="7137908931-8">[</span><span class="ss">:usernames</span><span class="p" data-group-id="7137908931-8">]</span><span class="w"> </span><span class="k" data-group-id="7137908931-9">do</span><span class="w">
+      </span><span class="n">conn</span><span class="w">
+    </span><span class="k" data-group-id="7137908931-9">else</span><span class="w">
+      </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="7137908931-10">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="7137908931-10">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">halt</span><span class="p" data-group-id="7137908931-11">(</span><span class="p" data-group-id="7137908931-11">)</span><span class="w">
+    </span><span class="k" data-group-id="7137908931-9">end</span><span class="w">
+  </span><span class="k" data-group-id="7137908931-6">end</span><span class="w">
+</span><span class="k" data-group-id="7137908931-1">end</span></code></pre>
 <p>The <code class="inline">:authenticate</code> plug will be invoked before the action. If the
 plug calls <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#halt/1"><code class="inline">Plug.Conn.halt/1</code></a> (which is by default imported into
 controllers), it will halt the pipeline and won’t invoke the action.</p>
@@ -347,66 +171,8 @@ controllers), it will halt the pipeline and won’t invoke the action.</p>
 
 <p><code class="inline">plug/2</code> in controllers supports guards, allowing a developer to configure
 a plug to only run in some particular action:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:authenticate</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="5154192109-1"
->[</span><span class="ss"
->usernames</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="5154192109-2"
->[</span><span class="s"
->&quot;jose&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;eric&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;sonny&quot;</span><span class="p" data-group-id="5154192109-2"
->]</span><span class="p" data-group-id="5154192109-1"
->]</span><span class="w"
-> </span><span class="ow"
->when</span><span class="w"
-> </span><span class="n"
->action</span><span class="w"
-> </span><span class="ow"
->in</span><span class="w"
-> </span><span class="p" data-group-id="5154192109-3"
->[</span><span class="ss"
->:show</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:edit</span><span class="p" data-group-id="5154192109-3"
->]</span><span class="w"
->
-</span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:authenticate</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="5154192109-4"
->[</span><span class="ss"
->usernames</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="5154192109-5"
->[</span><span class="s"
->&quot;admin&quot;</span><span class="p" data-group-id="5154192109-5"
->]</span><span class="p" data-group-id="5154192109-4"
->]</span><span class="w"
-> </span><span class="ow"
->when</span><span class="w"
-> </span><span class="ow"
->not</span><span class="w"
-> </span><span class="n"
->action</span><span class="w"
-> </span><span class="ow"
->in</span><span class="w"
-> </span><span class="p" data-group-id="5154192109-6"
->[</span><span class="ss"
->:index</span><span class="p" data-group-id="5154192109-6"
->]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">plug</span><span class="w"> </span><span class="ss">:authenticate</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2183061104-1">[</span><span class="ss">usernames</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2183061104-2">[</span><span class="s">&quot;jose&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;eric&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sonny&quot;</span><span class="p" data-group-id="2183061104-2">]</span><span class="p" data-group-id="2183061104-1">]</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p" data-group-id="2183061104-3">[</span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="ss">:edit</span><span class="p" data-group-id="2183061104-3">]</span><span class="w">
+</span><span class="n">plug</span><span class="w"> </span><span class="ss">:authenticate</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2183061104-4">[</span><span class="ss">usernames</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2183061104-5">[</span><span class="s">&quot;admin&quot;</span><span class="p" data-group-id="2183061104-5">]</span><span class="p" data-group-id="2183061104-4">]</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p" data-group-id="2183061104-6">[</span><span class="ss">:index</span><span class="p" data-group-id="2183061104-6">]</span></code></pre>
 <p>The first plug will run only when action is show or edit. The second plug will
 always run, except for the index action.</p>
 <p>Those guards work like regular Elixir guards and the only variables accessible
@@ -420,27 +186,9 @@ alias.</p>
 <p>Like routers, controllers are plugs, but they are wired to dispatch
 to a particular function which is called an action.</p>
 <p>For example, the route:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->get</span><span class="w"
-> </span><span class="s"
->&quot;/users/:id&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->UserController</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:show</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">get</span><span class="w"> </span><span class="s">&quot;/users/:id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span></code></pre>
 <p>will invoke <code class="inline">UserController</code> as a plug:</p>
-<pre><code class="nohighlight makeup"><span class="nc"
->UserController</span><span class="o"
->.</span><span class="n"
->call</span><span class="p" data-group-id="2554354132-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:show</span><span class="p" data-group-id="2554354132-1"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc">UserController</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="2827797507-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p" data-group-id="2827797507-1">)</span></code></pre>
 <p>which will trigger the plug pipeline and which will eventually
 invoke the inner action plug that dispatches to the <code class="inline">show/2</code>
 function in the <code class="inline">UserController</code>.</p>
@@ -460,145 +208,20 @@ useful way to inject arguments into your actions that you would otherwise
 need to fetch of the connection repeatedly. For example, imagine if you
 stored a <code class="inline">conn.assigns.current_user</code> in the connection and wanted quick
 access to the user for every action in your controller:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->action</span><span class="p" data-group-id="8800257159-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="err"
->_</span><span class="p" data-group-id="8800257159-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="8800257159-2"
->do</span><span class="w"
->
-  </span><span class="n"
->args</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="p" data-group-id="8800257159-3"
->[</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->params</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->assigns</span><span class="o"
->.</span><span class="n"
->current_user</span><span class="p" data-group-id="8800257159-3"
->]</span><span class="w"
->
-  </span><span class="n"
->apply</span><span class="p" data-group-id="8800257159-4"
->(</span><span class="err"
->_</span><span class="err"
->_</span><span class="nc"
->MODULE__</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->action_name</span><span class="p" data-group-id="8800257159-5"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="8800257159-5"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->args</span><span class="p" data-group-id="8800257159-4"
->)</span><span class="w"
->
-</span><span class="k" data-group-id="8800257159-2"
->end</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">action</span><span class="p" data-group-id="1214073312-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="1214073312-1">)</span><span class="w"> </span><span class="k" data-group-id="1214073312-2">do</span><span class="w">
+  </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="1214073312-3">[</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">current_user</span><span class="p" data-group-id="1214073312-3">]</span><span class="w">
+  </span><span class="n">apply</span><span class="p" data-group-id="1214073312-4">(</span><span class="bp">__MODULE__</span><span class="p">,</span><span class="w"> </span><span class="n">action_name</span><span class="p" data-group-id="1214073312-5">(</span><span class="n">conn</span><span class="p" data-group-id="1214073312-5">)</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p" data-group-id="1214073312-4">)</span><span class="w">
+</span><span class="k" data-group-id="1214073312-2">end</span><span class="w">
 
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->index</span><span class="p" data-group-id="8800257159-6"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_params</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->user</span><span class="p" data-group-id="8800257159-6"
->)</span><span class="w"
-> </span><span class="k" data-group-id="8800257159-7"
->do</span><span class="w"
->
-  </span><span class="n"
->videos</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Repo</span><span class="o"
->.</span><span class="n"
->all</span><span class="p" data-group-id="8800257159-8"
->(</span><span class="n"
->user_videos</span><span class="p" data-group-id="8800257159-9"
->(</span><span class="n"
->user</span><span class="p" data-group-id="8800257159-9"
->)</span><span class="p" data-group-id="8800257159-8"
->)</span><span class="w"
->
-  </span><span class="c1"
-># ...</span><span class="w"
->
-</span><span class="k" data-group-id="8800257159-7"
->end</span><span class="w"
->
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">index</span><span class="p" data-group-id="1214073312-6">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="1214073312-6">)</span><span class="w"> </span><span class="k" data-group-id="1214073312-7">do</span><span class="w">
+  </span><span class="n">videos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">all</span><span class="p" data-group-id="1214073312-8">(</span><span class="n">user_videos</span><span class="p" data-group-id="1214073312-9">(</span><span class="n">user</span><span class="p" data-group-id="1214073312-9">)</span><span class="p" data-group-id="1214073312-8">)</span><span class="w">
+  </span><span class="c1"># ...</span><span class="w">
+</span><span class="k" data-group-id="1214073312-7">end</span><span class="w">
 
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->delete</span><span class="p" data-group-id="8800257159-10"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="8800257159-11"
->%{</span><span class="s"
->&quot;id&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->id</span><span class="p" data-group-id="8800257159-11"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->user</span><span class="p" data-group-id="8800257159-10"
->)</span><span class="w"
-> </span><span class="k" data-group-id="8800257159-12"
->do</span><span class="w"
->
-  </span><span class="n"
->video</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Repo</span><span class="o"
->.</span><span class="n"
->get!</span><span class="p" data-group-id="8800257159-13"
->(</span><span class="n"
->user_videos</span><span class="p" data-group-id="8800257159-14"
->(</span><span class="n"
->user</span><span class="p" data-group-id="8800257159-14"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->id</span><span class="p" data-group-id="8800257159-13"
->)</span><span class="w"
->
-  </span><span class="c1"
-># ...</span><span class="w"
->
-</span><span class="k" data-group-id="8800257159-12"
->end</span></code></pre>
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">delete</span><span class="p" data-group-id="1214073312-10">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1214073312-11">%{</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="1214073312-11">}</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="1214073312-10">)</span><span class="w"> </span><span class="k" data-group-id="1214073312-12">do</span><span class="w">
+  </span><span class="n">video</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1214073312-13">(</span><span class="n">user_videos</span><span class="p" data-group-id="1214073312-14">(</span><span class="n">user</span><span class="p" data-group-id="1214073312-14">)</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="1214073312-13">)</span><span class="w">
+  </span><span class="c1"># ...</span><span class="w">
+</span><span class="k" data-group-id="1214073312-12">end</span></code></pre>
 <h2 id="module-rendering-and-layouts" class="section-heading">
   <a href="#module-rendering-and-layouts" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Rendering and layouts
@@ -1060,42 +683,10 @@ of the formats expected by the client.</p>
 </h2>
 
 <p><a href="#accepts/2"><code class="inline">accepts/2</code></a> can be invoked as a function:</p>
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->accepts</span><span class="p" data-group-id="8671521778-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="8671521778-2"
->[</span><span class="s"
->&quot;html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;json&quot;</span><span class="p" data-group-id="8671521778-2"
->]</span><span class="p" data-group-id="8671521778-1"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">accepts</span><span class="p" data-group-id="2259516094-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2259516094-2">[</span><span class="s">&quot;html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="2259516094-2">]</span><span class="p" data-group-id="2259516094-1">)</span></code></pre>
 <p>or used as a plug:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:accepts</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9599580487-1"
->[</span><span class="s"
->&quot;html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;json&quot;</span><span class="p" data-group-id="9599580487-1"
->]</span><span class="w"
->
-</span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:accepts</span><span class="p"
->,</span><span class="w"
-> </span><span class="sx"
->~w(html json)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7125792837-1">[</span><span class="s">&quot;html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="7125792837-1">]</span><span class="w">
+</span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(html json)</span></code></pre>
 <h2 id="accepts/2-custom-media-types" class="section-heading">
   <a href="#accepts/2-custom-media-types" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Custom media types
@@ -1104,70 +695,19 @@ of the formats expected by the client.</p>
 <p>It is possible to add custom media types to your Phoenix application.
 The first step is to teach Plug about those new media types in
 your <code class="inline">config/config.exs</code> file:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->config</span><span class="w"
-> </span><span class="ss"
->:mime</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:types</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="6135230362-1"
->%{</span><span class="w"
->
-  </span><span class="s"
->&quot;application/vnd.api+json&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="p" data-group-id="6135230362-2"
->[</span><span class="s"
->&quot;json-api&quot;</span><span class="p" data-group-id="6135230362-2"
->]</span><span class="w"
->
-</span><span class="p" data-group-id="6135230362-1"
->}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:mime</span><span class="p">,</span><span class="w"> </span><span class="ss">:types</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9475244101-1">%{</span><span class="w">
+  </span><span class="s">&quot;application/vnd.api+json&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="9475244101-2">[</span><span class="s">&quot;json-api&quot;</span><span class="p" data-group-id="9475244101-2">]</span><span class="w">
+</span><span class="p" data-group-id="9475244101-1">}</span></code></pre>
 <p>The key is the media type, the value is a list of formats the
 media type can be identified with. For example, by using
 “json-api”, you will be able to use templates with extension
 “index.json-api” or to force a particular format in a given
 URL by sending “?_format=json-api”.</p>
 <p>After this change, you must recompile plug:</p>
-<pre><code class="nohighlight makeup"><span class="err"
->$</span><span class="w"
-> </span><span class="n"
->mix</span><span class="w"
-> </span><span class="n"
->deps</span><span class="o"
->.</span><span class="n"
->clean</span><span class="w"
-> </span><span class="n"
->mime</span><span class="w"
-> </span><span class="o"
->--</span><span class="n"
->build</span><span class="w"
->
-</span><span class="err"
->$</span><span class="w"
-> </span><span class="n"
->mix</span><span class="w"
-> </span><span class="n"
->deps</span><span class="o"
->.</span><span class="n"
->get</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="err">$</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="n">deps</span><span class="o">.</span><span class="n">clean</span><span class="w"> </span><span class="n">mime</span><span class="w"> </span><span class="o">--</span><span class="n">build</span><span class="w">
+</span><span class="err">$</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="n">deps</span><span class="o">.</span><span class="n">get</span></code></pre>
 <p>And now you can use it in accepts too:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:accepts</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="2864124848-1"
->[</span><span class="s"
->&quot;html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;json-api&quot;</span><span class="p" data-group-id="2864124848-1"
->]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0726486220-1">[</span><span class="s">&quot;html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;json-api&quot;</span><span class="p" data-group-id="0726486220-1">]</span></code></pre>
 
   </section>
 </div>
@@ -1203,112 +743,19 @@ along with the value returned from the controller action.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyController</span><span class="w"
-> </span><span class="k" data-group-id="5113680793-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyController</span><span class="w"> </span><span class="k" data-group-id="5593909601-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="w">
 
-  </span><span class="n"
->action_fallback</span><span class="w"
-> </span><span class="nc"
->MyFallbackController</span><span class="w"
->
+  </span><span class="n">action_fallback</span><span class="w"> </span><span class="nc">MyFallbackController</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="5113680793-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="5113680793-3"
->%{</span><span class="s"
->&quot;id&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->id</span><span class="p" data-group-id="5113680793-3"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->current_user</span><span class="p" data-group-id="5113680793-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="5113680793-4"
->do</span><span class="w"
->
-    </span><span class="k"
->with</span><span class="w"
-> </span><span class="p" data-group-id="5113680793-5"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->post</span><span class="p" data-group-id="5113680793-5"
->}</span><span class="w"
-> </span><span class="o"
->&lt;-</span><span class="w"
-> </span><span class="nc"
->Blog</span><span class="o"
->.</span><span class="n"
->fetch_post</span><span class="p" data-group-id="5113680793-6"
->(</span><span class="n"
->id</span><span class="p" data-group-id="5113680793-6"
->)</span><span class="p"
->,</span><span class="w"
->
-         </span><span class="ss"
->:ok</span><span class="w"
-> </span><span class="o"
->&lt;-</span><span class="w"
-> </span><span class="nc"
->Authorizer</span><span class="o"
->.</span><span class="n"
->authorize</span><span class="p" data-group-id="5113680793-7"
->(</span><span class="n"
->current_user</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:view</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->post</span><span class="p" data-group-id="5113680793-7"
->)</span><span class="w"
-> </span><span class="k" data-group-id="5113680793-8"
->do</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="5593909601-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5593909601-3">%{</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="5593909601-3">}</span><span class="p">,</span><span class="w"> </span><span class="n">current_user</span><span class="p" data-group-id="5593909601-2">)</span><span class="w"> </span><span class="k" data-group-id="5593909601-4">do</span><span class="w">
+    </span><span class="k">with</span><span class="w"> </span><span class="p" data-group-id="5593909601-5">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">post</span><span class="p" data-group-id="5593909601-5">}</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nc">Blog</span><span class="o">.</span><span class="n">fetch_post</span><span class="p" data-group-id="5593909601-6">(</span><span class="n">id</span><span class="p" data-group-id="5593909601-6">)</span><span class="p">,</span><span class="w">
+         </span><span class="ss">:ok</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nc">Authorizer</span><span class="o">.</span><span class="n">authorize</span><span class="p" data-group-id="5593909601-7">(</span><span class="n">current_user</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="p">,</span><span class="w"> </span><span class="n">post</span><span class="p" data-group-id="5593909601-7">)</span><span class="w"> </span><span class="k" data-group-id="5593909601-8">do</span><span class="w">
 
-      </span><span class="n"
->render</span><span class="p" data-group-id="5113680793-9"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;show.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->post</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->post</span><span class="p" data-group-id="5113680793-9"
->)</span><span class="w"
->
-    </span><span class="k" data-group-id="5113680793-8"
->end</span><span class="w"
->
-  </span><span class="k" data-group-id="5113680793-4"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="5113680793-1"
->end</span></code></pre>
+      </span><span class="n">render</span><span class="p" data-group-id="5593909601-9">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;show.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">post</span><span class="p">:</span><span class="w"> </span><span class="n">post</span><span class="p" data-group-id="5593909601-9">)</span><span class="w">
+    </span><span class="k" data-group-id="5593909601-8">end</span><span class="w">
+  </span><span class="k" data-group-id="5593909601-4">end</span><span class="w">
+</span><span class="k" data-group-id="5593909601-1">end</span></code></pre>
 <p>In the above example, <code class="inline">with</code> is used to match only a successful
 post fetch, followed by valid authorization for the current user.
 In the event either of those fail to match, <code class="inline">with</code> will not invoke
@@ -1319,118 +766,23 @@ where these data structures serve as return values across multiple
 boundaries in our domain, a single fallback module can be used to
 translate the value into a valid response. For example, you could
 write the following fallback controller to handle the above values:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyFallbackController</span><span class="w"
-> </span><span class="k" data-group-id="2373443000-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyFallbackController</span><span class="w"> </span><span class="k" data-group-id="0051419390-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->call</span><span class="p" data-group-id="2373443000-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="2373443000-3"
->{</span><span class="ss"
->:error</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:not_found</span><span class="p" data-group-id="2373443000-3"
->}</span><span class="p" data-group-id="2373443000-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2373443000-4"
->do</span><span class="w"
->
-    </span><span class="n"
->conn</span><span class="w"
->
-    </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_status</span><span class="p" data-group-id="2373443000-5"
->(</span><span class="ss"
->:not_found</span><span class="p" data-group-id="2373443000-5"
->)</span><span class="w"
->
-    </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_view</span><span class="p" data-group-id="2373443000-6"
->(</span><span class="nc"
->MyErrorView</span><span class="p" data-group-id="2373443000-6"
->)</span><span class="w"
->
-    </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->render</span><span class="p" data-group-id="2373443000-7"
->(</span><span class="ss"
->:&quot;404&quot;</span><span class="p" data-group-id="2373443000-7"
->)</span><span class="w"
->
-  </span><span class="k" data-group-id="2373443000-4"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="0051419390-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0051419390-3">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:not_found</span><span class="p" data-group-id="0051419390-3">}</span><span class="p" data-group-id="0051419390-2">)</span><span class="w"> </span><span class="k" data-group-id="0051419390-4">do</span><span class="w">
+    </span><span class="n">conn</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_status</span><span class="p" data-group-id="0051419390-5">(</span><span class="ss">:not_found</span><span class="p" data-group-id="0051419390-5">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_view</span><span class="p" data-group-id="0051419390-6">(</span><span class="nc">MyErrorView</span><span class="p" data-group-id="0051419390-6">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">render</span><span class="p" data-group-id="0051419390-7">(</span><span class="ss">:&quot;404&quot;</span><span class="p" data-group-id="0051419390-7">)</span><span class="w">
+  </span><span class="k" data-group-id="0051419390-4">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->call</span><span class="p" data-group-id="2373443000-8"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="2373443000-9"
->{</span><span class="ss"
->:error</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:unauthorized</span><span class="p" data-group-id="2373443000-9"
->}</span><span class="p" data-group-id="2373443000-8"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2373443000-10"
->do</span><span class="w"
->
-    </span><span class="n"
->conn</span><span class="w"
->
-    </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_status</span><span class="p" data-group-id="2373443000-11"
->(</span><span class="mi"
->403</span><span class="p" data-group-id="2373443000-11"
->)</span><span class="w"
->
-    </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_view</span><span class="p" data-group-id="2373443000-12"
->(</span><span class="nc"
->MyErrorView</span><span class="p" data-group-id="2373443000-12"
->)</span><span class="w"
->
-    </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->render</span><span class="p" data-group-id="2373443000-13"
->(</span><span class="ss"
->:&quot;403&quot;</span><span class="p" data-group-id="2373443000-13"
->)</span><span class="w"
->
-  </span><span class="k" data-group-id="2373443000-10"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="2373443000-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="0051419390-8">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0051419390-9">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:unauthorized</span><span class="p" data-group-id="0051419390-9">}</span><span class="p" data-group-id="0051419390-8">)</span><span class="w"> </span><span class="k" data-group-id="0051419390-10">do</span><span class="w">
+    </span><span class="n">conn</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_status</span><span class="p" data-group-id="0051419390-11">(</span><span class="mi">403</span><span class="p" data-group-id="0051419390-11">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_view</span><span class="p" data-group-id="0051419390-12">(</span><span class="nc">MyErrorView</span><span class="p" data-group-id="0051419390-12">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">render</span><span class="p" data-group-id="0051419390-13">(</span><span class="ss">:&quot;403&quot;</span><span class="p" data-group-id="0051419390-13">)</span><span class="w">
+  </span><span class="k" data-group-id="0051419390-10">end</span><span class="w">
+</span><span class="k" data-group-id="0051419390-1">end</span></code></pre>
 
   </section>
 </div>
@@ -1504,28 +856,11 @@ callback name. Otherwise an exception is raised.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="c1"
-># Will convert JSON to JSONP if callback=someFunction is given</span><span class="w"
->
-</span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:allow_jsonp</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="c1"># Will convert JSON to JSONP if callback=someFunction is given</span><span class="w">
+</span><span class="n">plug</span><span class="w"> </span><span class="ss">:allow_jsonp</span><span class="w">
 
-</span><span class="c1"
-># Will convert JSON to JSONP if cb=someFunction is given</span><span class="w"
->
-</span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:allow_jsonp</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->callback</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;cb&quot;</span></code></pre>
+</span><span class="c1"># Will convert JSON to JSONP if cb=someFunction is given</span><span class="w">
+</span><span class="n">plug</span><span class="w"> </span><span class="ss">:allow_jsonp</span><span class="p">,</span><span class="w"> </span><span class="ss">callback</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cb&quot;</span></code></pre>
 
   </section>
 </div>
@@ -1610,81 +945,17 @@ only the request path by passing an empty map of params.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->current_path</span><span class="p" data-group-id="1943744007-1"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="1943744007-1"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;/users/123?existing=param&quot;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">current_path</span><span class="p" data-group-id="5018435308-1">(</span><span class="n">conn</span><span class="p" data-group-id="5018435308-1">)</span><span class="w">
+</span><span class="s">&quot;/users/123?existing=param&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->current_path</span><span class="p" data-group-id="1943744007-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="1943744007-3"
->%{</span><span class="ss"
->new</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;param&quot;</span><span class="p" data-group-id="1943744007-3"
->}</span><span class="p" data-group-id="1943744007-2"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;/users/123?new=param&quot;</span><span class="w"
->
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">current_path</span><span class="p" data-group-id="5018435308-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5018435308-3">%{</span><span class="ss">new</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;param&quot;</span><span class="p" data-group-id="5018435308-3">}</span><span class="p" data-group-id="5018435308-2">)</span><span class="w">
+</span><span class="s">&quot;/users/123?new=param&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->current_path</span><span class="p" data-group-id="1943744007-4"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p"
->%</span><span class="err"
->{</span><span class="ss"
->filter</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="1943744007-5"
->%{</span><span class="ss"
->status</span><span class="p"
->:</span><span class="w"
-> </span><span class="err"
->[</span><span class="s"
->&quot;draft&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;published&quot;</span><span class="p" data-group-id="1943744007-5"
->}</span><span class="p" data-group-id="1943744007-4"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;/users/123?filter[status][]=draft&amp;filter[status][]=published&quot;</span><span class="w"
->
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">current_path</span><span class="p" data-group-id="5018435308-4">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p">%</span><span class="err">{</span><span class="ss">filter</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5018435308-5">%{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="err">[</span><span class="s">&quot;draft&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;published&quot;</span><span class="p" data-group-id="5018435308-5">}</span><span class="p" data-group-id="5018435308-4">)</span><span class="w">
+</span><span class="s">&quot;/users/123?filter[status][]=draft&amp;filter[status][]=published&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->current_path</span><span class="p" data-group-id="1943744007-6"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="1943744007-7"
->%{</span><span class="p" data-group-id="1943744007-7"
->}</span><span class="p" data-group-id="1943744007-6"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;/users/123&quot;</span></code></pre>
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">current_path</span><span class="p" data-group-id="5018435308-6">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5018435308-7">%{</span><span class="p" data-group-id="5018435308-7">}</span><span class="p" data-group-id="5018435308-6">)</span><span class="w">
+</span><span class="s">&quot;/users/123&quot;</span></code></pre>
 
   </section>
 </div>
@@ -1737,52 +1008,14 @@ See <a href="#current_path/1"><code class="inline">current_path/1</code></a> for
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->current_url</span><span class="p" data-group-id="9274871485-1"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="9274871485-1"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;https://www.example.com/users/123?existing=param&quot;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">current_url</span><span class="p" data-group-id="8103698860-1">(</span><span class="n">conn</span><span class="p" data-group-id="8103698860-1">)</span><span class="w">
+</span><span class="s">&quot;https://www.example.com/users/123?existing=param&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->current_url</span><span class="p" data-group-id="9274871485-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9274871485-3"
->%{</span><span class="ss"
->new</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;param&quot;</span><span class="p" data-group-id="9274871485-3"
->}</span><span class="p" data-group-id="9274871485-2"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;https://www.example.com/users/123?new=param&quot;</span><span class="w"
->
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">current_url</span><span class="p" data-group-id="8103698860-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8103698860-3">%{</span><span class="ss">new</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;param&quot;</span><span class="p" data-group-id="8103698860-3">}</span><span class="p" data-group-id="8103698860-2">)</span><span class="w">
+</span><span class="s">&quot;https://www.example.com/users/123?new=param&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->current_url</span><span class="p" data-group-id="9274871485-4"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9274871485-5"
->%{</span><span class="p" data-group-id="9274871485-5"
->}</span><span class="p" data-group-id="9274871485-4"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;https://www.example.com/users/123&quot;</span></code></pre>
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">current_url</span><span class="p" data-group-id="8103698860-4">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8103698860-5">%{</span><span class="p" data-group-id="8103698860-5">}</span><span class="p" data-group-id="8103698860-4">)</span><span class="w">
+</span><span class="s">&quot;https://www.example.com/users/123&quot;</span></code></pre>
 <h2 id="current_url/1-custom-url-generation" class="section-heading">
   <a href="#current_url/1-custom-url-generation" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Custom URL Generation
@@ -1795,180 +1028,20 @@ custom built URL from your Router helpers, another Endpoint, mix
 config, or a hand-built string.</p>
 <p>For example, you may way to generate an https URL from an http request.
 You could define a function like the following:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->current_secure_url</span><span class="p" data-group-id="0481803888-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->params</span><span class="w"
-> </span><span class="o"
->\\</span><span class="w"
-> </span><span class="p" data-group-id="0481803888-2"
->%{</span><span class="p" data-group-id="0481803888-2"
->}</span><span class="p" data-group-id="0481803888-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="0481803888-3"
->do</span><span class="w"
->
-  </span><span class="n"
->cur_uri</span><span class="w"
->  </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Phoenix.Controller</span><span class="o"
->.</span><span class="n"
->endpoint_module</span><span class="p" data-group-id="0481803888-4"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="0481803888-4"
->)</span><span class="o"
->.</span><span class="n"
->struct_url</span><span class="p" data-group-id="0481803888-5"
->(</span><span class="p" data-group-id="0481803888-5"
->)</span><span class="w"
->
-  </span><span class="n"
->cur_path</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Phoenix.Controller</span><span class="o"
->.</span><span class="n"
->current_path</span><span class="p" data-group-id="0481803888-6"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->params</span><span class="p" data-group-id="0481803888-6"
->)</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">current_secure_url</span><span class="p" data-group-id="5798176321-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="5798176321-2">%{</span><span class="p" data-group-id="5798176321-2">}</span><span class="p" data-group-id="5798176321-1">)</span><span class="w"> </span><span class="k" data-group-id="5798176321-3">do</span><span class="w">
+  </span><span class="n">cur_uri</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="o">.</span><span class="n">endpoint_module</span><span class="p" data-group-id="5798176321-4">(</span><span class="n">conn</span><span class="p" data-group-id="5798176321-4">)</span><span class="o">.</span><span class="n">struct_url</span><span class="p" data-group-id="5798176321-5">(</span><span class="p" data-group-id="5798176321-5">)</span><span class="w">
+  </span><span class="n">cur_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="o">.</span><span class="n">current_path</span><span class="p" data-group-id="5798176321-6">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="5798176321-6">)</span><span class="w">
 
-  </span><span class="nc"
->MyAppWeb.Router.Helpers</span><span class="o"
->.</span><span class="n"
->url</span><span class="p" data-group-id="0481803888-7"
->(</span><span class="p" data-group-id="0481803888-8"
->%</span><span class="nc" data-group-id="0481803888-8"
->URI</span><span class="p" data-group-id="0481803888-8"
->{</span><span class="n"
->cur_uri</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="ss"
->scheme</span><span class="p"
->:</span><span class="w"
-> </span><span class="err"
->&quot;</span><span class="n"
->https</span><span class="p" data-group-id="0481803888-8"
->}</span><span class="p" data-group-id="0481803888-7"
->)</span><span class="w"
-> </span><span class="o"
->&lt;&gt;</span><span class="w"
-> </span><span class="n"
->cur_path</span><span class="w"
->
-</span><span class="k" data-group-id="0481803888-3"
->end</span></code></pre>
+  </span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">url</span><span class="p" data-group-id="5798176321-7">(</span><span class="p" data-group-id="5798176321-8">%</span><span class="nc" data-group-id="5798176321-8">URI</span><span class="p" data-group-id="5798176321-8">{</span><span class="n">cur_uri</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">scheme</span><span class="p">:</span><span class="w"> </span><span class="err">&quot;</span><span class="n">https</span><span class="p" data-group-id="5798176321-8">}</span><span class="p" data-group-id="5798176321-7">)</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">cur_path</span><span class="w">
+</span><span class="k" data-group-id="5798176321-3">end</span></code></pre>
 <p>Or maybe you have a subdomain based URL for different organizations:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->organization_url</span><span class="p" data-group-id="3743900631-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->org</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->params</span><span class="w"
-> </span><span class="o"
->\\</span><span class="w"
-> </span><span class="p" data-group-id="3743900631-2"
->%{</span><span class="p" data-group-id="3743900631-2"
->}</span><span class="p" data-group-id="3743900631-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3743900631-3"
->do</span><span class="w"
->
-  </span><span class="n"
->cur_uri</span><span class="w"
->  </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Phoenix.Controller</span><span class="o"
->.</span><span class="n"
->endpoint_module</span><span class="p" data-group-id="3743900631-4"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="3743900631-4"
->)</span><span class="o"
->.</span><span class="n"
->struct_url</span><span class="p" data-group-id="3743900631-5"
->(</span><span class="p" data-group-id="3743900631-5"
->)</span><span class="w"
->
-  </span><span class="n"
->cur_path</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Phoenix.Controller</span><span class="o"
->.</span><span class="n"
->current_path</span><span class="p" data-group-id="3743900631-6"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->params</span><span class="p" data-group-id="3743900631-6"
->)</span><span class="w"
->
-  </span><span class="n"
->org_host</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="s"
->&quot;</span><span class="si" data-group-id="3743900631-7"
->#{</span><span class="n"
->org</span><span class="o"
->.</span><span class="n"
->slug</span><span class="si" data-group-id="3743900631-7"
->}</span><span class="s"
->.</span><span class="si" data-group-id="3743900631-8"
->#{</span><span class="n"
->cur_uri</span><span class="o"
->.</span><span class="n"
->host</span><span class="si" data-group-id="3743900631-8"
->}</span><span class="s"
->&quot;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">organization_url</span><span class="p" data-group-id="9267220735-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">org</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="9267220735-2">%{</span><span class="p" data-group-id="9267220735-2">}</span><span class="p" data-group-id="9267220735-1">)</span><span class="w"> </span><span class="k" data-group-id="9267220735-3">do</span><span class="w">
+  </span><span class="n">cur_uri</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="o">.</span><span class="n">endpoint_module</span><span class="p" data-group-id="9267220735-4">(</span><span class="n">conn</span><span class="p" data-group-id="9267220735-4">)</span><span class="o">.</span><span class="n">struct_url</span><span class="p" data-group-id="9267220735-5">(</span><span class="p" data-group-id="9267220735-5">)</span><span class="w">
+  </span><span class="n">cur_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="o">.</span><span class="n">current_path</span><span class="p" data-group-id="9267220735-6">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="9267220735-6">)</span><span class="w">
+  </span><span class="n">org_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si" data-group-id="9267220735-7">#{</span><span class="n">org</span><span class="o">.</span><span class="n">slug</span><span class="si" data-group-id="9267220735-7">}</span><span class="s">.</span><span class="si" data-group-id="9267220735-8">#{</span><span class="n">cur_uri</span><span class="o">.</span><span class="n">host</span><span class="si" data-group-id="9267220735-8">}</span><span class="s">&quot;</span><span class="w">
 
-  </span><span class="nc"
->MyAppWeb.Router.Helpers</span><span class="o"
->.</span><span class="n"
->url</span><span class="p" data-group-id="3743900631-9"
->(</span><span class="p" data-group-id="3743900631-10"
->%</span><span class="nc" data-group-id="3743900631-10"
->URI</span><span class="p" data-group-id="3743900631-10"
->{</span><span class="n"
->cur_uri</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="ss"
->host</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->org_host</span><span class="p" data-group-id="3743900631-10"
->}</span><span class="p" data-group-id="3743900631-9"
->)</span><span class="w"
-> </span><span class="o"
->&lt;&gt;</span><span class="w"
-> </span><span class="n"
->cur_path</span><span class="w"
->
-</span><span class="k" data-group-id="3743900631-3"
->end</span></code></pre>
+  </span><span class="nc">MyAppWeb.Router.Helpers</span><span class="o">.</span><span class="n">url</span><span class="p" data-group-id="9267220735-9">(</span><span class="p" data-group-id="9267220735-10">%</span><span class="nc" data-group-id="9267220735-10">URI</span><span class="p" data-group-id="9267220735-10">{</span><span class="n">cur_uri</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="n">org_host</span><span class="p" data-group-id="9267220735-10">}</span><span class="p" data-group-id="9267220735-9">)</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">cur_path</span><span class="w">
+</span><span class="k" data-group-id="9267220735-3">end</span></code></pre>
 
   </section>
 </div>
@@ -2119,54 +1192,12 @@ You could define a function like the following:</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->get_flash</span><span class="p" data-group-id="3905686251-1"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="3905686251-1"
->)</span><span class="w"
->
-</span><span class="p" data-group-id="3905686251-2"
->%{</span><span class="p" data-group-id="3905686251-2"
->}</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">get_flash</span><span class="p" data-group-id="1424000621-1">(</span><span class="n">conn</span><span class="p" data-group-id="1424000621-1">)</span><span class="w">
+</span><span class="p" data-group-id="1424000621-2">%{</span><span class="p" data-group-id="1424000621-2">}</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->put_flash</span><span class="p" data-group-id="3905686251-3"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;Welcome Back!&quot;</span><span class="p" data-group-id="3905686251-3"
->)</span><span class="w"
->
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->get_flash</span><span class="p" data-group-id="3905686251-4"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="3905686251-4"
->)</span><span class="w"
->
-</span><span class="p" data-group-id="3905686251-5"
->%{</span><span class="s"
->&quot;info&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="s"
->&quot;Welcome Back!&quot;</span><span class="p" data-group-id="3905686251-5"
->}</span></code></pre>
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="1424000621-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Welcome Back!&quot;</span><span class="p" data-group-id="1424000621-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">get_flash</span><span class="p" data-group-id="1424000621-4">(</span><span class="n">conn</span><span class="p" data-group-id="1424000621-4">)</span><span class="w">
+</span><span class="p" data-group-id="1424000621-5">%{</span><span class="s">&quot;info&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;Welcome Back!&quot;</span><span class="p" data-group-id="1424000621-5">}</span></code></pre>
 
   </section>
 </div>
@@ -2195,37 +1226,9 @@ You could define a function like the following:</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->put_flash</span><span class="p" data-group-id="5926904638-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;Welcome Back!&quot;</span><span class="p" data-group-id="5926904638-1"
->)</span><span class="w"
->
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->get_flash</span><span class="p" data-group-id="5926904638-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:info</span><span class="p" data-group-id="5926904638-2"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;Welcome Back!&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="9098489682-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Welcome Back!&quot;</span><span class="p" data-group-id="9098489682-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">get_flash</span><span class="p" data-group-id="9098489682-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:info</span><span class="p" data-group-id="9098489682-2">)</span><span class="w">
+</span><span class="s">&quot;Welcome Back!&quot;</span></code></pre>
 
   </section>
 </div>
@@ -2283,15 +1286,7 @@ You could define a function like the following:</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->html</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;&lt;html&gt;&lt;head&gt;...&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">html</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;html&gt;&lt;head&gt;...&quot;</span></code></pre>
 
   </section>
 </div>
@@ -2328,20 +1323,7 @@ application for <code class="inline">:json</code> to pick up the encoder module.
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->json</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0604740541-1"
->%{</span><span class="ss"
->id</span><span class="p"
->:</span><span class="w"
-> </span><span class="mi"
->123</span><span class="p" data-group-id="0604740541-1"
->}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8566843629-1">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p" data-group-id="8566843629-1">}</span></code></pre>
 
   </section>
 </div>
@@ -2458,37 +1440,9 @@ retrieving and deleting CSRF tokens.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->put_flash</span><span class="p" data-group-id="9086925908-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;Welcome Back!&quot;</span><span class="p" data-group-id="9086925908-1"
->)</span><span class="w"
->
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->get_flash</span><span class="p" data-group-id="9086925908-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:info</span><span class="p" data-group-id="9086925908-2"
->)</span><span class="w"
->
-</span><span class="s"
->&quot;Welcome Back!&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="7884570024-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Welcome Back!&quot;</span><span class="p" data-group-id="7884570024-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">get_flash</span><span class="p" data-group-id="7884570024-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:info</span><span class="p" data-group-id="7884570024-2">)</span><span class="w">
+</span><span class="s">&quot;Welcome Back!&quot;</span></code></pre>
 
   </section>
 </div>
@@ -2555,114 +1509,20 @@ would be used.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->layout</span><span class="p" data-group-id="9328147040-1"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="9328147040-1"
->)</span><span class="w"
->
-</span><span class="no"
->false</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">layout</span><span class="p" data-group-id="9975071152-1">(</span><span class="n">conn</span><span class="p" data-group-id="9975071152-1">)</span><span class="w">
+</span><span class="no">false</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->put_layout</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9328147040-2"
->{</span><span class="nc"
->AppView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;application.html&quot;</span><span class="p" data-group-id="9328147040-2"
->}</span><span class="w"
->
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->layout</span><span class="p" data-group-id="9328147040-3"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="9328147040-3"
->)</span><span class="w"
->
-</span><span class="p" data-group-id="9328147040-4"
->{</span><span class="nc"
->AppView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;application.html&quot;</span><span class="p" data-group-id="9328147040-4"
->}</span><span class="w"
->
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">put_layout</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9975071152-2">{</span><span class="nc">AppView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application.html&quot;</span><span class="p" data-group-id="9975071152-2">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">layout</span><span class="p" data-group-id="9975071152-3">(</span><span class="n">conn</span><span class="p" data-group-id="9975071152-3">)</span><span class="w">
+</span><span class="p" data-group-id="9975071152-4">{</span><span class="nc">AppView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application.html&quot;</span><span class="p" data-group-id="9975071152-4">}</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->put_layout</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;print.html&quot;</span><span class="w"
->
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->layout</span><span class="p" data-group-id="9328147040-5"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="9328147040-5"
->)</span><span class="w"
->
-</span><span class="p" data-group-id="9328147040-6"
->{</span><span class="nc"
->AppView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;print.html&quot;</span><span class="p" data-group-id="9328147040-6"
->}</span><span class="w"
->
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">put_layout</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;print.html&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">layout</span><span class="p" data-group-id="9975071152-5">(</span><span class="n">conn</span><span class="p" data-group-id="9975071152-5">)</span><span class="w">
+</span><span class="p" data-group-id="9975071152-6">{</span><span class="nc">AppView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;print.html&quot;</span><span class="p" data-group-id="9975071152-6">}</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->put_layout</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:print</span><span class="w"
->
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->layout</span><span class="p" data-group-id="9328147040-7"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="9328147040-7"
->)</span><span class="w"
->
-</span><span class="p" data-group-id="9328147040-8"
->{</span><span class="nc"
->AppView</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:print</span><span class="p" data-group-id="9328147040-8"
->}</span></code></pre>
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">put_layout</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:print</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">layout</span><span class="p" data-group-id="9975071152-7">(</span><span class="n">conn</span><span class="p" data-group-id="9975071152-7">)</span><span class="w">
+</span><span class="p" data-group-id="9975071152-8">{</span><span class="nc">AppView</span><span class="p">,</span><span class="w"> </span><span class="ss">:print</span><span class="p" data-group-id="9975071152-8">}</span></code></pre>
 <p>Raises <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.AlreadySentError.html"><code class="inline">Plug.Conn.AlreadySentError</code></a> if the conn was already sent.</p>
 
   </section>
@@ -2698,48 +1558,12 @@ would be used.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->layout_formats</span><span class="w"
-> </span><span class="n"
->conn</span><span class="w"
->
-</span><span class="p" data-group-id="1480848928-1"
->[</span><span class="s"
->&quot;html&quot;</span><span class="p" data-group-id="1480848928-1"
->]</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">layout_formats</span><span class="w"> </span><span class="n">conn</span><span class="w">
+</span><span class="p" data-group-id="3941764437-1">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="3941764437-1">]</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->put_layout_formats</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="1480848928-2"
->[</span><span class="s"
->&quot;html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;mobile&quot;</span><span class="p" data-group-id="1480848928-2"
->]</span><span class="w"
->
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->layout_formats</span><span class="w"
-> </span><span class="n"
->conn</span><span class="w"
->
-</span><span class="p" data-group-id="1480848928-3"
->[</span><span class="s"
->&quot;html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;mobile&quot;</span><span class="p" data-group-id="1480848928-3"
->]</span></code></pre>
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">put_layout_formats</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3941764437-2">[</span><span class="s">&quot;html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mobile&quot;</span><span class="p" data-group-id="3941764437-2">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">layout_formats</span><span class="w"> </span><span class="n">conn</span><span class="w">
+</span><span class="p" data-group-id="3941764437-3">[</span><span class="s">&quot;html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mobile&quot;</span><span class="p" data-group-id="3941764437-3">]</span></code></pre>
 <p>Raises <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.AlreadySentError.html"><code class="inline">Plug.Conn.AlreadySentError</code></a> if the conn was already sent.</p>
 
   </section>
@@ -2828,126 +1652,12 @@ would be used.</p>
   <section class="docstring">
     <p>Put headers that improve browser security.</p>
 <p>It sets the following headers:</p>
-<pre><code class="nohighlight makeup"><span class="o"
->*</span><span class="w"
-> </span><span class="n"
->x</span><span class="o"
->-</span><span class="n"
->frame</span><span class="o"
->-</span><span class="n"
->options</span><span class="w"
-> </span><span class="o"
->-</span><span class="w"
-> </span><span class="n"
->set</span><span class="w"
-> </span><span class="n"
->to</span><span class="w"
-> </span><span class="nc"
->SAMEORIGIN</span><span class="w"
-> </span><span class="n"
->to</span><span class="w"
-> </span><span class="n"
->avoid</span><span class="w"
-> </span><span class="n"
->clickjacking</span><span class="w"
->
-  </span><span class="n"
->through</span><span class="w"
-> </span><span class="n"
->iframes</span><span class="w"
-> </span><span class="k"
->unless</span><span class="w"
-> </span><span class="ow"
->in</span><span class="w"
-> </span><span class="n"
->the</span><span class="w"
-> </span><span class="n"
->same</span><span class="w"
-> </span><span class="n"
->origin</span><span class="w"
->
-</span><span class="o"
->*</span><span class="w"
-> </span><span class="n"
->x</span><span class="o"
->-</span><span class="n"
->content</span><span class="o"
->-</span><span class="n"
->type</span><span class="o"
->-</span><span class="n"
->options</span><span class="w"
-> </span><span class="o"
->-</span><span class="w"
-> </span><span class="n"
->set</span><span class="w"
-> </span><span class="n"
->to</span><span class="w"
-> </span><span class="n"
->nosniff</span><span class="o"
->.</span><span class="w"
-> </span><span class="nc"
->This</span><span class="w"
-> </span><span class="n"
->requires</span><span class="w"
->
-  </span><span class="n"
->script</span><span class="w"
-> </span><span class="ow"
->and</span><span class="w"
-> </span><span class="n"
->style</span><span class="w"
-> </span><span class="n"
->tags</span><span class="w"
-> </span><span class="n"
->to</span><span class="w"
-> </span><span class="n"
->be</span><span class="w"
-> </span><span class="n"
->sent</span><span class="w"
-> </span><span class="k"
->with</span><span class="w"
-> </span><span class="n"
->proper</span><span class="w"
-> </span><span class="n"
->content</span><span class="w"
-> </span><span class="n"
->type</span><span class="w"
->
-</span><span class="o"
->*</span><span class="w"
-> </span><span class="n"
->x</span><span class="o"
->-</span><span class="n"
->xss</span><span class="o"
->-</span><span class="n"
->protection</span><span class="w"
-> </span><span class="o"
->-</span><span class="w"
-> </span><span class="n"
->set</span><span class="w"
-> </span><span class="n"
->to</span><span class="w"
-> </span><span class="s"
->&quot;1; mode=block&quot;</span><span class="w"
-> </span><span class="n"
->to</span><span class="w"
-> </span><span class="n"
->improve</span><span class="w"
-> </span><span class="nc"
->XSS</span><span class="w"
->
-  </span><span class="n"
->protection</span><span class="w"
-> </span><span class="n"
->on</span><span class="w"
-> </span><span class="n"
->both</span><span class="w"
-> </span><span class="nc"
->Chrome</span><span class="w"
-> </span><span class="ow"
->and</span><span class="w"
-> </span><span class="nc"
->IE</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">-</span><span class="n">frame</span><span class="o">-</span><span class="n">options</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="nc">SAMEORIGIN</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">avoid</span><span class="w"> </span><span class="n">clickjacking</span><span class="w">
+  </span><span class="n">through</span><span class="w"> </span><span class="n">iframes</span><span class="w"> </span><span class="k">unless</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">origin</span><span class="w">
+</span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">-</span><span class="n">content</span><span class="o">-</span><span class="n">type</span><span class="o">-</span><span class="n">options</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">nosniff</span><span class="o">.</span><span class="w"> </span><span class="nc">This</span><span class="w"> </span><span class="n">requires</span><span class="w">
+  </span><span class="n">script</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="n">tags</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">sent</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">proper</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="n">type</span><span class="w">
+</span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">-</span><span class="n">xss</span><span class="o">-</span><span class="n">protection</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="s">&quot;1; mode=block&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">improve</span><span class="w"> </span><span class="nc">XSS</span><span class="w">
+  </span><span class="n">protection</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">both</span><span class="w"> </span><span class="nc">Chrome</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nc">IE</span></code></pre>
 <p>A custom headers map may also be given to be merged with defaults.</p>
 
   </section>
@@ -3009,32 +1719,9 @@ option to redirect to any URL.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->redirect</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->to</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;/login&quot;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/login&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->redirect</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->external</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;http://elixir-lang.org&quot;</span></code></pre>
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">external</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://elixir-lang.org&quot;</span></code></pre>
 
   </section>
 </div>
@@ -3128,97 +1815,25 @@ assigns are merged and have higher precedence than the connection assigns
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyApp.UserController</span><span class="w"
-> </span><span class="k" data-group-id="3880424595-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserController</span><span class="w"> </span><span class="k" data-group-id="2680252505-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="3880424595-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_params</span><span class="p" data-group-id="3880424595-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3880424595-3"
->do</span><span class="w"
->
-    </span><span class="n"
->render</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;show.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->message</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;Hello&quot;</span><span class="w"
->
-  </span><span class="k" data-group-id="3880424595-3"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="3880424595-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="2680252505-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="2680252505-2">)</span><span class="w"> </span><span class="k" data-group-id="2680252505-3">do</span><span class="w">
+    </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;show.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="w">
+  </span><span class="k" data-group-id="2680252505-3">end</span><span class="w">
+</span><span class="k" data-group-id="2680252505-1">end</span></code></pre>
 <p>The example above renders a template “show.html” from the <code class="inline">MyApp.UserView</code>
 and sets the response content type to “text/html”.</p>
 <p>In many cases, you may want the template format to be set dynamically based
 on the request. To do so, you can pass the template name as an atom (without
 the extension):</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="8892234497-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_params</span><span class="p" data-group-id="8892234497-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="8892234497-2"
->do</span><span class="w"
->
-  </span><span class="n"
->render</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:show</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->message</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;Hello&quot;</span><span class="w"
->
-</span><span class="k" data-group-id="8892234497-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="9413202830-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="9413202830-1">)</span><span class="w"> </span><span class="k" data-group-id="9413202830-2">do</span><span class="w">
+  </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="w">
+</span><span class="k" data-group-id="9413202830-2">end</span></code></pre>
 <p>In order for the example above to work, we need to do content negotiation with
 the accepts plug before rendering. You can do so by adding the following to your
 pipeline (in the router):</p>
-<pre><code class="nohighlight makeup"><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:accepts</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="8873743325-1"
->[</span><span class="s"
->&quot;html&quot;</span><span class="p" data-group-id="8873743325-1"
->]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2931372742-1">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="2931372742-1">]</span></code></pre>
 <h2 id="render/3-views" class="section-heading">
   <a href="#render/3-views" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Views
@@ -3228,101 +1843,21 @@ pipeline (in the router):</p>
 controller. For example, <code class="inline">MyApp.UserController</code> will render templates inside
 the <code class="inline">MyApp.UserView</code>. This information can be changed any time by using the
 <a href="#put_view/2"><code class="inline">put_view/2</code></a> function:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="8313786835-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_params</span><span class="p" data-group-id="8313786835-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="8313786835-2"
->do</span><span class="w"
->
-  </span><span class="n"
->conn</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_view</span><span class="p" data-group-id="8313786835-3"
->(</span><span class="nc"
->MyApp.SpecialView</span><span class="p" data-group-id="8313786835-3"
->)</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->render</span><span class="p" data-group-id="8313786835-4"
->(</span><span class="ss"
->:show</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->message</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;Hello&quot;</span><span class="p" data-group-id="8313786835-4"
->)</span><span class="w"
->
-</span><span class="k" data-group-id="8313786835-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="5825694272-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="5825694272-1">)</span><span class="w"> </span><span class="k" data-group-id="5825694272-2">do</span><span class="w">
+  </span><span class="n">conn</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_view</span><span class="p" data-group-id="5825694272-3">(</span><span class="nc">MyApp.SpecialView</span><span class="p" data-group-id="5825694272-3">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">render</span><span class="p" data-group-id="5825694272-4">(</span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="p" data-group-id="5825694272-4">)</span><span class="w">
+</span><span class="k" data-group-id="5825694272-2">end</span></code></pre>
 <p><a href="#put_view/2"><code class="inline">put_view/2</code></a> can also be used as a plug:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyApp.UserController</span><span class="w"
-> </span><span class="k" data-group-id="4232099497-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserController</span><span class="w"> </span><span class="k" data-group-id="7763101414-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="w">
 
-  </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:put_view</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->MyApp.SpecialView</span><span class="w"
->
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_view</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.SpecialView</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="4232099497-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_params</span><span class="p" data-group-id="4232099497-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4232099497-3"
->do</span><span class="w"
->
-    </span><span class="n"
->render</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:show</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->message</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;Hello&quot;</span><span class="w"
->
-  </span><span class="k" data-group-id="4232099497-3"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="4232099497-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="7763101414-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="7763101414-2">)</span><span class="w"> </span><span class="k" data-group-id="7763101414-3">do</span><span class="w">
+    </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="w">
+  </span><span class="k" data-group-id="7763101414-3">end</span><span class="w">
+</span><span class="k" data-group-id="7763101414-1">end</span></code></pre>
 <h2 id="render/3-layouts" class="section-heading">
   <a href="#render/3-layouts" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Layouts
@@ -3330,51 +1865,13 @@ the <code class="inline">MyApp.UserView</code>. This information can be changed 
 
 <p>Templates are often rendered inside layouts. By default, Phoenix
 will render layouts for html requests. For example:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyApp.UserController</span><span class="w"
-> </span><span class="k" data-group-id="7645800424-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserController</span><span class="w"> </span><span class="k" data-group-id="7835615765-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="7645800424-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_params</span><span class="p" data-group-id="7645800424-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="7645800424-3"
->do</span><span class="w"
->
-    </span><span class="n"
->render</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;show.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->message</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;Hello&quot;</span><span class="w"
->
-  </span><span class="k" data-group-id="7645800424-3"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="7645800424-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="7835615765-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="7835615765-2">)</span><span class="w"> </span><span class="k" data-group-id="7835615765-3">do</span><span class="w">
+    </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;show.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="w">
+  </span><span class="k" data-group-id="7835615765-3">end</span><span class="w">
+</span><span class="k" data-group-id="7835615765-1">end</span></code></pre>
 <p>will render the  “show.html” template inside an “app.html”
 template specified in <code class="inline">MyApp.LayoutView</code>. <a href="#put_layout/2"><code class="inline">put_layout/2</code></a> can be used
 to change the layout, similar to how <a href="#put_view/2"><code class="inline">put_view/2</code></a> can be used to change
@@ -3413,27 +1910,9 @@ which formats support/require layout rendering (defaults to “html” only).</p
     <p>WARNING: This function is deprecated in favor of <a href="#render/3"><code class="inline">render/3</code></a> + <a href="#put_view/2"><code class="inline">put_view/2</code></a>.</p>
 <p>A shortcut that renders the given template in the given view.</p>
 <p>Equivalent to:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->conn</span><span class="w"
->
-</span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_view</span><span class="p" data-group-id="8369558320-1"
->(</span><span class="n"
->view</span><span class="p" data-group-id="8369558320-1"
->)</span><span class="w"
->
-</span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->render</span><span class="p" data-group-id="8369558320-2"
->(</span><span class="n"
->template</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->assigns</span><span class="p" data-group-id="8369558320-2"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_view</span><span class="p" data-group-id="2135945199-1">(</span><span class="n">view</span><span class="p" data-group-id="2135945199-1">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="n">render</span><span class="p" data-group-id="2135945199-2">(</span><span class="n">template</span><span class="p">,</span><span class="w"> </span><span class="n">assigns</span><span class="p" data-group-id="2135945199-2">)</span></code></pre>
 
   </section>
 </div>
@@ -3509,16 +1988,7 @@ raise <a href="Phoenix.MissingParamError.html"><code class="inline">Phoenix.Miss
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->scrub_params</span><span class="p" data-group-id="2562733337-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;user&quot;</span><span class="p" data-group-id="2562733337-1"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">scrub_params</span><span class="p" data-group-id="8261005962-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user&quot;</span><span class="p" data-group-id="8261005962-1">)</span></code></pre>
 
   </section>
 </div>
@@ -3582,57 +2052,13 @@ Defaults to none.
 
 <p>To send a file that is stored inside your application priv
 directory:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->path</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Application</span><span class="o"
->.</span><span class="n"
->app_dir</span><span class="p" data-group-id="9202565929-1"
->(</span><span class="ss"
->:my_app</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;priv/prospectus.pdf&quot;</span><span class="p" data-group-id="9202565929-1"
->)</span><span class="w"
->
-</span><span class="n"
->send_download</span><span class="p" data-group-id="9202565929-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9202565929-3"
->{</span><span class="ss"
->:file</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->path</span><span class="p" data-group-id="9202565929-3"
->}</span><span class="p" data-group-id="9202565929-2"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Application</span><span class="o">.</span><span class="n">app_dir</span><span class="p" data-group-id="0828617630-1">(</span><span class="ss">:my_app</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;priv/prospectus.pdf&quot;</span><span class="p" data-group-id="0828617630-1">)</span><span class="w">
+</span><span class="n">send_download</span><span class="p" data-group-id="0828617630-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0828617630-3">{</span><span class="ss">:file</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p" data-group-id="0828617630-3">}</span><span class="p" data-group-id="0828617630-2">)</span></code></pre>
 <p>When using <code class="inline">{:file, path}</code>, the filename is inferred from the
 given path must may also be set explicitly.</p>
 <p>To allow the user to download contents that are in memory as
 a binary or string:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->send_download</span><span class="p" data-group-id="1377964685-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="1377964685-2"
->{</span><span class="ss"
->:binary</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;world&quot;</span><span class="p" data-group-id="1377964685-2"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->filename</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;hello.txt&quot;</span><span class="p" data-group-id="1377964685-1"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">send_download</span><span class="p" data-group-id="0424964423-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0424964423-2">{</span><span class="ss">:binary</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p" data-group-id="0424964423-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">filename</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello.txt&quot;</span><span class="p" data-group-id="0424964423-1">)</span></code></pre>
 <p>See <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#send_file/3"><code class="inline">Plug.Conn.send_file/3</code></a> and <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html#send_resp/3"><code class="inline">Plug.Conn.send_resp/3</code></a> if you
 would like to access the low-level functions used to send files
 and responses via Plug.</p>
@@ -3670,26 +2096,9 @@ and responses via Plug.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->text</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;hello&quot;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->text</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:implements_to_string</span></code></pre>
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:implements_to_string</span></code></pre>
 
   </section>
 </div>

@@ -8,7 +8,7 @@
     <title>phx.gen.json – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-4b89e9c553.js"></script>
+    <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -88,28 +88,7 @@
       
         <section id="moduledoc">
           <p>Generates controller, views, and context for an JSON resource.</p>
-<pre><code class="nohighlight makeup"><span class="n"
->mix</span><span class="w"
-> </span><span class="n"
->phx</span><span class="o"
->.</span><span class="n"
->gen</span><span class="o"
->.</span><span class="n"
->json</span><span class="w"
-> </span><span class="nc"
->Accounts</span><span class="w"
-> </span><span class="nc"
->User</span><span class="w"
-> </span><span class="n"
->users</span><span class="w"
-> </span><span class="ss"
->name</span><span class="p"
->:</span><span class="n"
->string</span><span class="w"
-> </span><span class="ss"
->age</span><span class="p"
->:</span><span class="n"
->integer</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">mix</span><span class="w"> </span><span class="n">phx</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">json</span><span class="w"> </span><span class="nc">Accounts</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="n">string</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="n">integer</span></code></pre>
 <p>The first argument is the context module followed by the schema module
 and its plural name (used as the schema table name).</p>
 <p>The context is an Elixir module that serves as an API boundary for
@@ -141,41 +120,9 @@ If <code class="inline">:context_app</code> is not set, the generators will plac
 and test files in a <code class="inline">web/</code> directory since the application is assumed
 to be handling both web and domain specific functionality.
 Example configuration:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->config</span><span class="w"
-> </span><span class="ss"
->:my_app_web</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:generators</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->context_app</span><span class="p"
->:</span><span class="w"
-> </span><span class="ss"
->:my_app</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:my_app_web</span><span class="p">,</span><span class="w"> </span><span class="ss">:generators</span><span class="p">,</span><span class="w"> </span><span class="ss">context_app</span><span class="p">:</span><span class="w"> </span><span class="ss">:my_app</span></code></pre>
 <p>Alternatively, the <code class="inline">--context-app</code> option may be supplied to the generator:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->mix</span><span class="w"
-> </span><span class="n"
->phx</span><span class="o"
->.</span><span class="n"
->gen</span><span class="o"
->.</span><span class="n"
->json</span><span class="w"
-> </span><span class="nc"
->Sales</span><span class="w"
-> </span><span class="nc"
->User</span><span class="w"
-> </span><span class="n"
->users</span><span class="w"
-> </span><span class="o"
->--</span><span class="n"
->context</span><span class="o"
->-</span><span class="n"
->app</span><span class="w"
-> </span><span class="n"
->warehouse</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">mix</span><span class="w"> </span><span class="n">phx</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">json</span><span class="w"> </span><span class="nc">Sales</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">--</span><span class="n">context</span><span class="o">-</span><span class="n">app</span><span class="w"> </span><span class="n">warehouse</span></code></pre>
 <h2 id="module-web-namespace" class="section-heading">
   <a href="#module-web-namespace" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Web namespace
@@ -184,25 +131,7 @@ Example configuration:</p>
 <p>By default, the controller and view will be namespaced by the schema name.
 You can customize the web module namespace by passing the <code class="inline">--web</code> flag with a
 module name, for example:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->mix</span><span class="w"
-> </span><span class="n"
->phx</span><span class="o"
->.</span><span class="n"
->gen</span><span class="o"
->.</span><span class="n"
->json</span><span class="w"
-> </span><span class="nc"
->Sales</span><span class="w"
-> </span><span class="nc"
->User</span><span class="w"
-> </span><span class="n"
->users</span><span class="w"
-> </span><span class="o"
->--</span><span class="n"
->web</span><span class="w"
-> </span><span class="nc"
->Sales</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">mix</span><span class="w"> </span><span class="n">phx</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">json</span><span class="w"> </span><span class="nc">Sales</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">--</span><span class="n">web</span><span class="w"> </span><span class="nc">Sales</span></code></pre>
 <p>Which would generate a <code class="inline">lib/app_web/controllers/sales/user_controller.ex</code> and
 <code class="inline">lib/app_web/views/sales/user_view.ex</code>.</p>
 <h2 id="module-generating-without-a-schema-or-context-file" class="section-heading">
@@ -222,25 +151,7 @@ file generation control.</p>
 <p>By default, the table name for the migration and schema will be
 the plural name provided for the resource. To customize this value,
 a <code class="inline">--table</code> option may be provided. For example:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->mix</span><span class="w"
-> </span><span class="n"
->phx</span><span class="o"
->.</span><span class="n"
->gen</span><span class="o"
->.</span><span class="n"
->json</span><span class="w"
-> </span><span class="nc"
->Accounts</span><span class="w"
-> </span><span class="nc"
->User</span><span class="w"
-> </span><span class="n"
->users</span><span class="w"
-> </span><span class="o"
->--</span><span class="n"
->table</span><span class="w"
-> </span><span class="n"
->cms_users</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">mix</span><span class="w"> </span><span class="n">phx</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">json</span><span class="w"> </span><span class="nc">Accounts</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">--</span><span class="n">table</span><span class="w"> </span><span class="n">cms_users</span></code></pre>
 <h2 id="module-binary_id" class="section-heading">
   <a href="#module-binary_id" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   binary_id
@@ -255,34 +166,10 @@ and its references with option <code class="inline">--binary-id</code>.</p>
 
 <p>This generator uses default options provided in the <code class="inline">:generators</code>
 configuration of your application. These are the defaults:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->config</span><span class="w"
-> </span><span class="ss"
->:your_app</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:generators</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->migration</span><span class="p"
->:</span><span class="w"
-> </span><span class="no"
->true</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->binary_id</span><span class="p"
->:</span><span class="w"
-> </span><span class="no"
->false</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->sample_binary_id</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;11111111-1111-1111-1111-111111111111&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:your_app</span><span class="p">,</span><span class="w"> </span><span class="ss">:generators</span><span class="p">,</span><span class="w">
+  </span><span class="ss">migration</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
+  </span><span class="ss">binary_id</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+  </span><span class="ss">sample_binary_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;11111111-1111-1111-1111-111111111111&quot;</span></code></pre>
 <p>You can override those options per invocation by providing corresponding
 switches, e.g. <code class="inline">--no-binary-id</code> to use normal ids despite the default
 configuration or <code class="inline">--migration</code> to force generation of the migration.</p>

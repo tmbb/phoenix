@@ -8,7 +8,7 @@
     <title>Phoenix.Presence – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-4b89e9c553.js"></script>
+    <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -102,216 +102,36 @@ tracker process to handle presence information.</p>
 <p>Start by defining a presence module within your application
 which uses <a href="Phoenix.Presence.html#content"><code class="inline">Phoenix.Presence</code></a> and provide the <code class="inline">:otp_app</code> which
 holds your configuration, as well as the <code class="inline">:pubsub_server</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyApp.Presence</span><span class="w"
-> </span><span class="k" data-group-id="9796273579-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Presence</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->otp_app</span><span class="p"
->:</span><span class="w"
-> </span><span class="ss"
->:my_app</span><span class="p"
->,</span><span class="w"
->
-                        </span><span class="ss"
->pubsub_server</span><span class="p"
->:</span><span class="w"
-> </span><span class="nc"
->MyApp.PubSub</span><span class="w"
->
-</span><span class="k" data-group-id="9796273579-1"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.Presence</span><span class="w"> </span><span class="k" data-group-id="8373831419-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Presence</span><span class="p">,</span><span class="w"> </span><span class="ss">otp_app</span><span class="p">:</span><span class="w"> </span><span class="ss">:my_app</span><span class="p">,</span><span class="w">
+                        </span><span class="ss">pubsub_server</span><span class="p">:</span><span class="w"> </span><span class="nc">MyApp.PubSub</span><span class="w">
+</span><span class="k" data-group-id="8373831419-1">end</span></code></pre>
 <p>The <code class="inline">:pubsub_server</code> must point to an existing pubsub server
 running in your application, which is included by default as
 <code class="inline">MyApp.PubSub</code> for new applications.</p>
 <p>Next, add the new supervisor to your supervision tree in <code class="inline">lib/my_app.ex</code>:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->children</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="p" data-group-id="9163619394-1"
->[</span><span class="w"
->
-  </span><span class="n"
->...</span><span class="w"
->
-  </span><span class="n"
->supervisor</span><span class="p" data-group-id="9163619394-2"
->(</span><span class="nc"
->MyApp.Presence</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9163619394-3"
->[</span><span class="p" data-group-id="9163619394-3"
->]</span><span class="p" data-group-id="9163619394-2"
->)</span><span class="p"
->,</span><span class="w"
->
-</span><span class="p" data-group-id="9163619394-1"
->]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9322303832-1">[</span><span class="w">
+  </span><span class="n">...</span><span class="w">
+  </span><span class="n">supervisor</span><span class="p" data-group-id="9322303832-2">(</span><span class="nc">MyApp.Presence</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9322303832-3">[</span><span class="p" data-group-id="9322303832-3">]</span><span class="p" data-group-id="9322303832-2">)</span><span class="p">,</span><span class="w">
+</span><span class="p" data-group-id="9322303832-1">]</span></code></pre>
 <p>Once added, presences can be tracked in your channel after joining:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyApp.MyChannel</span><span class="w"
-> </span><span class="k" data-group-id="4645745178-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->MyAppWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:channel</span><span class="w"
->
-  </span><span class="kn"
->alias</span><span class="w"
-> </span><span class="nc"
->MyApp.Presence</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.MyChannel</span><span class="w"> </span><span class="k" data-group-id="6398056193-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">MyAppWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:channel</span><span class="w">
+  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">MyApp.Presence</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->join</span><span class="p" data-group-id="4645745178-2"
->(</span><span class="s"
->&quot;some:topic&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_params</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4645745178-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4645745178-3"
->do</span><span class="w"
->
-    </span><span class="n"
->send</span><span class="p" data-group-id="4645745178-4"
->(</span><span class="n"
->self</span><span class="p" data-group-id="4645745178-5"
->(</span><span class="p" data-group-id="4645745178-5"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:after_join</span><span class="p" data-group-id="4645745178-4"
->)</span><span class="w"
->
-    </span><span class="p" data-group-id="4645745178-6"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->assign</span><span class="p" data-group-id="4645745178-7"
->(</span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:user_id</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->...</span><span class="p" data-group-id="4645745178-7"
->)</span><span class="p" data-group-id="4645745178-6"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="4645745178-3"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="6398056193-2">(</span><span class="s">&quot;some:topic&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6398056193-2">)</span><span class="w"> </span><span class="k" data-group-id="6398056193-3">do</span><span class="w">
+    </span><span class="n">send</span><span class="p" data-group-id="6398056193-4">(</span><span class="n">self</span><span class="p" data-group-id="6398056193-5">(</span><span class="p" data-group-id="6398056193-5">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:after_join</span><span class="p" data-group-id="6398056193-4">)</span><span class="w">
+    </span><span class="p" data-group-id="6398056193-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="6398056193-7">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user_id</span><span class="p">,</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="6398056193-7">)</span><span class="p" data-group-id="6398056193-6">}</span><span class="w">
+  </span><span class="k" data-group-id="6398056193-3">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_info</span><span class="p" data-group-id="4645745178-8"
->(</span><span class="ss"
->:after_join</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4645745178-8"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4645745178-9"
->do</span><span class="w"
->
-    </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;presence_state&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->Presence</span><span class="o"
->.</span><span class="n"
->list</span><span class="p" data-group-id="4645745178-10"
->(</span><span class="n"
->socket</span><span class="p" data-group-id="4645745178-10"
->)</span><span class="w"
->
-    </span><span class="p" data-group-id="4645745178-11"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="err"
->_</span><span class="p" data-group-id="4645745178-11"
->}</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Presence</span><span class="o"
->.</span><span class="n"
->track</span><span class="p" data-group-id="4645745178-12"
->(</span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="o"
->.</span><span class="n"
->assigns</span><span class="o"
->.</span><span class="n"
->user_id</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="4645745178-13"
->%{</span><span class="w"
->
-      </span><span class="ss"
->online_at</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->inspect</span><span class="p" data-group-id="4645745178-14"
->(</span><span class="nc"
->System</span><span class="o"
->.</span><span class="n"
->system_time</span><span class="p" data-group-id="4645745178-15"
->(</span><span class="ss"
->:seconds</span><span class="p" data-group-id="4645745178-15"
->)</span><span class="p" data-group-id="4645745178-14"
->)</span><span class="w"
->
-    </span><span class="p" data-group-id="4645745178-13"
->}</span><span class="p" data-group-id="4645745178-12"
->)</span><span class="w"
->
-    </span><span class="p" data-group-id="4645745178-16"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4645745178-16"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="4645745178-9"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="4645745178-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="6398056193-8">(</span><span class="ss">:after_join</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6398056193-8">)</span><span class="w"> </span><span class="k" data-group-id="6398056193-9">do</span><span class="w">
+    </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;presence_state&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Presence</span><span class="o">.</span><span class="n">list</span><span class="p" data-group-id="6398056193-10">(</span><span class="n">socket</span><span class="p" data-group-id="6398056193-10">)</span><span class="w">
+    </span><span class="p" data-group-id="6398056193-11">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="6398056193-11">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Presence</span><span class="o">.</span><span class="n">track</span><span class="p" data-group-id="6398056193-12">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6398056193-13">%{</span><span class="w">
+      </span><span class="ss">online_at</span><span class="p">:</span><span class="w"> </span><span class="n">inspect</span><span class="p" data-group-id="6398056193-14">(</span><span class="nc">System</span><span class="o">.</span><span class="n">system_time</span><span class="p" data-group-id="6398056193-15">(</span><span class="ss">:seconds</span><span class="p" data-group-id="6398056193-15">)</span><span class="p" data-group-id="6398056193-14">)</span><span class="w">
+    </span><span class="p" data-group-id="6398056193-13">}</span><span class="p" data-group-id="6398056193-12">)</span><span class="w">
+    </span><span class="p" data-group-id="6398056193-16">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6398056193-16">}</span><span class="w">
+  </span><span class="k" data-group-id="6398056193-9">end</span><span class="w">
+</span><span class="k" data-group-id="6398056193-1">end</span></code></pre>
 <p>In the example above, the current presence information for
 the socket’s topic is pushed to the client as a <code class="inline">&quot;presence_state&quot;</code> event.
 Next, <code class="inline">Presence.track</code> is used to register this
@@ -320,71 +140,8 @@ a map of metadata.</p>
 <p>Finally, a diff of presence join and leave events will be sent to the
 client as they happen in real-time with the “presence_diff” event.
 The diff structure will be a map of <code class="inline">:joins</code> and <code class="inline">:leaves</code> of the form:</p>
-<pre><code class="nohighlight makeup"><span class="p"
->%</span><span class="err"
->{</span><span class="ss"
->joins</span><span class="p"
->:</span><span class="w"
-> </span><span class="p"
->%</span><span class="err"
->{</span><span class="s"
->&quot;123&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="p" data-group-id="6875090239-1"
->%{</span><span class="ss"
->metas</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="6875090239-2"
->[</span><span class="p" data-group-id="6875090239-3"
->%{</span><span class="ss"
->status</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;away&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->phx_ref</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->...</span><span class="p" data-group-id="6875090239-3"
->}</span><span class="p" data-group-id="6875090239-2"
->]</span><span class="p" data-group-id="6875090239-1"
->}</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->leaves</span><span class="p"
->:</span><span class="w"
-> </span><span class="p"
->%</span><span class="err"
->{</span><span class="s"
->&quot;456&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="p" data-group-id="6875090239-4"
->%{</span><span class="ss"
->metas</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="6875090239-5"
->[</span><span class="p" data-group-id="6875090239-6"
->%{</span><span class="ss"
->status</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;online&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->phx_ref</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->...</span><span class="p" data-group-id="6875090239-6"
->}</span><span class="p" data-group-id="6875090239-5"
->]</span><span class="p" data-group-id="6875090239-4"
->}</span><span class="p"
->,</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p">%</span><span class="err">{</span><span class="ss">joins</span><span class="p">:</span><span class="w"> </span><span class="p">%</span><span class="err">{</span><span class="s">&quot;123&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="2511335117-1">%{</span><span class="ss">metas</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2511335117-2">[</span><span class="p" data-group-id="2511335117-3">%{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;away&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phx_ref</span><span class="p">:</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="2511335117-3">}</span><span class="p" data-group-id="2511335117-2">]</span><span class="p" data-group-id="2511335117-1">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">leaves</span><span class="p">:</span><span class="w"> </span><span class="p">%</span><span class="err">{</span><span class="s">&quot;456&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="2511335117-4">%{</span><span class="ss">metas</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2511335117-5">[</span><span class="p" data-group-id="2511335117-6">%{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;online&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phx_ref</span><span class="p">:</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="2511335117-6">}</span><span class="p" data-group-id="2511335117-5">]</span><span class="p" data-group-id="2511335117-4">}</span><span class="p">,</span></code></pre>
 <p>See <a href="Phoenix.Presence.html#list/2"><code class="inline">Phoenix.Presence.list/2</code></a> for more information on the presence
 data structure.</p>
 <h2 id="module-fetching-presence-information" class="section-heading">
@@ -404,146 +161,18 @@ isolated data fetching to extend presence metadata. The function must
 return a map of data matching the outlined Presence data structure,
 including the <code class="inline">:metas</code> key, but can extend the map of information
 to include any additional information. For example:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->fetch</span><span class="p" data-group-id="0968452449-1"
->(</span><span class="bp"
->_topic</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->entries</span><span class="p" data-group-id="0968452449-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="0968452449-2"
->do</span><span class="w"
->
-  </span><span class="n"
->query</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
->
-    </span><span class="n"
->from</span><span class="w"
-> </span><span class="n"
->u</span><span class="w"
-> </span><span class="ow"
->in</span><span class="w"
-> </span><span class="nc"
->User</span><span class="p"
->,</span><span class="w"
->
-      </span><span class="ss"
->where</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->u</span><span class="o"
->.</span><span class="n"
->id</span><span class="w"
-> </span><span class="ow"
->in</span><span class="w"
-> </span><span class="o"
->^</span><span class="nc"
->Map</span><span class="o"
->.</span><span class="n"
->keys</span><span class="p" data-group-id="0968452449-3"
->(</span><span class="n"
->entries</span><span class="p" data-group-id="0968452449-3"
->)</span><span class="p"
->,</span><span class="w"
->
-      </span><span class="ss"
->select</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="0968452449-4"
->{</span><span class="n"
->u</span><span class="o"
->.</span><span class="n"
->id</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->u</span><span class="p" data-group-id="0968452449-4"
->}</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">fetch</span><span class="p" data-group-id="3339843992-1">(</span><span class="n">_topic</span><span class="p">,</span><span class="w"> </span><span class="n">entries</span><span class="p" data-group-id="3339843992-1">)</span><span class="w"> </span><span class="k" data-group-id="3339843992-2">do</span><span class="w">
+  </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w">
+    </span><span class="n">from</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nc">User</span><span class="p">,</span><span class="w">
+      </span><span class="ss">where</span><span class="p">:</span><span class="w"> </span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">^</span><span class="nc">Map</span><span class="o">.</span><span class="n">keys</span><span class="p" data-group-id="3339843992-3">(</span><span class="n">entries</span><span class="p" data-group-id="3339843992-3">)</span><span class="p">,</span><span class="w">
+      </span><span class="ss">select</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3339843992-4">{</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p" data-group-id="3339843992-4">}</span><span class="w">
 
-  </span><span class="n"
->users</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->query</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="nc"
->Repo</span><span class="o"
->.</span><span class="n"
->all</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="nc"
->Enum</span><span class="o"
->.</span><span class="n"
->into</span><span class="p" data-group-id="0968452449-5"
->(</span><span class="p" data-group-id="0968452449-6"
->%{</span><span class="p" data-group-id="0968452449-6"
->}</span><span class="p" data-group-id="0968452449-5"
->)</span><span class="w"
->
+  </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">all</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">into</span><span class="p" data-group-id="3339843992-5">(</span><span class="p" data-group-id="3339843992-6">%{</span><span class="p" data-group-id="3339843992-6">}</span><span class="p" data-group-id="3339843992-5">)</span><span class="w">
 
-  </span><span class="k"
->for</span><span class="w"
-> </span><span class="p" data-group-id="0968452449-7"
->{</span><span class="n"
->key</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0968452449-8"
->%{</span><span class="ss"
->metas</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->metas</span><span class="p" data-group-id="0968452449-8"
->}</span><span class="p" data-group-id="0968452449-7"
->}</span><span class="w"
-> </span><span class="o"
->&lt;-</span><span class="w"
-> </span><span class="n"
->entries</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->into</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="0968452449-9"
->%{</span><span class="p" data-group-id="0968452449-9"
->}</span><span class="w"
-> </span><span class="k" data-group-id="0968452449-10"
->do</span><span class="w"
->
-    </span><span class="p" data-group-id="0968452449-11"
->{</span><span class="n"
->key</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0968452449-12"
->%{</span><span class="ss"
->metas</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->metas</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->user</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->users</span><span class="p" data-group-id="0968452449-13"
->[</span><span class="n"
->key</span><span class="p" data-group-id="0968452449-13"
->]</span><span class="p" data-group-id="0968452449-12"
->}</span><span class="p" data-group-id="0968452449-11"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="0968452449-10"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="0968452449-2"
->end</span></code></pre>
+  </span><span class="k">for</span><span class="w"> </span><span class="p" data-group-id="3339843992-7">{</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3339843992-8">%{</span><span class="ss">metas</span><span class="p">:</span><span class="w"> </span><span class="n">metas</span><span class="p" data-group-id="3339843992-8">}</span><span class="p" data-group-id="3339843992-7">}</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">entries</span><span class="p">,</span><span class="w"> </span><span class="ss">into</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3339843992-9">%{</span><span class="p" data-group-id="3339843992-9">}</span><span class="w"> </span><span class="k" data-group-id="3339843992-10">do</span><span class="w">
+    </span><span class="p" data-group-id="3339843992-11">{</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3339843992-12">%{</span><span class="ss">metas</span><span class="p">:</span><span class="w"> </span><span class="n">metas</span><span class="p">,</span><span class="w"> </span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="n">users</span><span class="p" data-group-id="3339843992-13">[</span><span class="n">key</span><span class="p" data-group-id="3339843992-13">]</span><span class="p" data-group-id="3339843992-12">}</span><span class="p" data-group-id="3339843992-11">}</span><span class="w">
+  </span><span class="k" data-group-id="3339843992-10">end</span><span class="w">
+</span><span class="k" data-group-id="3339843992-2">end</span></code></pre>
 <p>The function above fetches all users from the database who
 have registered presences for the given topic. The fetched
 information is then extended with a <code class="inline">:user</code> key of the user’s
@@ -820,105 +449,13 @@ original presence data.</p>
 
 <p>The presence information is returned as a map with presences grouped
 by key, cast as a string, and accumulated metadata, with the following form:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="0377688306-1"
->%{</span><span class="n"
->key</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="p" data-group-id="0377688306-2"
->%{</span><span class="ss"
->metas</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="0377688306-3"
->[</span><span class="p" data-group-id="0377688306-4"
->%{</span><span class="ss"
->phx_ref</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->...</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->...</span><span class="p" data-group-id="0377688306-4"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->...</span><span class="p" data-group-id="0377688306-3"
->]</span><span class="p" data-group-id="0377688306-2"
->}</span><span class="p" data-group-id="0377688306-1"
->}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="0441540452-1">%{</span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="0441540452-2">%{</span><span class="ss">metas</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0441540452-3">[</span><span class="p" data-group-id="0441540452-4">%{</span><span class="ss">phx_ref</span><span class="p">:</span><span class="w"> </span><span class="n">...</span><span class="p">,</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="0441540452-4">}</span><span class="p">,</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="0441540452-3">]</span><span class="p" data-group-id="0441540452-2">}</span><span class="p" data-group-id="0441540452-1">}</span></code></pre>
 <p>For example, imagine a user with id <code class="inline">123</code> online from two
 different devices, as well as a user with id <code class="inline">456</code> online from
 just one device. The following presence information might be returned:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="0922110249-1"
->%{</span><span class="s"
->&quot;123&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="p" data-group-id="0922110249-2"
->%{</span><span class="ss"
->metas</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="0922110249-3"
->[</span><span class="p" data-group-id="0922110249-4"
->%{</span><span class="ss"
->status</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;away&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->phx_ref</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->...</span><span class="p" data-group-id="0922110249-4"
->}</span><span class="p"
->,</span><span class="w"
->
-                     </span><span class="p" data-group-id="0922110249-5"
->%{</span><span class="ss"
->status</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;online&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->phx_ref</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->...</span><span class="p" data-group-id="0922110249-5"
->}</span><span class="p" data-group-id="0922110249-3"
->]</span><span class="p" data-group-id="0922110249-2"
->}</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="s"
->&quot;456&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="p" data-group-id="0922110249-6"
->%{</span><span class="ss"
->metas</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="0922110249-7"
->[</span><span class="p" data-group-id="0922110249-8"
->%{</span><span class="ss"
->status</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;online&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->phx_ref</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->...</span><span class="p" data-group-id="0922110249-8"
->}</span><span class="p" data-group-id="0922110249-7"
->]</span><span class="p" data-group-id="0922110249-6"
->}</span><span class="p" data-group-id="0922110249-1"
->}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="0101666827-1">%{</span><span class="s">&quot;123&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="0101666827-2">%{</span><span class="ss">metas</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0101666827-3">[</span><span class="p" data-group-id="0101666827-4">%{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;away&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phx_ref</span><span class="p">:</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="0101666827-4">}</span><span class="p">,</span><span class="w">
+                     </span><span class="p" data-group-id="0101666827-5">%{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;online&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phx_ref</span><span class="p">:</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="0101666827-5">}</span><span class="p" data-group-id="0101666827-3">]</span><span class="p" data-group-id="0101666827-2">}</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;456&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="0101666827-6">%{</span><span class="ss">metas</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0101666827-7">[</span><span class="p" data-group-id="0101666827-8">%{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;online&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phx_ref</span><span class="p">:</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="0101666827-8">}</span><span class="p" data-group-id="0101666827-7">]</span><span class="p" data-group-id="0101666827-6">}</span><span class="p" data-group-id="0101666827-1">}</span></code></pre>
 <p>The keys of the map will usually point to a resource ID. The value
 will contain a map with a <code class="inline">:metas</code> key containing a list of metadata
 for each resource. Additionally, every metadata entry will contain a

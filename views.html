@@ -8,7 +8,7 @@
     <title>Views – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-4b89e9c553.js"></script>
+    <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -84,129 +84,33 @@
 <p>Phoenix assumes a strong naming convention from controllers to views to the templates they render. The <code class="inline">PageController</code> requires a <code class="inline">PageView</code> to render templates in the <code class="inline">lib/hello_web/templates/page</code> directory. If we want to, we can change the directory Phoenix considers to be the template root. Phoenix provides a <code class="inline">view/0</code> function in the <code class="inline">HelloWeb</code> module defined in <code class="inline">lib/hello_web.ex</code>. The first line of <code class="inline">view/0</code> allows us to change our root directory by changing the value assigned to the <code class="inline">:root</code> key.</p>
 <p>A newly generated Phoenix application has three view modules - <code class="inline">ErrorView</code>, <code class="inline">LayoutView</code>, and <code class="inline">PageView</code> -  which are all in the, <code class="inline">lib/hello_web/views</code> directory.</p>
 <p>Let’s take a quick look at the <code class="inline">LayoutView</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.LayoutView</span><span class="w"
-> </span><span class="k" data-group-id="8427195730-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:view</span><span class="w"
->
-</span><span class="k" data-group-id="8427195730-1"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.LayoutView</span><span class="w"> </span><span class="k" data-group-id="2027696902-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
+</span><span class="k" data-group-id="2027696902-1">end</span></code></pre>
 <p>That’s simple enough. There’s only one line, <code class="inline">use HelloWeb, :view</code>. This line calls the <code class="inline">view/0</code> function we just saw above. Besides allowing us to change our template root, <code class="inline">view/0</code> exercises the <code class="inline">__using__</code> macro in the <a href="Phoenix.View.html"><code class="inline">Phoenix.View</code></a> module. It also handles any module imports or aliases our application’s view modules might need.</p>
 <p>At the top of this guide, we mentioned that views are a place to put functions for use in our templates. Let’s experiment with that a little bit.</p>
 <p>Let’s open up our application layout template, <code class="inline">lib/hello_web/templates/layout/app.html.eex</code>, and change this line,</p>
 <pre><code class="html">&lt;title&gt;Hello Phoenix!&lt;/title&gt;</code></pre>
 <p>to call a <code class="inline">title/0</code> function, like this.</p>
-<pre><code class="nohighlight makeup"><span class="o"
->&lt;</span><span class="n"
->title</span><span class="o"
->&gt;</span><span class="o"
->&lt;</span><span class="p"
->%</span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->title</span><span class="p" data-group-id="2198330816-1"
->(</span><span class="p" data-group-id="2198330816-1"
->)</span><span class="w"
-> </span><span class="p"
->%</span><span class="o"
->&gt;</span><span class="o"
->&lt;</span><span class="o"
->/</span><span class="n"
->title</span><span class="o"
->&gt;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="n">title</span><span class="p" data-group-id="3098702931-1">(</span><span class="p" data-group-id="3098702931-1">)</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="o">/</span><span class="n">title</span><span class="o">&gt;</span></code></pre>
 <p>Now let’s add a <code class="inline">title/0</code> function to our <code class="inline">LayoutView</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.LayoutView</span><span class="w"
-> </span><span class="k" data-group-id="6503734725-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:view</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.LayoutView</span><span class="w"> </span><span class="k" data-group-id="3980450652-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->title</span><span class="w"
-> </span><span class="k" data-group-id="6503734725-2"
->do</span><span class="w"
->
-    </span><span class="s"
->&quot;Awesome New Title!&quot;</span><span class="w"
->
-  </span><span class="k" data-group-id="6503734725-2"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="6503734725-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">title</span><span class="w"> </span><span class="k" data-group-id="3980450652-2">do</span><span class="w">
+    </span><span class="s">&quot;Awesome New Title!&quot;</span><span class="w">
+  </span><span class="k" data-group-id="3980450652-2">end</span><span class="w">
+</span><span class="k" data-group-id="3980450652-1">end</span></code></pre>
 <p>When we reload the Welcome to Phoenix page, we should see our new title.</p>
 <p>The <code class="inline">&lt;%=</code> and <code class="inline">%&gt;</code> are from the Elixir <a href="https://hexdocs.pm/eex/1.5.1/EEx.html">EEx</a> project. They enclose executable Elixir code within a template. The <code class="inline">=</code> tells EEx to print the result. If the <code class="inline">=</code> is not there, EEx will still execute the code, but there will be no output. In our example, we are calling the <code class="inline">title/0</code> function from our <code class="inline">LayoutView</code> and printing the output into the title tag.</p>
 <p>Note that we didn’t need to fully qualify <code class="inline">title/0</code> with <code class="inline">HelloWeb.LayoutView</code> because our <code class="inline">LayoutView</code> actually does the rendering. In fact, “templates” in Phoenix are really just function definitions on their view module. You can try this out by temporarily deleting your <code class="inline">lib/hello_web/templates/page/index.html.eex</code> file and adding this function clause to your <code class="inline">PageView</code> module in <code class="inline">lib/hello_web/views/page_view.ex</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageView</span><span class="w"
-> </span><span class="k" data-group-id="3193952259-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:view</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="w"> </span><span class="k" data-group-id="6390948951-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="3193952259-2"
->(</span><span class="s"
->&quot;index.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->assigns</span><span class="p" data-group-id="3193952259-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3193952259-3"
->do</span><span class="w"
->
-    </span><span class="s"
->&quot;rendering with assigns </span><span class="si" data-group-id="3193952259-4"
->#{</span><span class="n"
->inspect</span><span class="w"
-> </span><span class="nc"
->Map</span><span class="o"
->.</span><span class="n"
->keys</span><span class="p" data-group-id="3193952259-5"
->(</span><span class="n"
->assigns</span><span class="p" data-group-id="3193952259-5"
->)</span><span class="si" data-group-id="3193952259-4"
->}</span><span class="s"
->&quot;</span><span class="w"
->
-  </span><span class="k" data-group-id="3193952259-3"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="3193952259-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="6390948951-2">(</span><span class="s">&quot;index.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">assigns</span><span class="p" data-group-id="6390948951-2">)</span><span class="w"> </span><span class="k" data-group-id="6390948951-3">do</span><span class="w">
+    </span><span class="s">&quot;rendering with assigns </span><span class="si" data-group-id="6390948951-4">#{</span><span class="n">inspect</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">keys</span><span class="p" data-group-id="6390948951-5">(</span><span class="n">assigns</span><span class="p" data-group-id="6390948951-5">)</span><span class="si" data-group-id="6390948951-4">}</span><span class="s">&quot;</span><span class="w">
+  </span><span class="k" data-group-id="6390948951-3">end</span><span class="w">
+</span><span class="k" data-group-id="6390948951-1">end</span></code></pre>
 <p>Now if you fire up the server with <code class="inline">mix phx.server</code> and visit <code class="inline">http://locahost:4000</code>, you should see the following text below your layout header instead of the main template page:</p>
 <pre><code class="">rendering with assigns [:conn, :view_module, :view_template]</code></pre>
 <p>Pretty neat, right? At compile-time, Phoenix precompiles all <code class="inline">*.html.eex</code> templates and turns them into <code class="inline">render/2</code> function clauses on their respective view modules. At runtime, all templates are already loaded in memory. There’s no disk reads, complex file caching, or template engine computation involved. This is also why we were able to define functions like <code class="inline">title/0</code> in our <code class="inline">LayoutView</code> and they were immediately available inside the layout’s <code class="inline">app.html.eex</code> – the call to <code class="inline">title/0</code> was just a local function call!</p>
@@ -233,311 +137,44 @@
 <p>You might be wondering how views are able to work so closely with templates.</p>
 <p>The <a href="Phoenix.View.html"><code class="inline">Phoenix.View</code></a> module gains access to template behavior via the <code class="inline">use Phoenix.Template</code> line in its <code class="inline">__using__/1</code> macro. <a href="Phoenix.Template.html"><code class="inline">Phoenix.Template</code></a> provides many convenience methods for working with templates - finding them, extracting their names and paths, and much more.</p>
 <p>Let’s experiment a little with one of the generated views Phoenix provides us, <code class="inline">lib/hello_web/views/page_view.ex</code>. We’ll add a <code class="inline">message/0</code> function to it, like this.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageView</span><span class="w"
-> </span><span class="k" data-group-id="0005335251-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:view</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="w"> </span><span class="k" data-group-id="6577155442-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->message</span><span class="w"
-> </span><span class="k" data-group-id="0005335251-2"
->do</span><span class="w"
->
-    </span><span class="s"
->&quot;Hello from the view!&quot;</span><span class="w"
->
-  </span><span class="k" data-group-id="0005335251-2"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="0005335251-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">message</span><span class="w"> </span><span class="k" data-group-id="6577155442-2">do</span><span class="w">
+    </span><span class="s">&quot;Hello from the view!&quot;</span><span class="w">
+  </span><span class="k" data-group-id="6577155442-2">end</span><span class="w">
+</span><span class="k" data-group-id="6577155442-1">end</span></code></pre>
 <p>Now let’s create a new template to play around with, <code class="inline">lib/hello_web/templates/page/test.html.eex</code>.</p>
 <pre><code class="html">This is the message: &lt;%= message() %&gt;</code></pre>
 <p>This doesn’t correspond to any action in our controller, but we’ll exercise it in an <code class="inline">iex</code> session. At the root of our project, we can run <code class="inline">iex -S mix</code>, and then explicitly render our template.</p>
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex(1)&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.View</span><span class="o"
->.</span><span class="n"
->render</span><span class="p" data-group-id="5990475004-1"
->(</span><span class="nc"
->HelloWeb.PageView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;test.html&quot;</span><span class="p"
->,</span><span class="w"
->
-</span><span class="p" data-group-id="5990475004-2"
->%{</span><span class="p" data-group-id="5990475004-2"
->}</span><span class="p" data-group-id="5990475004-1"
->)</span><span class="w"
->
-  </span><span class="p" data-group-id="5990475004-3"
->{</span><span class="ss"
->:safe</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="5990475004-4"
->[</span><span class="p" data-group-id="5990475004-5"
->[</span><span class="s"
->&quot;&quot;</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;This is the message: &quot;</span><span class="p" data-group-id="5990475004-5"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;Hello from the view!&quot;</span><span class="p" data-group-id="5990475004-4"
->]</span><span class="p" data-group-id="5990475004-3"
->}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex(1)&gt;</span><span class="w"> </span><span class="nc">Phoenix.View</span><span class="o">.</span><span class="n">render</span><span class="p" data-group-id="5606573846-1">(</span><span class="nc">HelloWeb.PageView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test.html&quot;</span><span class="p">,</span><span class="w">
+</span><span class="p" data-group-id="5606573846-2">%{</span><span class="p" data-group-id="5606573846-2">}</span><span class="p" data-group-id="5606573846-1">)</span><span class="w">
+  </span><span class="p" data-group-id="5606573846-3">{</span><span class="ss">:safe</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5606573846-4">[</span><span class="p" data-group-id="5606573846-5">[</span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;This is the message: &quot;</span><span class="p" data-group-id="5606573846-5">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;Hello from the view!&quot;</span><span class="p" data-group-id="5606573846-4">]</span><span class="p" data-group-id="5606573846-3">}</span></code></pre>
 <p>As we can see, we’re calling <code class="inline">render/3</code> with the individual view responsible for our test template, the name of our test template, and an empty map representing any data we might have wanted to pass in. The return value is a tuple beginning with the atom <code class="inline">:safe</code> and the resultant io list of the interpolated template. “Safe” here means that Phoenix has escaped the contents of our rendered template. Phoenix defines its own <code class="inline">Phoenix.HTML.Safe</code> protocol with implementations for atoms, bitstrings, lists, integers, floats, and tuples to handle this escaping for us as our templates are rendered into strings.</p>
 <p>What happens if we assign some key value pairs to the third argument of <code class="inline">render/3</code>? In order to find out, we need to change the template just a bit.</p>
 <pre><code class="html">I came from assigns: &lt;%= @message %&gt;
 This is the message: &lt;%= message() %&gt;</code></pre>
 <p>Note the <code class="inline">@</code> in the top line. Now if we change our function call, we see a different rendering after recompiling <code class="inline">PageView</code> module.</p>
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex(2)&gt;</span><span class="w"
-> </span><span class="n"
->r</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageView</span><span class="w"
->
-</span><span class="ss"
->warning</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->redefining</span><span class="w"
-> </span><span class="n"
->module</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageView</span><span class="w"
-> </span><span class="p" data-group-id="3430594260-1"
->(</span><span class="n"
->current</span><span class="w"
-> </span><span class="n"
->version</span><span class="w"
-> </span><span class="n"
->loaded</span><span class="w"
-> </span><span class="n"
->from</span><span class="w"
-> </span><span class="bp"
->_build</span><span class="o"
->/</span><span class="n"
->dev</span><span class="o"
->/</span><span class="n"
->lib</span><span class="o"
->/</span><span class="n"
->hello</span><span class="o"
->/</span><span class="n"
->ebin</span><span class="o"
->/</span><span class="nc"
->Elixir.HelloWeb.PageView</span><span class="o"
->.</span><span class="n"
->beam</span><span class="p" data-group-id="3430594260-1"
->)</span><span class="w"
->
-  </span><span class="n"
->lib</span><span class="o"
->/</span><span class="n"
->hello_web</span><span class="o"
->/</span><span class="n"
->views</span><span class="o"
->/</span><span class="n"
->page_view</span><span class="o"
->.</span><span class="ss"
->ex</span><span class="p"
->:</span><span class="mi"
->1</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex(2)&gt;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="w">
+</span><span class="ss">warning</span><span class="p">:</span><span class="w"> </span><span class="n">redefining</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="w"> </span><span class="p" data-group-id="9459620925-1">(</span><span class="n">current</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="n">loaded</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">_build</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">hello</span><span class="o">/</span><span class="n">ebin</span><span class="o">/</span><span class="nc">Elixir.HelloWeb.PageView</span><span class="o">.</span><span class="n">beam</span><span class="p" data-group-id="9459620925-1">)</span><span class="w">
+  </span><span class="n">lib</span><span class="o">/</span><span class="n">hello_web</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">page_view</span><span class="o">.</span><span class="ss">ex</span><span class="p">:</span><span class="mi">1</span><span class="w">
 
-</span><span class="p" data-group-id="3430594260-2"
->{</span><span class="ss"
->:reloaded</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageView</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3430594260-3"
->[</span><span class="nc"
->HelloWeb.PageView</span><span class="p" data-group-id="3430594260-3"
->]</span><span class="p" data-group-id="3430594260-2"
->}</span><span class="w"
->
+</span><span class="p" data-group-id="9459620925-2">{</span><span class="ss">:reloaded</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9459620925-3">[</span><span class="nc">HelloWeb.PageView</span><span class="p" data-group-id="9459620925-3">]</span><span class="p" data-group-id="9459620925-2">}</span><span class="w">
 
-</span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex(3)&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.View</span><span class="o"
->.</span><span class="n"
->render</span><span class="p" data-group-id="3430594260-4"
->(</span><span class="nc"
->HelloWeb.PageView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;test.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->message</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;Assigns has an @.&quot;</span><span class="p" data-group-id="3430594260-4"
->)</span><span class="w"
->
-</span><span class="p" data-group-id="3430594260-5"
->{</span><span class="ss"
->:safe</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="p" data-group-id="3430594260-6"
->[</span><span class="p" data-group-id="3430594260-7"
->[</span><span class="p" data-group-id="3430594260-8"
->[</span><span class="p" data-group-id="3430594260-9"
->[</span><span class="s"
->&quot;&quot;</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;I came from assigns: &quot;</span><span class="p" data-group-id="3430594260-9"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;Assigns has an @.&quot;</span><span class="p" data-group-id="3430594260-8"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
->
-  </span><span class="s"
->&quot;</span><span class="sc"
->\n</span><span class="s"
->This is the message: &quot;</span><span class="p" data-group-id="3430594260-7"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;Hello from the view!&quot;</span><span class="p" data-group-id="3430594260-6"
->]</span><span class="p" data-group-id="3430594260-5"
->}</span></code></pre>
+</span><span class="gp unselectable">iex(3)&gt;</span><span class="w"> </span><span class="nc">Phoenix.View</span><span class="o">.</span><span class="n">render</span><span class="p" data-group-id="9459620925-4">(</span><span class="nc">HelloWeb.PageView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assigns has an @.&quot;</span><span class="p" data-group-id="9459620925-4">)</span><span class="w">
+</span><span class="p" data-group-id="9459620925-5">{</span><span class="ss">:safe</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="9459620925-6">[</span><span class="p" data-group-id="9459620925-7">[</span><span class="p" data-group-id="9459620925-8">[</span><span class="p" data-group-id="9459620925-9">[</span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;I came from assigns: &quot;</span><span class="p" data-group-id="9459620925-9">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;Assigns has an @.&quot;</span><span class="p" data-group-id="9459620925-8">]</span><span class="w"> </span><span class="o">|</span><span class="w">
+  </span><span class="s">&quot;</span><span class="sc">\n</span><span class="s">This is the message: &quot;</span><span class="p" data-group-id="9459620925-7">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;Hello from the view!&quot;</span><span class="p" data-group-id="9459620925-6">]</span><span class="p" data-group-id="9459620925-5">}</span></code></pre>
 <p>Let’s test out the HTML escaping, just for fun.</p>
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex(4)&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.View</span><span class="o"
->.</span><span class="n"
->render</span><span class="p" data-group-id="1772099329-1"
->(</span><span class="nc"
->HelloWeb.PageView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;test.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->message</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;&lt;script&gt;badThings();&lt;/script&gt;&quot;</span><span class="p" data-group-id="1772099329-1"
->)</span><span class="w"
->
-</span><span class="p" data-group-id="1772099329-2"
->{</span><span class="ss"
->:safe</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="p" data-group-id="1772099329-3"
->[</span><span class="p" data-group-id="1772099329-4"
->[</span><span class="p" data-group-id="1772099329-5"
->[</span><span class="p" data-group-id="1772099329-6"
->[</span><span class="s"
->&quot;&quot;</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;I came from assigns: &quot;</span><span class="p" data-group-id="1772099329-6"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
->
-     </span><span class="s"
->&quot;&amp;lt;script&amp;gt;badThings();&amp;lt;/script&amp;gt;&quot;</span><span class="p" data-group-id="1772099329-5"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
->
-    </span><span class="s"
->&quot;</span><span class="sc"
->\n</span><span class="s"
->This is the message: &quot;</span><span class="p" data-group-id="1772099329-4"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;Hello from the view!&quot;</span><span class="p" data-group-id="1772099329-3"
->]</span><span class="p" data-group-id="1772099329-2"
->}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex(4)&gt;</span><span class="w"> </span><span class="nc">Phoenix.View</span><span class="o">.</span><span class="n">render</span><span class="p" data-group-id="0711519325-1">(</span><span class="nc">HelloWeb.PageView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;script&gt;badThings();&lt;/script&gt;&quot;</span><span class="p" data-group-id="0711519325-1">)</span><span class="w">
+</span><span class="p" data-group-id="0711519325-2">{</span><span class="ss">:safe</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="0711519325-3">[</span><span class="p" data-group-id="0711519325-4">[</span><span class="p" data-group-id="0711519325-5">[</span><span class="p" data-group-id="0711519325-6">[</span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;I came from assigns: &quot;</span><span class="p" data-group-id="0711519325-6">]</span><span class="w"> </span><span class="o">|</span><span class="w">
+     </span><span class="s">&quot;&amp;lt;script&amp;gt;badThings();&amp;lt;/script&amp;gt;&quot;</span><span class="p" data-group-id="0711519325-5">]</span><span class="w"> </span><span class="o">|</span><span class="w">
+    </span><span class="s">&quot;</span><span class="sc">\n</span><span class="s">This is the message: &quot;</span><span class="p" data-group-id="0711519325-4">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;Hello from the view!&quot;</span><span class="p" data-group-id="0711519325-3">]</span><span class="p" data-group-id="0711519325-2">}</span></code></pre>
 <p>If we need only the rendered string, without the whole tuple, we can use the <code class="inline">render_to_iodata/3</code>.</p>
-<pre><code class="nohighlight makeup"><span class="w"
-> </span><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex(5)&gt;</span><span class="w"
-> </span><span class="nc"
->Phoenix.View</span><span class="o"
->.</span><span class="n"
->render_to_iodata</span><span class="p" data-group-id="2439199245-1"
->(</span><span class="nc"
->HelloWeb.PageView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;test.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->message</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;Assigns has an @.&quot;</span><span class="p" data-group-id="2439199245-1"
->)</span><span class="w"
->
- </span><span class="p" data-group-id="2439199245-2"
->[</span><span class="p" data-group-id="2439199245-3"
->[</span><span class="p" data-group-id="2439199245-4"
->[</span><span class="p" data-group-id="2439199245-5"
->[</span><span class="s"
->&quot;&quot;</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;I came from assigns: &quot;</span><span class="p" data-group-id="2439199245-5"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;Assigns has an @.&quot;</span><span class="p" data-group-id="2439199245-4"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
->
-   </span><span class="s"
->&quot;</span><span class="sc"
->\n</span><span class="s"
->This is the message: &quot;</span><span class="p" data-group-id="2439199245-3"
->]</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="s"
->&quot;Hello from the view!&quot;</span><span class="p" data-group-id="2439199245-2"
->]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="w"> </span><span class="gp unselectable">iex(5)&gt;</span><span class="w"> </span><span class="nc">Phoenix.View</span><span class="o">.</span><span class="n">render_to_iodata</span><span class="p" data-group-id="8588011607-1">(</span><span class="nc">HelloWeb.PageView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assigns has an @.&quot;</span><span class="p" data-group-id="8588011607-1">)</span><span class="w">
+ </span><span class="p" data-group-id="8588011607-2">[</span><span class="p" data-group-id="8588011607-3">[</span><span class="p" data-group-id="8588011607-4">[</span><span class="p" data-group-id="8588011607-5">[</span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;I came from assigns: &quot;</span><span class="p" data-group-id="8588011607-5">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;Assigns has an @.&quot;</span><span class="p" data-group-id="8588011607-4">]</span><span class="w"> </span><span class="o">|</span><span class="w">
+   </span><span class="s">&quot;</span><span class="sc">\n</span><span class="s">This is the message: &quot;</span><span class="p" data-group-id="8588011607-3">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;Hello from the view!&quot;</span><span class="p" data-group-id="8588011607-2">]</span></code></pre>
 <h3 id="a-word-about-layouts" class="section-heading">
   <a href="#a-word-about-layouts" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   A Word About Layouts
@@ -552,164 +189,38 @@ This is the message: &lt;%= message() %&gt;</code></pre>
 </h2>
 
 <p>Phoenix has a view called the <code class="inline">ErrorView</code> which lives in <code class="inline">lib/hello_web/views/error_view.ex</code>. The purpose of the <code class="inline">ErrorView</code> is to handle two of the most common errors - <code class="inline">404 not found</code> and <code class="inline">500 internal error</code> - in a general way, from one centralized location. Let’s see what it looks like.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.ErrorView</span><span class="w"
-> </span><span class="k" data-group-id="9055188736-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:view</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.ErrorView</span><span class="w"> </span><span class="k" data-group-id="2079668791-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="9055188736-2"
->(</span><span class="s"
->&quot;404.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_assigns</span><span class="p" data-group-id="9055188736-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="9055188736-3"
->do</span><span class="w"
->
-    </span><span class="s"
->&quot;Page not found&quot;</span><span class="w"
->
-  </span><span class="k" data-group-id="9055188736-3"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="2079668791-2">(</span><span class="s">&quot;404.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_assigns</span><span class="p" data-group-id="2079668791-2">)</span><span class="w"> </span><span class="k" data-group-id="2079668791-3">do</span><span class="w">
+    </span><span class="s">&quot;Page not found&quot;</span><span class="w">
+  </span><span class="k" data-group-id="2079668791-3">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="9055188736-4"
->(</span><span class="s"
->&quot;500.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_assigns</span><span class="p" data-group-id="9055188736-4"
->)</span><span class="w"
-> </span><span class="k" data-group-id="9055188736-5"
->do</span><span class="w"
->
-    </span><span class="s"
->&quot;Server internal error&quot;</span><span class="w"
->
-  </span><span class="k" data-group-id="9055188736-5"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="2079668791-4">(</span><span class="s">&quot;500.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_assigns</span><span class="p" data-group-id="2079668791-4">)</span><span class="w"> </span><span class="k" data-group-id="2079668791-5">do</span><span class="w">
+    </span><span class="s">&quot;Server internal error&quot;</span><span class="w">
+  </span><span class="k" data-group-id="2079668791-5">end</span><span class="w">
 
-  </span><span class="c1"
-># In case no render clause matches or no</span><span class="w"
->
-  </span><span class="c1"
-># template is found, let's render it as 500</span><span class="w"
->
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->template_not_found</span><span class="p" data-group-id="9055188736-6"
->(</span><span class="bp"
->_template</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->assigns</span><span class="p" data-group-id="9055188736-6"
->)</span><span class="w"
-> </span><span class="k" data-group-id="9055188736-7"
->do</span><span class="w"
->
-    </span><span class="n"
->render</span><span class="w"
-> </span><span class="s"
->&quot;500.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->assigns</span><span class="w"
->
-  </span><span class="k" data-group-id="9055188736-7"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="9055188736-1"
->end</span></code></pre>
+  </span><span class="c1"># In case no render clause matches or no</span><span class="w">
+  </span><span class="c1"># template is found, let&#39;s render it as 500</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">template_not_found</span><span class="p" data-group-id="2079668791-6">(</span><span class="n">_template</span><span class="p">,</span><span class="w"> </span><span class="n">assigns</span><span class="p" data-group-id="2079668791-6">)</span><span class="w"> </span><span class="k" data-group-id="2079668791-7">do</span><span class="w">
+    </span><span class="n">render</span><span class="w"> </span><span class="s">&quot;500.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">assigns</span><span class="w">
+  </span><span class="k" data-group-id="2079668791-7">end</span><span class="w">
+</span><span class="k" data-group-id="2079668791-1">end</span></code></pre>
 <p>Before we dive into this, let’s see what the rendered <code class="inline">404 not found</code> message looks like in a browser. In the development environment, Phoenix will debug errors by default, showing us a very informative debugging page. What we want here, however, is to see what page the application would serve in production. In order to do that we need to set <code class="inline">debug_errors: false</code> in <code class="inline">config/dev.exs</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Mix.Config</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kn">use</span><span class="w"> </span><span class="nc">Mix.Config</span><span class="w">
 
-</span><span class="n"
->config</span><span class="w"
-> </span><span class="ss"
->:hello</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->HelloWeb.Endpoint</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->http</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="0877968635-1"
->[</span><span class="ss"
->port</span><span class="p"
->:</span><span class="w"
-> </span><span class="mi"
->4000</span><span class="p" data-group-id="0877968635-1"
->]</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->debug_errors</span><span class="p"
->:</span><span class="w"
-> </span><span class="no"
->false</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="ss"
->code_reloader</span><span class="p"
->:</span><span class="w"
-> </span><span class="no"
->true</span><span class="p"
->,</span><span class="w"
->
-  </span><span class="o"
->.</span><span class="w"
-> </span><span class="o"
->.</span><span class="w"
-> </span><span class="o"
->.</span></code></pre>
+</span><span class="n">config</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w">
+  </span><span class="ss">http</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0490942750-1">[</span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p" data-group-id="0490942750-1">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">debug_errors</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+  </span><span class="ss">code_reloader</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
+  </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
 <p>After modifying our config file, we need to restart our server in order for this change to take effect. After restarting the server, let’s go to <a href="http://localhost:4000/such/a/wrong/path">http://localhost:4000/such/a/wrong/path</a> for a running local application and see what we get.</p>
 <p>Ok, that’s not very exciting. We get the bare string “Page not found”, displayed without any markup or styling.</p>
 <p>Let’s see if we can use what we already know about views to make this a more interesting error page.</p>
 <p>The first question is, where does that error string come from? The answer is right in the <code class="inline">ErrorView</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="6802377055-1"
->(</span><span class="s"
->&quot;404.html&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_assigns</span><span class="p" data-group-id="6802377055-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="6802377055-2"
->do</span><span class="w"
->
-  </span><span class="s"
->&quot;Page not found&quot;</span><span class="w"
->
-</span><span class="k" data-group-id="6802377055-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="3037163680-1">(</span><span class="s">&quot;404.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_assigns</span><span class="p" data-group-id="3037163680-1">)</span><span class="w"> </span><span class="k" data-group-id="3037163680-2">do</span><span class="w">
+  </span><span class="s">&quot;Page not found&quot;</span><span class="w">
+</span><span class="k" data-group-id="3037163680-2">end</span></code></pre>
 <p>Great, so we have a <code class="inline">render/2</code> function that takes a template and an <code class="inline">assigns</code> map, which we ignore. Where is this <code class="inline">render/2</code> function being called from? The answer is the <code class="inline">render/5</code> function defined in the <code class="inline">Phoenix.Endpoint.RenderErrors</code> module. The whole purpose of this module is to catch errors and render them with a view, in our case, the <code class="inline">HelloWeb.ErrorView</code>. Now that we understand how we got here, let’s make a better error page. Phoenix generates an <code class="inline">ErrorView</code> for us, but it doesn’t give us a <code class="inline">lib/hello_web/templates/error</code> directory. Let’s create one now. Inside our new directory, let’s add a template, <code class="inline">404.html.eex</code> and give it some markup - a mixture of our application layout and a new <code class="inline">div</code> with our message to the user.</p>
 <pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -756,249 +267,37 @@ This is the message: &lt;%= message() %&gt;</code></pre>
 </h2>
 
 <p>The view’s job is not only to render HTML templates. Views are about data presentation. Given a bag of data, the view’s purpose is to present that in a meaningful way given some format, be it HTML, JSON, CSV, or others. Many web apps today return JSON to remote clients, and Phoenix views are <em>great</em> for JSON rendering. Phoenix uses <a href="https://github.com/devinus/poison">Poison</a> to encode Maps to JSON, so all we need to do in our views is format the data we’d like to respond with as a Map, and Phoenix will do the rest. It is possible to respond with JSON back directly from the controller and skip the View. However, if we think about a controller as having the responsibilities of receiving a request and fetching data to be sent back, data manipulation and formatting don’t fall under those responsibilities. A view gives us a module responsible for formatting and manipulating the data. Let’s take our <code class="inline">PageController</code>, and see what it might look like when we respond with some static page maps as JSON, instead of HTML.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageController</span><span class="w"
-> </span><span class="k" data-group-id="2675269666-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageController</span><span class="w"> </span><span class="k" data-group-id="8860670405-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="2675269666-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_params</span><span class="p" data-group-id="2675269666-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2675269666-3"
->do</span><span class="w"
->
-    </span><span class="n"
->page</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="p" data-group-id="2675269666-4"
->%{</span><span class="ss"
->title</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;foo&quot;</span><span class="p" data-group-id="2675269666-4"
->}</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="8860670405-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="8860670405-2">)</span><span class="w"> </span><span class="k" data-group-id="8860670405-3">do</span><span class="w">
+    </span><span class="n">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8860670405-4">%{</span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="8860670405-4">}</span><span class="w">
 
-    </span><span class="n"
->render</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;show.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->page</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="w"
->
-  </span><span class="k" data-group-id="2675269666-3"
->end</span><span class="w"
->
+    </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;show.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="w">
+  </span><span class="k" data-group-id="8860670405-3">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->index</span><span class="p" data-group-id="2675269666-5"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_params</span><span class="p" data-group-id="2675269666-5"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2675269666-6"
->do</span><span class="w"
->
-    </span><span class="n"
->pages</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="p" data-group-id="2675269666-7"
->[</span><span class="p" data-group-id="2675269666-8"
->%{</span><span class="ss"
->title</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;foo&quot;</span><span class="p" data-group-id="2675269666-8"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="2675269666-9"
->%{</span><span class="ss"
->title</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;bar&quot;</span><span class="p" data-group-id="2675269666-9"
->}</span><span class="p" data-group-id="2675269666-7"
->]</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">index</span><span class="p" data-group-id="8860670405-5">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="8860670405-5">)</span><span class="w"> </span><span class="k" data-group-id="8860670405-6">do</span><span class="w">
+    </span><span class="n">pages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8860670405-7">[</span><span class="p" data-group-id="8860670405-8">%{</span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="8860670405-8">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8860670405-9">%{</span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="8860670405-9">}</span><span class="p" data-group-id="8860670405-7">]</span><span class="w">
 
-    </span><span class="n"
->render</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;index.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->pages</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->pages</span><span class="w"
->
-  </span><span class="k" data-group-id="2675269666-6"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="2675269666-1"
->end</span></code></pre>
+    </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;index.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">pages</span><span class="p">:</span><span class="w"> </span><span class="n">pages</span><span class="w">
+  </span><span class="k" data-group-id="8860670405-6">end</span><span class="w">
+</span><span class="k" data-group-id="8860670405-1">end</span></code></pre>
 <p>Here, we have our <code class="inline">show/2</code> and <code class="inline">index/2</code> actions returning static page data. Instead of passing in <code class="inline">&quot;show.html&quot;</code> to <code class="inline">render/3</code> as the template name, we pass <code class="inline">&quot;show.json&quot;</code>. This way, we can have views that are responsible for rendering HTML as well as JSON by pattern matching on different file types.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageView</span><span class="w"
-> </span><span class="k" data-group-id="8531516266-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:view</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="w"> </span><span class="k" data-group-id="4104722135-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="8531516266-2"
->(</span><span class="s"
->&quot;index.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="8531516266-3"
->%{</span><span class="ss"
->pages</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->pages</span><span class="p" data-group-id="8531516266-3"
->}</span><span class="p" data-group-id="8531516266-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="8531516266-4"
->do</span><span class="w"
->
-    </span><span class="p" data-group-id="8531516266-5"
->%{</span><span class="ss"
->data</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->render_many</span><span class="p" data-group-id="8531516266-6"
->(</span><span class="n"
->pages</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;page.json&quot;</span><span class="p" data-group-id="8531516266-6"
->)</span><span class="p" data-group-id="8531516266-5"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="8531516266-4"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="4104722135-2">(</span><span class="s">&quot;index.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4104722135-3">%{</span><span class="ss">pages</span><span class="p">:</span><span class="w"> </span><span class="n">pages</span><span class="p" data-group-id="4104722135-3">}</span><span class="p" data-group-id="4104722135-2">)</span><span class="w"> </span><span class="k" data-group-id="4104722135-4">do</span><span class="w">
+    </span><span class="p" data-group-id="4104722135-5">%{</span><span class="ss">data</span><span class="p">:</span><span class="w"> </span><span class="n">render_many</span><span class="p" data-group-id="4104722135-6">(</span><span class="n">pages</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;page.json&quot;</span><span class="p" data-group-id="4104722135-6">)</span><span class="p" data-group-id="4104722135-5">}</span><span class="w">
+  </span><span class="k" data-group-id="4104722135-4">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="8531516266-7"
->(</span><span class="s"
->&quot;show.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="8531516266-8"
->%{</span><span class="ss"
->page</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="p" data-group-id="8531516266-8"
->}</span><span class="p" data-group-id="8531516266-7"
->)</span><span class="w"
-> </span><span class="k" data-group-id="8531516266-9"
->do</span><span class="w"
->
-    </span><span class="p" data-group-id="8531516266-10"
->%{</span><span class="ss"
->data</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->render_one</span><span class="p" data-group-id="8531516266-11"
->(</span><span class="n"
->page</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;page.json&quot;</span><span class="p" data-group-id="8531516266-11"
->)</span><span class="p" data-group-id="8531516266-10"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="8531516266-9"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="4104722135-7">(</span><span class="s">&quot;show.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4104722135-8">%{</span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="p" data-group-id="4104722135-8">}</span><span class="p" data-group-id="4104722135-7">)</span><span class="w"> </span><span class="k" data-group-id="4104722135-9">do</span><span class="w">
+    </span><span class="p" data-group-id="4104722135-10">%{</span><span class="ss">data</span><span class="p">:</span><span class="w"> </span><span class="n">render_one</span><span class="p" data-group-id="4104722135-11">(</span><span class="n">page</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;page.json&quot;</span><span class="p" data-group-id="4104722135-11">)</span><span class="p" data-group-id="4104722135-10">}</span><span class="w">
+  </span><span class="k" data-group-id="4104722135-9">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="8531516266-12"
->(</span><span class="s"
->&quot;page.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="8531516266-13"
->%{</span><span class="ss"
->page</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="p" data-group-id="8531516266-13"
->}</span><span class="p" data-group-id="8531516266-12"
->)</span><span class="w"
-> </span><span class="k" data-group-id="8531516266-14"
->do</span><span class="w"
->
-    </span><span class="p" data-group-id="8531516266-15"
->%{</span><span class="ss"
->title</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="o"
->.</span><span class="n"
->title</span><span class="p" data-group-id="8531516266-15"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="8531516266-14"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="8531516266-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="4104722135-12">(</span><span class="s">&quot;page.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4104722135-13">%{</span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="p" data-group-id="4104722135-13">}</span><span class="p" data-group-id="4104722135-12">)</span><span class="w"> </span><span class="k" data-group-id="4104722135-14">do</span><span class="w">
+    </span><span class="p" data-group-id="4104722135-15">%{</span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="o">.</span><span class="n">title</span><span class="p" data-group-id="4104722135-15">}</span><span class="w">
+  </span><span class="k" data-group-id="4104722135-14">end</span><span class="w">
+</span><span class="k" data-group-id="4104722135-1">end</span></code></pre>
 <p>In the view we see our <code class="inline">render/2</code> function pattern matching on <code class="inline">&quot;index.json&quot;</code>, <code class="inline">&quot;show.json&quot;</code>, and <code class="inline">&quot;page.json&quot;</code>. In our controller <code class="inline">show/2</code> function, <code class="inline">render conn, &quot;show.json&quot;, page: page</code> will pattern match on the matching name and extension in the view <code class="inline">render/3</code> functions. In other words, <code class="inline">render conn, &quot;index.json&quot;, pages: pages</code> will call <code class="inline">render(&quot;index.json&quot;, %{pages: pages})</code> The <code class="inline">render_many/3</code> function takes the data we want to respond with (<code class="inline">pages</code>), a <code class="inline">View</code>, and a string to pattern match on the <code class="inline">render/3</code> function defined on <code class="inline">View</code>. It will map over each item in <code class="inline">pages</code>, and pass the item to the <code class="inline">render/3</code> function in <code class="inline">View</code> matching the file string. <code class="inline">render_one/3</code> follows, the same signature, ultimately using the <code class="inline">render/3</code> matching <code class="inline">page.json</code> to specify what each <code class="inline">page</code> looks like. The <code class="inline">render/3</code> matching <code class="inline">&quot;index.json&quot;</code> will respond with JSON as you would expect:</p>
 <pre><code class="javascript">  {
     &quot;data&quot;: [
@@ -1017,166 +316,24 @@ This is the message: &lt;%= message() %&gt;</code></pre>
     }
   }</code></pre>
 <p>It’s useful to build our views like this so they can be composable. Imagine a situation where our <code class="inline">Page</code> has a <code class="inline">has_many</code> relationship with <code class="inline">Author</code>, and depending on the request, we may want to send back <code class="inline">author</code> data with the <code class="inline">page</code>. We can easily accomplish this with a new <code class="inline">render/3</code>:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.PageView</span><span class="w"
-> </span><span class="k" data-group-id="1073024124-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:view</span><span class="w"
->
-  </span><span class="kn"
->alias</span><span class="w"
-> </span><span class="nc"
->HelloWeb.AuthorView</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="w"> </span><span class="k" data-group-id="4397437897-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
+  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">HelloWeb.AuthorView</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="1073024124-2"
->(</span><span class="s"
->&quot;page_with_authors.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="1073024124-3"
->%{</span><span class="ss"
->page</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="p" data-group-id="1073024124-3"
->}</span><span class="p" data-group-id="1073024124-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="1073024124-4"
->do</span><span class="w"
->
-    </span><span class="p" data-group-id="1073024124-5"
->%{</span><span class="ss"
->title</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="o"
->.</span><span class="n"
->title</span><span class="p"
->,</span><span class="w"
->
-      </span><span class="ss"
->authors</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->render_many</span><span class="p" data-group-id="1073024124-6"
->(</span><span class="n"
->page</span><span class="o"
->.</span><span class="n"
->authors</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->AuthorView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;author.json&quot;</span><span class="p" data-group-id="1073024124-6"
->)</span><span class="p" data-group-id="1073024124-5"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="1073024124-4"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="4397437897-2">(</span><span class="s">&quot;page_with_authors.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4397437897-3">%{</span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="p" data-group-id="4397437897-3">}</span><span class="p" data-group-id="4397437897-2">)</span><span class="w"> </span><span class="k" data-group-id="4397437897-4">do</span><span class="w">
+    </span><span class="p" data-group-id="4397437897-5">%{</span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="o">.</span><span class="n">title</span><span class="p">,</span><span class="w">
+      </span><span class="ss">authors</span><span class="p">:</span><span class="w"> </span><span class="n">render_many</span><span class="p" data-group-id="4397437897-6">(</span><span class="n">page</span><span class="o">.</span><span class="n">authors</span><span class="p">,</span><span class="w"> </span><span class="nc">AuthorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;author.json&quot;</span><span class="p" data-group-id="4397437897-6">)</span><span class="p" data-group-id="4397437897-5">}</span><span class="w">
+  </span><span class="k" data-group-id="4397437897-4">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="1073024124-7"
->(</span><span class="s"
->&quot;page.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="1073024124-8"
->%{</span><span class="ss"
->page</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="p" data-group-id="1073024124-8"
->}</span><span class="p" data-group-id="1073024124-7"
->)</span><span class="w"
-> </span><span class="k" data-group-id="1073024124-9"
->do</span><span class="w"
->
-    </span><span class="p" data-group-id="1073024124-10"
->%{</span><span class="ss"
->title</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="o"
->.</span><span class="n"
->title</span><span class="p" data-group-id="1073024124-10"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="1073024124-9"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="1073024124-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="4397437897-7">(</span><span class="s">&quot;page.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4397437897-8">%{</span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="p" data-group-id="4397437897-8">}</span><span class="p" data-group-id="4397437897-7">)</span><span class="w"> </span><span class="k" data-group-id="4397437897-9">do</span><span class="w">
+    </span><span class="p" data-group-id="4397437897-10">%{</span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="o">.</span><span class="n">title</span><span class="p" data-group-id="4397437897-10">}</span><span class="w">
+  </span><span class="k" data-group-id="4397437897-9">end</span><span class="w">
+</span><span class="k" data-group-id="4397437897-1">end</span></code></pre>
 <p>The name used in assigns is determined from the view. For example the <code class="inline">PageView</code> will use <code class="inline">%{page: page}</code> and the <code class="inline">AuthorView</code> will use <code class="inline">%{author: author}</code>. This can be overridden with the <code class="inline">as</code> option. Let’s assume that the author view uses <code class="inline">%{writer: writer}</code> instead of <code class="inline">%{author: author}</code>:</p>
-<pre><code class="nohighlight makeup"><span class="w"
->  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->render</span><span class="p" data-group-id="6181852581-1"
->(</span><span class="s"
->&quot;page_with_authors.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="6181852581-2"
->%{</span><span class="ss"
->page</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="p" data-group-id="6181852581-2"
->}</span><span class="p" data-group-id="6181852581-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="6181852581-3"
->do</span><span class="w"
->
-    </span><span class="p" data-group-id="6181852581-4"
->%{</span><span class="ss"
->title</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->page</span><span class="o"
->.</span><span class="n"
->title</span><span class="p"
->,</span><span class="w"
->
-      </span><span class="ss"
->authors</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->render_many</span><span class="p" data-group-id="6181852581-5"
->(</span><span class="n"
->page</span><span class="o"
->.</span><span class="n"
->authors</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->AuthorView</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;author.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->as</span><span class="p"
->:</span><span class="w"
-> </span><span class="ss"
->:writer</span><span class="p" data-group-id="6181852581-5"
->)</span><span class="p" data-group-id="6181852581-4"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="6181852581-3"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="w">  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="4470144536-1">(</span><span class="s">&quot;page_with_authors.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4470144536-2">%{</span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="p" data-group-id="4470144536-2">}</span><span class="p" data-group-id="4470144536-1">)</span><span class="w"> </span><span class="k" data-group-id="4470144536-3">do</span><span class="w">
+    </span><span class="p" data-group-id="4470144536-4">%{</span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="n">page</span><span class="o">.</span><span class="n">title</span><span class="p">,</span><span class="w">
+      </span><span class="ss">authors</span><span class="p">:</span><span class="w"> </span><span class="n">render_many</span><span class="p" data-group-id="4470144536-5">(</span><span class="n">page</span><span class="o">.</span><span class="n">authors</span><span class="p">,</span><span class="w"> </span><span class="nc">AuthorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;author.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:writer</span><span class="p" data-group-id="4470144536-5">)</span><span class="p" data-group-id="4470144536-4">}</span><span class="w">
+  </span><span class="k" data-group-id="4470144536-3">end</span></code></pre>
 
       <footer class="footer">
         <p>

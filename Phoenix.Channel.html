@@ -8,7 +8,7 @@
     <title>Phoenix.Channel – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-4b89e9c553.js"></script>
+    <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -100,80 +100,19 @@ want to listen to. The topic is just an identifier, but by convention it is
 often made of two parts: <code class="inline">&quot;topic:subtopic&quot;</code>. Using the <code class="inline">&quot;topic:subtopic&quot;</code>
 approach pairs nicely with the <a href="Phoenix.Socket.html#channel/2"><code class="inline">Phoenix.Socket.channel/2</code></a> allowing you to
 match on all topics starting with a given prefix:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->channel</span><span class="w"
-> </span><span class="s"
->&quot;room:*&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->MyApp.RoomChannel</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">channel</span><span class="w"> </span><span class="s">&quot;room:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.RoomChannel</span></code></pre>
 <p>Any topic coming into the router with the <code class="inline">&quot;room:&quot;</code> prefix would dispatch
 to <code class="inline">MyApp.RoomChannel</code> in the above example. Topics can also be pattern
 matched in your channels’ <code class="inline">join/3</code> callback to pluck out the scoped pattern:</p>
-<pre><code class="nohighlight makeup"><span class="c1"
-># handles the special `&quot;lobby&quot;` subtopic</span><span class="w"
->
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->join</span><span class="p" data-group-id="4276276634-1"
->(</span><span class="s"
->&quot;room:lobby&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_auth_message</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4276276634-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4276276634-2"
->do</span><span class="w"
->
-  </span><span class="p" data-group-id="4276276634-3"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4276276634-3"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="4276276634-2"
->end</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="c1"># handles the special `&quot;lobby&quot;` subtopic</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="7066119439-1">(</span><span class="s">&quot;room:lobby&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_auth_message</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="7066119439-1">)</span><span class="w"> </span><span class="k" data-group-id="7066119439-2">do</span><span class="w">
+  </span><span class="p" data-group-id="7066119439-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="7066119439-3">}</span><span class="w">
+</span><span class="k" data-group-id="7066119439-2">end</span><span class="w">
 
-</span><span class="c1"
-># handles any other subtopic as the room ID, for example `&quot;room:12&quot;`, `&quot;room:34&quot;`</span><span class="w"
->
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->join</span><span class="p" data-group-id="4276276634-4"
->(</span><span class="s"
->&quot;room:&quot;</span><span class="w"
-> </span><span class="o"
->&lt;&gt;</span><span class="w"
-> </span><span class="n"
->room_id</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->auth_message</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4276276634-4"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4276276634-5"
->do</span><span class="w"
->
-  </span><span class="p" data-group-id="4276276634-6"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4276276634-6"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="4276276634-5"
->end</span></code></pre>
+</span><span class="c1"># handles any other subtopic as the room ID, for example `&quot;room:12&quot;`, `&quot;room:34&quot;`</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="7066119439-4">(</span><span class="s">&quot;room:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">room_id</span><span class="p">,</span><span class="w"> </span><span class="n">auth_message</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="7066119439-4">)</span><span class="w"> </span><span class="k" data-group-id="7066119439-5">do</span><span class="w">
+  </span><span class="p" data-group-id="7066119439-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="7066119439-6">}</span><span class="w">
+</span><span class="k" data-group-id="7066119439-5">end</span></code></pre>
 <h2 id="module-authorization" class="section-heading">
   <a href="#module-authorization" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Authorization
@@ -198,122 +137,16 @@ the socket with <a href="#push/3"><code class="inline">push/3</code></a>. Incomi
 maintain ephemeral state.</p>
 <p>Here’s an example of receiving an incoming <code class="inline">&quot;new_msg&quot;</code> event from one client,
 and broadcasting the message to all topic subscribers for this socket.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="3507231033-1"
->(</span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3507231033-2"
->%{</span><span class="s"
->&quot;uid&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->uid</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;body&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->body</span><span class="p" data-group-id="3507231033-2"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="3507231033-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3507231033-3"
->do</span><span class="w"
->
-  </span><span class="n"
->broadcast!</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3507231033-4"
->%{</span><span class="ss"
->uid</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->uid</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->body</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->body</span><span class="p" data-group-id="3507231033-4"
->}</span><span class="w"
->
-  </span><span class="p" data-group-id="3507231033-5"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="3507231033-5"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="3507231033-3"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="3883680406-1">(</span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3883680406-2">%{</span><span class="s">&quot;uid&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;body&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="3883680406-2">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3883680406-1">)</span><span class="w"> </span><span class="k" data-group-id="3883680406-3">do</span><span class="w">
+  </span><span class="n">broadcast!</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3883680406-4">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="3883680406-4">}</span><span class="w">
+  </span><span class="p" data-group-id="3883680406-5">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3883680406-5">}</span><span class="w">
+</span><span class="k" data-group-id="3883680406-3">end</span></code></pre>
 <p>You can also push a message directly down the socket:</p>
-<pre><code class="nohighlight makeup"><span class="c1"
-># client asks for their current rank, push sent directly as a new event.</span><span class="w"
->
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="0107801389-1"
->(</span><span class="s"
->&quot;current_rank&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="0107801389-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="0107801389-2"
->do</span><span class="w"
->
-  </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;current_rank&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0107801389-3"
->%{</span><span class="ss"
->val</span><span class="p"
->:</span><span class="w"
-> </span><span class="nc"
->Game</span><span class="o"
->.</span><span class="n"
->get_rank</span><span class="p" data-group-id="0107801389-4"
->(</span><span class="n"
->socket</span><span class="o"
->.</span><span class="n"
->assigns</span><span class="p" data-group-id="0107801389-5"
->[</span><span class="ss"
->:user</span><span class="p" data-group-id="0107801389-5"
->]</span><span class="p" data-group-id="0107801389-4"
->)</span><span class="p" data-group-id="0107801389-3"
->}</span><span class="w"
->
-  </span><span class="p" data-group-id="0107801389-6"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="0107801389-6"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="0107801389-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="c1"># client asks for their current rank, push sent directly as a new event.</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="6720926773-1">(</span><span class="s">&quot;current_rank&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6720926773-1">)</span><span class="w"> </span><span class="k" data-group-id="6720926773-2">do</span><span class="w">
+  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;current_rank&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6720926773-3">%{</span><span class="ss">val</span><span class="p">:</span><span class="w"> </span><span class="nc">Game</span><span class="o">.</span><span class="n">get_rank</span><span class="p" data-group-id="6720926773-4">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="6720926773-5">[</span><span class="ss">:user</span><span class="p" data-group-id="6720926773-5">]</span><span class="p" data-group-id="6720926773-4">)</span><span class="p" data-group-id="6720926773-3">}</span><span class="w">
+  </span><span class="p" data-group-id="6720926773-6">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6720926773-6">}</span><span class="w">
+</span><span class="k" data-group-id="6720926773-2">end</span></code></pre>
 <h2 id="module-replies" class="section-heading">
   <a href="#module-replies" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Replies
@@ -324,225 +157,29 @@ you can also reply directly to a client event for request/response style
 messaging. This is useful when a client must know the result of an operation
 or to simply ack messages.</p>
 <p>For example, imagine creating a resource and replying with the created record:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="0394699092-1"
->(</span><span class="s"
->&quot;create:post&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->attrs</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="0394699092-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="0394699092-2"
->do</span><span class="w"
->
-  </span><span class="n"
->changeset</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Post</span><span class="o"
->.</span><span class="n"
->changeset</span><span class="p" data-group-id="0394699092-3"
->(</span><span class="p" data-group-id="0394699092-4"
->%</span><span class="nc" data-group-id="0394699092-4"
->Post</span><span class="p" data-group-id="0394699092-4"
->{</span><span class="p" data-group-id="0394699092-4"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->attrs</span><span class="p" data-group-id="0394699092-3"
->)</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="6502450534-1">(</span><span class="s">&quot;create:post&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6502450534-1">)</span><span class="w"> </span><span class="k" data-group-id="6502450534-2">do</span><span class="w">
+  </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Post</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="6502450534-3">(</span><span class="p" data-group-id="6502450534-4">%</span><span class="nc" data-group-id="6502450534-4">Post</span><span class="p" data-group-id="6502450534-4">{</span><span class="p" data-group-id="6502450534-4">}</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p" data-group-id="6502450534-3">)</span><span class="w">
 
-  </span><span class="k"
->if</span><span class="w"
-> </span><span class="n"
->changeset</span><span class="o"
->.</span><span class="n"
->valid?</span><span class="w"
-> </span><span class="k" data-group-id="0394699092-5"
->do</span><span class="w"
->
-    </span><span class="n"
->post</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Repo</span><span class="o"
->.</span><span class="n"
->insert!</span><span class="p" data-group-id="0394699092-6"
->(</span><span class="n"
->changeset</span><span class="p" data-group-id="0394699092-6"
->)</span><span class="w"
->
-    </span><span class="n"
->response</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->MyApp.PostView</span><span class="o"
->.</span><span class="n"
->render</span><span class="p" data-group-id="0394699092-7"
->(</span><span class="s"
->&quot;show.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0394699092-8"
->%{</span><span class="ss"
->post</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->post</span><span class="p" data-group-id="0394699092-8"
->}</span><span class="p" data-group-id="0394699092-7"
->)</span><span class="w"
->
-    </span><span class="p" data-group-id="0394699092-9"
->{</span><span class="ss"
->:reply</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0394699092-10"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->response</span><span class="p" data-group-id="0394699092-10"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="0394699092-9"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="0394699092-5"
->else</span><span class="w"
->
-    </span><span class="n"
->response</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->MyApp.ChangesetView</span><span class="o"
->.</span><span class="n"
->render</span><span class="p" data-group-id="0394699092-11"
->(</span><span class="s"
->&quot;errors.json&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0394699092-12"
->%{</span><span class="ss"
->changeset</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->changeset</span><span class="p" data-group-id="0394699092-12"
->}</span><span class="p" data-group-id="0394699092-11"
->)</span><span class="w"
->
-    </span><span class="p" data-group-id="0394699092-13"
->{</span><span class="ss"
->:reply</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0394699092-14"
->{</span><span class="ss"
->:error</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->response</span><span class="p" data-group-id="0394699092-14"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="0394699092-13"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="0394699092-5"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="0394699092-2"
->end</span></code></pre>
+  </span><span class="k">if</span><span class="w"> </span><span class="n">changeset</span><span class="o">.</span><span class="n">valid?</span><span class="w"> </span><span class="k" data-group-id="6502450534-5">do</span><span class="w">
+    </span><span class="n">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">insert!</span><span class="p" data-group-id="6502450534-6">(</span><span class="n">changeset</span><span class="p" data-group-id="6502450534-6">)</span><span class="w">
+    </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">MyApp.PostView</span><span class="o">.</span><span class="n">render</span><span class="p" data-group-id="6502450534-7">(</span><span class="s">&quot;show.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6502450534-8">%{</span><span class="ss">post</span><span class="p">:</span><span class="w"> </span><span class="n">post</span><span class="p" data-group-id="6502450534-8">}</span><span class="p" data-group-id="6502450534-7">)</span><span class="w">
+    </span><span class="p" data-group-id="6502450534-9">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6502450534-10">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="6502450534-10">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6502450534-9">}</span><span class="w">
+  </span><span class="k" data-group-id="6502450534-5">else</span><span class="w">
+    </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">MyApp.ChangesetView</span><span class="o">.</span><span class="n">render</span><span class="p" data-group-id="6502450534-11">(</span><span class="s">&quot;errors.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6502450534-12">%{</span><span class="ss">changeset</span><span class="p">:</span><span class="w"> </span><span class="n">changeset</span><span class="p" data-group-id="6502450534-12">}</span><span class="p" data-group-id="6502450534-11">)</span><span class="w">
+    </span><span class="p" data-group-id="6502450534-13">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6502450534-14">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="6502450534-14">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6502450534-13">}</span><span class="w">
+  </span><span class="k" data-group-id="6502450534-5">end</span><span class="w">
+</span><span class="k" data-group-id="6502450534-2">end</span></code></pre>
 <p>Alternatively, you may just want to ack the status of the operation:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="4874827672-1"
->(</span><span class="s"
->&quot;create:post&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->attrs</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4874827672-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4874827672-2"
->do</span><span class="w"
->
-  </span><span class="n"
->changeset</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->Post</span><span class="o"
->.</span><span class="n"
->changeset</span><span class="p" data-group-id="4874827672-3"
->(</span><span class="p" data-group-id="4874827672-4"
->%</span><span class="nc" data-group-id="4874827672-4"
->Post</span><span class="p" data-group-id="4874827672-4"
->{</span><span class="p" data-group-id="4874827672-4"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->attrs</span><span class="p" data-group-id="4874827672-3"
->)</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="1088475426-1">(</span><span class="s">&quot;create:post&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1088475426-1">)</span><span class="w"> </span><span class="k" data-group-id="1088475426-2">do</span><span class="w">
+  </span><span class="n">changeset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Post</span><span class="o">.</span><span class="n">changeset</span><span class="p" data-group-id="1088475426-3">(</span><span class="p" data-group-id="1088475426-4">%</span><span class="nc" data-group-id="1088475426-4">Post</span><span class="p" data-group-id="1088475426-4">{</span><span class="p" data-group-id="1088475426-4">}</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p" data-group-id="1088475426-3">)</span><span class="w">
 
-  </span><span class="k"
->if</span><span class="w"
-> </span><span class="n"
->changeset</span><span class="o"
->.</span><span class="n"
->valid?</span><span class="w"
-> </span><span class="k" data-group-id="4874827672-5"
->do</span><span class="w"
->
-    </span><span class="nc"
->Repo</span><span class="o"
->.</span><span class="n"
->insert!</span><span class="p" data-group-id="4874827672-6"
->(</span><span class="n"
->changeset</span><span class="p" data-group-id="4874827672-6"
->)</span><span class="w"
->
-    </span><span class="p" data-group-id="4874827672-7"
->{</span><span class="ss"
->:reply</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4874827672-7"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="4874827672-5"
->else</span><span class="w"
->
-    </span><span class="p" data-group-id="4874827672-8"
->{</span><span class="ss"
->:reply</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:error</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4874827672-8"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="4874827672-5"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="4874827672-2"
->end</span></code></pre>
+  </span><span class="k">if</span><span class="w"> </span><span class="n">changeset</span><span class="o">.</span><span class="n">valid?</span><span class="w"> </span><span class="k" data-group-id="1088475426-5">do</span><span class="w">
+    </span><span class="nc">Repo</span><span class="o">.</span><span class="n">insert!</span><span class="p" data-group-id="1088475426-6">(</span><span class="n">changeset</span><span class="p" data-group-id="1088475426-6">)</span><span class="w">
+    </span><span class="p" data-group-id="1088475426-7">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1088475426-7">}</span><span class="w">
+  </span><span class="k" data-group-id="1088475426-5">else</span><span class="w">
+    </span><span class="p" data-group-id="1088475426-8">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="1088475426-8">}</span><span class="w">
+  </span><span class="k" data-group-id="1088475426-5">end</span><span class="w">
+</span><span class="k" data-group-id="1088475426-2">end</span></code></pre>
 <h2 id="module-intercepting-outgoing-events" class="section-heading">
   <a href="#module-intercepting-outgoing-events" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Intercepting Outgoing Events
@@ -554,159 +191,25 @@ This allows the event’s payload to be customized on a socket by socket basis
 to append extra information, or conditionally filter the message from being
 delivered. If the event is not intercepted with <a href="Phoenix.Channel.html#intercept/1"><code class="inline">Phoenix.Channel.intercept/1</code></a>,
 then the message is pushed directly to the client:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->intercept</span><span class="w"
-> </span><span class="p" data-group-id="2998892337-1"
->[</span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;user_joined&quot;</span><span class="p" data-group-id="2998892337-1"
->]</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="n">intercept</span><span class="w"> </span><span class="p" data-group-id="8168021802-1">[</span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user_joined&quot;</span><span class="p" data-group-id="8168021802-1">]</span><span class="w">
 
-</span><span class="c1"
-># for every socket subscribing to this topic, append an `is_editable`</span><span class="w"
->
-</span><span class="c1"
-># value for client metadata.</span><span class="w"
->
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_out</span><span class="p" data-group-id="2998892337-2"
->(</span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->msg</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="2998892337-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2998892337-3"
->do</span><span class="w"
->
-  </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->Map</span><span class="o"
->.</span><span class="n"
->merge</span><span class="p" data-group-id="2998892337-4"
->(</span><span class="n"
->msg</span><span class="p"
->,</span><span class="w"
->
-    </span><span class="p" data-group-id="2998892337-5"
->%{</span><span class="ss"
->is_editable</span><span class="p"
->:</span><span class="w"
-> </span><span class="nc"
->User</span><span class="o"
->.</span><span class="n"
->can_edit_message?</span><span class="p" data-group-id="2998892337-6"
->(</span><span class="n"
->socket</span><span class="o"
->.</span><span class="n"
->assigns</span><span class="p" data-group-id="2998892337-7"
->[</span><span class="ss"
->:user</span><span class="p" data-group-id="2998892337-7"
->]</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->msg</span><span class="p" data-group-id="2998892337-6"
->)</span><span class="p" data-group-id="2998892337-5"
->}</span><span class="w"
->
-  </span><span class="p" data-group-id="2998892337-4"
->)</span><span class="w"
->
-  </span><span class="p" data-group-id="2998892337-8"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="2998892337-8"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="2998892337-3"
->end</span><span class="w"
->
+</span><span class="c1"># for every socket subscribing to this topic, append an `is_editable`</span><span class="w">
+</span><span class="c1"># value for client metadata.</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_out</span><span class="p" data-group-id="8168021802-2">(</span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="8168021802-2">)</span><span class="w"> </span><span class="k" data-group-id="8168021802-3">do</span><span class="w">
+  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="8168021802-4">(</span><span class="n">msg</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="8168021802-5">%{</span><span class="ss">is_editable</span><span class="p">:</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">can_edit_message?</span><span class="p" data-group-id="8168021802-6">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="8168021802-7">[</span><span class="ss">:user</span><span class="p" data-group-id="8168021802-7">]</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p" data-group-id="8168021802-6">)</span><span class="p" data-group-id="8168021802-5">}</span><span class="w">
+  </span><span class="p" data-group-id="8168021802-4">)</span><span class="w">
+  </span><span class="p" data-group-id="8168021802-8">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="8168021802-8">}</span><span class="w">
+</span><span class="k" data-group-id="8168021802-3">end</span><span class="w">
 
-</span><span class="c1"
-># do not send broadcasted `&quot;user_joined&quot;` events if this socket's user</span><span class="w"
->
-</span><span class="c1"
-># is ignoring the user who joined.</span><span class="w"
->
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_out</span><span class="p" data-group-id="2998892337-9"
->(</span><span class="s"
->&quot;user_joined&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->msg</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="2998892337-9"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2998892337-10"
->do</span><span class="w"
->
-  </span><span class="k"
->unless</span><span class="w"
-> </span><span class="nc"
->User</span><span class="o"
->.</span><span class="n"
->ignoring?</span><span class="p" data-group-id="2998892337-11"
->(</span><span class="n"
->socket</span><span class="o"
->.</span><span class="n"
->assigns</span><span class="p" data-group-id="2998892337-12"
->[</span><span class="ss"
->:user</span><span class="p" data-group-id="2998892337-12"
->]</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->msg</span><span class="o"
->.</span><span class="n"
->user_id</span><span class="p" data-group-id="2998892337-11"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2998892337-13"
->do</span><span class="w"
->
-    </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;user_joined&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->msg</span><span class="w"
->
-  </span><span class="k" data-group-id="2998892337-13"
->end</span><span class="w"
->
-  </span><span class="p" data-group-id="2998892337-14"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="2998892337-14"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="2998892337-10"
->end</span></code></pre>
+</span><span class="c1"># do not send broadcasted `&quot;user_joined&quot;` events if this socket&#39;s user</span><span class="w">
+</span><span class="c1"># is ignoring the user who joined.</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_out</span><span class="p" data-group-id="8168021802-9">(</span><span class="s">&quot;user_joined&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="8168021802-9">)</span><span class="w"> </span><span class="k" data-group-id="8168021802-10">do</span><span class="w">
+  </span><span class="k">unless</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">ignoring?</span><span class="p" data-group-id="8168021802-11">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="8168021802-12">[</span><span class="ss">:user</span><span class="p" data-group-id="8168021802-12">]</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">.</span><span class="n">user_id</span><span class="p" data-group-id="8168021802-11">)</span><span class="w"> </span><span class="k" data-group-id="8168021802-13">do</span><span class="w">
+    </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user_joined&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="w">
+  </span><span class="k" data-group-id="8168021802-13">end</span><span class="w">
+  </span><span class="p" data-group-id="8168021802-14">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="8168021802-14">}</span><span class="w">
+</span><span class="k" data-group-id="8168021802-10">end</span></code></pre>
 <h2 id="module-broadcasting-to-an-external-topic" class="section-heading">
   <a href="#module-broadcasting-to-an-external-topic" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Broadcasting to an external topic
@@ -716,191 +219,22 @@ then the message is pushed directly to the client:</p>
 a <code class="inline">socket</code>. This could be for broadcasting from within your channel to an
 external topic, or broadcasting from elsewhere in your application like a
 controller or another process. Such can be done via your endpoint:</p>
-<pre><code class="nohighlight makeup"><span class="c1"
-># within channel</span><span class="w"
->
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="3409805979-1"
->(</span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3409805979-2"
->%{</span><span class="s"
->&quot;uid&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->uid</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;body&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->body</span><span class="p" data-group-id="3409805979-2"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="3409805979-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3409805979-3"
->do</span><span class="w"
->
-  </span><span class="n"
->...</span><span class="w"
->
-  </span><span class="n"
->broadcast_from!</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3409805979-4"
->%{</span><span class="ss"
->uid</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->uid</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->body</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->body</span><span class="p" data-group-id="3409805979-4"
->}</span><span class="w"
->
-  </span><span class="nc"
->MyApp.Endpoint</span><span class="o"
->.</span><span class="n"
->broadcast_from!</span><span class="w"
-> </span><span class="n"
->self</span><span class="p" data-group-id="3409805979-5"
->(</span><span class="p" data-group-id="3409805979-5"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;room:superadmin&quot;</span><span class="p"
->,</span><span class="w"
->
-    </span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3409805979-6"
->%{</span><span class="ss"
->uid</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->uid</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->body</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->body</span><span class="p" data-group-id="3409805979-6"
->}</span><span class="w"
->
-  </span><span class="p" data-group-id="3409805979-7"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="3409805979-7"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="3409805979-3"
->end</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="c1"># within channel</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="5156955350-1">(</span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5156955350-2">%{</span><span class="s">&quot;uid&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;body&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="5156955350-2">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="5156955350-1">)</span><span class="w"> </span><span class="k" data-group-id="5156955350-3">do</span><span class="w">
+  </span><span class="n">...</span><span class="w">
+  </span><span class="n">broadcast_from!</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5156955350-4">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="5156955350-4">}</span><span class="w">
+  </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast_from!</span><span class="w"> </span><span class="n">self</span><span class="p" data-group-id="5156955350-5">(</span><span class="p" data-group-id="5156955350-5">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;room:superadmin&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5156955350-6">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="5156955350-6">}</span><span class="w">
+  </span><span class="p" data-group-id="5156955350-7">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="5156955350-7">}</span><span class="w">
+</span><span class="k" data-group-id="5156955350-3">end</span><span class="w">
 
-</span><span class="c1"
-># within controller</span><span class="w"
->
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->create</span><span class="p" data-group-id="3409805979-8"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->params</span><span class="p" data-group-id="3409805979-8"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3409805979-9"
->do</span><span class="w"
->
-  </span><span class="n"
->...</span><span class="w"
->
-  </span><span class="nc"
->MyApp.Endpoint</span><span class="o"
->.</span><span class="n"
->broadcast!</span><span class="w"
-> </span><span class="s"
->&quot;room:&quot;</span><span class="w"
-> </span><span class="o"
->&lt;&gt;</span><span class="w"
-> </span><span class="n"
->rid</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3409805979-10"
->%{</span><span class="ss"
->uid</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->uid</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->body</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->body</span><span class="p" data-group-id="3409805979-10"
->}</span><span class="w"
->
-  </span><span class="nc"
->MyApp.Endpoint</span><span class="o"
->.</span><span class="n"
->broadcast!</span><span class="w"
-> </span><span class="s"
->&quot;room:superadmin&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3409805979-11"
->%{</span><span class="ss"
->uid</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->uid</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->body</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->body</span><span class="p" data-group-id="3409805979-11"
->}</span><span class="w"
->
-  </span><span class="n"
->redirect</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->to</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="w"
->
-</span><span class="k" data-group-id="3409805979-9"
->end</span></code></pre>
+</span><span class="c1"># within controller</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">create</span><span class="p" data-group-id="5156955350-8">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="5156955350-8">)</span><span class="w"> </span><span class="k" data-group-id="5156955350-9">do</span><span class="w">
+  </span><span class="n">...</span><span class="w">
+  </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast!</span><span class="w"> </span><span class="s">&quot;room:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">rid</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5156955350-10">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="5156955350-10">}</span><span class="w">
+  </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast!</span><span class="w"> </span><span class="s">&quot;room:superadmin&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5156955350-11">%{</span><span class="ss">uid</span><span class="p">:</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="5156955350-11">}</span><span class="w">
+  </span><span class="n">redirect</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w">
+</span><span class="k" data-group-id="5156955350-9">end</span></code></pre>
 <h2 id="module-terminate" class="section-heading">
   <a href="#module-terminate" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Terminate
@@ -926,32 +260,8 @@ is invoked. This practice is not encouraged though.</p>
 </h2>
 
 <p>When the channel callbacks return a <code class="inline">:stop</code> tuple, such as:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="4064821396-1"
->{</span><span class="ss"
->:stop</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:shutdown</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4064821396-1"
->}</span><span class="w"
->
-</span><span class="p" data-group-id="4064821396-2"
->{</span><span class="ss"
->:stop</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="4064821396-3"
->{</span><span class="ss"
->:error</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:enoent</span><span class="p" data-group-id="4064821396-3"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4064821396-2"
->}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="2332179904-1">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="ss">:shutdown</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2332179904-1">}</span><span class="w">
+</span><span class="p" data-group-id="2332179904-2">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2332179904-3">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:enoent</span><span class="p" data-group-id="2332179904-3">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2332179904-2">}</span></code></pre>
 <p>the second argument is the exit reason, which follows the same behaviour as
 standard <a href="https://hexdocs.pm/elixir/GenServer.html"><code class="inline">GenServer</code></a> exits.</p>
 <p>You have three options to choose from when shutting down a channel:</p>
@@ -980,364 +290,46 @@ preferences on products they want to receive bidding notifications on.
 Instead of requiring a unique channel process and topic per
 preference, a more efficient and simple approach would be to subscribe a
 single channel to relevant notifications via your endpoint. For example:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyApp.Endpoint.NotificationChannel</span><span class="w"
-> </span><span class="k" data-group-id="3821623456-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Channel</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.Endpoint.NotificationChannel</span><span class="w"> </span><span class="k" data-group-id="6385772043-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Channel</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->join</span><span class="p" data-group-id="3821623456-2"
->(</span><span class="s"
->&quot;notification:&quot;</span><span class="w"
-> </span><span class="o"
->&lt;&gt;</span><span class="w"
-> </span><span class="n"
->user_id</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3821623456-3"
->%{</span><span class="s"
->&quot;ids&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->ids</span><span class="p" data-group-id="3821623456-3"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="3821623456-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3821623456-4"
->do</span><span class="w"
->
-    </span><span class="n"
->topics</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="k"
->for</span><span class="w"
-> </span><span class="n"
->product_id</span><span class="w"
-> </span><span class="o"
->&lt;-</span><span class="w"
-> </span><span class="n"
->ids</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->do</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;product:</span><span class="si" data-group-id="3821623456-5"
->#{</span><span class="n"
->product_id</span><span class="si" data-group-id="3821623456-5"
->}</span><span class="s"
->&quot;</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="6385772043-2">(</span><span class="s">&quot;notification:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6385772043-3">%{</span><span class="s">&quot;ids&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ids</span><span class="p" data-group-id="6385772043-3">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6385772043-2">)</span><span class="w"> </span><span class="k" data-group-id="6385772043-4">do</span><span class="w">
+    </span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ids</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;product:</span><span class="si" data-group-id="6385772043-5">#{</span><span class="n">product_id</span><span class="si" data-group-id="6385772043-5">}</span><span class="s">&quot;</span><span class="w">
 
-    </span><span class="p" data-group-id="3821623456-6"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="w"
->
-          </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->assign</span><span class="p" data-group-id="3821623456-7"
->(</span><span class="ss"
->:topics</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3821623456-8"
->[</span><span class="p" data-group-id="3821623456-8"
->]</span><span class="p" data-group-id="3821623456-7"
->)</span><span class="w"
->
-          </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_new_topics</span><span class="p" data-group-id="3821623456-9"
->(</span><span class="n"
->topics</span><span class="p" data-group-id="3821623456-9"
->)</span><span class="p" data-group-id="3821623456-6"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="3821623456-4"
->end</span><span class="w"
->
+    </span><span class="p" data-group-id="6385772043-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="w">
+          </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="6385772043-7">(</span><span class="ss">:topics</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6385772043-8">[</span><span class="p" data-group-id="6385772043-8">]</span><span class="p" data-group-id="6385772043-7">)</span><span class="w">
+          </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_new_topics</span><span class="p" data-group-id="6385772043-9">(</span><span class="n">topics</span><span class="p" data-group-id="6385772043-9">)</span><span class="p" data-group-id="6385772043-6">}</span><span class="w">
+  </span><span class="k" data-group-id="6385772043-4">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="3821623456-10"
->(</span><span class="s"
->&quot;watch&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3821623456-11"
->%{</span><span class="s"
->&quot;product_id&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->id</span><span class="p" data-group-id="3821623456-11"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="3821623456-10"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3821623456-12"
->do</span><span class="w"
->
-    </span><span class="p" data-group-id="3821623456-13"
->{</span><span class="ss"
->:reply</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->put_new_topics</span><span class="p" data-group-id="3821623456-14"
->(</span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3821623456-15"
->[</span><span class="s"
->&quot;product:</span><span class="si" data-group-id="3821623456-16"
->#{</span><span class="n"
->id</span><span class="si" data-group-id="3821623456-16"
->}</span><span class="s"
->&quot;</span><span class="p" data-group-id="3821623456-15"
->]</span><span class="p" data-group-id="3821623456-14"
->)</span><span class="p" data-group-id="3821623456-13"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="3821623456-12"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="6385772043-10">(</span><span class="s">&quot;watch&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6385772043-11">%{</span><span class="s">&quot;product_id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="6385772043-11">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6385772043-10">)</span><span class="w"> </span><span class="k" data-group-id="6385772043-12">do</span><span class="w">
+    </span><span class="p" data-group-id="6385772043-13">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">put_new_topics</span><span class="p" data-group-id="6385772043-14">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6385772043-15">[</span><span class="s">&quot;product:</span><span class="si" data-group-id="6385772043-16">#{</span><span class="n">id</span><span class="si" data-group-id="6385772043-16">}</span><span class="s">&quot;</span><span class="p" data-group-id="6385772043-15">]</span><span class="p" data-group-id="6385772043-14">)</span><span class="p" data-group-id="6385772043-13">}</span><span class="w">
+  </span><span class="k" data-group-id="6385772043-12">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="3821623456-17"
->(</span><span class="s"
->&quot;unwatch&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3821623456-18"
->%{</span><span class="s"
->&quot;product_id&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->id</span><span class="p" data-group-id="3821623456-18"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="3821623456-17"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3821623456-19"
->do</span><span class="w"
->
-    </span><span class="p" data-group-id="3821623456-20"
->{</span><span class="ss"
->:reply</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->MyApp.Endpoint</span><span class="o"
->.</span><span class="n"
->unsubscribe</span><span class="p" data-group-id="3821623456-21"
->(</span><span class="s"
->&quot;product:</span><span class="si" data-group-id="3821623456-22"
->#{</span><span class="n"
->id</span><span class="si" data-group-id="3821623456-22"
->}</span><span class="s"
->&quot;</span><span class="p" data-group-id="3821623456-21"
->)</span><span class="p" data-group-id="3821623456-20"
->}</span><span class="w"
->
-  </span><span class="k" data-group-id="3821623456-19"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="6385772043-17">(</span><span class="s">&quot;unwatch&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6385772043-18">%{</span><span class="s">&quot;product_id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="6385772043-18">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6385772043-17">)</span><span class="w"> </span><span class="k" data-group-id="6385772043-19">do</span><span class="w">
+    </span><span class="p" data-group-id="6385772043-20">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p" data-group-id="6385772043-21">(</span><span class="s">&quot;product:</span><span class="si" data-group-id="6385772043-22">#{</span><span class="n">id</span><span class="si" data-group-id="6385772043-22">}</span><span class="s">&quot;</span><span class="p" data-group-id="6385772043-21">)</span><span class="p" data-group-id="6385772043-20">}</span><span class="w">
+  </span><span class="k" data-group-id="6385772043-19">end</span><span class="w">
 
-  </span><span class="kd"
->defp</span><span class="w"
-> </span><span class="nf"
->put_new_topics</span><span class="p" data-group-id="3821623456-23"
->(</span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->topics</span><span class="p" data-group-id="3821623456-23"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3821623456-24"
->do</span><span class="w"
->
-    </span><span class="nc"
->Enum</span><span class="o"
->.</span><span class="n"
->reduce</span><span class="p" data-group-id="3821623456-25"
->(</span><span class="n"
->topics</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="k" data-group-id="3821623456-26"
->fn</span><span class="w"
-> </span><span class="n"
->topic</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->acc</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-      </span><span class="n"
->topics</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->acc</span><span class="o"
->.</span><span class="n"
->assigns</span><span class="o"
->.</span><span class="n"
->topics</span><span class="w"
->
-      </span><span class="k"
->if</span><span class="w"
-> </span><span class="n"
->topic</span><span class="w"
-> </span><span class="ow"
->in</span><span class="w"
-> </span><span class="n"
->topics</span><span class="w"
-> </span><span class="k" data-group-id="3821623456-27"
->do</span><span class="w"
->
-        </span><span class="n"
->acc</span><span class="w"
->
-      </span><span class="k" data-group-id="3821623456-27"
->else</span><span class="w"
->
-        </span><span class="ss"
->:ok</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="nc"
->MyApp.Endpoint</span><span class="o"
->.</span><span class="n"
->subscribe</span><span class="p" data-group-id="3821623456-28"
->(</span><span class="n"
->topic</span><span class="p" data-group-id="3821623456-28"
->)</span><span class="w"
->
-        </span><span class="n"
->assign</span><span class="p" data-group-id="3821623456-29"
->(</span><span class="n"
->acc</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:topics</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3821623456-30"
->[</span><span class="n"
->topic</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="n"
->topics</span><span class="p" data-group-id="3821623456-30"
->]</span><span class="p" data-group-id="3821623456-29"
->)</span><span class="w"
->
-      </span><span class="k" data-group-id="3821623456-27"
->end</span><span class="w"
->
-    </span><span class="k" data-group-id="3821623456-26"
->end</span><span class="p" data-group-id="3821623456-25"
->)</span><span class="w"
->
-  </span><span class="k" data-group-id="3821623456-24"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="3821623456-1"
->end</span></code></pre>
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">put_new_topics</span><span class="p" data-group-id="6385772043-23">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">topics</span><span class="p" data-group-id="6385772043-23">)</span><span class="w"> </span><span class="k" data-group-id="6385772043-24">do</span><span class="w">
+    </span><span class="nc">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p" data-group-id="6385772043-25">(</span><span class="n">topics</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="6385772043-26">fn</span><span class="w"> </span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">acc</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">topics</span><span class="w">
+      </span><span class="k">if</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">topics</span><span class="w"> </span><span class="k" data-group-id="6385772043-27">do</span><span class="w">
+        </span><span class="n">acc</span><span class="w">
+      </span><span class="k" data-group-id="6385772043-27">else</span><span class="w">
+        </span><span class="ss">:ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">subscribe</span><span class="p" data-group-id="6385772043-28">(</span><span class="n">topic</span><span class="p" data-group-id="6385772043-28">)</span><span class="w">
+        </span><span class="n">assign</span><span class="p" data-group-id="6385772043-29">(</span><span class="n">acc</span><span class="p">,</span><span class="w"> </span><span class="ss">:topics</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6385772043-30">[</span><span class="n">topic</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">topics</span><span class="p" data-group-id="6385772043-30">]</span><span class="p" data-group-id="6385772043-29">)</span><span class="w">
+      </span><span class="k" data-group-id="6385772043-27">end</span><span class="w">
+    </span><span class="k" data-group-id="6385772043-26">end</span><span class="p" data-group-id="6385772043-25">)</span><span class="w">
+  </span><span class="k" data-group-id="6385772043-24">end</span><span class="w">
+</span><span class="k" data-group-id="6385772043-1">end</span></code></pre>
 <p>Note: the caller must be responsible for preventing duplicate subscriptions.
 After calling <code class="inline">subscribe/1</code> from your endpoint, the same flow applies to
 handling regular Elixir messages within your channel. Most often, you’ll
 simply relay the <code class="inline">%Phoenix.Socket.Broadcast{}</code> event and payload:</p>
-<pre><code class="nohighlight makeup"><span class="kn"
->alias</span><span class="w"
-> </span><span class="nc"
->Phoenix.Socket.Broadcast</span><span class="w"
->
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_info</span><span class="p" data-group-id="5974920742-1"
->(</span><span class="p" data-group-id="5974920742-2"
->%</span><span class="nc" data-group-id="5974920742-2"
->Broadcast</span><span class="p" data-group-id="5974920742-2"
->{</span><span class="ss"
->topic</span><span class="p"
->:</span><span class="w"
-> </span><span class="err"
->_</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->event</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->ev</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->payload</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->payload</span><span class="p" data-group-id="5974920742-2"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="5974920742-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="5974920742-3"
->do</span><span class="w"
->
-  </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->ev</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="w"
->
-  </span><span class="p" data-group-id="5974920742-4"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="5974920742-4"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="5974920742-3"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kn">alias</span><span class="w"> </span><span class="nc">Phoenix.Socket.Broadcast</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="3728037310-1">(</span><span class="p" data-group-id="3728037310-2">%</span><span class="nc" data-group-id="3728037310-2">Broadcast</span><span class="p" data-group-id="3728037310-2">{</span><span class="ss">topic</span><span class="p">:</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="ss">event</span><span class="p">:</span><span class="w"> </span><span class="n">ev</span><span class="p">,</span><span class="w"> </span><span class="ss">payload</span><span class="p">:</span><span class="w"> </span><span class="n">payload</span><span class="p" data-group-id="3728037310-2">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3728037310-1">)</span><span class="w"> </span><span class="k" data-group-id="3728037310-3">do</span><span class="w">
+  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">ev</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="w">
+  </span><span class="p" data-group-id="3728037310-4">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3728037310-4">}</span><span class="w">
+</span><span class="k" data-group-id="3728037310-3">end</span></code></pre>
 <h2 id="module-logging" class="section-heading">
   <a href="#module-logging" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Logging
@@ -1349,22 +341,7 @@ event type or disabled by setting the <code class="inline">:log_join</code> and 
 options when using <a href="Phoenix.Channel.html#content"><code class="inline">Phoenix.Channel</code></a>. For example, the following
 configuration logs join events as <code class="inline">:info</code>, but disables logging for
 incoming events:</p>
-<pre><code class="nohighlight makeup"><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->Phoenix.Channel</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->log_join</span><span class="p"
->:</span><span class="w"
-> </span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->log_handle_in</span><span class="p"
->:</span><span class="w"
-> </span><span class="no"
->false</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Channel</span><span class="p">,</span><span class="w"> </span><span class="ss">log_join</span><span class="p">:</span><span class="w"> </span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="ss">log_handle_in</span><span class="p">:</span><span class="w"> </span><span class="no">false</span></code></pre>
 
         </section>
       
@@ -1630,32 +607,8 @@ incoming events:</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->broadcast</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;new_message&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="6636220456-1"
->%{</span><span class="ss"
->id</span><span class="p"
->:</span><span class="w"
-> </span><span class="mi"
->1</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->content</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;hello&quot;</span><span class="p" data-group-id="6636220456-1"
->}</span><span class="w"
->
-</span><span class="ss"
->:ok</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">broadcast</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new_message&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3661579292-1">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="3661579292-1">}</span><span class="w">
+</span><span class="ss">:ok</span></code></pre>
 
   </section>
 </div>
@@ -1709,32 +662,8 @@ message. The event’s message must be a serializable map.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->broadcast_from</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;new_message&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="7452323979-1"
->%{</span><span class="ss"
->id</span><span class="p"
->:</span><span class="w"
-> </span><span class="mi"
->1</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->content</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;hello&quot;</span><span class="p" data-group-id="7452323979-1"
->}</span><span class="w"
->
-</span><span class="ss"
->:ok</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">broadcast_from</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new_message&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1311964369-1">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="1311964369-1">}</span><span class="w">
+</span><span class="ss">:ok</span></code></pre>
 
   </section>
 </div>
@@ -1795,107 +724,17 @@ be encoded N times instead of a single shared encoding across all subscribers.</
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n"
->intercept</span><span class="w"
-> </span><span class="p" data-group-id="5980037121-1"
->[</span><span class="s"
->&quot;new_msg&quot;</span><span class="p" data-group-id="5980037121-1"
->]</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="n">intercept</span><span class="w"> </span><span class="p" data-group-id="5268113572-1">[</span><span class="s">&quot;new_msg&quot;</span><span class="p" data-group-id="5268113572-1">]</span><span class="w">
 
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_out</span><span class="p" data-group-id="5980037121-2"
->(</span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="5980037121-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="5980037121-3"
->do</span><span class="w"
->
-  </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;new_msg&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->Map</span><span class="o"
->.</span><span class="n"
->merge</span><span class="p" data-group-id="5980037121-4"
->(</span><span class="n"
->payload</span><span class="p"
->,</span><span class="w"
->
-    </span><span class="ss"
->is_editable</span><span class="p"
->:</span><span class="w"
-> </span><span class="nc"
->User</span><span class="o"
->.</span><span class="n"
->can_edit_message?</span><span class="p" data-group-id="5980037121-5"
->(</span><span class="n"
->socket</span><span class="o"
->.</span><span class="n"
->assigns</span><span class="p" data-group-id="5980037121-6"
->[</span><span class="ss"
->:user</span><span class="p" data-group-id="5980037121-6"
->]</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="p" data-group-id="5980037121-5"
->)</span><span class="w"
->
-  </span><span class="p" data-group-id="5980037121-4"
->)</span><span class="w"
->
-  </span><span class="p" data-group-id="5980037121-7"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="5980037121-7"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="5980037121-3"
->end</span></code></pre>
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_out</span><span class="p" data-group-id="5268113572-2">(</span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="5268113572-2">)</span><span class="w"> </span><span class="k" data-group-id="5268113572-3">do</span><span class="w">
+  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new_msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="5268113572-4">(</span><span class="n">payload</span><span class="p">,</span><span class="w">
+    </span><span class="ss">is_editable</span><span class="p">:</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">can_edit_message?</span><span class="p" data-group-id="5268113572-5">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="5268113572-6">[</span><span class="ss">:user</span><span class="p" data-group-id="5268113572-6">]</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p" data-group-id="5268113572-5">)</span><span class="w">
+  </span><span class="p" data-group-id="5268113572-4">)</span><span class="w">
+  </span><span class="p" data-group-id="5268113572-7">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="5268113572-7">}</span><span class="w">
+</span><span class="k" data-group-id="5268113572-3">end</span></code></pre>
 <p><code class="inline">handle_out/3</code> callbacks must return one of:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="6516415470-1"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->Socket</span><span class="o"
->.</span><span class="n"
->t</span><span class="p" data-group-id="6516415470-1"
->}</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
->
-</span><span class="p" data-group-id="6516415470-2"
->{</span><span class="ss"
->:stop</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->reason</span><span class="w"
-> </span><span class="o"
->::</span><span class="w"
-> </span><span class="n"
->term</span><span class="p"
->,</span><span class="w"
-> </span><span class="nc"
->Socket</span><span class="o"
->.</span><span class="n"
->t</span><span class="p" data-group-id="6516415470-2"
->}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="8206965129-1">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="nc">Socket</span><span class="o">.</span><span class="n">t</span><span class="p" data-group-id="8206965129-1">}</span><span class="w"> </span><span class="o">|</span><span class="w">
+</span><span class="p" data-group-id="8206965129-2">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="nc">Socket</span><span class="o">.</span><span class="n">t</span><span class="p" data-group-id="8206965129-2">}</span></code></pre>
 
   </section>
 </div>
@@ -1925,32 +764,8 @@ be encoded N times instead of a single shared encoding across all subscribers.</
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp" style="-moz-user-select:none;-webkit-user-select: none;-ms-user-select: none;user-select: none;"
->iex&gt;</span><span class="w"
-> </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;new_message&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0432009873-1"
->%{</span><span class="ss"
->id</span><span class="p"
->:</span><span class="w"
-> </span><span class="mi"
->1</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->content</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;hello&quot;</span><span class="p" data-group-id="0432009873-1"
->}</span><span class="w"
->
-</span><span class="ss"
->:ok</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new_message&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9571851514-1">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="9571851514-1">}</span><span class="w">
+</span><span class="ss">:ok</span></code></pre>
 
   </section>
 </div>
@@ -1995,92 +810,15 @@ channel that owns it.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="9383475398-1"
->(</span><span class="s"
->&quot;work&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="9383475398-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="9383475398-2"
->do</span><span class="w"
->
-  </span><span class="nc"
->Worker</span><span class="o"
->.</span><span class="n"
->perform</span><span class="p" data-group-id="9383475398-3"
->(</span><span class="n"
->payload</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket_ref</span><span class="p" data-group-id="9383475398-4"
->(</span><span class="n"
->socket</span><span class="p" data-group-id="9383475398-4"
->)</span><span class="p" data-group-id="9383475398-3"
->)</span><span class="w"
->
-  </span><span class="p" data-group-id="9383475398-5"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="9383475398-5"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="9383475398-2"
->end</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="2438336584-1">(</span><span class="s">&quot;work&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2438336584-1">)</span><span class="w"> </span><span class="k" data-group-id="2438336584-2">do</span><span class="w">
+  </span><span class="nc">Worker</span><span class="o">.</span><span class="n">perform</span><span class="p" data-group-id="2438336584-3">(</span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">socket_ref</span><span class="p" data-group-id="2438336584-4">(</span><span class="n">socket</span><span class="p" data-group-id="2438336584-4">)</span><span class="p" data-group-id="2438336584-3">)</span><span class="w">
+  </span><span class="p" data-group-id="2438336584-5">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2438336584-5">}</span><span class="w">
+</span><span class="k" data-group-id="2438336584-2">end</span><span class="w">
 
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_info</span><span class="p" data-group-id="9383475398-6"
->(</span><span class="p" data-group-id="9383475398-7"
->{</span><span class="ss"
->:work_complete</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->result</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->ref</span><span class="p" data-group-id="9383475398-7"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="9383475398-6"
->)</span><span class="w"
-> </span><span class="k" data-group-id="9383475398-8"
->do</span><span class="w"
->
-  </span><span class="n"
->reply</span><span class="w"
-> </span><span class="n"
->ref</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9383475398-9"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->result</span><span class="p" data-group-id="9383475398-9"
->}</span><span class="w"
->
-  </span><span class="p" data-group-id="9383475398-10"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="9383475398-10"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="9383475398-8"
->end</span></code></pre>
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="2438336584-6">(</span><span class="p" data-group-id="2438336584-7">{</span><span class="ss">:work_complete</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">ref</span><span class="p" data-group-id="2438336584-7">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2438336584-6">)</span><span class="w"> </span><span class="k" data-group-id="2438336584-8">do</span><span class="w">
+  </span><span class="n">reply</span><span class="w"> </span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2438336584-9">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="2438336584-9">}</span><span class="w">
+  </span><span class="p" data-group-id="2438336584-10">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="2438336584-10">}</span><span class="w">
+</span><span class="k" data-group-id="2438336584-8">end</span></code></pre>
 
   </section>
 </div>

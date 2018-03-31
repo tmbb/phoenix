@@ -8,7 +8,7 @@
     <title>Plug – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-4b89e9c553.js"></script>
+    <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -84,663 +84,83 @@
 </h2>
 
 <p>In order to act as a plug, a function simply needs to accept a connection struct (<code class="inline">%Plug.Conn{}</code>) and options. It also needs to return a connection struct. Any function that meets those criteria will do. Here’s an example.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->put_headers</span><span class="p" data-group-id="0017286492-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->key_values</span><span class="p" data-group-id="0017286492-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="0017286492-2"
->do</span><span class="w"
->
-  </span><span class="nc"
->Enum</span><span class="o"
->.</span><span class="n"
->reduce</span><span class="w"
-> </span><span class="n"
->key_values</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="k" data-group-id="0017286492-3"
->fn</span><span class="w"
-> </span><span class="p" data-group-id="0017286492-4"
->{</span><span class="n"
->k</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->v</span><span class="p" data-group-id="0017286492-4"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-    </span><span class="nc"
->Plug.Conn</span><span class="o"
->.</span><span class="n"
->put_resp_header</span><span class="p" data-group-id="0017286492-5"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->to_string</span><span class="p" data-group-id="0017286492-6"
->(</span><span class="n"
->k</span><span class="p" data-group-id="0017286492-6"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->v</span><span class="p" data-group-id="0017286492-5"
->)</span><span class="w"
->
-  </span><span class="k" data-group-id="0017286492-3"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="0017286492-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">put_headers</span><span class="p" data-group-id="9919409036-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">key_values</span><span class="p" data-group-id="9919409036-1">)</span><span class="w"> </span><span class="k" data-group-id="9919409036-2">do</span><span class="w">
+  </span><span class="nc">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="w"> </span><span class="n">key_values</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="9919409036-3">fn</span><span class="w"> </span><span class="p" data-group-id="9919409036-4">{</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p" data-group-id="9919409036-4">}</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">Plug.Conn</span><span class="o">.</span><span class="n">put_resp_header</span><span class="p" data-group-id="9919409036-5">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">to_string</span><span class="p" data-group-id="9919409036-6">(</span><span class="n">k</span><span class="p" data-group-id="9919409036-6">)</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p" data-group-id="9919409036-5">)</span><span class="w">
+  </span><span class="k" data-group-id="9919409036-3">end</span><span class="w">
+</span><span class="k" data-group-id="9919409036-2">end</span></code></pre>
 <p>Pretty simple, right?</p>
 <p>This is how we use them to compose a series of transformations on our connection in Phoenix:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.MessageController</span><span class="w"
-> </span><span class="k" data-group-id="9257260560-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.MessageController</span><span class="w"> </span><span class="k" data-group-id="5055718585-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
 
-  </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:put_headers</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9257260560-2"
->%{</span><span class="ss"
->content_encoding</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;gzip&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->cache_control</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;max-age=3600&quot;</span><span class="p" data-group-id="9257260560-2"
->}</span><span class="w"
->
-  </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:put_layout</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;bare.html&quot;</span><span class="w"
->
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_headers</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5055718585-2">%{</span><span class="ss">content_encoding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gzip&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">cache_control</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;max-age=3600&quot;</span><span class="p" data-group-id="5055718585-2">}</span><span class="w">
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_layout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bare.html&quot;</span><span class="w">
 
-  </span><span class="n"
->...</span><span class="w"
->
-</span><span class="k" data-group-id="9257260560-1"
->end</span></code></pre>
+  </span><span class="n">...</span><span class="w">
+</span><span class="k" data-group-id="5055718585-1">end</span></code></pre>
 <p>By abiding by the plug contract, <code class="inline">put_headers/2</code>, <code class="inline">put_layout/2</code>, and even <code class="inline">action/2</code> turn an application request into a series of explicit transformations. It doesn’t stop there. To really see how effective Plug’s design is, let’s imagine a scenario where we need to check a series of conditions and then either redirect or halt if a condition fails. Without plug, we would end up with something like this:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.MessageController</span><span class="w"
-> </span><span class="k" data-group-id="2175039811-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.MessageController</span><span class="w"> </span><span class="k" data-group-id="0509467068-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="2175039811-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->params</span><span class="p" data-group-id="2175039811-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2175039811-3"
->do</span><span class="w"
->
-    </span><span class="k"
->case</span><span class="w"
-> </span><span class="n"
->authenticate</span><span class="p" data-group-id="2175039811-4"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="2175039811-4"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2175039811-5"
->do</span><span class="w"
->
-      </span><span class="p" data-group-id="2175039811-6"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->user</span><span class="p" data-group-id="2175039811-6"
->}</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-        </span><span class="k"
->case</span><span class="w"
-> </span><span class="n"
->find_message</span><span class="p" data-group-id="2175039811-7"
->(</span><span class="n"
->params</span><span class="p" data-group-id="2175039811-8"
->[</span><span class="s"
->&quot;id&quot;</span><span class="p" data-group-id="2175039811-8"
->]</span><span class="p" data-group-id="2175039811-7"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2175039811-9"
->do</span><span class="w"
->
-          </span><span class="no"
->nil</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-            </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_flash</span><span class="p" data-group-id="2175039811-10"
->(</span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;That message wasn't found&quot;</span><span class="p" data-group-id="2175039811-10"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->redirect</span><span class="p" data-group-id="2175039811-11"
->(</span><span class="ss"
->to</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="2175039811-11"
->)</span><span class="w"
->
-          </span><span class="n"
->message</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-            </span><span class="k"
->case</span><span class="w"
-> </span><span class="n"
->authorize_message</span><span class="p" data-group-id="2175039811-12"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->params</span><span class="p" data-group-id="2175039811-13"
->[</span><span class="s"
->&quot;id&quot;</span><span class="p" data-group-id="2175039811-13"
->]</span><span class="p" data-group-id="2175039811-12"
->)</span><span class="w"
-> </span><span class="k" data-group-id="2175039811-14"
->do</span><span class="w"
->
-              </span><span class="ss"
->:ok</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-                </span><span class="n"
->render</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:show</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->page</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->find_message</span><span class="p" data-group-id="2175039811-15"
->(</span><span class="n"
->params</span><span class="p" data-group-id="2175039811-16"
->[</span><span class="s"
->&quot;id&quot;</span><span class="p" data-group-id="2175039811-16"
->]</span><span class="p" data-group-id="2175039811-15"
->)</span><span class="w"
->
-              </span><span class="ss"
->:error</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-                </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_flash</span><span class="p" data-group-id="2175039811-17"
->(</span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;You can't access that page&quot;</span><span class="p" data-group-id="2175039811-17"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->redirect</span><span class="p" data-group-id="2175039811-18"
->(</span><span class="ss"
->to</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="2175039811-18"
->)</span><span class="w"
->
-            </span><span class="k" data-group-id="2175039811-14"
->end</span><span class="w"
->
-        </span><span class="k" data-group-id="2175039811-9"
->end</span><span class="w"
->
-      </span><span class="ss"
->:error</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-        </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_flash</span><span class="p" data-group-id="2175039811-19"
->(</span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;You must be logged in&quot;</span><span class="p" data-group-id="2175039811-19"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->redirect</span><span class="p" data-group-id="2175039811-20"
->(</span><span class="ss"
->to</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="2175039811-20"
->)</span><span class="w"
->
-    </span><span class="k" data-group-id="2175039811-5"
->end</span><span class="w"
->
-  </span><span class="k" data-group-id="2175039811-3"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="2175039811-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="0509467068-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="0509467068-2">)</span><span class="w"> </span><span class="k" data-group-id="0509467068-3">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="n">authenticate</span><span class="p" data-group-id="0509467068-4">(</span><span class="n">conn</span><span class="p" data-group-id="0509467068-4">)</span><span class="w"> </span><span class="k" data-group-id="0509467068-5">do</span><span class="w">
+      </span><span class="p" data-group-id="0509467068-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="0509467068-6">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="k">case</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="0509467068-7">(</span><span class="n">params</span><span class="p" data-group-id="0509467068-8">[</span><span class="s">&quot;id&quot;</span><span class="p" data-group-id="0509467068-8">]</span><span class="p" data-group-id="0509467068-7">)</span><span class="w"> </span><span class="k" data-group-id="0509467068-9">do</span><span class="w">
+          </span><span class="no">nil</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+            </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="0509467068-10">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;That message wasn&#39;t found&quot;</span><span class="p" data-group-id="0509467068-10">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="0509467068-11">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="0509467068-11">)</span><span class="w">
+          </span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+            </span><span class="k">case</span><span class="w"> </span><span class="n">authorize_message</span><span class="p" data-group-id="0509467068-12">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="0509467068-13">[</span><span class="s">&quot;id&quot;</span><span class="p" data-group-id="0509467068-13">]</span><span class="p" data-group-id="0509467068-12">)</span><span class="w"> </span><span class="k" data-group-id="0509467068-14">do</span><span class="w">
+              </span><span class="ss">:ok</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+                </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="0509467068-15">(</span><span class="n">params</span><span class="p" data-group-id="0509467068-16">[</span><span class="s">&quot;id&quot;</span><span class="p" data-group-id="0509467068-16">]</span><span class="p" data-group-id="0509467068-15">)</span><span class="w">
+              </span><span class="ss">:error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+                </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="0509467068-17">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;You can&#39;t access that page&quot;</span><span class="p" data-group-id="0509467068-17">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="0509467068-18">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="0509467068-18">)</span><span class="w">
+            </span><span class="k" data-group-id="0509467068-14">end</span><span class="w">
+        </span><span class="k" data-group-id="0509467068-9">end</span><span class="w">
+      </span><span class="ss">:error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="0509467068-19">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;You must be logged in&quot;</span><span class="p" data-group-id="0509467068-19">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="0509467068-20">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="0509467068-20">)</span><span class="w">
+    </span><span class="k" data-group-id="0509467068-5">end</span><span class="w">
+  </span><span class="k" data-group-id="0509467068-3">end</span><span class="w">
+</span><span class="k" data-group-id="0509467068-1">end</span></code></pre>
 <p>Notice how just a few steps of authentication and authorization require complicated nesting and duplication? Let’s improve this with a couple of plugs.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.MessageController</span><span class="w"
-> </span><span class="k" data-group-id="4831199991-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:controller</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.MessageController</span><span class="w"> </span><span class="k" data-group-id="3792631197-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
 
-  </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:authenticate</span><span class="w"
->
-  </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:find_message</span><span class="w"
->
-  </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:authorize_message</span><span class="w"
->
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:authenticate</span><span class="w">
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:find_message</span><span class="w">
+  </span><span class="n">plug</span><span class="w"> </span><span class="ss">:authorize_message</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->show</span><span class="p" data-group-id="4831199991-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->params</span><span class="p" data-group-id="4831199991-2"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4831199991-3"
->do</span><span class="w"
->
-    </span><span class="n"
->render</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:show</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->page</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->find_message</span><span class="p" data-group-id="4831199991-4"
->(</span><span class="n"
->params</span><span class="p" data-group-id="4831199991-5"
->[</span><span class="s"
->&quot;id&quot;</span><span class="p" data-group-id="4831199991-5"
->]</span><span class="p" data-group-id="4831199991-4"
->)</span><span class="w"
->
-  </span><span class="k" data-group-id="4831199991-3"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="3792631197-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="3792631197-2">)</span><span class="w"> </span><span class="k" data-group-id="3792631197-3">do</span><span class="w">
+    </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="3792631197-4">(</span><span class="n">params</span><span class="p" data-group-id="3792631197-5">[</span><span class="s">&quot;id&quot;</span><span class="p" data-group-id="3792631197-5">]</span><span class="p" data-group-id="3792631197-4">)</span><span class="w">
+  </span><span class="k" data-group-id="3792631197-3">end</span><span class="w">
 
-  </span><span class="kd"
->defp</span><span class="w"
-> </span><span class="nf"
->authenticate</span><span class="p" data-group-id="4831199991-6"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="err"
->_</span><span class="p" data-group-id="4831199991-6"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4831199991-7"
->do</span><span class="w"
->
-    </span><span class="k"
->case</span><span class="w"
-> </span><span class="nc"
->Authenticator</span><span class="o"
->.</span><span class="n"
->find_user</span><span class="p" data-group-id="4831199991-8"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="4831199991-8"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4831199991-9"
->do</span><span class="w"
->
-      </span><span class="p" data-group-id="4831199991-10"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->user</span><span class="p" data-group-id="4831199991-10"
->}</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-        </span><span class="n"
->assign</span><span class="p" data-group-id="4831199991-11"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:user</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->user</span><span class="p" data-group-id="4831199991-11"
->)</span><span class="w"
->
-      </span><span class="ss"
->:error</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-        </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_flash</span><span class="p" data-group-id="4831199991-12"
->(</span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;You must be logged in&quot;</span><span class="p" data-group-id="4831199991-12"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->redirect</span><span class="p" data-group-id="4831199991-13"
->(</span><span class="ss"
->to</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="4831199991-13"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->halt</span><span class="p" data-group-id="4831199991-14"
->(</span><span class="p" data-group-id="4831199991-14"
->)</span><span class="w"
->
-    </span><span class="k" data-group-id="4831199991-9"
->end</span><span class="w"
->
-  </span><span class="k" data-group-id="4831199991-7"
->end</span><span class="w"
->
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">authenticate</span><span class="p" data-group-id="3792631197-6">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="3792631197-6">)</span><span class="w"> </span><span class="k" data-group-id="3792631197-7">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="nc">Authenticator</span><span class="o">.</span><span class="n">find_user</span><span class="p" data-group-id="3792631197-8">(</span><span class="n">conn</span><span class="p" data-group-id="3792631197-8">)</span><span class="w"> </span><span class="k" data-group-id="3792631197-9">do</span><span class="w">
+      </span><span class="p" data-group-id="3792631197-10">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="3792631197-10">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">assign</span><span class="p" data-group-id="3792631197-11">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:user</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="3792631197-11">)</span><span class="w">
+      </span><span class="ss">:error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="3792631197-12">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;You must be logged in&quot;</span><span class="p" data-group-id="3792631197-12">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="3792631197-13">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="3792631197-13">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">halt</span><span class="p" data-group-id="3792631197-14">(</span><span class="p" data-group-id="3792631197-14">)</span><span class="w">
+    </span><span class="k" data-group-id="3792631197-9">end</span><span class="w">
+  </span><span class="k" data-group-id="3792631197-7">end</span><span class="w">
 
-  </span><span class="kd"
->defp</span><span class="w"
-> </span><span class="nf"
->find_message</span><span class="p" data-group-id="4831199991-15"
->(</span><span class="n"
->id</span><span class="p" data-group-id="4831199991-15"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->do</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->...</span><span class="w"
->
-  </span><span class="kd"
->defp</span><span class="w"
-> </span><span class="nf"
->find_message</span><span class="p" data-group-id="4831199991-16"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="err"
->_</span><span class="p" data-group-id="4831199991-16"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4831199991-17"
->do</span><span class="w"
->
-    </span><span class="k"
->case</span><span class="w"
-> </span><span class="n"
->find_message</span><span class="p" data-group-id="4831199991-18"
->(</span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->params</span><span class="p" data-group-id="4831199991-19"
->[</span><span class="s"
->&quot;id&quot;</span><span class="p" data-group-id="4831199991-19"
->]</span><span class="p" data-group-id="4831199991-18"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4831199991-20"
->do</span><span class="w"
->
-      </span><span class="no"
->nil</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-        </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_flash</span><span class="p" data-group-id="4831199991-21"
->(</span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;That message wasn't found&quot;</span><span class="p" data-group-id="4831199991-21"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->redirect</span><span class="p" data-group-id="4831199991-22"
->(</span><span class="ss"
->to</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="4831199991-22"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->halt</span><span class="p" data-group-id="4831199991-23"
->(</span><span class="p" data-group-id="4831199991-23"
->)</span><span class="w"
->
-      </span><span class="n"
->message</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-        </span><span class="n"
->assign</span><span class="p" data-group-id="4831199991-24"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:message</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->message</span><span class="p" data-group-id="4831199991-24"
->)</span><span class="w"
->
-    </span><span class="k" data-group-id="4831199991-20"
->end</span><span class="w"
->
-  </span><span class="k" data-group-id="4831199991-17"
->end</span><span class="w"
->
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">find_message</span><span class="p" data-group-id="3792631197-15">(</span><span class="n">id</span><span class="p" data-group-id="3792631197-15">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">...</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">find_message</span><span class="p" data-group-id="3792631197-16">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="3792631197-16">)</span><span class="w"> </span><span class="k" data-group-id="3792631197-17">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="n">find_message</span><span class="p" data-group-id="3792631197-18">(</span><span class="n">conn</span><span class="o">.</span><span class="n">params</span><span class="p" data-group-id="3792631197-19">[</span><span class="s">&quot;id&quot;</span><span class="p" data-group-id="3792631197-19">]</span><span class="p" data-group-id="3792631197-18">)</span><span class="w"> </span><span class="k" data-group-id="3792631197-20">do</span><span class="w">
+      </span><span class="no">nil</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="3792631197-21">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;That message wasn&#39;t found&quot;</span><span class="p" data-group-id="3792631197-21">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="3792631197-22">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="3792631197-22">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">halt</span><span class="p" data-group-id="3792631197-23">(</span><span class="p" data-group-id="3792631197-23">)</span><span class="w">
+      </span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">assign</span><span class="p" data-group-id="3792631197-24">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:message</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p" data-group-id="3792631197-24">)</span><span class="w">
+    </span><span class="k" data-group-id="3792631197-20">end</span><span class="w">
+  </span><span class="k" data-group-id="3792631197-17">end</span><span class="w">
 
-  </span><span class="kd"
->defp</span><span class="w"
-> </span><span class="nf"
->authorize_message</span><span class="p" data-group-id="4831199991-25"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="err"
->_</span><span class="p" data-group-id="4831199991-25"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4831199991-26"
->do</span><span class="w"
->
-    </span><span class="k"
->if</span><span class="w"
-> </span><span class="nc"
->Authorizer</span><span class="o"
->.</span><span class="n"
->can_access?</span><span class="p" data-group-id="4831199991-27"
->(</span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->assigns</span><span class="p" data-group-id="4831199991-28"
->[</span><span class="ss"
->:user</span><span class="p" data-group-id="4831199991-28"
->]</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->assigns</span><span class="p" data-group-id="4831199991-29"
->[</span><span class="ss"
->:message</span><span class="p" data-group-id="4831199991-29"
->]</span><span class="p" data-group-id="4831199991-27"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4831199991-30"
->do</span><span class="w"
->
-      </span><span class="n"
->conn</span><span class="w"
->
-    </span><span class="k" data-group-id="4831199991-30"
->else</span><span class="w"
->
-      </span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_flash</span><span class="p" data-group-id="4831199991-31"
->(</span><span class="ss"
->:info</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;You can't access that page&quot;</span><span class="p" data-group-id="4831199991-31"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->redirect</span><span class="p" data-group-id="4831199991-32"
->(</span><span class="ss"
->to</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="4831199991-32"
->)</span><span class="w"
-> </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->halt</span><span class="p" data-group-id="4831199991-33"
->(</span><span class="p" data-group-id="4831199991-33"
->)</span><span class="w"
->
-    </span><span class="k" data-group-id="4831199991-30"
->end</span><span class="w"
->
-  </span><span class="k" data-group-id="4831199991-26"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="4831199991-1"
->end</span></code></pre>
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">authorize_message</span><span class="p" data-group-id="3792631197-25">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="3792631197-25">)</span><span class="w"> </span><span class="k" data-group-id="3792631197-26">do</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="nc">Authorizer</span><span class="o">.</span><span class="n">can_access?</span><span class="p" data-group-id="3792631197-27">(</span><span class="n">conn</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="3792631197-28">[</span><span class="ss">:user</span><span class="p" data-group-id="3792631197-28">]</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="3792631197-29">[</span><span class="ss">:message</span><span class="p" data-group-id="3792631197-29">]</span><span class="p" data-group-id="3792631197-27">)</span><span class="w"> </span><span class="k" data-group-id="3792631197-30">do</span><span class="w">
+      </span><span class="n">conn</span><span class="w">
+    </span><span class="k" data-group-id="3792631197-30">else</span><span class="w">
+      </span><span class="n">conn</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="3792631197-31">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;You can&#39;t access that page&quot;</span><span class="p" data-group-id="3792631197-31">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">redirect</span><span class="p" data-group-id="3792631197-32">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="3792631197-32">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">halt</span><span class="p" data-group-id="3792631197-33">(</span><span class="p" data-group-id="3792631197-33">)</span><span class="w">
+    </span><span class="k" data-group-id="3792631197-30">end</span><span class="w">
+  </span><span class="k" data-group-id="3792631197-26">end</span><span class="w">
+</span><span class="k" data-group-id="3792631197-1">end</span></code></pre>
 <p>By replacing the nested blocks of code with a flattened series of plug transformations, we are able to achieve the same functionality in a much more composable, clear, and reusable way.</p>
 <p>Now let’s look at the other flavor plugs come in, module plugs.</p>
 <h2 id="module-plugs" class="section-heading">
@@ -756,198 +176,31 @@
 </li>
 </ul>
 <p>To see this in action, let’s write a module plug that puts the <code class="inline">:locale</code> key and value into the connection assign for downstream use in other plugs, controller actions, and our views.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.Plugs.Locale</span><span class="w"
-> </span><span class="k" data-group-id="0692298058-1"
->do</span><span class="w"
->
-  </span><span class="kn"
->import</span><span class="w"
-> </span><span class="nc"
->Plug.Conn</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Plugs.Locale</span><span class="w"> </span><span class="k" data-group-id="6375448789-1">do</span><span class="w">
+  </span><span class="kn">import</span><span class="w"> </span><span class="nc">Plug.Conn</span><span class="w">
 
-  </span><span class="na"
->@locales</span><span class="w"
-> </span><span class="p" data-group-id="0692298058-2"
->[</span><span class="s"
->&quot;en&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;fr&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;de&quot;</span><span class="p" data-group-id="0692298058-2"
->]</span><span class="w"
->
+  </span><span class="na">@locales</span><span class="w"> </span><span class="p" data-group-id="6375448789-2">[</span><span class="s">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;fr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;de&quot;</span><span class="p" data-group-id="6375448789-2">]</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->init</span><span class="p" data-group-id="0692298058-3"
->(</span><span class="n"
->default</span><span class="p" data-group-id="0692298058-3"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->do</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->default</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">init</span><span class="p" data-group-id="6375448789-3">(</span><span class="n">default</span><span class="p" data-group-id="6375448789-3">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">default</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->call</span><span class="p" data-group-id="0692298058-4"
->(</span><span class="p" data-group-id="0692298058-5"
->%</span><span class="nc" data-group-id="0692298058-5"
->Plug.Conn</span><span class="p" data-group-id="0692298058-5"
->{</span><span class="ss"
->params</span><span class="p"
->:</span><span class="w"
-> </span><span class="p" data-group-id="0692298058-6"
->%{</span><span class="s"
->&quot;locale&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="n"
->loc</span><span class="p" data-group-id="0692298058-6"
->}</span><span class="p" data-group-id="0692298058-5"
->}</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="bp"
->_default</span><span class="p" data-group-id="0692298058-4"
->)</span><span class="w"
-> </span><span class="ow"
->when</span><span class="w"
-> </span><span class="n"
->loc</span><span class="w"
-> </span><span class="ow"
->in</span><span class="w"
-> </span><span class="na"
->@locales</span><span class="w"
-> </span><span class="k" data-group-id="0692298058-7"
->do</span><span class="w"
->
-    </span><span class="n"
->assign</span><span class="p" data-group-id="0692298058-8"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:locale</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->loc</span><span class="p" data-group-id="0692298058-8"
->)</span><span class="w"
->
-  </span><span class="k" data-group-id="0692298058-7"
->end</span><span class="w"
->
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->call</span><span class="p" data-group-id="0692298058-9"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->default</span><span class="p" data-group-id="0692298058-9"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->do</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->assign</span><span class="p" data-group-id="0692298058-10"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:locale</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->default</span><span class="p" data-group-id="0692298058-10"
->)</span><span class="w"
->
-</span><span class="k" data-group-id="0692298058-1"
->end</span><span class="w"
->
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="6375448789-4">(</span><span class="p" data-group-id="6375448789-5">%</span><span class="nc" data-group-id="6375448789-5">Plug.Conn</span><span class="p" data-group-id="6375448789-5">{</span><span class="ss">params</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6375448789-6">%{</span><span class="s">&quot;locale&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">loc</span><span class="p" data-group-id="6375448789-6">}</span><span class="p" data-group-id="6375448789-5">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_default</span><span class="p" data-group-id="6375448789-4">)</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">loc</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="na">@locales</span><span class="w"> </span><span class="k" data-group-id="6375448789-7">do</span><span class="w">
+    </span><span class="n">assign</span><span class="p" data-group-id="6375448789-8">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:locale</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="p" data-group-id="6375448789-8">)</span><span class="w">
+  </span><span class="k" data-group-id="6375448789-7">end</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="6375448789-9">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">default</span><span class="p" data-group-id="6375448789-9">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="6375448789-10">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:locale</span><span class="p">,</span><span class="w"> </span><span class="n">default</span><span class="p" data-group-id="6375448789-10">)</span><span class="w">
+</span><span class="k" data-group-id="6375448789-1">end</span><span class="w">
 
-</span><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->HelloWeb.Router</span><span class="w"
-> </span><span class="k" data-group-id="0692298058-11"
->do</span><span class="w"
->
-  </span><span class="kn"
->use</span><span class="w"
-> </span><span class="nc"
->HelloWeb</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:router</span><span class="w"
->
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="6375448789-11">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
-  </span><span class="n"
->pipeline</span><span class="w"
-> </span><span class="ss"
->:browser</span><span class="w"
-> </span><span class="k" data-group-id="0692298058-12"
->do</span><span class="w"
->
-    </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:accepts</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="0692298058-13"
->[</span><span class="s"
->&quot;html&quot;</span><span class="p" data-group-id="0692298058-13"
->]</span><span class="w"
->
-    </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:fetch_session</span><span class="w"
->
-    </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:fetch_flash</span><span class="w"
->
-    </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:protect_from_forgery</span><span class="w"
->
-    </span><span class="n"
->plug</span><span class="w"
-> </span><span class="ss"
->:put_secure_browser_headers</span><span class="w"
->
-    </span><span class="n"
->plug</span><span class="w"
-> </span><span class="nc"
->HelloWeb.Plugs.Locale</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;en&quot;</span><span class="w"
->
-  </span><span class="k" data-group-id="0692298058-12"
->end</span><span class="w"
->
-  </span><span class="n"
->...</span></code></pre>
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="6375448789-12">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6375448789-13">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="6375448789-13">]</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_flash</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:protect_from_forgery</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_secure_browser_headers</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="nc">HelloWeb.Plugs.Locale</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;en&quot;</span><span class="w">
+  </span><span class="k" data-group-id="6375448789-12">end</span><span class="w">
+  </span><span class="n">...</span></code></pre>
 <p>We are able to add this module plug to our browser pipeline via <code class="inline">plug HelloWeb.Plugs.Locale, &quot;en&quot;</code>. In the <code class="inline">init/1</code> callback, we pass a default locale to use if none is present in the params. We also use pattern matching to define multiple <code class="inline">call/2</code> function heads to validate the locale in the params, and fall back to “en” if there is no match.</p>
 <p>That’s all there is to Plug. Phoenix embraces the plug design of composable transformations all the way up and down the stack. This is just the first taste. If we ask ourselves, “Could I put this in a plug?” The answer is usually, “Yes!”</p>
 

@@ -8,7 +8,7 @@
     <title>Phoenix.ConnTest – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-4b89e9c553.js"></script>
+    <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -101,99 +101,20 @@ well as the functions in <a href="https://hexdocs.pm/plug/1.4.0/Plug.Conn.html">
 <p><a href="Phoenix.ConnTest.html#content"><code class="inline">Phoenix.ConnTest</code></a> typically works against endpoints. That’s
 the preferred way to test anything that your router dispatches
 to.</p>
-<pre><code class="nohighlight makeup"><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->get</span><span class="w"
-> </span><span class="n"
->build_conn</span><span class="p" data-group-id="9784663485-1"
->(</span><span class="p" data-group-id="9784663485-1"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->resp_body</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;Welcome!&quot;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="0672428939-1">(</span><span class="p" data-group-id="0672428939-1">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">resp_body</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;Welcome!&quot;</span><span class="w">
 
-</span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->post</span><span class="w"
-> </span><span class="n"
->build_conn</span><span class="p" data-group-id="9784663485-2"
->(</span><span class="p" data-group-id="9784663485-2"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/login&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9784663485-3"
->[</span><span class="ss"
->username</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;john&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->password</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;doe&quot;</span><span class="p" data-group-id="9784663485-3"
->]</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->resp_body</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;Logged in!&quot;</span></code></pre>
+</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">post</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="0672428939-2">(</span><span class="p" data-group-id="0672428939-2">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/login&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0672428939-3">[</span><span class="ss">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;doe&quot;</span><span class="p" data-group-id="0672428939-3">]</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">resp_body</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;Logged in!&quot;</span></code></pre>
 <p>As in your application, the connection is also the main abstraction
 in testing. <code class="inline">build_conn()</code> returns a new connection and functions in this
 module can be used to manipulate the connection before dispatching
 to the endpoint.</p>
 <p>For example, one could set the accepts header for json requests as
 follows:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->build_conn</span><span class="p" data-group-id="4547337298-1"
->(</span><span class="p" data-group-id="4547337298-1"
->)</span><span class="w"
->
-</span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_req_header</span><span class="p" data-group-id="4547337298-2"
->(</span><span class="s"
->&quot;accept&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;application/json&quot;</span><span class="p" data-group-id="4547337298-2"
->)</span><span class="w"
->
-</span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->get</span><span class="p" data-group-id="4547337298-3"
->(</span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="4547337298-3"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">build_conn</span><span class="p" data-group-id="7146640528-1">(</span><span class="p" data-group-id="7146640528-1">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_req_header</span><span class="p" data-group-id="7146640528-2">(</span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="7146640528-2">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="n">get</span><span class="p" data-group-id="7146640528-3">(</span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="7146640528-3">)</span></code></pre>
 <p>The endpoint being tested is accessed via the <code class="inline">@endpoint</code> module
 attribute.</p>
 <h2 id="module-controller-testing" class="section-heading">
@@ -208,30 +129,8 @@ in the router and before, unit testing controllers may be helpful
 in some situations.</p>
 <p>For such cases, just pass an atom representing the action
 to dispatch:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->get</span><span class="w"
-> </span><span class="n"
->build_conn</span><span class="p" data-group-id="7145930459-1"
->(</span><span class="p" data-group-id="7145930459-1"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:index</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->resp_body</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;Welcome!&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="0856756657-1">(</span><span class="p" data-group-id="0856756657-1">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">resp_body</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;Welcome!&quot;</span></code></pre>
 <h2 id="module-views-testing" class="section-heading">
   <a href="#module-views-testing" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Views testing
@@ -241,25 +140,8 @@ to dispatch:</p>
 another layer that requires a connection for processing.
 For such cases, a connection can be created using the
 <a href="#conn/3"><code class="inline">conn/3</code></a> helper:</p>
-<pre><code class="nohighlight makeup"><span class="nc"
->MyApp.UserView</span><span class="o"
->.</span><span class="n"
->render</span><span class="w"
-> </span><span class="s"
->&quot;hello.html&quot;</span><span class="p"
->,</span><span class="w"
->
-                       </span><span class="ss"
->conn</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p" data-group-id="0590152369-1"
->(</span><span class="ss"
->:get</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="0590152369-1"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="nc">MyApp.UserView</span><span class="o">.</span><span class="n">render</span><span class="w"> </span><span class="s">&quot;hello.html&quot;</span><span class="p">,</span><span class="w">
+                       </span><span class="ss">conn</span><span class="p">:</span><span class="w"> </span><span class="n">conn</span><span class="p" data-group-id="8458087128-1">(</span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="8458087128-1">)</span></code></pre>
 <h2 id="module-recycling" class="section-heading">
   <a href="#module-recycling" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Recycling
@@ -279,84 +161,20 @@ work.</p>
 between dispatches. This usually works out well most times, but
 it may discard information if you are modifying the connection
 before the next dispatch:</p>
-<pre><code class="nohighlight makeup"><span class="c1"
-># No recycling as the connection is fresh</span><span class="w"
->
-</span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->get</span><span class="w"
-> </span><span class="n"
->build_conn</span><span class="p" data-group-id="6362914998-1"
->(</span><span class="p" data-group-id="6362914998-1"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="c1"># No recycling as the connection is fresh</span><span class="w">
+</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="3111026180-1">(</span><span class="p" data-group-id="3111026180-1">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w">
 
-</span><span class="c1"
-># The connection is recycled, creating a new one behind the scenes</span><span class="w"
->
-</span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->post</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/login&quot;</span><span class="w"
->
+</span><span class="c1"># The connection is recycled, creating a new one behind the scenes</span><span class="w">
+</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">post</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/login&quot;</span><span class="w">
 
-</span><span class="c1"
-># We can also recycle manually in case we want custom headers</span><span class="w"
->
-</span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
->
-  </span><span class="n"
->conn</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->recycle</span><span class="p" data-group-id="6362914998-2"
->(</span><span class="p" data-group-id="6362914998-2"
->)</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->put_req_header</span><span class="p" data-group-id="6362914998-3"
->(</span><span class="s"
->&quot;x-special&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;nice&quot;</span><span class="p" data-group-id="6362914998-3"
->)</span><span class="w"
->
+</span><span class="c1"># We can also recycle manually in case we want custom headers</span><span class="w">
+</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="n">conn</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">recycle</span><span class="p" data-group-id="3111026180-2">(</span><span class="p" data-group-id="3111026180-2">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_req_header</span><span class="p" data-group-id="3111026180-3">(</span><span class="s">&quot;x-special&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nice&quot;</span><span class="p" data-group-id="3111026180-3">)</span><span class="w">
 
-</span><span class="c1"
-># No recycling as we did it explicitly</span><span class="w"
->
-</span><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->delete</span><span class="w"
-> </span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/logout&quot;</span></code></pre>
+</span><span class="c1"># No recycling as we did it explicitly</span><span class="w">
+</span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">delete</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/logout&quot;</span></code></pre>
 <p>Recycling also recycles the “accept” header.</p>
 
         </section>
@@ -733,105 +551,20 @@ by your MyApp.ErrorView.</p>
 atom, such as <code class="inline">404</code> or <code class="inline">:not_found</code>. If an error is raised, a
 3-tuple of the wrapped response is returned matching the
 status, headers, and body of the response:</p>
-<pre><code class="nohighlight makeup"><span class="p" data-group-id="1387888077-1"
->{</span><span class="mi"
->404</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="1387888077-2"
->[</span><span class="p" data-group-id="1387888077-3"
->{</span><span class="s"
->&quot;content-type&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;text/html&quot;</span><span class="p" data-group-id="1387888077-3"
->}</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="err"
->_</span><span class="p" data-group-id="1387888077-2"
->]</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;Page not found&quot;</span><span class="p" data-group-id="1387888077-1"
->}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="p" data-group-id="1796599871-1">{</span><span class="mi">404</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1796599871-2">[</span><span class="p" data-group-id="1796599871-3">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/html&quot;</span><span class="p" data-group-id="1796599871-3">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="1796599871-2">]</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Page not found&quot;</span><span class="p" data-group-id="1796599871-1">}</span></code></pre>
 <h2 id="assert_error_sent/2-examples" class="section-heading">
   <a href="#assert_error_sent/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n"
->assert_error_sent</span><span class="w"
-> </span><span class="ss"
->:not_found</span><span class="p"
->,</span><span class="w"
-> </span><span class="k" data-group-id="3848150875-1"
->fn</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-  </span><span class="n"
->get</span><span class="w"
-> </span><span class="n"
->build_conn</span><span class="p" data-group-id="3848150875-2"
->(</span><span class="p" data-group-id="3848150875-2"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/users/not-found&quot;</span><span class="w"
->
-</span><span class="k" data-group-id="3848150875-1"
->end</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="n">assert_error_sent</span><span class="w"> </span><span class="ss">:not_found</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="3912431678-1">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="3912431678-2">(</span><span class="p" data-group-id="3912431678-2">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/users/not-found&quot;</span><span class="w">
+</span><span class="k" data-group-id="3912431678-1">end</span><span class="w">
 
-</span><span class="n"
->response</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->assert_error_sent</span><span class="w"
-> </span><span class="mi"
->404</span><span class="p"
->,</span><span class="w"
-> </span><span class="k" data-group-id="3848150875-3"
->fn</span><span class="w"
-> </span><span class="o"
->-&gt;</span><span class="w"
->
-  </span><span class="n"
->get</span><span class="w"
-> </span><span class="n"
->build_conn</span><span class="p" data-group-id="3848150875-4"
->(</span><span class="p" data-group-id="3848150875-4"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/users/not-found&quot;</span><span class="w"
->
-</span><span class="k" data-group-id="3848150875-3"
->end</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="p" data-group-id="3848150875-5"
->{</span><span class="mi"
->404</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="3848150875-6"
->[</span><span class="bp"
->_h</span><span class="w"
-> </span><span class="o"
->|</span><span class="w"
-> </span><span class="bp"
->_t</span><span class="p" data-group-id="3848150875-6"
->]</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;Page not found&quot;</span><span class="p" data-group-id="3848150875-5"
->}</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->response</span></code></pre>
+</span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">assert_error_sent</span><span class="w"> </span><span class="mi">404</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="3912431678-3">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="3912431678-4">(</span><span class="p" data-group-id="3912431678-4">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/users/not-found&quot;</span><span class="w">
+</span><span class="k" data-group-id="3912431678-3">end</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="3912431678-5">{</span><span class="mi">404</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3912431678-6">[</span><span class="n">_h</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">_t</span><span class="p" data-group-id="3912431678-6">]</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Page not found&quot;</span><span class="p" data-group-id="3912431678-5">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span></code></pre>
 
   </section>
 </div>
@@ -936,139 +669,26 @@ router pipeline plugs are required for proper setup.</p>
 plug in isolation, but you need to invoke the Endpoint plugs
 and <code class="inline">:browser</code> pipeline of your Router for session and flash
 related dependencies:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
->
-  </span><span class="n"
->conn</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->bypass_through</span><span class="p" data-group-id="4778265983-1"
->(</span><span class="nc"
->MyAppWeb.Router</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="4778265983-2"
->[</span><span class="ss"
->:browser</span><span class="p" data-group-id="4778265983-2"
->]</span><span class="p" data-group-id="4778265983-1"
->)</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->get</span><span class="p" data-group-id="4778265983-3"
->(</span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="4778265983-3"
->)</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="nc"
->MyApp.RequireAuthentication</span><span class="o"
->.</span><span class="n"
->call</span><span class="p" data-group-id="4778265983-4"
->(</span><span class="p" data-group-id="4778265983-5"
->[</span><span class="p" data-group-id="4778265983-5"
->]</span><span class="p" data-group-id="4778265983-4"
->)</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->halted</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="n">conn</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">bypass_through</span><span class="p" data-group-id="3729736655-1">(</span><span class="nc">MyAppWeb.Router</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3729736655-2">[</span><span class="ss">:browser</span><span class="p" data-group-id="3729736655-2">]</span><span class="p" data-group-id="3729736655-1">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">get</span><span class="p" data-group-id="3729736655-3">(</span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="3729736655-3">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">MyApp.RequireAuthentication</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="3729736655-4">(</span><span class="p" data-group-id="3729736655-5">[</span><span class="p" data-group-id="3729736655-5">]</span><span class="p" data-group-id="3729736655-4">)</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">halted</span></code></pre>
 <p>Alternatively, you could invoke only the Endpoint, and Router:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
->
-  </span><span class="n"
->conn</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->bypass_through</span><span class="p" data-group-id="4755260100-1"
->(</span><span class="nc"
->MyAppWeb.Router</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="4755260100-2"
->[</span><span class="p" data-group-id="4755260100-2"
->]</span><span class="p" data-group-id="4755260100-1"
->)</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->get</span><span class="p" data-group-id="4755260100-3"
->(</span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="4755260100-3"
->)</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="nc"
->MyApp.RequireAuthentication</span><span class="o"
->.</span><span class="n"
->call</span><span class="p" data-group-id="4755260100-4"
->(</span><span class="p" data-group-id="4755260100-5"
->[</span><span class="p" data-group-id="4755260100-5"
->]</span><span class="p" data-group-id="4755260100-4"
->)</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->halted</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="n">conn</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">bypass_through</span><span class="p" data-group-id="6916317051-1">(</span><span class="nc">MyAppWeb.Router</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6916317051-2">[</span><span class="p" data-group-id="6916317051-2">]</span><span class="p" data-group-id="6916317051-1">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">get</span><span class="p" data-group-id="6916317051-3">(</span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="6916317051-3">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">MyApp.RequireAuthentication</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="6916317051-4">(</span><span class="p" data-group-id="6916317051-5">[</span><span class="p" data-group-id="6916317051-5">]</span><span class="p" data-group-id="6916317051-4">)</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">halted</span></code></pre>
 <p>Or only invoke the Endpoint’s plugs:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
->
-  </span><span class="n"
->conn</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->bypass_through</span><span class="p" data-group-id="0407656448-1"
->(</span><span class="p" data-group-id="0407656448-1"
->)</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->get</span><span class="p" data-group-id="0407656448-2"
->(</span><span class="s"
->&quot;/&quot;</span><span class="p" data-group-id="0407656448-2"
->)</span><span class="w"
->
-  </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="nc"
->MyApp.RequireAuthentication</span><span class="o"
->.</span><span class="n"
->call</span><span class="p" data-group-id="0407656448-3"
->(</span><span class="p" data-group-id="0407656448-4"
->[</span><span class="p" data-group-id="0407656448-4"
->]</span><span class="p" data-group-id="0407656448-3"
->)</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->conn</span><span class="o"
->.</span><span class="n"
->halted</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="n">conn</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">bypass_through</span><span class="p" data-group-id="2656351209-1">(</span><span class="p" data-group-id="2656351209-1">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">get</span><span class="p" data-group-id="2656351209-2">(</span><span class="s">&quot;/&quot;</span><span class="p" data-group-id="2656351209-2">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">MyApp.RequireAuthentication</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="2656351209-3">(</span><span class="p" data-group-id="2656351209-4">[</span><span class="p" data-group-id="2656351209-4">]</span><span class="p" data-group-id="2656351209-3">)</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">halted</span></code></pre>
 
   </section>
 </div>
@@ -1316,35 +936,8 @@ to the given action.</p>
 
 <p>This function, as well as <a href="#get/3"><code class="inline">get/3</code></a>, <a href="#post/3"><code class="inline">post/3</code></a> and friends, accepts the
 request body or parameters as last argument:</p>
-<pre><code class="nohighlight makeup"><span class="w"
->  </span><span class="n"
->get</span><span class="w"
-> </span><span class="n"
->build_conn</span><span class="p" data-group-id="2182471818-1"
->(</span><span class="p" data-group-id="2182471818-1"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->some</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;param&quot;</span><span class="w"
->
-  </span><span class="n"
->get</span><span class="w"
-> </span><span class="n"
->build_conn</span><span class="p" data-group-id="2182471818-2"
->(</span><span class="p" data-group-id="2182471818-2"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;some=param&amp;url=encoded&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="w">  </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="7455819874-1">(</span><span class="p" data-group-id="7455819874-1">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">some</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;param&quot;</span><span class="w">
+  </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="7455819874-2">(</span><span class="p" data-group-id="7455819874-2">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;some=param&amp;url=encoded&quot;</span></code></pre>
 <p>The allowed values are:</p>
 <ul>
 <li><p><code class="inline">nil</code> - meaning there is no body</p>
@@ -1570,20 +1163,7 @@ returns the response body if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->html_response</span><span class="p" data-group-id="1720045130-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="mi"
->200</span><span class="p" data-group-id="1720045130-1"
->)</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;&lt;html&gt;&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">assert</span><span class="w"> </span><span class="n">html_response</span><span class="p" data-group-id="6465200148-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="6465200148-1">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;&lt;html&gt;&quot;</span></code></pre>
 
   </section>
 </div>
@@ -1620,30 +1200,8 @@ returns the decoded JSON response if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n"
->body</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->json_response</span><span class="p" data-group-id="0613058498-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="mi"
->200</span><span class="p" data-group-id="0613058498-1"
->)</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="s"
->&quot;can't be blank&quot;</span><span class="w"
-> </span><span class="ow"
->in</span><span class="w"
-> </span><span class="n"
->body</span><span class="p" data-group-id="0613058498-2"
->[</span><span class="s"
->&quot;errors&quot;</span><span class="p" data-group-id="0613058498-2"
->]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json_response</span><span class="p" data-group-id="4959834638-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="4959834638-1">)</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="s">&quot;can&#39;t be blank&quot;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="4959834638-2">[</span><span class="s">&quot;errors&quot;</span><span class="p" data-group-id="4959834638-2">]</span></code></pre>
 
   </section>
 </div>
@@ -1886,34 +1444,8 @@ Raises if the response’s location header is not set.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->redirected_to</span><span class="p" data-group-id="2489898709-1"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="2489898709-1"
->)</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;/posts/123&quot;</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="p" data-group-id="2489898709-2"
->%{</span><span class="ss"
->id</span><span class="p"
->:</span><span class="w"
-> </span><span class="s"
->&quot;123&quot;</span><span class="p" data-group-id="2489898709-2"
->}</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->redirected_params</span><span class="p" data-group-id="2489898709-3"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="2489898709-3"
->)</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">assert</span><span class="w"> </span><span class="n">redirected_to</span><span class="p" data-group-id="2884625697-1">(</span><span class="n">conn</span><span class="p" data-group-id="2884625697-1">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;/posts/123&quot;</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="2884625697-2">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123&quot;</span><span class="p" data-group-id="2884625697-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redirected_params</span><span class="p" data-group-id="2884625697-3">(</span><span class="n">conn</span><span class="p" data-group-id="2884625697-3">)</span></code></pre>
 
   </section>
 </div>
@@ -1952,47 +1484,9 @@ Raises if the response’s location header is not set.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->redirected_to</span><span class="p" data-group-id="5318115949-1"
->(</span><span class="n"
->conn</span><span class="p" data-group-id="5318115949-1"
->)</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;/foo/bar&quot;</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->redirected_to</span><span class="p" data-group-id="5318115949-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="mi"
->301</span><span class="p" data-group-id="5318115949-2"
->)</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;/foo/bar&quot;</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->redirected_to</span><span class="p" data-group-id="5318115949-3"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:moved_permanently</span><span class="p" data-group-id="5318115949-3"
->)</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;/foo/bar&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">assert</span><span class="w"> </span><span class="n">redirected_to</span><span class="p" data-group-id="7506420936-1">(</span><span class="n">conn</span><span class="p" data-group-id="7506420936-1">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;/foo/bar&quot;</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">redirected_to</span><span class="p" data-group-id="7506420936-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">301</span><span class="p" data-group-id="7506420936-2">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;/foo/bar&quot;</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">redirected_to</span><span class="p" data-group-id="7506420936-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:moved_permanently</span><span class="p" data-group-id="7506420936-3">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;/foo/bar&quot;</span></code></pre>
 
   </section>
 </div>
@@ -2028,34 +1522,8 @@ if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n"
->conn</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->get</span><span class="w"
-> </span><span class="n"
->build_conn</span><span class="p" data-group-id="9301271977-1"
->(</span><span class="p" data-group-id="9301271977-1"
->)</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;/&quot;</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->response</span><span class="p" data-group-id="9301271977-2"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="mi"
->200</span><span class="p" data-group-id="9301271977-2"
->)</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;hello world&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">build_conn</span><span class="p" data-group-id="9271686431-1">(</span><span class="p" data-group-id="9271686431-1">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="9271686431-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="9271686431-2">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;hello world&quot;</span></code></pre>
 
   </section>
 </div>
@@ -2090,23 +1558,8 @@ if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="c1"
-># Assert we have an html response with utf-8 charset</span><span class="w"
->
-</span><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->response_content_type</span><span class="p" data-group-id="2495484415-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:html</span><span class="p" data-group-id="2495484415-1"
->)</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;charset=utf-8&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="c1"># Assert we have an html response with utf-8 charset</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">response_content_type</span><span class="p" data-group-id="4678769048-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:html</span><span class="p" data-group-id="4678769048-1">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;charset=utf-8&quot;</span></code></pre>
 
   </section>
 </div>
@@ -2143,20 +1596,7 @@ returns the response body if one was set or sent.</p>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="n"
->assert</span><span class="w"
-> </span><span class="n"
->text_response</span><span class="p" data-group-id="5993805590-1"
->(</span><span class="n"
->conn</span><span class="p"
->,</span><span class="w"
-> </span><span class="mi"
->200</span><span class="p" data-group-id="5993805590-1"
->)</span><span class="w"
-> </span><span class="o"
->=~</span><span class="w"
-> </span><span class="s"
->&quot;hello&quot;</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">assert</span><span class="w"> </span><span class="n">text_response</span><span class="p" data-group-id="2940025936-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="2940025936-1">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;hello&quot;</span></code></pre>
 
   </section>
 </div>

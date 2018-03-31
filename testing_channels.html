@@ -8,7 +8,7 @@
     <title>Testing Channels – Phoenix v1.4.0-dev</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-4b89e9c553.js"></script>
+    <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
     <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
     
@@ -114,120 +114,31 @@ channel. The others are there to provide us with special assertions that apply o
 <p>If we need to add our own helper function that we would only use in channel tests, we
 would add it to <code class="inline">MyAppWeb.ChannelCase</code> by defining it there and ensuring <code class="inline">MyAppWeb.ChannelCase</code>
 is imported every time it is <code class="inline">use</code>d. For example:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->defmodule</span><span class="w"
-> </span><span class="nc"
->MyAppWeb.ChannelCase</span><span class="w"
-> </span><span class="k" data-group-id="8415759612-1"
->do</span><span class="w"
->
-  </span><span class="n"
->...</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyAppWeb.ChannelCase</span><span class="w"> </span><span class="k" data-group-id="2907397168-1">do</span><span class="w">
+  </span><span class="n">...</span><span class="w">
 
-  </span><span class="n"
->using</span><span class="w"
-> </span><span class="k" data-group-id="8415759612-2"
->do</span><span class="w"
->
-    </span><span class="k"
->quote</span><span class="w"
-> </span><span class="k" data-group-id="8415759612-3"
->do</span><span class="w"
->
-      </span><span class="n"
->...</span><span class="w"
->
-      </span><span class="kn"
->import</span><span class="w"
-> </span><span class="nc"
->MyAppWeb.ChannelCase</span><span class="w"
->
-    </span><span class="k" data-group-id="8415759612-3"
->end</span><span class="w"
->
-  </span><span class="k" data-group-id="8415759612-2"
->end</span><span class="w"
->
+  </span><span class="n">using</span><span class="w"> </span><span class="k" data-group-id="2907397168-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="2907397168-3">do</span><span class="w">
+      </span><span class="n">...</span><span class="w">
+      </span><span class="kn">import</span><span class="w"> </span><span class="nc">MyAppWeb.ChannelCase</span><span class="w">
+    </span><span class="k" data-group-id="2907397168-3">end</span><span class="w">
+  </span><span class="k" data-group-id="2907397168-2">end</span><span class="w">
 
-  </span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->a_channel_test_helper</span><span class="p" data-group-id="8415759612-4"
->(</span><span class="p" data-group-id="8415759612-4"
->)</span><span class="w"
-> </span><span class="k" data-group-id="8415759612-5"
->do</span><span class="w"
->
-    </span><span class="c1"
-># code here</span><span class="w"
->
-  </span><span class="k" data-group-id="8415759612-5"
->end</span><span class="w"
->
-</span><span class="k" data-group-id="8415759612-1"
->end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">a_channel_test_helper</span><span class="p" data-group-id="2907397168-4">(</span><span class="p" data-group-id="2907397168-4">)</span><span class="w"> </span><span class="k" data-group-id="2907397168-5">do</span><span class="w">
+    </span><span class="c1"># code here</span><span class="w">
+  </span><span class="k" data-group-id="2907397168-5">end</span><span class="w">
+</span><span class="k" data-group-id="2907397168-1">end</span></code></pre>
 <h4>The Setup Block</h4>
 <p>Now that we know that Phoenix provides with a custom Test Case just for channels and what it
 provides, we can move on to understanding the rest of <code class="inline">test/hello_web/channelsj/room_channel_test.exs</code>.</p>
 <p>First off, is the setup block:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->setup</span><span class="w"
-> </span><span class="k" data-group-id="9284608427-1"
->do</span><span class="w"
->
-  </span><span class="p" data-group-id="9284608427-2"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="err"
->_</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="9284608427-2"
->}</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
->
-    </span><span class="n"
->socket</span><span class="p" data-group-id="9284608427-3"
->(</span><span class="s"
->&quot;user_id&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9284608427-4"
->%{</span><span class="ss"
->some</span><span class="p"
->:</span><span class="w"
-> </span><span class="ss"
->:assign</span><span class="p" data-group-id="9284608427-4"
->}</span><span class="p" data-group-id="9284608427-3"
->)</span><span class="w"
->
-    </span><span class="o"
->|&gt;</span><span class="w"
-> </span><span class="n"
->subscribe_and_join</span><span class="p" data-group-id="9284608427-5"
->(</span><span class="nc"
->RoomChannel</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;room:lobby&quot;</span><span class="p" data-group-id="9284608427-5"
->)</span><span class="w"
->
+<pre><code class="nohighlight makeup"><span class="n">setup</span><span class="w"> </span><span class="k" data-group-id="3443800011-1">do</span><span class="w">
+  </span><span class="p" data-group-id="3443800011-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3443800011-2">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+    </span><span class="n">socket</span><span class="p" data-group-id="3443800011-3">(</span><span class="s">&quot;user_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3443800011-4">%{</span><span class="ss">some</span><span class="p">:</span><span class="w"> </span><span class="ss">:assign</span><span class="p" data-group-id="3443800011-4">}</span><span class="p" data-group-id="3443800011-3">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">subscribe_and_join</span><span class="p" data-group-id="3443800011-5">(</span><span class="nc">RoomChannel</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;room:lobby&quot;</span><span class="p" data-group-id="3443800011-5">)</span><span class="w">
 
-  </span><span class="p" data-group-id="9284608427-6"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->socket</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="9284608427-6"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="9284608427-1"
->end</span></code></pre>
+  </span><span class="p" data-group-id="3443800011-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="ss">socket</span><span class="p">:</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3443800011-6">}</span><span class="w">
+</span><span class="k" data-group-id="3443800011-1">end</span></code></pre>
 <p>The <code class="inline">setup/2</code> macro comes with <a href="https://hexdocs.pm/ex_unit/ExUnit.html"><code class="inline">ExUnit</code></a>which comes out of the box with Elixir. The <code class="inline">do</code> block
 passed to <code class="inline">setup/2</code> will get run for each of our tests. Note the line <code class="inline">{:ok, socket: socket}</code>.
 That line ensures that the <code class="inline">socket</code> from <code class="inline">subscribe_and_join/3</code> will be accessible to all
@@ -238,104 +149,16 @@ to the given topic. This is a necessary step since clients need to join a channe
 can send and receive events on that channel.</p>
 <h4>Testing a Synchronous Reply</h4>
 <p>The first test block in our generated channel test looks like:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->test</span><span class="w"
-> </span><span class="s"
->&quot;ping replies with status ok&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="8082634977-1"
->%{</span><span class="ss"
->socket</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="8082634977-1"
->}</span><span class="w"
-> </span><span class="k" data-group-id="8082634977-2"
->do</span><span class="w"
->
-  </span><span class="n"
->ref</span><span class="w"
-> </span><span class="o"
->=</span><span class="w"
-> </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;ping&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="8082634977-3"
->%{</span><span class="s"
->&quot;hello&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="s"
->&quot;there&quot;</span><span class="p" data-group-id="8082634977-3"
->}</span><span class="w"
->
-  </span><span class="n"
->assert_reply</span><span class="w"
-> </span><span class="n"
->ref</span><span class="p"
->,</span><span class="w"
-> </span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="8082634977-4"
->%{</span><span class="s"
->&quot;hello&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="s"
->&quot;there&quot;</span><span class="p" data-group-id="8082634977-4"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="8082634977-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">test</span><span class="w"> </span><span class="s">&quot;ping replies with status ok&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5850252020-1">%{</span><span class="ss">socket</span><span class="p">:</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="5850252020-1">}</span><span class="w"> </span><span class="k" data-group-id="5850252020-2">do</span><span class="w">
+  </span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ping&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5850252020-3">%{</span><span class="s">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;there&quot;</span><span class="p" data-group-id="5850252020-3">}</span><span class="w">
+  </span><span class="n">assert_reply</span><span class="w"> </span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5850252020-4">%{</span><span class="s">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;there&quot;</span><span class="p" data-group-id="5850252020-4">}</span><span class="w">
+</span><span class="k" data-group-id="5850252020-2">end</span></code></pre>
 <p>This tests the following code in our <code class="inline">MyAppWeb.RoomChannel</code>:</p>
-<pre><code class="nohighlight makeup"><span class="c1"
-># Channels can be used in a request/response fashion</span><span class="w"
->
-</span><span class="c1"
-># by sending replies to requests from the client</span><span class="w"
->
-</span><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="4128794694-1"
->(</span><span class="s"
->&quot;ping&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4128794694-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="4128794694-2"
->do</span><span class="w"
->
-  </span><span class="p" data-group-id="4128794694-3"
->{</span><span class="ss"
->:reply</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="4128794694-4"
->{</span><span class="ss"
->:ok</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="p" data-group-id="4128794694-4"
->}</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="4128794694-3"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="4128794694-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="c1"># Channels can be used in a request/response fashion</span><span class="w">
+</span><span class="c1"># by sending replies to requests from the client</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="9039533784-1">(</span><span class="s">&quot;ping&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9039533784-1">)</span><span class="w"> </span><span class="k" data-group-id="9039533784-2">do</span><span class="w">
+  </span><span class="p" data-group-id="9039533784-3">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9039533784-4">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p" data-group-id="9039533784-4">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9039533784-3">}</span><span class="w">
+</span><span class="k" data-group-id="9039533784-2">end</span></code></pre>
 <p>As is stated in the comment above, we see that a <code class="inline">reply</code> is synchronous since it mimics the request/
 response pattern we are familiar with in HTTP. This synchronous reply is best used when we only
 want to send an event back to the client when we are done processing the message on the server.
@@ -354,94 +177,15 @@ server sends a synchronous reply <code class="inline">:ok, %{&quot;hello&quot; =
 <p>It is common to receive messages from the client and broadcast to everyone subscribed to a
 current topic. This common pattern is simple to express in Phoenix and is one of the generated
 <code class="inline">handle_in/3</code> callbacks in our <code class="inline">MyAppWeb.RoomChannel</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_in</span><span class="p" data-group-id="3748283534-1"
->(</span><span class="s"
->&quot;shout&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="3748283534-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="3748283534-2"
->do</span><span class="w"
->
-  </span><span class="n"
->broadcast</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;shout&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="w"
->
-  </span><span class="p" data-group-id="3748283534-3"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="3748283534-3"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="3748283534-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_in</span><span class="p" data-group-id="8245102511-1">(</span><span class="s">&quot;shout&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="8245102511-1">)</span><span class="w"> </span><span class="k" data-group-id="8245102511-2">do</span><span class="w">
+  </span><span class="n">broadcast</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;shout&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="w">
+  </span><span class="p" data-group-id="8245102511-3">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="8245102511-3">}</span><span class="w">
+</span><span class="k" data-group-id="8245102511-2">end</span></code></pre>
 <p>Its corresponding test looks like:</p>
-<pre><code class="nohighlight makeup"><span class="n"
->test</span><span class="w"
-> </span><span class="s"
->&quot;shout broadcasts to room:lobby&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9550957656-1"
->%{</span><span class="ss"
->socket</span><span class="p"
->:</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="9550957656-1"
->}</span><span class="w"
-> </span><span class="k" data-group-id="9550957656-2"
->do</span><span class="w"
->
-  </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="s"
->&quot;shout&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9550957656-3"
->%{</span><span class="s"
->&quot;hello&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="s"
->&quot;all&quot;</span><span class="p" data-group-id="9550957656-3"
->}</span><span class="w"
->
-  </span><span class="n"
->assert_broadcast</span><span class="w"
-> </span><span class="s"
->&quot;shout&quot;</span><span class="p"
->,</span><span class="w"
-> </span><span class="p" data-group-id="9550957656-4"
->%{</span><span class="s"
->&quot;hello&quot;</span><span class="w"
-> </span><span class="o"
->=</span><span class="o"
->&gt;</span><span class="w"
-> </span><span class="s"
->&quot;all&quot;</span><span class="p" data-group-id="9550957656-4"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="9550957656-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">test</span><span class="w"> </span><span class="s">&quot;shout broadcasts to room:lobby&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4211394909-1">%{</span><span class="ss">socket</span><span class="p">:</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="4211394909-1">}</span><span class="w"> </span><span class="k" data-group-id="4211394909-2">do</span><span class="w">
+  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;shout&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4211394909-3">%{</span><span class="s">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;all&quot;</span><span class="p" data-group-id="4211394909-3">}</span><span class="w">
+  </span><span class="n">assert_broadcast</span><span class="w"> </span><span class="s">&quot;shout&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4211394909-4">%{</span><span class="s">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;all&quot;</span><span class="p" data-group-id="4211394909-4">}</span><span class="w">
+</span><span class="k" data-group-id="4211394909-2">end</span></code></pre>
 <p>We notice that we access the same <code class="inline">socket</code> that is from the setup block. How handy! We also do the
 same <code class="inline">push/3</code> as we did in the synchronous reply test. So we <code class="inline">push</code> the <code class="inline">&quot;shout&quot;</code> event with the
 payload <code class="inline">%{&quot;hello&quot; =&gt; &quot;all&quot;}</code>.</p>
@@ -452,43 +196,10 @@ all subscribers in the <code class="inline">&quot;room:lobby&quot;</code> should
 <p>The last test in our <code class="inline">MyAppWeb.RoomChannelTest</code> verifies that broadcasts from the server are pushed
 to the client. Unlike the previous tests discussed, we are indirectly testing that our channel’s
 <code class="inline">handle_out/3</code> callback is triggered. This <code class="inline">handle_out/3</code> is defined in our <code class="inline">MyApp.RoomChannel</code> as:</p>
-<pre><code class="nohighlight makeup"><span class="kd"
->def</span><span class="w"
-> </span><span class="nf"
->handle_out</span><span class="p" data-group-id="6678993792-1"
->(</span><span class="n"
->event</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="6678993792-1"
->)</span><span class="w"
-> </span><span class="k" data-group-id="6678993792-2"
->do</span><span class="w"
->
-  </span><span class="n"
->push</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->event</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->payload</span><span class="w"
->
-  </span><span class="p" data-group-id="6678993792-3"
->{</span><span class="ss"
->:noreply</span><span class="p"
->,</span><span class="w"
-> </span><span class="n"
->socket</span><span class="p" data-group-id="6678993792-3"
->}</span><span class="w"
->
-</span><span class="k" data-group-id="6678993792-2"
->end</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_out</span><span class="p" data-group-id="3773155136-1">(</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3773155136-1">)</span><span class="w"> </span><span class="k" data-group-id="3773155136-2">do</span><span class="w">
+  </span><span class="n">push</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="w">
+  </span><span class="p" data-group-id="3773155136-3">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3773155136-3">}</span><span class="w">
+</span><span class="k" data-group-id="3773155136-2">end</span></code></pre>
 <p>Since the <code class="inline">handle_out/3</code> event is only triggered when we call <code class="inline">broadcast/3</code> from our channel,
 we will need to emulate that in our test. We do that by calling <code class="inline">broadcast_from</code> or
 <code class="inline">broadcast_from!</code>. Both serve the same purpose with the only difference of <code class="inline">broadcast_from!</code>
