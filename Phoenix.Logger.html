@@ -96,14 +96,14 @@
 <p>When logging parameters, Phoenix can filter out sensitive parameters
 such as passwords and tokens. Parameters to be filtered can be
 added via the <code class="inline">:filter_parameters</code> option:</p>
-<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:filter_parameters</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9730617699-1">[</span><span class="s">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;secret&quot;</span><span class="p" data-group-id="9730617699-1">]</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:filter_parameters</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9534634364-1">[</span><span class="s">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;secret&quot;</span><span class="p" data-group-id="9534634364-1">]</span></code></pre>
 <p>With the configuration above, Phoenix will filter any parameter
 that contains the terms <code class="inline">password</code> or <code class="inline">secret</code>. The match is
 case sensitive.</p>
 <p>Phoenix’s default is <code class="inline">[&quot;password&quot;]</code>.</p>
 <p>Phoenix can filter all parameters by default and selectively keep
 parameters. This can be configured like so:</p>
-<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:filter_parameters</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7796885409-1">{</span><span class="ss">:keep</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7796885409-2">[</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;order&quot;</span><span class="p" data-group-id="7796885409-2">]</span><span class="p" data-group-id="7796885409-1">}</span></code></pre>
+<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:filter_parameters</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9557056739-1">{</span><span class="ss">:keep</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9557056739-2">[</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;order&quot;</span><span class="p" data-group-id="9557056739-2">]</span><span class="p" data-group-id="9557056739-1">}</span></code></pre>
 <p>With the configuration above, Phoenix will filter all parameters,
 except those that match exactly <code class="inline">id</code> or <code class="inline">order</code>. If a kept parameter
 matches, all parameters nested under that one will also be kept.</p>

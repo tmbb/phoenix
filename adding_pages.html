@@ -142,43 +142,43 @@
 <p>Let’s digest what this route is telling us. Visiting <a href="http://localhost:4000/">http://localhost:4000/</a> issues an HTTP <code class="inline">GET</code> request to the root path. All requests like this will be handled by the <code class="inline">index</code> function in the <code class="inline">HelloWeb.PageController</code> module defined in <code class="inline">lib/hello_web/controllers/page_controller.ex</code>.</p>
 <p>The page we are going to build will simply say “Hello World, from Phoenix!” when we point our browser to <a href="http://localhost:4000/hello">http://localhost:4000/hello</a>.</p>
 <p>The first thing we need to do to create that page is define a route for it. Let’s open up <code class="inline">lib/hello_web/router.ex</code> in a text editor. It should currently look like this:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="4700006476-1">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="9350847061-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="4700006476-2">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4700006476-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="4700006476-3">]</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="9350847061-2">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9350847061-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="9350847061-3">]</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_flash</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:protect_from_forgery</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_secure_browser_headers</span><span class="w">
-  </span><span class="k" data-group-id="4700006476-2">end</span><span class="w">
+  </span><span class="k" data-group-id="9350847061-2">end</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="4700006476-4">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4700006476-5">[</span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="4700006476-5">]</span><span class="w">
-  </span><span class="k" data-group-id="4700006476-4">end</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="9350847061-4">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9350847061-5">[</span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="9350847061-5">]</span><span class="w">
+  </span><span class="k" data-group-id="9350847061-4">end</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="4700006476-6">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="9350847061-6">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="c1"># Use the default browser stack</span><span class="w">
 
     </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
-  </span><span class="k" data-group-id="4700006476-6">end</span><span class="w">
+  </span><span class="k" data-group-id="9350847061-6">end</span><span class="w">
 
   </span><span class="c1"># Other scopes may use custom stacks.</span><span class="w">
   </span><span class="c1"># scope &quot;/api&quot;, HelloWeb do</span><span class="w">
   </span><span class="c1">#   pipe_through :api</span><span class="w">
   </span><span class="c1"># end</span><span class="w">
-</span><span class="k" data-group-id="4700006476-1">end</span><span class="w">
+</span><span class="k" data-group-id="9350847061-1">end</span><span class="w">
 </span></code></pre>
 <p>For now, we’ll ignore the pipelines and the use of <code class="inline">scope</code> here and just focus on adding a route. (We cover these topics in the <a href="routing.html">Routing Guide</a>, if you’re curious.)</p>
 <p>Let’s add a new route to the router that maps a <code class="inline">GET</code> request for <code class="inline">/hello</code> to the <code class="inline">index</code> action of a soon-to-be-created <code class="inline">HelloWeb.HelloController</code>:</p>
 <pre><code class="nohighlight makeup"><span class="n">get</span><span class="w"> </span><span class="s">&quot;/hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span></code></pre>
 <p>The <code class="inline">scope &quot;/&quot;</code> block of our <code class="inline">router.ex</code> file should now look like this:</p>
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="0548453588-1">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="8006615380-1">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="c1"># Use the default browser stack</span><span class="w">
 
   </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
   </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
-</span><span class="k" data-group-id="0548453588-1">end</span></code></pre>
+</span><span class="k" data-group-id="8006615380-1">end</span></code></pre>
 <h3 id="a-new-controller" class="section-heading">
   <a href="#a-new-controller" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   A New Controller
@@ -186,13 +186,13 @@
 
 <p>Controllers are Elixir modules, and actions are Elixir functions defined in them. The purpose of actions is to gather any data and perform any tasks needed for rendering. Our route specifies that we need a <code class="inline">HelloWeb.HelloController</code> module with an <code class="inline">index/2</code> action.</p>
 <p>To make that happen, let’s create a new <code class="inline">lib/hello_web/controllers/hello_controller.ex</code> file, and make it look like the following:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.HelloController</span><span class="w"> </span><span class="k" data-group-id="3347585667-1">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.HelloController</span><span class="w"> </span><span class="k" data-group-id="5527518201-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">index</span><span class="p" data-group-id="3347585667-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="3347585667-2">)</span><span class="w"> </span><span class="k" data-group-id="3347585667-3">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">index</span><span class="p" data-group-id="5527518201-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="5527518201-2">)</span><span class="w"> </span><span class="k" data-group-id="5527518201-3">do</span><span class="w">
     </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;index.html&quot;</span><span class="w">
-  </span><span class="k" data-group-id="3347585667-3">end</span><span class="w">
-</span><span class="k" data-group-id="3347585667-1">end</span></code></pre>
+  </span><span class="k" data-group-id="5527518201-3">end</span><span class="w">
+</span><span class="k" data-group-id="5527518201-1">end</span></code></pre>
 <p>We’ll save a discussion of <code class="inline">use HelloWeb, :controller</code> for the <a href="controllers.html">Controllers Guide</a>. For now, let’s focus on the <code class="inline">index/2</code> action.</p>
 <p>All controller actions take two arguments. The first is <code class="inline">conn</code>, a struct which holds a ton of data about the request. The second is <code class="inline">params</code>, which are the request parameters. Here, we are not using <code class="inline">params</code>, and we avoid compiler warnings by adding the leading <code class="inline">_</code>.</p>
 <p>The core of this action is <code class="inline">render conn, &quot;index.html&quot;</code>. This tells Phoenix to find a template called <code class="inline">index.html.eex</code> and render it. Phoenix will look for the template in a directory named after our controller, so <code class="inline">lib/hello_web/templates/hello</code>.</p>
@@ -207,9 +207,9 @@
 <p>Phoenix views have several important jobs. They render templates. They also act as a presentation layer for raw data from the controller, preparing it for use in a template. Functions which perform this transformation should go in a view.</p>
 <p>As an example, say we have a data structure which represents a user with a <code class="inline">first_name</code> field and a <code class="inline">last_name</code> field, and in a template, we want to show the user’s full name. We could write code in the template to merge those fields into a full name, but the better approach is to write a function in the view to do it for us, then call that function in the template. The result is a cleaner and more legible template.</p>
 <p>In order to render any templates for our <code class="inline">HelloController</code>, we need a <code class="inline">HelloView</code>. The names are significant here - the first part of the names of the view and controller must match. Let’s create an empty one for now, and leave a more detailed description of views for later. Create <code class="inline">lib/hello_web/views/hello_view.ex</code> and make it look like this:</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.HelloView</span><span class="w"> </span><span class="k" data-group-id="8262058106-1">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.HelloView</span><span class="w"> </span><span class="k" data-group-id="4807672908-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
-</span><span class="k" data-group-id="8262058106-1">end</span></code></pre>
+</span><span class="k" data-group-id="4807672908-1">end</span></code></pre>
 <h3 id="a-new-template" class="section-heading">
   <a href="#a-new-template" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   A New Template
@@ -239,13 +239,13 @@
 </h3>
 
 <p>For this exercise, we’re going to re-use the <code class="inline">HelloController</code> we just created and just add a new <code class="inline">show</code> action. We’ll add a line just below our last route, like this:</p>
-<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="6407464412-1">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="4977732755-1">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="c1"># Use the default browser stack.</span><span class="w">
 
   </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
   </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
   </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/hello/:messenger&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloController</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="w">
-</span><span class="k" data-group-id="6407464412-1">end</span></code></pre>
+</span><span class="k" data-group-id="4977732755-1">end</span></code></pre>
 <p>Notice that we put the atom <code class="inline">:messenger</code> in the path. Phoenix will take whatever value that appears in that position in the URL and pass a <a href="https://hexdocs.pm/elixir/1.5.1/Map.html">Map</a> with the key <code class="inline">messenger</code> pointing to that value to the controller.</p>
 <p>For example, if we point the browser at: <a href="http://localhost:4000/hello/Frank">http://localhost:4000/hello/Frank</a>, the value of “:messenger” will be “Frank”.</p>
 <h3 id="a-new-action" class="section-heading">
@@ -254,16 +254,16 @@
 </h3>
 
 <p>Requests to our new route will be handled by the <code class="inline">HelloWeb.HelloController</code> <code class="inline">show</code> action. We already have the controller at <code class="inline">lib/hello_web/controllers/hello_controller.ex</code>, so all we need to do is edit that file and add a <code class="inline">show</code> action to it. This time, we’ll need to keep one of the items in the map of params that gets passed into the action, so that we can pass it (the messenger) to the template. To do that, we add this show function to the controller:</p>
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="8555521943-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8555521943-2">%{</span><span class="s">&quot;messenger&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">messenger</span><span class="p" data-group-id="8555521943-2">}</span><span class="p" data-group-id="8555521943-1">)</span><span class="w"> </span><span class="k" data-group-id="8555521943-3">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="3645034985-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3645034985-2">%{</span><span class="s">&quot;messenger&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">messenger</span><span class="p" data-group-id="3645034985-2">}</span><span class="p" data-group-id="3645034985-1">)</span><span class="w"> </span><span class="k" data-group-id="3645034985-3">do</span><span class="w">
   </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;show.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">messenger</span><span class="p">:</span><span class="w"> </span><span class="n">messenger</span><span class="w">
-</span><span class="k" data-group-id="8555521943-3">end</span></code></pre>
+</span><span class="k" data-group-id="3645034985-3">end</span></code></pre>
 <p>There are a couple of things to notice here. We pattern match against the params passed into the show function so that the <code class="inline">messenger</code> variable will be bound to the value we put in the <code class="inline">:messenger</code> position in the URL. For example, if our URL is <a href="http://localhost:4000/hello/Frank">http://localhost:4000/hello/Frank</a>, the messenger variable would be bound to <code class="inline">Frank</code>.</p>
 <p>Within the body of the <code class="inline">show</code> action, we also pass a third argument into the render function, a key/value pair where <code class="inline">:messenger</code> is the key, and the <code class="inline">messenger</code> variable is passed as the value.</p>
 <blockquote><p>Note: If the body of the action needs access to the full map of parameters bound to the params variable in addition to the bound messenger variable, we could define <code class="inline">show/2</code> like this:</p>
 </blockquote>
-<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="2656840547-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2656840547-2">%{</span><span class="s">&quot;messenger&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">messenger</span><span class="p" data-group-id="2656840547-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="2656840547-1">)</span><span class="w"> </span><span class="k" data-group-id="2656840547-3">do</span><span class="w">
+<pre><code class="nohighlight makeup"><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="5807527312-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5807527312-2">%{</span><span class="s">&quot;messenger&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">messenger</span><span class="p" data-group-id="5807527312-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="5807527312-1">)</span><span class="w"> </span><span class="k" data-group-id="5807527312-3">do</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="2656840547-3">end</span></code></pre>
+</span><span class="k" data-group-id="5807527312-3">end</span></code></pre>
 <p>It’s good to remember that the keys to the <code class="inline">params</code> map will always be strings, and that the equals sign does not represent assignment, but is instead a <a href="https://elixir-lang.org/getting-started/pattern-matching.html">pattern match</a> assertion.</p>
 <h3 id="a-new-template" class="section-heading">
   <a href="#a-new-template" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
