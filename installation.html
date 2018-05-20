@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Installation – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
+    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
@@ -85,7 +85,7 @@
 <p>Phoenix is written in Elixir, and our application code will also be written in Elixir. We won’t get far in a Phoenix app without it! The Elixir site maintains a great <a href="https://elixir-lang.org/install.html">Installation Page</a> to help.</p>
 <p>If we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.</p>
 <p>Here’s the command to install Hex (If you have Hex already installed, it will upgrade Hex to the latest version):</p>
-<pre><code class="console">$ mix local.hex</code></pre>
+<pre><code class="nohighlight makeup console">$ mix local.hex</code></pre>
 <h3 id="erlang-18-or-later" class="section-heading">
   <a href="#erlang-18-or-later" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Erlang 18 or later
@@ -94,7 +94,7 @@
 <p>Elixir code compiles to Erlang byte code to run on the Erlang virtual machine. Without Erlang, Elixir code has no virtual machine to run on, so we need to install Erlang as well.</p>
 <p>When we install Elixir using instructions from the Elixir <a href="https://elixir-lang.org/install.html">Installation Page</a>,  we will usually get Erlang too. If Erlang was not installed along with Elixir, please see the <a href="https://elixir-lang.org/install.html#installing-erlang">Erlang Instructions</a> section of the Elixir Installation Page for instructions.</p>
 <p>People using Debian-based systems may need to explicitly install Erlang to get all the needed packages.</p>
-<pre><code class="console">$ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb &amp;&amp; sudo dpkg -i erlang-solutions_1.0_all.deb
+<pre><code class="nohighlight makeup console">$ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb &amp;&amp; sudo dpkg -i erlang-solutions_1.0_all.deb
 $ sudo apt-get update
 $ sudo apt-get install esl-erlang</code></pre>
 <h3 id="phoenix" class="section-heading">
@@ -103,13 +103,13 @@ $ sudo apt-get install esl-erlang</code></pre>
 </h3>
 
 <p>To check that we are on Elixir 1.4 and Erlang 18 or later, run:</p>
-<pre><code class="console">elixir -v
+<pre><code class="nohighlight makeup console">elixir -v
 Erlang/OTP 19 [erts-8.3] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 Elixir 1.4.2</code></pre>
 <p>Once we have Elixir and Erlang, we are ready to install the Phoenix Mix archive. A Mix archive is a Zip file which contains an application as well as its compiled BEAM files. It is tied to a specific version of the application. The archive is what we will use to generate a new, base Phoenix application which we can build from.</p>
 <p>Here’s the command to install the Phoenix archive:</p>
-<pre><code class="console">$ mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez</code></pre>
+<pre><code class="nohighlight makeup console">$ mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez</code></pre>
 <blockquote><p>Note: if the Phoenix archive won’t install properly with this command, we can download the package from the <a href="https://github.com/phoenixframework/archives">Phoenix archives</a>, save it to the filesystem, and then run: <code class="inline">mix archive.install /path/to/local/phx_new.ez</code>.</p>
 </blockquote>
 <h3 id="plug-cowboy-and-ecto" class="section-heading">
@@ -129,7 +129,7 @@ Elixir 1.4.2</code></pre>
 <p>Mac OS X users can also install node.js via <a href="https://brew.sh/">homebrew</a>.</p>
 <p>Note: io.js, which is an npm compatible platform originally based on Node.js, is not known to work with Phoenix.</p>
 <p>Debian/Ubuntu users might see an error that looks like this:</p>
-<pre><code class="console">sh: 1: node: not found
+<pre><code class="nohighlight makeup console">sh: 1: node: not found
 npm WARN This failure might be due to the use of legacy binary &quot;node&quot;</code></pre>
 <p>This is due to Debian having conflicting binaries for node: <a href="http://stackoverflow.com/questions/21168141/can-not-install-packages-using-node-package-manager-in-ubuntu">discussion on stackoverflow</a></p>
 <p>There are two options to fix this problem, either:</p>
@@ -137,13 +137,13 @@ npm WARN This failure might be due to the use of legacy binary &quot;node&quot;<
 <li>install nodejs-legacy:
 </li>
 </ul>
-<pre><code class="console">$ apt-get install nodejs-legacy</code></pre>
+<pre><code class="nohighlight makeup console">$ apt-get install nodejs-legacy</code></pre>
 <p>or</p>
 <ul>
 <li>create a symlink
 </li>
 </ul>
-<pre><code class="console">$ ln -s /usr/bin/nodejs /usr/bin/node</code></pre>
+<pre><code class="nohighlight makeup console">$ ln -s /usr/bin/nodejs /usr/bin/node</code></pre>
 <h3 id="postgresql" class="section-heading">
   <a href="#postgresql" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   PostgreSQL
@@ -170,11 +170,11 @@ npm WARN This failure might be due to the use of legacy binary &quot;node&quot;<
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
-            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
       </footer>
@@ -182,7 +182,7 @@ npm WARN This failure might be due to the use of legacy binary &quot;node&quot;<
   </div>
 </section>
 </div>
-  <script src="dist/app-9bd040e5e5.js"></script>
+  <script src="dist/app-b2d0635bae.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

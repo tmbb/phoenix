@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Mix Tasks – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
+    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
@@ -81,7 +81,7 @@
   Phoenix Specific Mix Tasks
 </h2>
 
-<pre><code class="console">
+<pre><code class="nohighlight makeup console">
 ➜ mix help | grep -i phx
 mix local.phx          # Updates the Phoenix project generator locally
 mix phx.digest         # Digests and compresses static files
@@ -100,7 +100,7 @@ mix phx.new.web        # Creates a new Phoenix web project within an umbrella pr
 mix phx.routes         # Prints all routes
 mix phx.server         # Starts applications and their servers</code></pre>
 <p>Note that there are still other tasks under the full phoenix name:</p>
-<pre><code class="console">➜  mix help | grep -i phoenix
+<pre><code class="nohighlight makeup console">➜  mix help | grep -i phoenix
 mix local.phoenix      # Updates Phoenix locally
 mix phoenix.gen.html   # Generates controller, model and views for an HTML based resource
 mix phoenix.new        # Creates a new Phoenix v1.2.1 application
@@ -112,24 +112,24 @@ mix phoenix.server     # Starts applications and their servers</code></pre>
 <blockquote><p>Note: If we do use Brunch.io, we need to install its dependencies before we start our application. <code class="inline">phx.new</code> will ask to do this for us. Otherwise, we can install them with <code class="inline">npm install</code>. If we don’t install them, the app will throw errors and may not serve our assets properly.</p>
 </blockquote>
 <p>We need to pass <code class="inline">phx.new</code> a name for our application. Conventionally, we use all lower-case letters with underscores.</p>
-<pre><code class="console">$ mix phx.new task_tester
+<pre><code class="nohighlight makeup console">$ mix phx.new task_tester
 * creating task_tester/.gitignore
 . . .</code></pre>
 <p>We can also use either a relative or absolute path.</p>
 <p>This relative path works.</p>
-<pre><code class="console">$ mix phx.new ../task_tester
+<pre><code class="nohighlight makeup console">$ mix phx.new ../task_tester
 * creating ../task_tester/.gitignore
 . . .</code></pre>
 <p>This absolute path works as well.</p>
-<pre><code class="console">$ mix phx.new /Users/me/work/task_tester
+<pre><code class="nohighlight makeup console">$ mix phx.new /Users/me/work/task_tester
 * creating /Users/me/work/task_tester/.gitignore
 . . .</code></pre>
 <p>The <code class="inline">phx.new</code> task will also ask us if we want to install our dependencies. (Please see the note above about Brunch.io dependencies.)</p>
-<pre><code class="console">Fetch and install dependencies? [Yn] y
+<pre><code class="nohighlight makeup console">Fetch and install dependencies? [Yn] y
 * running npm install &amp;&amp; node node_modules/brunch/bin/brunch build
 * running mix deps.get</code></pre>
 <p>Once all of our dependencies are installed, <code class="inline">phx.new</code> will tell us what our next steps are.</p>
-<pre><code class="console">We are all set! Run your Phoenix application:
+<pre><code class="nohighlight makeup console">We are all set! Run your Phoenix application:
 
 $ cd task_tester
 $ mix phx.server
@@ -138,12 +138,12 @@ You can also run it inside IEx (Interactive Elixir) as:
 
 $ iex -S mix phx.server</code></pre>
 <p>By default <code class="inline">phx.new</code> will assume we want to use ecto for our contexts. If we don’t want to use ecto in our application, we can use the <code class="inline">--no-ecto</code> flag.</p>
-<pre><code class="console">$ mix phx.new task_tester --no-ecto
+<pre><code class="nohighlight makeup console">$ mix phx.new task_tester --no-ecto
 * creating task_tester/.gitignore
 . . .</code></pre>
 <p>With the <code class="inline">--no-ecto</code> flag, Phoenix will not make either ecto or postgrex a dependency of our application, and it will not create a <code class="inline">repo.ex</code> file.</p>
 <p>By default, Phoenix will name our OTP application after the name we pass into <code class="inline">phx.new</code>. If we want, we can specify a different OTP application name with the <code class="inline">--app</code> flag.</p>
-<pre><code class="console">$  mix phx.new task_tester --app hello
+<pre><code class="nohighlight makeup console">$  mix phx.new task_tester --app hello
 * creating task_tester/config/config.exs
 * creating task_tester/config/dev.exs
 * creating task_tester/config/prod.exs
@@ -160,24 +160,24 @@ $ iex -S mix phx.server</code></pre>
 * creating task_tester/mix.exs
 . . .</code></pre>
 <p>If we look in the resulting <code class="inline">mix.exs</code> file, we will see that our project app name is <code class="inline">hello</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Mixfile</span><span class="w"> </span><span class="k" data-group-id="7120836043-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Mixfile</span><span class="w"> </span><span class="k" data-group-id="9271913892-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Mix.Project</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">project</span><span class="w"> </span><span class="k" data-group-id="7120836043-2">do</span><span class="w">
-    </span><span class="err">[</span><span class="ss">app</span><span class="p">:</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">project</span><span class="w"> </span><span class="k" data-group-id="9271913892-2">do</span><span class="w">
+    </span><span class="p" data-group-id="9271913892-3">[</span><span class="ss">app</span><span class="p">:</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w">
      </span><span class="ss">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.0.1&quot;</span><span class="p">,</span><span class="w">
 </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
 <p>A quick check will show that all of our module names are qualified with <code class="inline">Hello</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageController</span><span class="w"> </span><span class="k" data-group-id="2589743850-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageController</span><span class="w"> </span><span class="k" data-group-id="3771230230-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
 </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
 <p>We can also see that files related to the application as a whole - eg. files in <code class="inline">lib/</code> and the test seed file - have <code class="inline">hello</code> in their names.</p>
-<pre><code class="console">* creating task_tester/lib/hello.ex
+<pre><code class="nohighlight makeup console">* creating task_tester/lib/hello.ex
 * creating task_tester/lib/hello/endpoint.ex
 * creating task_tester/lib/hello/repo.ex
 * creating task_tester/test/hello_test.exs</code></pre>
 <p>If we only want to change the qualifying prefix for module names, we can do that with the <code class="inline">--module</code> flag. It’s important to note that the value of the <code class="inline">--module</code> must look like a valid module name with proper capitalization. The task will throw an error if it doesn’t.</p>
-<pre><code class="console">$  mix phx.new task_tester --module Hello
+<pre><code class="nohighlight makeup console">$  mix phx.new task_tester --module Hello
 * creating task_tester/config/config.exs
 * creating task_tester/config/dev.exs
 * creating task_tester/config/prod.exs
@@ -206,16 +206,16 @@ $ iex -S mix phx.server</code></pre>
 . . .</code></pre>
 <p>Notice that none of the files have <code class="inline">hello</code> in their names. All filenames related to the application name are <code class="inline">task_tester</code>.</p>
 <p>If we look at the project app name in <code class="inline">mix.exs</code>, we see that it is <code class="inline">task_tester</code>, but all the module qualifying names begin with <code class="inline">Hello</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Mixfile</span><span class="w"> </span><span class="k" data-group-id="0041908619-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Mixfile</span><span class="w"> </span><span class="k" data-group-id="9187701799-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Mix.Project</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">project</span><span class="w"> </span><span class="k" data-group-id="0041908619-2">do</span><span class="w">
-    </span><span class="err">[</span><span class="ss">app</span><span class="p">:</span><span class="w"> </span><span class="ss">:task_tester</span><span class="p">,</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">project</span><span class="w"> </span><span class="k" data-group-id="9187701799-2">do</span><span class="w">
+    </span><span class="p" data-group-id="9187701799-3">[</span><span class="ss">app</span><span class="p">:</span><span class="w"> </span><span class="ss">:task_tester</span><span class="p">,</span><span class="w">
 </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
 <h4><code class="inline">mix phx.gen.html</code></h4>
 <p>Phoenix now offers the ability to generate all the code to stand up a complete HTML resource - ecto migration, ecto context, controller with all the necessary actions, view, and templates. This can be a tremendous timesaver. Let’s take a look at how to make this happen.</p>
 <p>The <code class="inline">phx.gen.html</code> task takes a number of arguments, the module name of the context, the module name of the schema, the resource name, and a list of column_name:type attributes. The module name we pass in must conform to the Elixir rules of module naming, following proper capitalization.</p>
-<pre><code class="console">$ mix phx.gen.html Blog Post posts body:string word_count:integer
+<pre><code class="nohighlight makeup console">$ mix phx.gen.html Blog Post posts body:string word_count:integer
 * creating lib/hello_web/controllers/post_controller.ex
 * creating lib/hello_web/templates/post/edit.html.eex
 * creating lib/hello_web/templates/post/form.html.eex
@@ -231,7 +231,7 @@ $ iex -S mix phx.server</code></pre>
 * creating test/hello/blog/blog_test.exs
 * injecting test/hello/blog/blog_test.exs</code></pre>
 <p>When <code class="inline">phx.gen.html</code> is done creating files, it helpfully tells us that we need to add a line to our router file as well as run our ecto migrations.</p>
-<pre><code class="console">Add the resource to your browser scope in lib/hello_web/router.ex:
+<pre><code class="nohighlight makeup console">Add the resource to your browser scope in lib/hello_web/router.ex:
 
     resources &quot;/posts&quot;, PostController
 
@@ -239,7 +239,7 @@ Remember to update your repository by running migrations:
 
     $ mix ecto.migrate</code></pre>
 <p>Important: If we don’t do this, our application won’t compile, and we’ll get an error.</p>
-<pre><code class="console">$ mix phx.server
+<pre><code class="nohighlight makeup console">$ mix phx.server
 Compiling 17 files (.ex)
 
 == Compilation error in file lib/hello_web/controllers/post_controller.ex ==
@@ -248,7 +248,7 @@ Compiling 17 files (.ex)
     (stdlib) erl_eval.erl:670: :erl_eval.do_apply/6
     (elixir) lib/kernel/parallel_compiler.ex:121: anonymous fn/4 in Kernel.ParallelCompiler.spawn_compilers/1</code></pre>
 <p>If we don’t want to create a context or schema for our resource we can use the <code class="inline">--no-context</code> flag. Note that this still requires a context module name as a parameter.</p>
-<pre><code class="console">$ mix phx.gen.html Blog Post posts body:string word_count:integer --no-context
+<pre><code class="nohighlight makeup console">$ mix phx.gen.html Blog Post posts body:string word_count:integer --no-context
 * creating lib/hello_web/controllers/post_controller.ex
 * creating lib/hello_web/templates/post/edit.html.eex
 * creating lib/hello_web/templates/post/form.html.eex
@@ -258,11 +258,11 @@ Compiling 17 files (.ex)
 * creating lib/hello_web/views/post_view.ex
 * creating test/hello_web/controllers/post_controller_test.exs</code></pre>
 <p>It will tell us we need to add a line to our router file, but since we skipped the context, it won’t mention anything about <code class="inline">ecto.migrate</code>.</p>
-<pre><code class="console">Add the resource to your browser scope in lib/hello_web/router.ex:
+<pre><code class="nohighlight makeup console">Add the resource to your browser scope in lib/hello_web/router.ex:
 
     resources &quot;/posts&quot;, PostController</code></pre>
 <p>Important: If we don’t do this, our application won’t compile, and we’ll get an error.</p>
-<pre><code class="console">$ mix phx.server
+<pre><code class="nohighlight makeup console">$ mix phx.server
 Compiling 15 files (.ex)
 
 == Compilation error in file lib/hello_web/views/post_view.ex ==
@@ -271,7 +271,7 @@ Compiling 15 files (.ex)
     (stdlib) erl_eval.erl:670: :erl_eval.do_apply/6
     (elixir) lib/kernel/parallel_compiler.ex:121: anonymous fn/4 in Kernel.ParallelCompiler.spawn_compilers/1</code></pre>
 <p>Similarly - if we want a context created without a schema for our resource we can use the <code class="inline">--no-schema</code> flag.</p>
-<pre><code class="console">$ mix phx.gen.html Blog Post posts body:string word_count:integer --no-schema
+<pre><code class="nohighlight makeup console">$ mix phx.gen.html Blog Post posts body:string word_count:integer --no-schema
 * creating lib/hello_web/controllers/post_controller.ex
 * creating lib/hello_web/templates/post/edit.html.eex
 * creating lib/hello_web/templates/post/form.html.eex
@@ -285,11 +285,11 @@ Compiling 15 files (.ex)
 * creating test/hello/blog/blog_test.exs
 * injecting test/hello/blog/blog_test.exs</code></pre>
 <p>It will tell us we need to add a line to our router file, but since we skipped the schema, it won’t mention anything about <code class="inline">ecto.migrate</code>.</p>
-<pre><code class="console">Add the resource to your browser scope in lib/hello_web/router.ex:
+<pre><code class="nohighlight makeup console">Add the resource to your browser scope in lib/hello_web/router.ex:
 
     resources &quot;/posts&quot;, PostController</code></pre>
 <p>Important: If we don’t do this, our application won’t compile, and we’ll get an error.</p>
-<pre><code class="console">$ mix phx.server
+<pre><code class="nohighlight makeup console">$ mix phx.server
 Compiling 15 files (.ex)
 
 == Compilation error in file lib/hello_web/views/post_view.ex ==
@@ -300,7 +300,7 @@ Compiling 15 files (.ex)
 <h4><code class="inline">mix phx.gen.json</code></h4>
 <p>Phoenix also offers the ability to generate all the code to stand up a complete JSON resource - ecto migration, ecto schema, controller with all the necessary actions and view. This command will not create any template for the app.</p>
 <p>The <code class="inline">phx.gen.json</code> task takes a number of arguments, the module name of the context, the module name of the schema, the resource name, and a list of column_name:type attributes. The module name we pass in must conform to the Elixir rules of module naming, following proper capitalization.</p>
-<pre><code class="console">$ mix phx.gen.json Blog Post posts title:string content:string
+<pre><code class="nohighlight makeup console">$ mix phx.gen.json Blog Post posts title:string content:string
 * creating lib/hello_web/controllers/post_controller.ex
 * creating lib/hello_web/views/post_view.ex
 * creating test/hello_web/controllers/post_controller_test.exs
@@ -313,7 +313,7 @@ Compiling 15 files (.ex)
 * creating test/hello/blog/blog_test.exs
 * injecting test/hello/blog/blog_test.exs</code></pre>
 <p>When <code class="inline">phx.gen.json</code> is done creating files, it helpfully tells us that we need to add a line to our router file as well as run our ecto migrations.</p>
-<pre><code class="console">Add the resource to your :api scope in lib/hello_web/router.ex:
+<pre><code class="nohighlight makeup console">Add the resource to your :api scope in lib/hello_web/router.ex:
 
     resources &quot;/posts&quot;, PostController, except: [:new, :edit]
 
@@ -322,7 +322,7 @@ Remember to update your repository by running migrations:
 
     $ mix ecto.migrate</code></pre>
 <p>Important: If we don’t do this, our application won’t compile, and we’ll get an error.</p>
-<pre><code class="console">$ mix phx.server
+<pre><code class="nohighlight makeup console">$ mix phx.server
 Compiling 19 files (.ex)
 
 == Compilation error in file lib/hello_web/controllers/post_controller.ex ==
@@ -331,18 +331,18 @@ Compiling 19 files (.ex)
     (stdlib) erl_eval.erl:670: :erl_eval.do_apply/6
     (elixir) lib/kernel/parallel_compiler.ex:121: anonymous fn/4 in Kernel.ParallelCompiler.spawn_compilers/1</code></pre>
 <p>If we don’t want to create a context or schema for our resource we can use the <code class="inline">--no-context</code> flag. Note that this still requires a context module name as a parameter.</p>
-<pre><code class="console">$ mix phx.gen.json Blog Post posts title:string content:string --no-context
+<pre><code class="nohighlight makeup console">$ mix phx.gen.json Blog Post posts title:string content:string --no-context
 * creating lib/hello_web/controllers/post_controller.ex
 * creating lib/hello_web/views/post_view.ex
 * creating test/hello_web/controllers/post_controller_test.exs
 * creating lib/hello_web/views/changeset_view.ex
 * creating lib/hello_web/controllers/fallback_controller.ex</code></pre>
 <p>It will tell us we need to add a line to our router file, but since we skipped the context, it won’t mention anything about <code class="inline">ecto.migrate</code>.</p>
-<pre><code class="console">Add the resource to your :api scope in lib/hello_web/router.ex:
+<pre><code class="nohighlight makeup console">Add the resource to your :api scope in lib/hello_web/router.ex:
 
     resources &quot;/posts&quot;, PostController, except: [:new, :edit]</code></pre>
 <p>Important: If we don’t do this, our application won’t compile, and we’ll get an error.</p>
-<pre><code class="console">$ mix phx.server
+<pre><code class="nohighlight makeup console">$ mix phx.server
 Compiling 17 files (.ex)
 
 == Compilation error in file lib/hello_web/controllers/post_controller.ex ==
@@ -353,7 +353,7 @@ Compiling 17 files (.ex)
     lib/hello_web/controllers/post_controller.ex:14: (module)
     (stdlib) erl_eval.erl:670: :erl_eval.do_apply/6</code></pre>
 <p>Similarly - if we want a context created without a schema for our resource we can use the <code class="inline">--no-schema</code> flag.</p>
-<pre><code class="console">$ mix phx.gen.json Blog Post posts title:string content:string --no-schema
+<pre><code class="nohighlight makeup console">$ mix phx.gen.json Blog Post posts title:string content:string --no-schema
 * creating lib/hello_web/controllers/post_controller.ex
 * creating lib/hello_web/views/post_view.ex
 * creating test/hello_web/controllers/post_controller_test.exs
@@ -364,11 +364,11 @@ Compiling 17 files (.ex)
 * creating test/hello/blog/blog_test.exs
 * injecting test/hello/blog/blog_test.exs</code></pre>
 <p>It will tell us we need to add a line to our router file, but since we skipped the context, it won’t mention anything about <code class="inline">ecto.migrate</code>.</p>
-<pre><code class="console">Add the resource to your browser scope in lib/hello_web/router.ex:
+<pre><code class="nohighlight makeup console">Add the resource to your browser scope in lib/hello_web/router.ex:
 
     resources &quot;/posts&quot;, PostController</code></pre>
 <p>Important: If we don’t do this, our application won’t compile, and we’ll get an error.</p>
-<pre><code class="console">$ mix phx.server
+<pre><code class="nohighlight makeup console">$ mix phx.server
 Compiling 18 files (.ex)
 
 == Compilation error in file lib/hello/blog/blog.ex ==
@@ -379,7 +379,7 @@ Compiling 18 files (.ex)
 <h4><code class="inline">mix phx.gen.context</code></h4>
 <p>If we don’t need a complete HTML/JSON resource and instead are only interested in a context, we can use the <code class="inline">phx.gen.context</code> task. It will generate a context, a schema, a migration and a test case.</p>
 <p>The <code class="inline">phx.gen.context</code> task takes a number of arguments, the module name of the context, the module name of the schema, the resource name, and a list of column_name:type attributes.</p>
-<pre><code class="console">$ mix phx.gen.context Accounts User users name:string age:integer
+<pre><code class="nohighlight makeup console">$ mix phx.gen.context Accounts User users name:string age:integer
 * creating lib/hello/accounts/user.ex
 * creating priv/repo/migrations/20170906161158_create_users.exs
 * creating lib/hello/accounts/accounts.ex
@@ -388,7 +388,7 @@ Compiling 18 files (.ex)
 * injecting test/hello/accounts/accounts_test.exs</code></pre>
 <blockquote><p>Note: If we need to namespace our resource we can simply namespace the first argument of the generator.</p>
 </blockquote>
-<pre><code class="console">* creating lib/hello/admin/accounts/user.ex
+<pre><code class="nohighlight makeup console">* creating lib/hello/admin/accounts/user.ex
 * creating priv/repo/migrations/20170906161246_create_users.exs
 * creating lib/hello/admin/accounts/accounts.ex
 * injecting lib/hello/admin/accounts/accounts.ex
@@ -397,40 +397,40 @@ Compiling 18 files (.ex)
 <h4><code class="inline">mix phx.gen.schema</code></h4>
 <p>If we don’t need a complete HTML/JSON resource and are not interested in generating or altering a context we can use the <code class="inline">phx.gen.schema</code> task. It will generate a schema, and a migration.</p>
 <p>The <code class="inline">phx.gen.schema</code> task takes a number of arguments, the module name of the schema (which may be namespaced), the resource name, and a list of column_name:type attributes.</p>
-<pre><code class="console">$ mix phx.gen.schema Accounts.Credential credentials email:string:unique user_id:references:users
+<pre><code class="nohighlight makeup console">$ mix phx.gen.schema Accounts.Credential credentials email:string:unique user_id:references:users
 * creating lib/hello/accounts/credential.ex
 * creating priv/repo/migrations/20170906162013_create_credentials.exs</code></pre>
 <h4><code class="inline">mix phx.gen.channel</code></h4>
 <p>This task will generate a basic Phoenix channel as well a test case for it. It takes the module name for the channel as argument:</p>
-<pre><code class="console">$ mix phx.gen.channel Room
+<pre><code class="nohighlight makeup console">$ mix phx.gen.channel Room
 * creating lib/hello_web/channels/room_channel.ex
 * creating test/hello_web/channels/room_channel_test.exs</code></pre>
 <p>When <code class="inline">phx.gen.channel</code> is done, it helpfully tells us that we need to add a channel route to our router file.</p>
-<pre><code class="console">Add the channel to your `lib/hello_web/channels/user_socket.ex` handler, for example:
+<pre><code class="nohighlight makeup console">Add the channel to your `lib/hello_web/channels/user_socket.ex` handler, for example:
 
     channel &quot;rooms:lobby&quot;, HelloWeb.RoomChannel</code></pre>
 <h4><code class="inline">mix phx.gen.presence</code></h4>
 <p>This task will generate a Presence tracker. The module name can be passed as an argument,
 <code class="inline">Presence</code> is used if no module name is passed.</p>
-<pre><code class="console">$ mix phx.gen.presence Presence
+<pre><code class="nohighlight makeup console">$ mix phx.gen.presence Presence
 $ lib/hello_web/channels/presence.ex</code></pre>
 <h4><code class="inline">mix phx.routes</code></h4>
 <p>This task has a single purpose, to show us all the routes defined for a given router. We saw it used extensively in the <a href="routing.html">Routing Guide</a>.</p>
 <p>If we don’t specify a router for this task, it will default to the router Phoenix generated for us.</p>
-<pre><code class="console">$ mix phx.routes
+<pre><code class="nohighlight makeup console">$ mix phx.routes
 page_path  GET  /  TaskTester.PageController.index/2</code></pre>
 <p>We can also specify an individual router if we have more than one for our application.</p>
-<pre><code class="console">$ mix phx.routes TaskTesterWeb.Router
+<pre><code class="nohighlight makeup console">$ mix phx.routes TaskTesterWeb.Router
 page_path  GET  /  TaskTesterWeb.PageController.index/2</code></pre>
 <h4><code class="inline">mix phx.server</code></h4>
 <p>This is the task we use to get our application running. It takes no arguments at all. If we pass any in, they will be silently ignored.</p>
-<pre><code class="console">$ mix phx.server
+<pre><code class="nohighlight makeup console">$ mix phx.server
 [info] Running TaskTesterWeb.Endpoint with Cowboy on port 4000 (http)</code></pre>
 <p>It silently ignores our <code class="inline">DoesNotExist</code> argument.</p>
-<pre><code class="console">$ mix phx.server DoesNotExist
+<pre><code class="nohighlight makeup console">$ mix phx.server DoesNotExist
 [info] Running TaskTesterWeb.Endpoint with Cowboy on port 4000 (http)</code></pre>
 <p>If we would like to start our application and also have an <code class="inline">iex</code> session open to it, we can run the mix task within <code class="inline">iex</code> like this, <code class="inline">iex -S mix phx.server</code>.</p>
-<pre><code class="console">$ iex -S mix phx.server
+<pre><code class="nohighlight makeup console">$ iex -S mix phx.server
 Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 [info] Running TaskTesterWeb.Endpoint with Cowboy on port 4000 (http)
@@ -441,19 +441,19 @@ iex(1)&gt;</code></pre>
 <p>“Digest” here refers to an MD5 digest of the contents of an asset which gets added to the filename of that asset. This creates a sort of “fingerprint” for it. If the digest doesn’t change, browsers and CDNs will use a cached version. If it does change, they will re-fetch the new version.</p>
 <p>Before we run this task let’s inspect the contents of two directories in our hello application.</p>
 <p>First <code class="inline">priv/static</code> which should look similar to this:</p>
-<pre><code class="console">├── images
+<pre><code class="nohighlight makeup console">├── images
 │   └── phoenix.png
 ├── robots.txt</code></pre>
 <p>And then <code class="inline">assets/</code> which should look similar to this:</p>
-<pre><code class="console">├── css
+<pre><code class="nohighlight makeup console">├── css
 │   └── app.css
 ├── js
 │   └── app.js
 ├── vendor
 │   └── phoenix.js</code></pre>
 <p>All of these files are our static assets. Now let’s run the <code class="inline">mix phx.digest</code> task.</p>
-<pre><code class="console">$ mix phx.digest
-Check your digested files at 'priv/static'.</code></pre>
+<pre><code class="nohighlight makeup console">$ mix phx.digest
+Check your digested files at &#39;priv/static&#39;.</code></pre>
 <p>We can now do as the task suggests and inspect the contents of <code class="inline">priv/static</code> directory. We’ll see that all files from <code class="inline">assets/</code> have been copied over to <code class="inline">priv/static</code> and also each file now has a couple of versions. Those versions are:</p>
 <ul>
 <li>the original file
@@ -466,18 +466,18 @@ Check your digested files at 'priv/static'.</code></pre>
 </li>
 </ul>
 <p>We can optionally determine which files should be gzipped by using the <code class="inline">:gzippable_exts</code> option in the config file:</p>
-<pre><code class="nohighlight makeup"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:gzippable_exts</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(.js .css)</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:gzippable_exts</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(.js .css)</span></code></pre>
 <blockquote><p>Note: We can specify a different output folder where <code class="inline">phx.digest</code> will put processed files. The first argument is the path where the static files are located.</p>
 </blockquote>
-<pre><code class="console">$ mix phx.digest priv/static -o www/public
-Check your digested files at 'www/public'.</code></pre>
+<pre><code class="nohighlight makeup console">$ mix phx.digest priv/static -o www/public
+Check your digested files at &#39;www/public&#39;.</code></pre>
 <h2 id="ecto-specific-mix-tasks" class="section-heading">
   <a href="#ecto-specific-mix-tasks" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Ecto Specific Mix Tasks
 </h2>
 
 <p>Newly generated Phoenix applications now include ecto and postgrex as dependencies by default (which is to say, unless we use the <code class="inline">--no-ecto</code> flag with <code class="inline">phx.new</code>). With those dependencies come mix tasks to take care of common ecto operations. Let’s see which tasks we get out of the box.</p>
-<pre><code class="console">$ mix help | grep -i ecto
+<pre><code class="nohighlight makeup console">$ mix help | grep -i ecto
 mix ecto.create          # Create the storage for the repo
 mix ecto.drop            # Drop the storage for the repo
 mix ecto.gen.migration   # Generate a new migration for the repo
@@ -488,53 +488,53 @@ mix ecto.rollback        # Reverts migrations down on a repo</code></pre>
 <h4><code class="inline">ecto.create</code></h4>
 <p>This task will create the database specified in our repo. By default it will look for the repo named after our application (the one generated with our app unless we opted out of ecto), but we can pass in another repo if we want.</p>
 <p>Here’s what it looks like in action.</p>
-<pre><code class="console">$ mix ecto.create
+<pre><code class="nohighlight makeup console">$ mix ecto.create
 The database for Hello.Repo has been created.</code></pre>
 <p>If we happen to have another repo called <code class="inline">OurCustom.Repo</code> that we want to create the database for, we can run this.</p>
-<pre><code class="console">$ mix ecto.create -r OurCustom.Repo
+<pre><code class="nohighlight makeup console">$ mix ecto.create -r OurCustom.Repo
 The database for OurCustom.Repo has been created.</code></pre>
 <p>There are a few things that can go wrong with <code class="inline">ecto.create</code>. If our Postgres database doesn’t have a “postgres” role (user), we’ll get an error like this one.</p>
-<pre><code class="console">$ mix ecto.create
-** (Mix) The database for Hello.Repo couldn't be created, reason given: psql: FATAL:  role &quot;postgres&quot; does not exist</code></pre>
+<pre><code class="nohighlight makeup console">$ mix ecto.create
+** (Mix) The database for Hello.Repo couldn&#39;t be created, reason given: psql: FATAL:  role &quot;postgres&quot; does not exist</code></pre>
 <p>We can fix this by creating the “postgres” role in the <code class="inline">psql</code> console with the permissions needed to log in and create a database.</p>
-<pre><code class="console">=# CREATE ROLE postgres LOGIN CREATEDB;
+<pre><code class="nohighlight makeup console">=# CREATE ROLE postgres LOGIN CREATEDB;
 CREATE ROLE</code></pre>
 <p>If the “postgres” role does not have permission to log in to the application, we’ll get this error.</p>
-<pre><code class="console">$ mix ecto.create
-** (Mix) The database for Hello.Repo couldn't be created, reason given: psql: FATAL:  role &quot;postgres&quot; is not permitted to log in</code></pre>
+<pre><code class="nohighlight makeup console">$ mix ecto.create
+** (Mix) The database for Hello.Repo couldn&#39;t be created, reason given: psql: FATAL:  role &quot;postgres&quot; is not permitted to log in</code></pre>
 <p>To fix this, we need to change the permissions on our “postgres” user to allow login.</p>
-<pre><code class="console">=# ALTER ROLE postgres LOGIN;
+<pre><code class="nohighlight makeup console">=# ALTER ROLE postgres LOGIN;
 ALTER ROLE</code></pre>
 <p>If the “postgres” role does not have permission to create a database, we’ll get this error.</p>
-<pre><code class="console">$ mix ecto.create
-** (Mix) The database for Hello.Repo couldn't be created, reason given: ERROR:  permission denied to create database</code></pre>
+<pre><code class="nohighlight makeup console">$ mix ecto.create
+** (Mix) The database for Hello.Repo couldn&#39;t be created, reason given: ERROR:  permission denied to create database</code></pre>
 <p>To fix this, we need to change the permissions on our “postgres” user in the <code class="inline">psql</code> console  to allow database creation.</p>
-<pre><code class="console">=# ALTER ROLE postgres CREATEDB;
+<pre><code class="nohighlight makeup console">=# ALTER ROLE postgres CREATEDB;
 ALTER ROLE</code></pre>
 <p>If the “postgres” role is using a password different from the default “postgres”, we’ll get this error.</p>
-<pre><code class="console">$ mix ecto.create
-** (Mix) The database for Hello.Repo couldn't be created, reason given: psql: FATAL:  password authentication failed for user &quot;postgres&quot;</code></pre>
+<pre><code class="nohighlight makeup console">$ mix ecto.create
+** (Mix) The database for Hello.Repo couldn&#39;t be created, reason given: psql: FATAL:  password authentication failed for user &quot;postgres&quot;</code></pre>
 <p>To fix this, we can change the password in the environment specific configuration file. For the development environment the password used can be found at the bottom of the <code class="inline">config/dev.exs</code> file.</p>
 <h4><code class="inline">ecto.drop</code></h4>
 <p>This task will drop the database specified in our repo. By default it will look for the repo named after our application (the one generated with our app unless we opted out of ecto). It will not prompt us to check if we’re sure we want to drop the db, so do exercise caution.</p>
-<pre><code class="console">$ mix ecto.drop
+<pre><code class="nohighlight makeup console">$ mix ecto.drop
 The database for Hello.Repo has been dropped.</code></pre>
 <p>If we happen to have another repo that we want to drop the database for, we can specify it with the <code class="inline">-r</code> flag.</p>
-<pre><code class="console">$ mix ecto.drop -r OurCustom.Repo
+<pre><code class="nohighlight makeup console">$ mix ecto.drop -r OurCustom.Repo
 The database for OurCustom.Repo has been dropped.</code></pre>
 <h4><code class="inline">ecto.gen.repo</code></h4>
 <p>Many applications require more than one data store. For each data store, we’ll need a new repo, and we can generate them automatically with <code class="inline">ecto.gen.repo</code>.</p>
 <p>If we name our repo <code class="inline">OurCustom.Repo</code>, this task will create it here <code class="inline">lib/our_custom/repo.ex</code>.</p>
-<pre><code class="console">$ mix ecto.gen.repo -r OurCustom.Repo
+<pre><code class="nohighlight makeup console">$ mix ecto.gen.repo -r OurCustom.Repo
 * creating lib/our_custom
 * creating lib/our_custom/repo.ex
 * updating config/config.exs
-Don't forget to add your new repo to your supervision tree
+Don&#39;t forget to add your new repo to your supervision tree
 (typically in lib/hello.ex):
 
 worker(OurCustom.Repo, [])</code></pre>
 <p>Notice that this task has updated <code class="inline">config/config.exs</code>. If we take a look, we’ll see this extra configuration block for our new repo.</p>
-<pre><code class="nohighlight makeup"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
 </span><span class="n">config</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="nc">OurCustom.Repo</span><span class="p">,</span><span class="w">
 </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="nc">Ecto.Adapters.Postgres</span><span class="p">,</span><span class="w">
 </span><span class="ss">database</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello_repo&quot;</span><span class="p">,</span><span class="w">
@@ -544,44 +544,44 @@ worker(OurCustom.Repo, [])</code></pre>
 </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
 <p>Of course, we’ll need to change the login credentials to match what our database expects. We’ll also need to change the config for other environments.</p>
 <p>We certainly should follow the instructions and add our new repo to our supervision tree. In our <code class="inline">Hello</code> application, we would open up <code class="inline">lib/hello.ex</code>, and add our repo as a worker to the <code class="inline">children</code> list.</p>
-<pre><code class="nohighlight makeup"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-</span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3698255263-1">[</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
+</span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3479999072-1">[</span><span class="w">
   </span><span class="c1"># Start the endpoint when the application starts</span><span class="w">
-  </span><span class="n">supervisor</span><span class="p" data-group-id="3698255263-2">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3698255263-3">[</span><span class="p" data-group-id="3698255263-3">]</span><span class="p" data-group-id="3698255263-2">)</span><span class="p">,</span><span class="w">
+  </span><span class="n">supervisor</span><span class="p" data-group-id="3479999072-2">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3479999072-3">[</span><span class="p" data-group-id="3479999072-3">]</span><span class="p" data-group-id="3479999072-2">)</span><span class="p">,</span><span class="w">
   </span><span class="c1"># Start the Ecto repository</span><span class="w">
-  </span><span class="n">worker</span><span class="p" data-group-id="3698255263-4">(</span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3698255263-5">[</span><span class="p" data-group-id="3698255263-5">]</span><span class="p" data-group-id="3698255263-4">)</span><span class="p">,</span><span class="w">
+  </span><span class="n">worker</span><span class="p" data-group-id="3479999072-4">(</span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3479999072-5">[</span><span class="p" data-group-id="3479999072-5">]</span><span class="p" data-group-id="3479999072-4">)</span><span class="p">,</span><span class="w">
   </span><span class="c1"># Here you could define other workers and supervisors as children</span><span class="w">
   </span><span class="c1"># worker(Hello.Worker, [arg1, arg2, arg3]),</span><span class="w">
-  </span><span class="n">worker</span><span class="p" data-group-id="3698255263-6">(</span><span class="nc">OurCustom.Repo</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3698255263-7">[</span><span class="p" data-group-id="3698255263-7">]</span><span class="p" data-group-id="3698255263-6">)</span><span class="p">,</span><span class="w">
-</span><span class="p" data-group-id="3698255263-1">]</span><span class="w">
+  </span><span class="n">worker</span><span class="p" data-group-id="3479999072-6">(</span><span class="nc">OurCustom.Repo</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3479999072-7">[</span><span class="p" data-group-id="3479999072-7">]</span><span class="p" data-group-id="3479999072-6">)</span><span class="p">,</span><span class="w">
+</span><span class="p" data-group-id="3479999072-1">]</span><span class="w">
 </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
 <h4><code class="inline">ecto.gen.migration</code></h4>
 <p>Migrations are a programmatic, repeatable way to affect changes to a database schema. Migrations are also just modules, and we can create them with the <code class="inline">ecto.gen.migration</code> task. Let’s walk through the steps to create a migration for a new comments table.</p>
 <p>We simply need to invoke the task with a snake_case version of the module name that we want. Preferably, the name will describe what we want the migration to do.</p>
-<pre><code class="console">mix ecto.gen.migration add_comments_table
+<pre><code class="nohighlight makeup console">mix ecto.gen.migration add_comments_table
 * creating priv/repo/migrations
 * creating priv/repo/migrations/20150318001628_add_comments_table.exs</code></pre>
 <p>Notice that the migration’s filename begins with a string representation of the date and time the file was created.</p>
 <p>Let’s take a look at the file <code class="inline">ecto.gen.migration</code> has generated for us at <code class="inline">priv/repo/migrations/20150318001628_add_comments_table.exs</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Repo.Migrations.AddCommentsTable</span><span class="w"> </span><span class="k" data-group-id="2065010229-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hello.Repo.Migrations.AddCommentsTable</span><span class="w"> </span><span class="k" data-group-id="3791510242-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Migration</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">change</span><span class="w"> </span><span class="k" data-group-id="2065010229-2">do</span><span class="w">
-  </span><span class="k" data-group-id="2065010229-2">end</span><span class="w">
-</span><span class="k" data-group-id="2065010229-1">end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">change</span><span class="w"> </span><span class="k" data-group-id="3791510242-2">do</span><span class="w">
+  </span><span class="k" data-group-id="3791510242-2">end</span><span class="w">
+</span><span class="k" data-group-id="3791510242-1">end</span></code></pre>
 <p>Notice that there is a single function <code class="inline">change/0</code> which will handle both forward migrations and rollbacks. We’ll define the schema changes that we want using ecto’s handy dsl, and ecto will figure out what to do depending on whether we are rolling forward or rolling back. Very nice indeed.</p>
 <p>What we want to do is create a <code class="inline">comments</code> table with a <code class="inline">body</code> column, a <code class="inline">word_count</code> column, and timestamp columns for <code class="inline">inserted_at</code> and <code class="inline">updated_at</code>.</p>
-<pre><code class="nohighlight makeup"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">change</span><span class="w"> </span><span class="k" data-group-id="8893485870-1">do</span><span class="w">
-  </span><span class="n">create</span><span class="w"> </span><span class="n">table</span><span class="p" data-group-id="8893485870-2">(</span><span class="ss">:comments</span><span class="p" data-group-id="8893485870-2">)</span><span class="w"> </span><span class="k" data-group-id="8893485870-3">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">change</span><span class="w"> </span><span class="k" data-group-id="8187858909-1">do</span><span class="w">
+  </span><span class="n">create</span><span class="w"> </span><span class="n">table</span><span class="p" data-group-id="8187858909-2">(</span><span class="ss">:comments</span><span class="p" data-group-id="8187858909-2">)</span><span class="w"> </span><span class="k" data-group-id="8187858909-3">do</span><span class="w">
     </span><span class="n">add</span><span class="w"> </span><span class="ss">:body</span><span class="p">,</span><span class="w">       </span><span class="ss">:string</span><span class="w">
     </span><span class="n">add</span><span class="w"> </span><span class="ss">:word_count</span><span class="p">,</span><span class="w"> </span><span class="ss">:integer</span><span class="w">
     </span><span class="n">timestamps</span><span class="w">
-  </span><span class="k" data-group-id="8893485870-3">end</span><span class="w">
-</span><span class="k" data-group-id="8893485870-1">end</span><span class="w">
+  </span><span class="k" data-group-id="8187858909-3">end</span><span class="w">
+</span><span class="k" data-group-id="8187858909-1">end</span><span class="w">
 </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
 <p>Again, we can run this task with the <code class="inline">-r</code> flag and another repo if we need to.</p>
-<pre><code class="console">$ mix ecto.gen.migration -r OurCustom.Repo add_users
+<pre><code class="nohighlight makeup console">$ mix ecto.gen.migration -r OurCustom.Repo add_users
 * creating priv/repo/migrations
 * creating priv/repo/migrations/20150318172927_add_users.exs</code></pre>
 <p>For more information on how to modify your database schema please refer to the
@@ -591,13 +591,13 @@ For example, to alter an existing schema see the documentation on ecto’s
 <p>That’s it! We’re ready to run our migration.</p>
 <h4><code class="inline">ecto.migrate</code></h4>
 <p>Once we have our migration module ready, we can simply run <code class="inline">mix ecto.migrate</code> to have our changes applied to the database.</p>
-<pre><code class="console">$ mix ecto.migrate
+<pre><code class="nohighlight makeup console">$ mix ecto.migrate
 [info] == Running Hello.Repo.Migrations.AddCommentsTable.change/0 forward
 [info] create table comments
 [info] == Migrated in 0.1s</code></pre>
 <p>When we first run <code class="inline">ecto.migrate</code>, it will create a table for us called <code class="inline">schema_migrations</code>. This will keep track of all the migrations which we run by storing the timestamp portion of the migration’s filename.</p>
 <p>Here’s what the <code class="inline">schema_migrations</code> table looks like.</p>
-<pre><code class="console">hello_dev=# select * from schema_migrations;
+<pre><code class="nohighlight makeup console">hello_dev=# select * from schema_migrations;
 version     |     inserted_at
 ----------------+---------------------
 20150317170448 | 2015-03-17 21:07:26
@@ -606,7 +606,7 @@ version     |     inserted_at
 <p>When we roll back a migration, <code class="inline">ecto.rollback</code> will remove the record representing this migration from <code class="inline">schema_migrations</code>.</p>
 <p>By default, <code class="inline">ecto.migrate</code> will execute all pending migrations. We can exercise more control over which migrations we run by specifying some options when we run the task.</p>
 <p>We can specify the number of pending migrations we would like to run with the <code class="inline">-n</code> or <code class="inline">--step</code> options.</p>
-<pre><code class="console">$ mix ecto.migrate -n 2
+<pre><code class="nohighlight makeup console">$ mix ecto.migrate -n 2
 [info] == Running Hello.Repo.Migrations.CreatePost.change/0 forward
 [info] create table posts
 [info] == Migrated in 0.0s
@@ -614,14 +614,14 @@ version     |     inserted_at
 [info] create table comments
 [info] == Migrated in 0.0s</code></pre>
 <p>The <code class="inline">--step</code> option will behave the same way.</p>
-<pre><code class="console">mix ecto.migrate --step 2</code></pre>
+<pre><code class="nohighlight makeup console">mix ecto.migrate --step 2</code></pre>
 <p>We can also specify an individual migration we would like to run with the <code class="inline">-v</code> option.</p>
-<pre><code class="console">mix ecto.migrate -v 20150317170448</code></pre>
+<pre><code class="nohighlight makeup console">mix ecto.migrate -v 20150317170448</code></pre>
 <p>The <code class="inline">--to</code> option will behave the same way.</p>
-<pre><code class="console">mix ecto.migrate --to 20150317170448</code></pre>
+<pre><code class="nohighlight makeup console">mix ecto.migrate --to 20150317170448</code></pre>
 <h4><code class="inline">ecto.rollback</code></h4>
 <p>The <code class="inline">ecto.rollback</code> task will reverse the last migration we have run, undoing the schema changes. <code class="inline">ecto.migrate</code> and <code class="inline">ecto.rollback</code> are mirror images of each other.</p>
-<pre><code class="console">$ mix ecto.rollback
+<pre><code class="nohighlight makeup console">$ mix ecto.rollback
 [info] == Running Hello.Repo.Migrations.AddCommentsTable.change/0 backward
 [info] drop table comments
 [info] == Migrated in 0.0s</code></pre>
@@ -633,9 +633,9 @@ version     |     inserted_at
 
 <p>As we’ve seen throughout this guide, both mix itself and the dependencies we bring in to our application provide a number of really useful tasks for free. Since neither of these could possibly anticipate all our individual application’s needs, mix allows us to create our own custom tasks. That’s exactly what we are going to do now.</p>
 <p>The first thing we need to do is create a <code class="inline">mix/tasks</code> directory inside of <code class="inline">lib</code>. This is where any of our application specific mix tasks will go.</p>
-<pre><code class="console">$ mkdir -p lib/mix/tasks</code></pre>
+<pre><code class="nohighlight makeup console">$ mkdir -p lib/mix/tasks</code></pre>
 <p>Inside that directory, let’s create a new file, <code class="inline">hello.greeting.ex</code>, that looks like this.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Mix.Tasks.Hello.Greeting</span><span class="w"> </span><span class="k" data-group-id="4375282747-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Mix.Tasks.Hello.Greeting</span><span class="w"> </span><span class="k" data-group-id="7517781279-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Mix.Task</span><span class="w">
 
   </span><span class="na">@shortdoc</span><span class="w"> </span><span class="s">&quot;Sends a greeting to us from Hello Phoenix&quot;</span><span class="w">
@@ -644,12 +644,12 @@ version     |     inserted_at
     This is where we would put any long form documentation or doctests.
   &quot;&quot;&quot;</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="4375282747-2">(</span><span class="n">_args</span><span class="p" data-group-id="4375282747-2">)</span><span class="w"> </span><span class="k" data-group-id="4375282747-3">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="7517781279-2">(</span><span class="c">_args</span><span class="p" data-group-id="7517781279-2">)</span><span class="w"> </span><span class="k" data-group-id="7517781279-3">do</span><span class="w">
     </span><span class="nc">Mix</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">info</span><span class="w"> </span><span class="s">&quot;Greetings from the Hello Phoenix Application!&quot;</span><span class="w">
-  </span><span class="k" data-group-id="4375282747-3">end</span><span class="w">
+  </span><span class="k" data-group-id="7517781279-3">end</span><span class="w">
 
   </span><span class="c1"># We can define other functions as needed here.</span><span class="w">
-</span><span class="k" data-group-id="4375282747-1">end</span></code></pre>
+</span><span class="k" data-group-id="7517781279-1">end</span></code></pre>
 <p>Let’s take a quick look at the moving parts involved in a working mix task.</p>
 <p>The first thing we need to do is name our module. In order to properly namespace it, we begin with <code class="inline">Mix.Tasks</code>. We’d like to invoke this as <code class="inline">mix hello.greeting</code>, so we complete the module name with
 <code class="inline">Hello.Greeting</code>.</p>
@@ -659,34 +659,34 @@ version     |     inserted_at
 <p>The <code class="inline">run/1</code> function is the critical heart of any mix task. It’s the function that does all the work when users invoke our task. In ours, all we do is send a greeting from our app, but we can implement our <code class="inline">run/1</code> function to do whatever we need it to. Note that <code class="inline">Mix.shell.info/1</code> is the preferred way to print text back out to the user.</p>
 <p>Of course, our task is just a module, so we can define other private functions as needed to support our <code class="inline">run/1</code> function.</p>
 <p>Now that we have our task module defined, our next step is to compile the application.</p>
-<pre><code class="console">$ mix compile
+<pre><code class="nohighlight makeup console">$ mix compile
 Compiled lib/tasks/hello.greeting.ex
 Generated hello.app</code></pre>
 <p>Now our new task should be visible to <code class="inline">mix help</code>.</p>
-<pre><code class="console">$ mix help | grep hello
+<pre><code class="nohighlight makeup console">$ mix help | grep hello
 mix hello.greeting # Sends a greeting to us from Hello Phoenix</code></pre>
 <p>Notice that <code class="inline">mix help</code> displays the text we put into the <code class="inline">@shortdoc</code> along with the name of our task.</p>
 <p>So far, so good, but does it work?</p>
-<pre><code class="console">$ mix hello.greeting
+<pre><code class="nohighlight makeup console">$ mix hello.greeting
 Greetings from the Hello Phoenix Application!</code></pre>
 <p>Indeed it does.</p>
 <p>If you want to make your new mix task to use your application’s infrastructure, you need to make sure the application is started when mix task is being executed. This is particularly useful if you need to access your database from within the mix task. Thankfully, mix makes it really easy for us:</p>
-<pre><code class="nohighlight makeup"><span class="w">  </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="8242014023-1">(</span><span class="n">_args</span><span class="p" data-group-id="8242014023-1">)</span><span class="w"> </span><span class="k" data-group-id="8242014023-2">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="1677048085-1">(</span><span class="c">_args</span><span class="p" data-group-id="1677048085-1">)</span><span class="w"> </span><span class="k" data-group-id="1677048085-2">do</span><span class="w">
     </span><span class="nc">Mix.Task</span><span class="o">.</span><span class="n">run</span><span class="w"> </span><span class="s">&quot;app.start&quot;</span><span class="w">
     </span><span class="nc">Mix</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">info</span><span class="w"> </span><span class="s">&quot;Now I have access to Repo and other goodies!&quot;</span><span class="w">
-  </span><span class="k" data-group-id="8242014023-2">end</span><span class="w">
+  </span><span class="k" data-group-id="1677048085-2">end</span><span class="w">
   </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span></code></pre>
 
       <footer class="footer">
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
-            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
       </footer>
@@ -694,7 +694,7 @@ Greetings from the Hello Phoenix Application!</code></pre>
   </div>
 </section>
 </div>
-  <script src="dist/app-9bd040e5e5.js"></script>
+  <script src="dist/app-b2d0635bae.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Naming – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
+    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
@@ -211,14 +211,14 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="p" data-group-id="3279118579-1">(</span><span class="s">&quot;my_app&quot;</span><span class="p" data-group-id="3279118579-1">)</span><span class="w">
-</span><span class="s">&quot;MyApp&quot;</span><span class="w">
+<pre><code class="iex elixir">iex&gt; Phoenix.Naming.camelize(&quot;my_app&quot;)
+&quot;MyApp&quot;
 
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="p" data-group-id="3279118579-2">(</span><span class="s">&quot;my_app&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:lower</span><span class="p" data-group-id="3279118579-2">)</span><span class="w">
-</span><span class="s">&quot;myApp&quot;</span></code></pre>
+iex&gt; Phoenix.Naming.camelize(&quot;my_app&quot;, :lower)
+&quot;myApp&quot;</code></pre>
 <p>In general, <code class="inline">camelize</code> can be thought of as the reverse of
 <code class="inline">underscore</code>, however, in some cases formatting may be lost:</p>
-<pre><code class="nohighlight makeup"><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="w"> </span><span class="s">&quot;SAPExample&quot;</span><span class="w">  </span><span class="c1">#=&gt; &quot;sap_example&quot;</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="w"> </span><span class="s">&quot;SAPExample&quot;</span><span class="w">  </span><span class="c1">#=&gt; &quot;sap_example&quot;</span><span class="w">
 </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="w">   </span><span class="s">&quot;sap_example&quot;</span><span class="w"> </span><span class="c1">#=&gt; &quot;SapExample&quot;</span></code></pre>
 
   </section>
@@ -277,12 +277,12 @@
   </div>
   <section class="docstring">
     <p>Converts an attribute/form field into its humanize version.</p>
-<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="1160713953-1">(</span><span class="ss">:username</span><span class="p" data-group-id="1160713953-1">)</span><span class="w">
-</span><span class="s">&quot;Username&quot;</span><span class="w">
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="1160713953-2">(</span><span class="ss">:created_at</span><span class="p" data-group-id="1160713953-2">)</span><span class="w">
-</span><span class="s">&quot;Created at&quot;</span><span class="w">
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">humanize</span><span class="p" data-group-id="1160713953-3">(</span><span class="s">&quot;user_id&quot;</span><span class="p" data-group-id="1160713953-3">)</span><span class="w">
-</span><span class="s">&quot;User&quot;</span></code></pre>
+<pre><code class="iex elixir">iex&gt; Phoenix.Naming.humanize(:username)
+&quot;Username&quot;
+iex&gt; Phoenix.Naming.humanize(:created_at)
+&quot;Created at&quot;
+iex&gt; Phoenix.Naming.humanize(&quot;user_id&quot;)
+&quot;User&quot;</code></pre>
 
   </section>
 </div>
@@ -319,11 +319,11 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">resource_name</span><span class="p" data-group-id="6793604697-1">(</span><span class="nc">MyApp.User</span><span class="p" data-group-id="6793604697-1">)</span><span class="w">
-</span><span class="s">&quot;user&quot;</span><span class="w">
+<pre><code class="iex elixir">iex&gt; Phoenix.Naming.resource_name(MyApp.User)
+&quot;user&quot;
 
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">resource_name</span><span class="p" data-group-id="6793604697-2">(</span><span class="nc">MyApp.UserView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;View&quot;</span><span class="p" data-group-id="6793604697-2">)</span><span class="w">
-</span><span class="s">&quot;user&quot;</span></code></pre>
+iex&gt; Phoenix.Naming.resource_name(MyApp.UserView, &quot;View&quot;)
+&quot;user&quot;</code></pre>
 
   </section>
 </div>
@@ -358,11 +358,11 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="p" data-group-id="0420371480-1">(</span><span class="s">&quot;MyApp&quot;</span><span class="p" data-group-id="0420371480-1">)</span><span class="w">
-</span><span class="s">&quot;my_app&quot;</span></code></pre>
+<pre><code class="iex elixir">iex&gt; Phoenix.Naming.underscore(&quot;MyApp&quot;)
+&quot;my_app&quot;</code></pre>
 <p>In general, <code class="inline">underscore</code> can be thought of as the reverse of
 <code class="inline">camelize</code>, however, in some cases formatting may be lost:</p>
-<pre><code class="nohighlight makeup"><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="w"> </span><span class="s">&quot;SAPExample&quot;</span><span class="w">  </span><span class="c1">#=&gt; &quot;sap_example&quot;</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">underscore</span><span class="w"> </span><span class="s">&quot;SAPExample&quot;</span><span class="w">  </span><span class="c1">#=&gt; &quot;sap_example&quot;</span><span class="w">
 </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">camelize</span><span class="w">   </span><span class="s">&quot;sap_example&quot;</span><span class="w"> </span><span class="c1">#=&gt; &quot;SapExample&quot;</span></code></pre>
 
   </section>
@@ -398,11 +398,11 @@
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">unsuffix</span><span class="p" data-group-id="2157918065-1">(</span><span class="s">&quot;MyApp.User&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;View&quot;</span><span class="p" data-group-id="2157918065-1">)</span><span class="w">
-</span><span class="s">&quot;MyApp.User&quot;</span><span class="w">
+<pre><code class="iex elixir">iex&gt; Phoenix.Naming.unsuffix(&quot;MyApp.User&quot;, &quot;View&quot;)
+&quot;MyApp.User&quot;
 
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Naming</span><span class="o">.</span><span class="n">unsuffix</span><span class="p" data-group-id="2157918065-2">(</span><span class="s">&quot;MyApp.UserView&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;View&quot;</span><span class="p" data-group-id="2157918065-2">)</span><span class="w">
-</span><span class="s">&quot;MyApp.User&quot;</span></code></pre>
+iex&gt; Phoenix.Naming.unsuffix(&quot;MyApp.UserView&quot;, &quot;View&quot;)
+&quot;MyApp.User&quot;</code></pre>
 
   </section>
 </div>
@@ -415,11 +415,11 @@
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
-            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
       </footer>
@@ -427,7 +427,7 @@
   </div>
 </section>
 </div>
-  <script src="dist/app-9bd040e5e5.js"></script>
+  <script src="dist/app-b2d0635bae.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   

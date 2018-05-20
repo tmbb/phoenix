@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Templates – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-480ffdc169.css" />
+    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
@@ -88,59 +88,59 @@
 <p>Phoenix generates a <code class="inline">lib/hello_web.ex</code> file that serves as place to group common imports and aliases. All declarations here within the <code class="inline">view</code> block apply to all your templates.</p>
 <p>Let’s make some additions to our application so we can experiment a little.</p>
 <p>First, let’s define a new route in <code class="inline">lib/hello_web/router.ex</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="7098899708-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="6623389528-1">do</span><span class="w">
   </span><span class="n">...</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="7098899708-2">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="6623389528-2">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="c1"># Use the default browser stack</span><span class="w">
 
     </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
     </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/test&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:test</span><span class="w">
-  </span><span class="k" data-group-id="7098899708-2">end</span><span class="w">
+  </span><span class="k" data-group-id="6623389528-2">end</span><span class="w">
 
   </span><span class="c1"># Other scopes may use custom stacks.</span><span class="w">
   </span><span class="c1"># scope &quot;/api&quot;, Hello do</span><span class="w">
   </span><span class="c1">#   pipe_through :api</span><span class="w">
   </span><span class="c1"># end</span><span class="w">
-</span><span class="k" data-group-id="7098899708-1">end</span></code></pre>
+</span><span class="k" data-group-id="6623389528-1">end</span></code></pre>
 <p>Now, let’s define the controller action we specified in the route. We’ll add a <code class="inline">test/2</code> action in the <code class="inline">lib/hello_web/controllers/page_controller.ex</code> file.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageController</span><span class="w"> </span><span class="k" data-group-id="3647620682-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageController</span><span class="w"> </span><span class="k" data-group-id="7405724204-1">do</span><span class="w">
   </span><span class="n">...</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">test</span><span class="p" data-group-id="3647620682-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">_params</span><span class="p" data-group-id="3647620682-2">)</span><span class="w"> </span><span class="k" data-group-id="3647620682-3">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">test</span><span class="p" data-group-id="7405724204-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="c">_params</span><span class="p" data-group-id="7405724204-2">)</span><span class="w"> </span><span class="k" data-group-id="7405724204-3">do</span><span class="w">
     </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test.html&quot;</span><span class="w">
-  </span><span class="k" data-group-id="3647620682-3">end</span><span class="w">
-</span><span class="k" data-group-id="3647620682-1">end</span></code></pre>
+  </span><span class="k" data-group-id="7405724204-3">end</span><span class="w">
+</span><span class="k" data-group-id="7405724204-1">end</span></code></pre>
 <p>We’re going to create a function that tells us which controller and action are handling our request.</p>
 <p>To do that, we need to import the <code class="inline">action_name/1</code> and <code class="inline">controller_module/1</code> functions from <a href="Phoenix.Controller.html"><code class="inline">Phoenix.Controller</code></a> in <code class="inline">lib/hello_web.ex</code>.</p>
-<pre><code class="nohighlight makeup"><span class="w">  </span><span class="kd">def</span><span class="w"> </span><span class="nf">view</span><span class="w"> </span><span class="k" data-group-id="7185130278-1">do</span><span class="w">
-    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="7185130278-2">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="kd">def</span><span class="w"> </span><span class="nf">view</span><span class="w"> </span><span class="k" data-group-id="5418315955-1">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="5418315955-2">do</span><span class="w">
       </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.View</span><span class="p">,</span><span class="w"> </span><span class="ss">root</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;lib/hello_web/templates&quot;</span><span class="p">,</span><span class="w">
                         </span><span class="ss">namespace</span><span class="p">:</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w">
 
       </span><span class="c1"># Import convenience functions from controllers</span><span class="w">
-      </span><span class="kn">import</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7185130278-3">[</span><span class="ss">get_flash</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">view_module</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                                        </span><span class="ss">action_name</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">controller_module</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7185130278-3">]</span><span class="w">
+      </span><span class="kn">import</span><span class="w"> </span><span class="nc">Phoenix.Controller</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5418315955-3">[</span><span class="ss">get_flash</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">view_module</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                                        </span><span class="ss">action_name</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">controller_module</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="5418315955-3">]</span><span class="w">
 
       </span><span class="n">...</span><span class="w">
-    </span><span class="k" data-group-id="7185130278-2">end</span><span class="w">
-  </span><span class="k" data-group-id="7185130278-1">end</span></code></pre>
+    </span><span class="k" data-group-id="5418315955-2">end</span><span class="w">
+  </span><span class="k" data-group-id="5418315955-1">end</span></code></pre>
 <p>Next, let’s define a <code class="inline">handler_info/1</code> function at the bottom of the <code class="inline">lib/hello_web/views/page_view.ex</code> which makes use of the <code class="inline">controller_module/1</code> and <code class="inline">action_name/1</code> functions we just imported. We’ll also define a <code class="inline">connection_keys/1</code> function that we’ll use in a moment.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="w"> </span><span class="k" data-group-id="8236643344-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageView</span><span class="w"> </span><span class="k" data-group-id="7852796275-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handler_info</span><span class="p" data-group-id="8236643344-2">(</span><span class="n">conn</span><span class="p" data-group-id="8236643344-2">)</span><span class="w"> </span><span class="k" data-group-id="8236643344-3">do</span><span class="w">
-    </span><span class="s">&quot;Request Handled By: </span><span class="si" data-group-id="8236643344-4">#{</span><span class="n">controller_module</span><span class="w"> </span><span class="n">conn</span><span class="si" data-group-id="8236643344-4">}</span><span class="s">.</span><span class="si" data-group-id="8236643344-5">#{</span><span class="n">action_name</span><span class="w"> </span><span class="n">conn</span><span class="si" data-group-id="8236643344-5">}</span><span class="s">&quot;</span><span class="w">
-  </span><span class="k" data-group-id="8236643344-3">end</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handler_info</span><span class="p" data-group-id="7852796275-2">(</span><span class="n">conn</span><span class="p" data-group-id="7852796275-2">)</span><span class="w"> </span><span class="k" data-group-id="7852796275-3">do</span><span class="w">
+    </span><span class="s">&quot;Request Handled By: </span><span class="si" data-group-id="7852796275-4">#{</span><span class="n">controller_module</span><span class="w"> </span><span class="n">conn</span><span class="si" data-group-id="7852796275-4">}</span><span class="s">.</span><span class="si" data-group-id="7852796275-5">#{</span><span class="n">action_name</span><span class="w"> </span><span class="n">conn</span><span class="si" data-group-id="7852796275-5">}</span><span class="s">&quot;</span><span class="w">
+  </span><span class="k" data-group-id="7852796275-3">end</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">connection_keys</span><span class="p" data-group-id="8236643344-6">(</span><span class="n">conn</span><span class="p" data-group-id="8236643344-6">)</span><span class="w"> </span><span class="k" data-group-id="8236643344-7">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">connection_keys</span><span class="p" data-group-id="7852796275-6">(</span><span class="n">conn</span><span class="p" data-group-id="7852796275-6">)</span><span class="w"> </span><span class="k" data-group-id="7852796275-7">do</span><span class="w">
     </span><span class="n">conn</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">from_struct</span><span class="p" data-group-id="8236643344-8">(</span><span class="p" data-group-id="8236643344-8">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">keys</span><span class="p" data-group-id="8236643344-9">(</span><span class="p" data-group-id="8236643344-9">)</span><span class="w">
-  </span><span class="k" data-group-id="8236643344-7">end</span><span class="w">
-</span><span class="k" data-group-id="8236643344-1">end</span></code></pre>
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">from_struct</span><span class="p" data-group-id="7852796275-8">(</span><span class="p" data-group-id="7852796275-8">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">keys</span><span class="p" data-group-id="7852796275-9">(</span><span class="p" data-group-id="7852796275-9">)</span><span class="w">
+  </span><span class="k" data-group-id="7852796275-7">end</span><span class="w">
+</span><span class="k" data-group-id="7852796275-1">end</span></code></pre>
 <p>We have a route. We created a new controller action. We have made modifications to the main application view. Now all we need is a new template to display the string we get from <code class="inline">handler_info/1</code>. Let’s create a new one at <code class="inline">lib/hello_web/templates/page/test.html.eex</code>.</p>
-<pre><code class="html">&lt;div class=&quot;jumbotron&quot;&gt;
+<pre><code class="nohighlight makeup html">&lt;div class=&quot;jumbotron&quot;&gt;
   &lt;p&gt;&lt;%= handler_info @conn %&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 <p>Notice that <code class="inline">@conn</code> is available to us in the template for free via the <code class="inline">assigns</code> map.</p>
@@ -151,7 +151,7 @@
 <p>The answer is that we can use Elixir’s list comprehensions.</p>
 <p>Now that we have a function, visible to our template, that returns a list of keys in the <code class="inline">conn</code> struct, all we need to do is modify our <code class="inline">lib/hello_web/templates/page/test.html.eex</code> template a bit to display them.</p>
 <p>We can add a header and a list comprehension like this.</p>
-<pre><code class="html">&lt;div class=&quot;jumbotron&quot;&gt;
+<pre><code class="nohighlight makeup html">&lt;div class=&quot;jumbotron&quot;&gt;
   &lt;p&gt;&lt;%= handler_info @conn %&gt;&lt;/p&gt;
 
   &lt;h3&gt;Keys for the conn Struct&lt;/h3&gt;
@@ -164,14 +164,14 @@
 <p>When we visit <a href="http://localhost:4000/test">localhost:4000/test</a> again, we see all the keys displayed.</p>
 <h5>Render templates within templates</h5>
 <p>In our list comprehension example above, the part that actually displays the values is quite simple.</p>
-<pre><code class="html">&lt;p&gt;&lt;%= key %&gt;&lt;/p&gt;</code></pre>
+<pre><code class="nohighlight makeup html">&lt;p&gt;&lt;%= key %&gt;&lt;/p&gt;</code></pre>
 <p>We are probably fine with leaving this in place. Quite often, however, this display code is somewhat more complex, and putting it in the middle of a list comprehension makes our templates harder to read.</p>
 <p>The simple solution is to use another template! Templates are just function calls, so like regular code, composing your greater template by small, purpose-built functions can lead to clearer design. This is simply a continuation of the rendering chain we have already seen. Layouts are templates into which regular templates are rendered. Regular templates may have other templates rendered into them.</p>
 <p>Let’s turn this display snippet into its own template. Let’s create a new template file at <code class="inline">lib/hello_web/templates/page/key.html.eex</code>, like this.</p>
-<pre><code class="html">&lt;p&gt;&lt;%= @key %&gt;&lt;/p&gt;</code></pre>
+<pre><code class="nohighlight makeup html">&lt;p&gt;&lt;%= @key %&gt;&lt;/p&gt;</code></pre>
 <p>We need to change <code class="inline">key</code> to <code class="inline">@key</code> here because this is a new template, not part of a list comprehension. The way we pass data into a template is by the <code class="inline">assigns</code> map, and the way we get the values out of the <code class="inline">assigns</code> map is by referencing the keys with a preceding <code class="inline">@</code>. <code class="inline">@</code> is actually a macro that translates <code class="inline">@key</code> to <code class="inline">Map.get(assigns, :key)</code>.</p>
 <p>Now that we have a template, we simply render it within our list comprehension in the <code class="inline">test.html.eex</code> template.</p>
-<pre><code class="html">&lt;div class=&quot;jumbotron&quot;&gt;
+<pre><code class="nohighlight makeup html">&lt;div class=&quot;jumbotron&quot;&gt;
   &lt;p&gt;&lt;%= handler_info @conn %&gt;&lt;/p&gt;
 
   &lt;h3&gt;Keys for the conn Struct&lt;/h3&gt;
@@ -185,7 +185,7 @@
 <p>Often, we find that small pieces of data need to be rendered the same way in different parts of the application. It’s a good practice to move these templates into their own shared directory to indicate that they ought to be available anywhere in the app.</p>
 <p>Let’s move our template into a shared view.</p>
 <p><code class="inline">key.html.eex</code> is currently rendered by the <code class="inline">HelloWeb.PageView</code> module, but we use a render call which assumes that the current schema is what we want to render with. We could make that explicit, and re-write it like this:</p>
-<pre><code class="html">&lt;div class=&quot;jumbotron&quot;&gt;
+<pre><code class="nohighlight makeup html">&lt;div class=&quot;jumbotron&quot;&gt;
   ...
 
   &lt;%= for key &lt;- connection_keys @conn do %&gt;
@@ -193,11 +193,11 @@
   &lt;% end %&gt;
 &lt;/div&gt;</code></pre>
 <p>Since we want this to live in a new <code class="inline">lib/hello_web/templates/shared</code> directory, we need a new individual view to render templates in that directory, <code class="inline">lib/hello_web/views/shared_view.ex</code>.</p>
-<pre><code class="nohighlight makeup"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.SharedView</span><span class="w"> </span><span class="k" data-group-id="0647603849-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.SharedView</span><span class="w"> </span><span class="k" data-group-id="1025496168-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:view</span><span class="w">
-</span><span class="k" data-group-id="0647603849-1">end</span></code></pre>
+</span><span class="k" data-group-id="1025496168-1">end</span></code></pre>
 <p>Now we can move <code class="inline">key.html.eex</code> from the <code class="inline">lib/hello_web/templates/page</code> directory into the <code class="inline">lib/hello_web/templates/shared</code> directory. Once that happens, we can change the render call in <code class="inline">lib/hello_web/templates/page/test.html.eex</code> to use the new <code class="inline">HelloWeb.SharedView</code>.</p>
-<pre><code class="html">&lt;%= for key &lt;- connection_keys @conn do %&gt;
+<pre><code class="nohighlight makeup html">&lt;%= for key &lt;- connection_keys @conn do %&gt;
   &lt;%= render HelloWeb.SharedView, &quot;key.html&quot;, key: key %&gt;
 &lt;% end %&gt;</code></pre>
 <p>Going back to <a href="http://localhost:4000/test">localhost:4000/test</a> again. The page should look exactly as it did before.</p>
@@ -206,11 +206,11 @@
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.18.3),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.18.3),
           </span>
           <span class="line">
             designed by
-            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
             </span>
         </p>
       </footer>
@@ -218,7 +218,7 @@
   </div>
 </section>
 </div>
-  <script src="dist/app-9bd040e5e5.js"></script>
+  <script src="dist/app-b2d0635bae.js"></script>
   
   <script src="dist/ex_doc_makeup-js.js"></script>
   
