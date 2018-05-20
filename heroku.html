@@ -152,7 +152,7 @@
 
 <p><a href="https://git-scm.com/">Git</a> is a popular decentralized revision control system and is also used to deploy apps to Heroku.</p>
 <p>Before we can push to Heroku we’ll need to initialize a local Git repository and commit our files to it. We can do so by running the following commands in our project directory:</p>
-<pre><code class="nohighlight makeup console">$ git init
+<pre><code class="console">$ git init
 $ git add .
 $ git commit -m &quot;Initial commit&quot;</code></pre>
 <p>Heroku offers some great information on how it is using Git <a href="https://devcenter.heroku.com/articles/git#tracking-your-app-in-git">here</a>.</p>
@@ -179,7 +179,7 @@ $ git commit -m &quot;Initial commit&quot;</code></pre>
 <p>Now that we have the Toolbelt installed, let’s create the Heroku application. In our project directory, run:</p>
 <blockquote><p>Note: the first time we use a Heroku command, it may prompt us to log in. If this happens, just enter the email and password you specified during signup.</p>
 </blockquote>
-<pre><code class="nohighlight makeup console">$ heroku create --buildpack &quot;https://github.com/HashNuke/heroku-buildpack-elixir.git&quot;
+<pre><code class="console">$ heroku create --buildpack &quot;https://github.com/HashNuke/heroku-buildpack-elixir.git&quot;
 Creating mysterious-meadow-6277... done, stack is cedar-14
 Buildpack set. Next release on mysterious-meadow-6277 will use https://github.com/HashNuke/heroku-buildpack-elixir.git.
 https://mysterious-meadow-6277.herokuapp.com/ | https://git.heroku.com/mysterious-meadow-6277.git
@@ -198,7 +198,7 @@ A <a href="https://devcenter.heroku.com/articles/buildpacks">buildpack</a> is a 
 
 <p>We need to compile static assets for a successful Phoenix deployment. The <a href="https://github.com/gjaldon/heroku-buildpack-phoenix-static">Phoenix static buildpack</a> can take care of that for us, so let’s add it now.</p>
 <p><em>Skip this step if you do not have any static assets (i.e. you created your project with the <code class="inline">--no-brunch --no-html</code> flags).</em></p>
-<pre><code class="nohighlight makeup console">$ heroku buildpacks:add https://github.com/gjaldon/heroku-buildpack-phoenix-static.git
+<pre><code class="console">$ heroku buildpacks:add https://github.com/gjaldon/heroku-buildpack-phoenix-static.git
 Buildpack added. Next release on mysterious-meadow-6277 will use:
   1. https://github.com/HashNuke/heroku-buildpack-elixir.git
   2. https://github.com/gjaldon/heroku-buildpack-phoenix-static.git
@@ -213,21 +213,21 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 <p>First, let’s make sure our secret key is loaded from Heroku’s environment variables instead of <code class="inline">config/prod.secret.exs</code> by adding a <code class="inline">secret_key_base</code> line  in <code class="inline">config/prod.exs</code> (remember to add a comma to the end of the preceding line):</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w">
   </span><span class="ss">load_from_system_env</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
-  </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6441684495-1">[</span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p" data-group-id="6441684495-1">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8600890236-1">[</span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p" data-group-id="8600890236-1">]</span><span class="p">,</span><span class="w">
   </span><span class="ss">cache_static_manifest</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;priv/static/cache_manifest.json&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">secret_key_base</span><span class="p">:</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">fetch!</span><span class="p" data-group-id="6441684495-2">(</span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="6441684495-3">(</span><span class="p" data-group-id="6441684495-3">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="6441684495-2">)</span></code></pre>
+  </span><span class="ss">secret_key_base</span><span class="p">:</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">fetch!</span><span class="p" data-group-id="8600890236-2">(</span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="8600890236-3">(</span><span class="p" data-group-id="8600890236-3">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="8600890236-2">)</span></code></pre>
 <p>Then, we’ll add the production database configuration to <code class="inline">config/prod.exs</code>:</p>
 <pre><code class="nohighlight makeup elixir"><span class="c1"># Configure your database</span><span class="w">
 </span><span class="n">config</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w">
   </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="nc">Ecto.Adapters.Postgres</span><span class="p">,</span><span class="w">
-  </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="1027141686-1">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="p" data-group-id="1027141686-1">)</span><span class="p">,</span><span class="w">
-  </span><span class="ss">pool_size</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="o">.</span><span class="n">to_integer</span><span class="p" data-group-id="1027141686-2">(</span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="1027141686-3">(</span><span class="s">&quot;POOL_SIZE&quot;</span><span class="p" data-group-id="1027141686-3">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="p" data-group-id="1027141686-2">)</span><span class="p">,</span><span class="w">
+  </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="0989444683-1">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="p" data-group-id="0989444683-1">)</span><span class="p">,</span><span class="w">
+  </span><span class="ss">pool_size</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="o">.</span><span class="n">to_integer</span><span class="p" data-group-id="0989444683-2">(</span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="0989444683-3">(</span><span class="s">&quot;POOL_SIZE&quot;</span><span class="p" data-group-id="0989444683-3">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="p" data-group-id="0989444683-2">)</span><span class="p">,</span><span class="w">
   </span><span class="ss">ssl</span><span class="p">:</span><span class="w"> </span><span class="no">true</span></code></pre>
 <p>Now, let’s tell Phoenix to use our Heroku URL and enforce we only use the SSL version of the website. Find the url line:</p>
-<pre><code class="nohighlight makeup elixir"><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0507134071-1">[</span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p" data-group-id="0507134071-1">]</span><span class="p">,</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3512382900-1">[</span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p" data-group-id="3512382900-1">]</span><span class="p">,</span></code></pre>
 <p>… and replace it with this (don’t forget to replace <code class="inline">mysterious-meadow-6277</code> with your application name):</p>
-<pre><code class="nohighlight makeup elixir"><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8175155515-1">[</span><span class="ss">scheme</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mysterious-meadow-6277.herokuapp.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p" data-group-id="8175155515-1">]</span><span class="p">,</span><span class="w">
-</span><span class="ss">force_ssl</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8175155515-2">[</span><span class="ss">rewrite_on</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8175155515-3">[</span><span class="ss">:x_forwarded_proto</span><span class="p" data-group-id="8175155515-3">]</span><span class="p" data-group-id="8175155515-2">]</span><span class="p">,</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6268773605-1">[</span><span class="ss">scheme</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mysterious-meadow-6277.herokuapp.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p" data-group-id="6268773605-1">]</span><span class="p">,</span><span class="w">
+</span><span class="ss">force_ssl</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6268773605-2">[</span><span class="ss">rewrite_on</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6268773605-3">[</span><span class="ss">:x_forwarded_proto</span><span class="p" data-group-id="6268773605-3">]</span><span class="p" data-group-id="6268773605-2">]</span><span class="p">,</span></code></pre>
 <p>Since our configuration is now handled using Heroku’s environment variables, we don’t need to import the <code class="inline">config/prod.secret.exs</code> file in <code class="inline">/config/prod.exs</code> any longer, so we can delete the following line:</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">import_config</span><span class="w"> </span><span class="s">&quot;prod.secret.exs&quot;</span></code></pre>
 <p>Our <code class="inline">config/prod.exs</code> now looks like this:</p>
@@ -237,10 +237,10 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 
 </span><span class="n">config</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w">
   </span><span class="ss">load_from_system_env</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
-  </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0949466277-1">[</span><span class="ss">scheme</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mysterious-meadow-6277.herokuapp.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p" data-group-id="0949466277-1">]</span><span class="p">,</span><span class="w">
-  </span><span class="ss">force_ssl</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0949466277-2">[</span><span class="ss">rewrite_on</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0949466277-3">[</span><span class="ss">:x_forwarded_proto</span><span class="p" data-group-id="0949466277-3">]</span><span class="p" data-group-id="0949466277-2">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2636810193-1">[</span><span class="ss">scheme</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mysterious-meadow-6277.herokuapp.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p" data-group-id="2636810193-1">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">force_ssl</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2636810193-2">[</span><span class="ss">rewrite_on</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2636810193-3">[</span><span class="ss">:x_forwarded_proto</span><span class="p" data-group-id="2636810193-3">]</span><span class="p" data-group-id="2636810193-2">]</span><span class="p">,</span><span class="w">
   </span><span class="ss">cache_static_manifest</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;priv/static/cache_manifest.json&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">secret_key_base</span><span class="p">:</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">fetch!</span><span class="p" data-group-id="0949466277-4">(</span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="0949466277-5">(</span><span class="p" data-group-id="0949466277-5">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="0949466277-4">)</span><span class="w">
+  </span><span class="ss">secret_key_base</span><span class="p">:</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">fetch!</span><span class="p" data-group-id="2636810193-4">(</span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="2636810193-5">(</span><span class="p" data-group-id="2636810193-5">)</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="2636810193-4">)</span><span class="w">
 
 </span><span class="c1"># Do not print debug messages in production</span><span class="w">
 </span><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">level</span><span class="p">:</span><span class="w"> </span><span class="ss">:info</span><span class="w">
@@ -248,11 +248,11 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 </span><span class="c1"># Configure your database</span><span class="w">
 </span><span class="n">config</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w">
   </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="nc">Ecto.Adapters.Postgres</span><span class="p">,</span><span class="w">
-  </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="0949466277-6">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="p" data-group-id="0949466277-6">)</span><span class="p">,</span><span class="w">
-  </span><span class="ss">pool_size</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="o">.</span><span class="n">to_integer</span><span class="p" data-group-id="0949466277-7">(</span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="0949466277-8">(</span><span class="s">&quot;POOL_SIZE&quot;</span><span class="p" data-group-id="0949466277-8">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="p" data-group-id="0949466277-7">)</span><span class="p">,</span><span class="w">
+  </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="2636810193-6">(</span><span class="s">&quot;DATABASE_URL&quot;</span><span class="p" data-group-id="2636810193-6">)</span><span class="p">,</span><span class="w">
+  </span><span class="ss">pool_size</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="o">.</span><span class="n">to_integer</span><span class="p" data-group-id="2636810193-7">(</span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="2636810193-8">(</span><span class="s">&quot;POOL_SIZE&quot;</span><span class="p" data-group-id="2636810193-8">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="p" data-group-id="2636810193-7">)</span><span class="p">,</span><span class="w">
   </span><span class="ss">ssl</span><span class="p">:</span><span class="w"> </span><span class="no">true</span></code></pre>
 <p>Finally, we need to decrease the timeout for the websocket transport in <code class="inline">lib/hello_web/channels/user_socket.ex</code>:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.UserSocket</span><span class="w"> </span><span class="k" data-group-id="9298449815-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.UserSocket</span><span class="w"> </span><span class="k" data-group-id="7968365841-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Socket</span><span class="w">
 
   </span><span class="n">...</span><span class="w">
@@ -261,7 +261,7 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
   </span><span class="n">transport</span><span class="w"> </span><span class="ss">:websocket</span><span class="p">,</span><span class="w"> </span><span class="nc">Phoenix.Transports.WebSocket</span><span class="p">,</span><span class="w">
     </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">45_000</span><span class="w">
     </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="9298449815-1">end</span></code></pre>
+</span><span class="k" data-group-id="7968365841-1">end</span></code></pre>
 <p>This ensures that any idle connections are closed by Phoenix before they reach Heroku’s 55-second timeout window.</p>
 <p>Lastly, we’ll need to create a <a href="https://devcenter.heroku.com/articles/procfile">Procfile</a> (a text file called “Procfile” in the root of our project’s folder) with the following line:</p>
 <pre><code class="nohighlight makeup elixir"><span class="ss">web</span><span class="p">:</span><span class="w"> </span><span class="nc">MIX_ENV</span><span class="o">=</span><span class="n">prod</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="n">phx</span><span class="o">.</span><span class="n">server</span></code></pre>
@@ -271,19 +271,19 @@ Run `git push heroku master` to create a new release using these buildpacks.</co
 </h2>
 
 <p>The <code class="inline">DATABASE_URL</code> config var is automatically created by Heroku when we add the <a href="https://elements.heroku.com/addons/heroku-postgresql">Heroku Postgres add-on</a>. We can create the database via the heroku toolbelt:</p>
-<pre><code class="nohighlight makeup console">$ heroku addons:create heroku-postgresql:hobby-dev</code></pre>
+<pre><code class="console">$ heroku addons:create heroku-postgresql:hobby-dev</code></pre>
 <p>Now we set the <code class="inline">POOL_SIZE</code> config var:</p>
-<pre><code class="nohighlight makeup console">$ heroku config:set POOL_SIZE=18</code></pre>
+<pre><code class="console">$ heroku config:set POOL_SIZE=18</code></pre>
 <p>This value should be just under the number of available connections, leaving a couple open for migrations and mix tasks. The hobby-dev database allows 20 connections, so we set this number to 18. If additional dynos will share the database, reduce the <code class="inline">POOL_SIZE</code> to give each dyno an equal share.</p>
 <p>When running a mix task later (after we have pushed the project to Heroku) you will also want to limit its pool size like so:</p>
-<pre><code class="nohighlight makeup console">$ heroku run &quot;POOL_SIZE=2 mix hello.task&quot;</code></pre>
+<pre><code class="console">$ heroku run &quot;POOL_SIZE=2 mix hello.task&quot;</code></pre>
 <p>So that Ecto does not attempt to open more than the available connections.</p>
 <p>We still have to create the <code class="inline">SECRET_KEY_BASE</code> config based on a random string. First, use <code class="inline">mix phx.gen.secret</code> to get a new secret:</p>
-<pre><code class="nohighlight makeup console">$ mix phx.gen.secret
+<pre><code class="console">$ mix phx.gen.secret
 xvafzY4y01jYuzLm3ecJqo008dVnU3CN4f+MamNd1Zue4pXvfvUjbiXT8akaIF53</code></pre>
 <p>Your random string will be different; don’t use this example value.</p>
 <p>Now set it in Heroku:</p>
-<pre><code class="nohighlight makeup console">$ heroku config:set SECRET_KEY_BASE=&quot;xvafzY4y01jYuzLm3ecJqo008dVnU3CN4f+MamNd1Zue4pXvfvUjbiXT8akaIF53&quot;
+<pre><code class="console">$ heroku config:set SECRET_KEY_BASE=&quot;xvafzY4y01jYuzLm3ecJqo008dVnU3CN4f+MamNd1Zue4pXvfvUjbiXT8akaIF53&quot;
 Setting config vars and restarting mysterious-meadow-6277... done, v3
 SECRET_KEY_BASE: xvafzY4y01jYuzLm3ecJqo008dVnU3CN4f+MamNd1Zue4pXvfvUjbiXT8akaIF53</code></pre>
 <p>If you need to make any of your config variables available at compile time, you will need to explicitly define which ones in a configuration file. Create a file <code class="inline">elixir_buildpack.config</code> in your application’s root directory and add a line like: <code class="inline">config_vars_to_export=(MY_VAR)</code>. See <a href="https://github.com/HashNuke/heroku-buildpack-elixir#specifying-config-vars-to-export-at-compile-time">here</a> for more information.</p>
@@ -299,7 +299,7 @@ SECRET_KEY_BASE: xvafzY4y01jYuzLm3ecJqo008dVnU3CN4f+MamNd1Zue4pXvfvUjbiXT8akaIF5
 </span><span class="err">$</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">lib</span><span class="o">/</span><span class="n">hello_web</span><span class="o">/</span><span class="n">channels</span><span class="o">/</span><span class="n">user_socket</span><span class="o">.</span><span class="n">ex</span><span class="w">
 </span><span class="err">$</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">commit</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="s">&quot;Use production config from Heroku ENV variables and decrease socket timeout&quot;</span></code></pre>
 <p>And deploy:</p>
-<pre><code class="nohighlight makeup console">$ git push heroku master
+<pre><code class="console">$ git push heroku master
 Counting objects: 55, done.
 Delta compression using up to 8 threads.
 Compressing objects: 100% (49/49), done.
@@ -383,7 +383,7 @@ remote: Verifying deploy... done.
 To https://git.heroku.com/mysterious-meadow-6277.git
  * [new branch]      master -&gt; master</code></pre>
 <p>Typing <code class="inline">heroku open</code> in the terminal should launch a browser with the Phoenix welcome page opened. In the event that you are using Ecto to access a database, you will also need to run migrations after the first deploy:</p>
-<pre><code class="nohighlight makeup console">$ heroku run &quot;POOL_SIZE=2 mix ecto.migrate&quot;</code></pre>
+<pre><code class="console">$ heroku run &quot;POOL_SIZE=2 mix ecto.migrate&quot;</code></pre>
 <p>And that’s it!</p>
 <h2 id="useful-heroku-commands" class="section-heading">
   <a href="#useful-heroku-commands" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -391,11 +391,11 @@ To https://git.heroku.com/mysterious-meadow-6277.git
 </h2>
 
 <p>We can look at the logs of our application by running the following command in our project directory:</p>
-<pre><code class="nohighlight makeup console">$ heroku logs # use --tail if you want to tail them</code></pre>
+<pre><code class="console">$ heroku logs # use --tail if you want to tail them</code></pre>
 <p>We can also start an IEx session attached to our terminal for experimenting in our app’s environment:</p>
-<pre><code class="nohighlight makeup console">$ heroku run &quot;POOL_SIZE=2 iex -S mix&quot;</code></pre>
+<pre><code class="console">$ heroku run &quot;POOL_SIZE=2 iex -S mix&quot;</code></pre>
 <p>In fact, we can run anything using the <code class="inline">heroku run</code> command, like the Ecto migration task from above:</p>
-<pre><code class="nohighlight makeup console">$ heroku run &quot;POOL_SIZE=2 mix ecto.migrate&quot;</code></pre>
+<pre><code class="console">$ heroku run &quot;POOL_SIZE=2 mix ecto.migrate&quot;</code></pre>
 <h2 id="troubleshooting" class="section-heading">
   <a href="#troubleshooting" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Troubleshooting
@@ -407,7 +407,7 @@ To https://git.heroku.com/mysterious-meadow-6277.git
 </h3>
 
 <p>Occasionally, an application will compile locally, but not on Heroku. The compilation error on Heroku will look something like this:</p>
-<pre><code class="nohighlight makeup console">remote: == Compilation error on file lib/postgrex/connection.ex ==
+<pre><code class="console">remote: == Compilation error on file lib/postgrex/connection.ex ==
 remote: could not compile dependency :postgrex, &quot;mix compile&quot; failed. You can recompile this dependency with &quot;mix deps.compile postgrex&quot;, update it with &quot;mix deps.update postgrex&quot; or clean it with &quot;mix deps.clean postgrex&quot;
 remote: ** (CompileError) lib/postgrex/connection.ex:207: Postgrex.Connection.__struct__/0 is undefined, cannot expand struct Postgrex.Connection
 remote:     (elixir) src/elixir_map.erl:58: :elixir_map.translate_struct/4
@@ -432,11 +432,11 @@ To https://git.heroku.com/mysterious-meadow-6277.git</code></pre>
 
 <p>If you are constantly getting connection timeouts while running <code class="inline">heroku run</code> this could mean that your internet provider has blocked
 port number 5000:</p>
-<pre><code class="nohighlight makeup console">heroku run &quot;POOL_SIZE=2 mix myapp.task&quot;
+<pre><code class="console">heroku run &quot;POOL_SIZE=2 mix myapp.task&quot;
 Running POOL_SIZE=2 mix myapp.task on mysterious-meadow-6277... !
 ETIMEDOUT: connect ETIMEDOUT 50.19.103.36:5000</code></pre>
 <p>You can overcome this by adding <code class="inline">detached</code> option to run command:</p>
-<pre><code class="nohighlight makeup console">heroku run:detached &quot;POOL_SIZE=2 mix ecto.migrate&quot;
+<pre><code class="console">heroku run:detached &quot;POOL_SIZE=2 mix ecto.migrate&quot;
 Running POOL_SIZE=2 mix ecto.migrate on mysterious-meadow-6277... done, run.8089 (Free)</code></pre>
 
       <footer class="footer">

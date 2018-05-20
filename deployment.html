@@ -122,7 +122,7 @@
 <p>With your secret information properly secured, it is time to configure assets!
 Before taking this step, we need to do one bit of preparation.
 Since we will be readying everything for production, we need to do some setup in that environment by getting our dependencies and compiling.</p>
-<pre><code class="nohighlight makeup console">$ mix deps.get --only prod
+<pre><code class="console">$ mix deps.get --only prod
 $ MIX_ENV=prod mix compile</code></pre>
 <h2 id="compiling-your-application-assets" class="section-heading">
   <a href="#compiling-your-application-assets" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -131,14 +131,14 @@ $ MIX_ENV=prod mix compile</code></pre>
 
 <p>This step is required only if you have static assets like images, JavaScript, stylesheets and more in your Phoenix applications. By default, Phoenix uses brunch, and that’s what we are going to explore.</p>
 <p>Compilation of static assets happens in two steps:</p>
-<pre><code class="nohighlight makeup console">$ brunch build --production
+<pre><code class="console">$ brunch build --production
 
 $ mix phx.digest
 
 Check your digested files at &quot;priv/static&quot;.</code></pre>
 <p>And that is it! The first command builds the assets and the second generates digests as well as a cache manifest file so Phoenix can quickly serve assets in production.</p>
 <p>Keep in mind that, if you by any chance forget to run the steps above, Phoenix will show an error message:</p>
-<pre><code class="nohighlight makeup console">$ PORT=4001 MIX_ENV=prod mix phx.server
+<pre><code class="console">$ PORT=4001 MIX_ENV=prod mix phx.server
 10:50:18.732 [info] Running MyApp.Endpoint with Cowboy on http://example.com
 10:50:18.735 [error] Could not find static manifest at &quot;my_app/_build/prod/lib/foo/priv/static/cache_manifest.json&quot;. Run &quot;mix phoenix.digest&quot; after building your static files or remove the configuration from &quot;config/prod.exs&quot;.</code></pre>
 <p>The error message is quite clear: it says Phoenix could not find a static manifest. Just run the commands above to fix it or, if you are not serving or don’t care about assets at all, you can just remove the <code class="inline">cache_static_manifest</code> configuration from <code class="inline">config/prod.exs</code>.</p>
@@ -148,14 +148,14 @@ Check your digested files at &quot;priv/static&quot;.</code></pre>
 </h2>
 
 <p>To run Phoenix in production, we need to set the <code class="inline">PORT</code> and <code class="inline">MIX_ENV</code> environment variables when invoking <code class="inline">mix phoenix.server</code>:</p>
-<pre><code class="nohighlight makeup console">$ PORT=4001 MIX_ENV=prod mix phx.server
+<pre><code class="console">$ PORT=4001 MIX_ENV=prod mix phx.server
 10:59:19.136 [info] Running MyApp.Endpoint with Cowboy on http://example.com</code></pre>
 <p>In case you get an error message, please read it carefully, and open up a bug report if it is still not clear how to address it.</p>
 <p>You can also run your application inside an interactive shell:</p>
-<pre><code class="nohighlight makeup console">$ PORT=4001 MIX_ENV=prod iex -S mix phx.server
+<pre><code class="console">$ PORT=4001 MIX_ENV=prod iex -S mix phx.server
 10:59:19.136 [info] Running MyApp.Endpoint with Cowboy on http://example.com</code></pre>
 <p>Or run it detached from the iex console. This effectively daemonizes the process so it can run independently in the background:</p>
-<pre><code class="nohighlight makeup elixir"><span class="nc">MIX_ENV</span><span class="o">=</span><span class="n">prod</span><span class="w"> </span><span class="nc">PORT</span><span class="o">=</span><span class="mi">4001</span><span class="w"> </span><span class="n">elixir</span><span class="w"> </span><span class="o">--</span><span class="n">detached</span><span class="w"> </span><span class="o">-</span><span class="nc">S</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="k" data-group-id="9788184443-1">do</span><span class="w"> </span><span class="n">compile</span><span class="p">,</span><span class="w"> </span><span class="n">phx</span><span class="o">.</span><span class="n">server</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="nc">MIX_ENV</span><span class="o">=</span><span class="n">prod</span><span class="w"> </span><span class="nc">PORT</span><span class="o">=</span><span class="mi">4001</span><span class="w"> </span><span class="n">elixir</span><span class="w"> </span><span class="o">--</span><span class="n">detached</span><span class="w"> </span><span class="o">-</span><span class="nc">S</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="k" data-group-id="6317418671-1">do</span><span class="w"> </span><span class="n">compile</span><span class="p">,</span><span class="w"> </span><span class="n">phx</span><span class="o">.</span><span class="n">server</span></code></pre>
 <p>Running the application in detached mode allows us to keep the application running even after we terminate the shell connection with the server.</p>
 <h2 id="putting-it-all-together" class="section-heading">
   <a href="#putting-it-all-together" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>

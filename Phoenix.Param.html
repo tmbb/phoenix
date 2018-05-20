@@ -90,7 +90,7 @@
           <p>A protocol that converts data structures into URL parameters.</p>
 <p>This protocol is used by URL helpers and other parts of the
 Phoenix stack. For example, when you write:</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">user_path</span><span class="p" data-group-id="1684070609-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:edit</span><span class="p">,</span><span class="w"> </span><span class="na">@user</span><span class="p" data-group-id="1684070609-1">)</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="n">user_path</span><span class="p" data-group-id="9816775898-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:edit</span><span class="p">,</span><span class="w"> </span><span class="na">@user</span><span class="p" data-group-id="9816775898-1">)</span></code></pre>
 <p>Phoenix knows how to extract the <code class="inline">:id</code> from <code class="inline">@user</code> thanks
 to this protocol.</p>
 <p>By default, Phoenix implements this protocol for integers, binaries, atoms,
@@ -106,22 +106,22 @@ specific implementation.</p>
 one can simply implement this protocol.</p>
 <p>However, for convenience, this protocol can also be
 derivable. For example:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="8087432314-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="9012909060-1">do</span><span class="w">
   </span><span class="na">@derive</span><span class="w"> </span><span class="nc">Phoenix.Param</span><span class="w">
-  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="8087432314-2">[</span><span class="ss">:id</span><span class="p">,</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="8087432314-2">]</span><span class="w">
-</span><span class="k" data-group-id="8087432314-1">end</span></code></pre>
+  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="9012909060-2">[</span><span class="ss">:id</span><span class="p">,</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="9012909060-2">]</span><span class="w">
+</span><span class="k" data-group-id="9012909060-1">end</span></code></pre>
 <p>By default, the derived implementation will also use
 the <code class="inline">:id</code> key. In case the user does not contain an
 <code class="inline">:id</code> key, the key can be specified with an option:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="3256625694-1">do</span><span class="w">
-  </span><span class="na">@derive</span><span class="w"> </span><span class="p" data-group-id="3256625694-2">{</span><span class="nc">Phoenix.Param</span><span class="p">,</span><span class="w"> </span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="3256625694-2">}</span><span class="w">
-  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="3256625694-3">[</span><span class="ss">:username</span><span class="p" data-group-id="3256625694-3">]</span><span class="w">
-</span><span class="k" data-group-id="3256625694-1">end</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="5198852275-1">do</span><span class="w">
+  </span><span class="na">@derive</span><span class="w"> </span><span class="p" data-group-id="5198852275-2">{</span><span class="nc">Phoenix.Param</span><span class="p">,</span><span class="w"> </span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="5198852275-2">}</span><span class="w">
+  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="5198852275-3">[</span><span class="ss">:username</span><span class="p" data-group-id="5198852275-3">]</span><span class="w">
+</span><span class="k" data-group-id="5198852275-1">end</span></code></pre>
 <p>will automatically use <code class="inline">:username</code> in URLs.</p>
 <p>When using Ecto, you must call <code class="inline">@derive</code> before
 your <code class="inline">schema</code> call:</p>
-<pre><code class="nohighlight makeup elixir"><span class="na">@derive</span><span class="w"> </span><span class="p" data-group-id="3479806459-1">{</span><span class="nc">Phoenix.Param</span><span class="p">,</span><span class="w"> </span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="3479806459-1">}</span><span class="w">
-</span><span class="n">schema</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="k" data-group-id="3479806459-2">do</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="na">@derive</span><span class="w"> </span><span class="p" data-group-id="1349416311-1">{</span><span class="nc">Phoenix.Param</span><span class="p">,</span><span class="w"> </span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="1349416311-1">}</span><span class="w">
+</span><span class="n">schema</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="k" data-group-id="1349416311-2">do</span></code></pre>
 
         </section>
       

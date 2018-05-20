@@ -77,32 +77,32 @@
 <h1>Routing</h1>
 <p>Routers are the main hubs of Phoenix applications. They match HTTP requests to controller actions, wire up real-time channel handlers, and define a series of pipeline transformations for scoping middleware to sets of routes.</p>
 <p>The router file that Phoenix generates, <code class="inline">lib/hello_web/router.ex</code>, will look something like this one:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="0161655860-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="0951225445-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="0161655860-2">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0161655860-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="0161655860-3">]</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="0951225445-2">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0951225445-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="0951225445-3">]</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_flash</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:protect_from_forgery</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_secure_browser_headers</span><span class="w">
-  </span><span class="k" data-group-id="0161655860-2">end</span><span class="w">
+  </span><span class="k" data-group-id="0951225445-2">end</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="0161655860-4">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0161655860-5">[</span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="0161655860-5">]</span><span class="w">
-  </span><span class="k" data-group-id="0161655860-4">end</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="0951225445-4">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0951225445-5">[</span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="0951225445-5">]</span><span class="w">
+  </span><span class="k" data-group-id="0951225445-4">end</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="0161655860-6">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="0951225445-6">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="c1"># Use the default browser stack</span><span class="w">
 
     </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
-  </span><span class="k" data-group-id="0161655860-6">end</span><span class="w">
+  </span><span class="k" data-group-id="0951225445-6">end</span><span class="w">
 
   </span><span class="c1"># Other scopes may use custom stacks.</span><span class="w">
   </span><span class="c1"># scope &quot;/api&quot;, HelloWeb do</span><span class="w">
   </span><span class="c1">#   pipe_through :api</span><span class="w">
   </span><span class="c1"># end</span><span class="w">
-</span><span class="k" data-group-id="0161655860-1">end</span></code></pre>
+</span><span class="k" data-group-id="0951225445-1">end</span></code></pre>
 <p>The name you gave your application will appear instead of <code class="inline">Hello</code> for both the router module and controller name.</p>
 <p>The first line of this module, <code class="inline">use HelloWeb, :router</code>, simply makes Phoenix router functions available in our particular router.</p>
 <p>Scopes have their own section in this guide, so we won’t spend time on the <code class="inline">scope &quot;/&quot;, HelloWeb do</code> block here. The <code class="inline">pipe_through :browser</code> line will get a full treatment in the Pipeline section of this guide. For now, you only need to know that pipelines allow a set of middleware transformations to be applied to different sets of routes.</p>
@@ -111,7 +111,7 @@
 <p><code class="inline">get</code> is a Phoenix macro which expands out to define one clause of the <code class="inline">match/5</code> function. It corresponds to the HTTP verb GET. Similar macros exist for other HTTP verbs including POST, PUT, PATCH, DELETE, OPTIONS, CONNECT, TRACE and HEAD.</p>
 <p>The first argument to these macros is the path. Here, it is the root of the application, <code class="inline">/</code>. The next two arguments are the controller and action we want to have handle this request. These macros may also take other options, which we will see throughout the rest of this guide.</p>
 <p>If this were the only route in our router module, the clause of the <code class="inline">match/5</code> function would look like this after the macro is expanded:</p>
-<pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="kd">def</span><span class="w"> </span><span class="nf">match</span><span class="p" data-group-id="1551933365-1">(</span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1551933365-2">[</span><span class="p" data-group-id="1551933365-2">]</span><span class="p" data-group-id="1551933365-1">)</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="kd">def</span><span class="w"> </span><span class="nf">match</span><span class="p" data-group-id="2280915962-1">(</span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2280915962-2">[</span><span class="p" data-group-id="2280915962-2">]</span><span class="p" data-group-id="2280915962-1">)</span></code></pre>
 <p>The body of the <code class="inline">match/5</code> function sets up the connection and invokes the matched controller action.</p>
 <p>As we add more routes, more clauses of the match function will be added to our router module. These will behave like any other multi-clause function in Elixir. They will be tried in order from the top, and the first clause to match the parameters given (verb and path) will be executed. After a match is found, the search will stop and no other clauses will be tried.</p>
 <p>This means that it is possible to create a route which will never match, based on the HTTP verb and the path, regardless of the controller and action.</p>
@@ -126,7 +126,7 @@
 
 <p>Phoenix provides a great tool for investigating routes in an application, the mix task <code class="inline">phx.routes</code>.</p>
 <p>Let’s see how this works. Go to the root of a newly-generated Phoenix application and run <code class="inline">$ mix phx.routes</code>. (If you haven’t already done so, you’ll need to run <code class="inline">$ mix do deps.get, compile</code> before running the <code class="inline">routes</code> task.) You should see something like the following, generated from the only route we currently have:</p>
-<pre><code class="nohighlight makeup console">$ mix phx.routes
+<pre><code class="console">$ mix phx.routes
 page_path  GET  /  HelloWeb.PageController :index</code></pre>
 <p>The output tells us that any HTTP GET request for the root of the application will be handled by the <code class="inline">index</code> action of the <code class="inline">HelloWeb.PageController</code>.</p>
 <p><code class="inline">page_path</code> is an example of what Phoenix calls a path helper, and we’ll talk about those very soon.</p>
@@ -137,12 +137,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 
 <p>The router supports other macros besides those for HTTP verbs like <code class="inline">get</code>, <code class="inline">post</code>, and <code class="inline">put</code>. The most important among them is <code class="inline">resources</code>, which expands out to eight clauses of the <code class="inline">match/5</code> function.</p>
 <p>Let’s add a resource to our <code class="inline">lib/hello_web/router.ex</code> file like this:</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="1387237247-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="3516713314-1">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="c1"># Use the default browser stack</span><span class="w">
 
   </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="w">
-</span><span class="k" data-group-id="1387237247-1">end</span></code></pre>
+</span><span class="k" data-group-id="3516713314-1">end</span></code></pre>
 <p>For this purpose, it doesn’t matter that we don’t actually have a <code class="inline">HelloWeb.UserController</code>.</p>
 <p>Then go to the root of your project, and run <code class="inline">$ mix phx.routes</code></p>
 <p>You should see something like the following:</p>
@@ -176,12 +176,12 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </ul>
 <p>If we don’t feel that we need all of these routes, we can be selective using the <code class="inline">:only</code> and <code class="inline">:except</code> options.</p>
 <p>Let’s say we have a read-only posts resource. We could define it like this:</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/posts&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PostController</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5799405004-1">[</span><span class="ss">:index</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p" data-group-id="5799405004-1">]</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/posts&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PostController</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8878820966-1">[</span><span class="ss">:index</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p" data-group-id="8878820966-1">]</span></code></pre>
 <p>Running <code class="inline">$ mix phx.routes</code> shows that we now only have the routes to the index and show actions defined.</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">post_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">posts</span><span class="w">      </span><span class="nc">HelloWeb.PostController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
 </span><span class="n">post_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="ss">:id</span><span class="w">  </span><span class="nc">HelloWeb.PostController</span><span class="w"> </span><span class="ss">:show</span></code></pre>
 <p>Similarly, if we have a comments resource, and we don’t want to provide a route to delete one, we could define a route like this.</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/comments&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">CommentController</span><span class="p">,</span><span class="w"> </span><span class="ss">except</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6126303014-1">[</span><span class="ss">:delete</span><span class="p" data-group-id="6126303014-1">]</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/comments&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">CommentController</span><span class="p">,</span><span class="w"> </span><span class="ss">except</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1573788275-1">[</span><span class="ss">:delete</span><span class="p" data-group-id="1573788275-1">]</span></code></pre>
 <p>Running <code class="inline">$ mix phx.routes</code> now shows that we have all the routes except the DELETE request to the delete action.</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">comment_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">comments</span><span class="w"> </span><span class="nc">HelloWeb.CommentController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
 </span><span class="n">comment_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">comments</span><span class="o">/</span><span class="ss">:id</span><span class="o">/</span><span class="n">edit</span><span class="w"> </span><span class="nc">HelloWeb.CommentController</span><span class="w"> </span><span class="ss">:edit</span><span class="w">
@@ -197,55 +197,55 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </h2>
 
 <p>The <a href="Phoenix.Router.html#forward/4"><code class="inline">Phoenix.Router.forward/4</code></a> macro can be used to send all requests that start with a particular path to a particular plug. Let’s say we have a part of our system that is responsible (it could even be a separate application or library) for running jobs in the background, it could have its own web interface for checking the status of the jobs. We can forward to this admin interface using:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="7591246582-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="5427579554-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
   </span><span class="c1">#...</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="7591246582-2">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="5427579554-2">do</span><span class="w">
     </span><span class="c1">#...</span><span class="w">
-  </span><span class="k" data-group-id="7591246582-2">end</span><span class="w">
+  </span><span class="k" data-group-id="5427579554-2">end</span><span class="w">
 
   </span><span class="n">forward</span><span class="w"> </span><span class="s">&quot;/jobs&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">BackgroundJob.Plug</span><span class="w">
-</span><span class="k" data-group-id="7591246582-1">end</span></code></pre>
+</span><span class="k" data-group-id="5427579554-1">end</span></code></pre>
 <p>This means that all routes starting with <code class="inline">/jobs</code> will be sent to the <code class="inline">BackgroundJob.Plug</code> module.</p>
 <p>We can even use the <code class="inline">forward/4</code> macro in a pipeline. If we wanted to ensure that the user was authenticated and an administrator in order to see the jobs page, we could use the following in our router.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="1702987563-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="7341178161-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
   </span><span class="c1">#...</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="k" data-group-id="1702987563-2">do</span><span class="w">
-    </span><span class="n">pipe_through</span><span class="w"> </span><span class="p" data-group-id="1702987563-3">[</span><span class="ss">:authenticate_user</span><span class="p">,</span><span class="w"> </span><span class="ss">:ensure_admin</span><span class="p" data-group-id="1702987563-3">]</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="k" data-group-id="7341178161-2">do</span><span class="w">
+    </span><span class="n">pipe_through</span><span class="w"> </span><span class="p" data-group-id="7341178161-3">[</span><span class="ss">:authenticate_user</span><span class="p">,</span><span class="w"> </span><span class="ss">:ensure_admin</span><span class="p" data-group-id="7341178161-3">]</span><span class="w">
     </span><span class="n">forward</span><span class="w"> </span><span class="s">&quot;/jobs&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">BackgroundJob.Plug</span><span class="w">
-  </span><span class="k" data-group-id="1702987563-2">end</span><span class="w">
-</span><span class="k" data-group-id="1702987563-1">end</span></code></pre>
+  </span><span class="k" data-group-id="7341178161-2">end</span><span class="w">
+</span><span class="k" data-group-id="7341178161-1">end</span></code></pre>
 <p>This means that the plugs in the <code class="inline">authenticate_user</code> and <code class="inline">ensure_admin</code> pipelines will be called before the <code class="inline">BackgroundJob.Plug</code> allowing them to send an appropriate response and call <code class="inline">halt()</code> .</p>
 <p>The <code class="inline">opts</code> that are passed to the <code class="inline">init/1</code> callback of a Plug can be passed as a 3rd argument. For example, maybe the background job page lets you set the name of your application to be displayed on the page. This could be passed with:</p>
 <pre><code class="nohighlight makeup elixir"><span class="w">  </span><span class="n">forward</span><span class="w"> </span><span class="s">&quot;/jobs&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">BackgroundJob.Plug</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello Phoenix&quot;</span></code></pre>
 <p>There is a fourth <code class="inline">router_opts</code> argument that can be passed. These options are outlined in the <a href="Phoenix.Router.html#scope/2"><code class="inline">Phoenix.Router.scope/2</code></a> documentation.</p>
 <p>Although it is possible to forward to any module plug, it is not advised to forward to another endpoint. This is because plugs defined by your app and the forwarded endpoint would be invoked twice, which may lead to errors.</p>
 <p>Writing an actual background job worker is beyond the scope of this guide. However for convenience and to allow you to test the code above, here is the implementation of <code class="inline">BackgroundJob.Plug</code> that you can copy into your application:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">BackgroundJob.Plug</span><span class="w"> </span><span class="k" data-group-id="0688998647-1">do</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">init</span><span class="p" data-group-id="0688998647-2">(</span><span class="n">opts</span><span class="p" data-group-id="0688998647-2">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">opts</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="0688998647-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="0688998647-3">)</span><span class="w"> </span><span class="k" data-group-id="0688998647-4">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">BackgroundJob.Plug</span><span class="w"> </span><span class="k" data-group-id="7414828720-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">init</span><span class="p" data-group-id="7414828720-2">(</span><span class="n">opts</span><span class="p" data-group-id="7414828720-2">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">opts</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="7414828720-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="7414828720-3">)</span><span class="w"> </span><span class="k" data-group-id="7414828720-4">do</span><span class="w">
     </span><span class="n">conn</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Plug.Conn</span><span class="o">.</span><span class="n">assign</span><span class="p" data-group-id="0688998647-5">(</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="nc">Keyword</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="0688998647-6">(</span><span class="n">opts</span><span class="p">,</span><span class="w"> </span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Background Job&quot;</span><span class="p" data-group-id="0688998647-6">)</span><span class="p" data-group-id="0688998647-5">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">BackgroundJob.Router</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="0688998647-7">(</span><span class="n">opts</span><span class="p" data-group-id="0688998647-7">)</span><span class="w">
-  </span><span class="k" data-group-id="0688998647-4">end</span><span class="w">
-</span><span class="k" data-group-id="0688998647-1">end</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Plug.Conn</span><span class="o">.</span><span class="n">assign</span><span class="p" data-group-id="7414828720-5">(</span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="nc">Keyword</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="7414828720-6">(</span><span class="n">opts</span><span class="p">,</span><span class="w"> </span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Background Job&quot;</span><span class="p" data-group-id="7414828720-6">)</span><span class="p" data-group-id="7414828720-5">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">BackgroundJob.Router</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="7414828720-7">(</span><span class="n">opts</span><span class="p" data-group-id="7414828720-7">)</span><span class="w">
+  </span><span class="k" data-group-id="7414828720-4">end</span><span class="w">
+</span><span class="k" data-group-id="7414828720-1">end</span><span class="w">
 
-</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">BackgroundJob.Router</span><span class="w"> </span><span class="k" data-group-id="0688998647-8">do</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">BackgroundJob.Router</span><span class="w"> </span><span class="k" data-group-id="7414828720-8">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Plug.Router</span><span class="w">
 
   </span><span class="n">plug</span><span class="w"> </span><span class="ss">:match</span><span class="w">
   </span><span class="n">plug</span><span class="w"> </span><span class="ss">:dispatch</span><span class="w">
 
-  </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">send_resp</span><span class="p" data-group-id="0688998647-9">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Welcome to </span><span class="si" data-group-id="0688998647-10">#{</span><span class="n">conn</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">name</span><span class="si" data-group-id="0688998647-10">}</span><span class="s">&quot;</span><span class="p" data-group-id="0688998647-9">)</span><span class="w">
-  </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/active&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">send_resp</span><span class="p" data-group-id="0688998647-11">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5 Active Jobs&quot;</span><span class="p" data-group-id="0688998647-11">)</span><span class="w">
-  </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/pending&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">send_resp</span><span class="p" data-group-id="0688998647-12">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;3 Pending Jobs&quot;</span><span class="p" data-group-id="0688998647-12">)</span><span class="w">
-  </span><span class="n">match</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">send_resp</span><span class="p" data-group-id="0688998647-13">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">404</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Not found&quot;</span><span class="p" data-group-id="0688998647-13">)</span><span class="w">
-</span><span class="k" data-group-id="0688998647-8">end</span></code></pre>
+  </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">send_resp</span><span class="p" data-group-id="7414828720-9">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Welcome to </span><span class="si" data-group-id="7414828720-10">#{</span><span class="n">conn</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">name</span><span class="si" data-group-id="7414828720-10">}</span><span class="s">&quot;</span><span class="p" data-group-id="7414828720-9">)</span><span class="w">
+  </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/active&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">send_resp</span><span class="p" data-group-id="7414828720-11">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5 Active Jobs&quot;</span><span class="p" data-group-id="7414828720-11">)</span><span class="w">
+  </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/pending&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">send_resp</span><span class="p" data-group-id="7414828720-12">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;3 Pending Jobs&quot;</span><span class="p" data-group-id="7414828720-12">)</span><span class="w">
+  </span><span class="n">match</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">send_resp</span><span class="p" data-group-id="7414828720-13">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">404</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Not found&quot;</span><span class="p" data-group-id="7414828720-13">)</span><span class="w">
+</span><span class="k" data-group-id="7414828720-8">end</span></code></pre>
 <h2 id="path-helpers" class="section-heading">
   <a href="#path-helpers" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Path Helpers
@@ -253,10 +253,10 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 
 <p>Path helpers are functions which are dynamically defined on the <code class="inline">Router.Helpers</code> module for an individual application. For us, that is <code class="inline">HelloWeb.Router.Helpers</code>. Their names are derived from the name of the controller used in the route definition. Our controller is <code class="inline">HelloWeb.PageController</code>, and <code class="inline">page_path</code> is the function which will return the path to the root of our application.</p>
 <p>That’s a mouthful. Let’s see it in action. Run <code class="inline">$ iex -S mix</code> at the root of the project. When we call the <code class="inline">page_path</code> function on our router helpers with the <code class="inline">Endpoint</code> or connection and action as arguments, it returns the path to us.</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_path</span><span class="p" data-group-id="0074631348-1">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p" data-group-id="0074631348-1">)</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">page_path</span><span class="p" data-group-id="1396357239-1">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p" data-group-id="1396357239-1">)</span><span class="w">
 </span><span class="s">&quot;/&quot;</span></code></pre>
 <p>This is significant because we can use the <code class="inline">page_path</code> function in a template to link to the root of our application. We can then use this helper in our templates:</p>
-<pre><code class="nohighlight makeup html">&lt;a href=&quot;&lt;%= page_path(@conn, :index) %&gt;&quot;&gt;To the Welcome Page!&lt;/a&gt;</code></pre>
+<pre><code class="html">&lt;a href=&quot;&lt;%= page_path(@conn, :index) %&gt;&quot;&gt;To the Welcome Page!&lt;/a&gt;</code></pre>
 <p>The <code class="inline">page_path</code> function is imported into our template with <code class="inline">use HelloWeb, :view</code>. Please see the <a href="views.html">View Guide</a> for more information.</p>
 <p>This pays off tremendously if we should ever have to change the path of our route in the router. Since the path helpers are built dynamically from the routes, any calls to <code class="inline">page_path</code> in our templates will still work.</p>
 <h3 id="more-on-path-helpers" class="section-heading">
@@ -267,31 +267,31 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 <p>When we ran the <code class="inline">phx.routes</code> task for our user resource, it listed the <code class="inline">user_path</code> as the path helper function for each line of output. Here is what that translates to for each action:</p>
 <pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="w">
 </span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="kn">alias</span><span class="w"> </span><span class="nc">HelloWeb.Endpoint</span><span class="w">
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="1871803119-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p" data-group-id="1871803119-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="2887222857-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p" data-group-id="2887222857-1">)</span><span class="w">
 </span><span class="s">&quot;/users&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="1871803119-2">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p" data-group-id="1871803119-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="2887222857-2">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p" data-group-id="2887222857-2">)</span><span class="w">
 </span><span class="s">&quot;/users/17&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="1871803119-3">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:new</span><span class="p" data-group-id="1871803119-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="2887222857-3">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:new</span><span class="p" data-group-id="2887222857-3">)</span><span class="w">
 </span><span class="s">&quot;/users/new&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="1871803119-4">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:create</span><span class="p" data-group-id="1871803119-4">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="2887222857-4">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:create</span><span class="p" data-group-id="2887222857-4">)</span><span class="w">
 </span><span class="s">&quot;/users&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="1871803119-5">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:edit</span><span class="p">,</span><span class="w"> </span><span class="mi">37</span><span class="p" data-group-id="1871803119-5">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="2887222857-5">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:edit</span><span class="p">,</span><span class="w"> </span><span class="mi">37</span><span class="p" data-group-id="2887222857-5">)</span><span class="w">
 </span><span class="s">&quot;/users/37/edit&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="1871803119-6">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:update</span><span class="p">,</span><span class="w"> </span><span class="mi">37</span><span class="p" data-group-id="1871803119-6">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="2887222857-6">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:update</span><span class="p">,</span><span class="w"> </span><span class="mi">37</span><span class="p" data-group-id="2887222857-6">)</span><span class="w">
 </span><span class="s">&quot;/users/37&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="1871803119-7">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:delete</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p" data-group-id="1871803119-7">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="2887222857-7">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:delete</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p" data-group-id="2887222857-7">)</span><span class="w">
 </span><span class="s">&quot;/users/17&quot;</span></code></pre>
 <p>What about paths with query strings? By adding an optional fourth argument of key value pairs, the path helpers will return those pairs in the query string.</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="7043917284-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="ss">admin</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w"> </span><span class="ss">active</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="7043917284-1">)</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_path</span><span class="p" data-group-id="8642773127-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="ss">admin</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w"> </span><span class="ss">active</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="8642773127-1">)</span><span class="w">
 </span><span class="s">&quot;/users/17?admin=true&amp;active=false&quot;</span></code></pre>
 <p>What if we need a full url instead of a path? Just replace <code class="inline">_path</code> with <code class="inline">_url</code>:</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex(3)&gt;</span><span class="w"> </span><span class="n">user_url</span><span class="p" data-group-id="4720104205-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p" data-group-id="4720104205-1">)</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex(3)&gt;</span><span class="w"> </span><span class="n">user_url</span><span class="p" data-group-id="3043036116-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p" data-group-id="3043036116-1">)</span><span class="w">
 </span><span class="s">&quot;http://localhost:4000/users&quot;</span></code></pre>
 <p>The <code class="inline">_url</code> functions will get the host, port, proxy port, and SSL information needed to construct the full URL from the configuration parameters set for each environment. We’ll talk about configuration in more detail in its own guide. For now, you can take a look at <code class="inline">config/dev.exs</code> file in your own project to see those values.</p>
 <p>Whenever possible prefer to pass a <code class="inline">conn</code> in place of an <code class="inline">Endpoint</code>.</p>
@@ -301,9 +301,9 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 </h2>
 
 <p>It is also possible to nest resources in a Phoenix router. Let’s say we also have a <code class="inline">posts</code> resource which has a many-to-one relationship with <code class="inline">users</code>. That is to say, a user can create many posts, and an individual post belongs to only one user. We can represent that by adding a nested route in <code class="inline">lib/hello_web/router.ex</code> like this:</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="w"> </span><span class="k" data-group-id="0394953989-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="w"> </span><span class="k" data-group-id="6304329184-1">do</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/posts&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PostController</span><span class="w">
-</span><span class="k" data-group-id="0394953989-1">end</span></code></pre>
+</span><span class="k" data-group-id="6304329184-1">end</span></code></pre>
 <p>When we run <code class="inline">$ mix phx.routes</code> now, in addition to the routes we saw for <code class="inline">users</code> above, we get the following set of routes:</p>
 <pre><code class="nohighlight makeup elixir"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
 </span><span class="n">user_post_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="n">users</span><span class="o">/</span><span class="ss">:user_id</span><span class="o">/</span><span class="n">posts</span><span class="w"> </span><span class="nc">HelloWeb.PostController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
@@ -317,10 +317,10 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 <p>We see that each of these routes scopes the posts to a user ID. For the first one, we will invoke the <code class="inline">PostController</code> <code class="inline">index</code> action, but we will pass in a <code class="inline">user_id</code>. This implies that we would display all the posts for that individual user only. The same scoping applies for all these routes.</p>
 <p>When calling path helper functions for nested routes, we will need to pass the IDs in the order they came in the route definition. For the following <code class="inline">show</code> route, <code class="inline">42</code> is the <code class="inline">user_id</code>, and <code class="inline">17</code> is the <code class="inline">post_id</code>. Let’s remember to alias our <code class="inline">HelloWeb.Endpoint</code> before we begin.</p>
 <pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="kn">alias</span><span class="w"> </span><span class="nc">HelloWeb.Endpoint</span><span class="w">
-</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">user_post_path</span><span class="p" data-group-id="5057343353-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p" data-group-id="5057343353-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">user_post_path</span><span class="p" data-group-id="6197931480-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p" data-group-id="6197931480-1">)</span><span class="w">
 </span><span class="s">&quot;/users/42/posts/17&quot;</span></code></pre>
 <p>Again, if we add a key/value pair to the end of the function call, it is added to the query string.</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">user_post_path</span><span class="p" data-group-id="3620785084-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="ss">active</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3620785084-1">)</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">user_post_path</span><span class="p" data-group-id="9318024768-1">(</span><span class="nc">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="ss">active</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="9318024768-1">)</span><span class="w">
 </span><span class="s">&quot;/users/42/posts?active=true&quot;</span></code></pre>
 <h2 id="scoped-routes" class="section-heading">
   <a href="#scoped-routes" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -329,21 +329,21 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 
 <p>Scopes are a way to group routes under a common path prefix and scoped set of plug middleware. We might want to do this for admin functionality, APIs, and especially for versioned APIs. Let’s say we have user generated reviews on a site, and that those reviews first need to be approved by an admin. The semantics of these resources are quite different, and they might not share the same controller. Scopes enable us to segregate these routes.</p>
 <p>The paths to the user facing reviews would look like a standard resource.</p>
-<pre><code class="nohighlight makeup console">/reviews
+<pre><code class="console">/reviews
 /reviews/1234
 /reviews/1234/edit
 . . .</code></pre>
 <p>The admin review paths could be prefixed with <code class="inline">/admin</code>.</p>
-<pre><code class="nohighlight makeup console">/admin/reviews
+<pre><code class="console">/admin/reviews
 /admin/reviews/1234
 /admin/reviews/1234/edit
 . . .</code></pre>
 <p>We accomplish this with a scoped route that sets a path option to <code class="inline">/admin</code> like this one. For now, let’s not nest this scope inside of any other scopes (like the <code class="inline">scope &quot;/&quot;, HelloWeb do</code> one provided for us in a new app).</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="w"> </span><span class="k" data-group-id="1886646614-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="w"> </span><span class="k" data-group-id="9471849095-1">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w">
-</span><span class="k" data-group-id="1886646614-1">end</span></code></pre>
+</span><span class="k" data-group-id="9471849095-1">end</span></code></pre>
 <p>Note also, that the way this scope is currently defined, we need to fully qualify our controller name, <code class="inline">HelloWeb.Admin.ReviewController</code>. We’ll fix that in a minute.</p>
 <p>Running <code class="inline">$ mix phx.routes</code> again, in addition to the previous set of routes we get the following:</p>
 <pre><code class="nohighlight makeup elixir"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
@@ -356,16 +356,16 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
              </span><span class="nc">PUT</span><span class="w">     </span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">reviews</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w"> </span><span class="ss">:update</span><span class="w">
 </span><span class="n">review_path</span><span class="w">  </span><span class="nc">DELETE</span><span class="w">  </span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">reviews</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w"> </span><span class="ss">:delete</span></code></pre>
 <p>This looks good, but there is a problem here. Remember that we wanted both user facing reviews routes <code class="inline">/reviews</code> as well as the admin ones <code class="inline">/admin/reviews</code>. If we now include the user facing reviews in our router like this:</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="8845954777-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="4619356143-1">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
   </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ReviewController</span><span class="w">
   </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-</span><span class="k" data-group-id="8845954777-1">end</span><span class="w">
+</span><span class="k" data-group-id="4619356143-1">end</span><span class="w">
 
-</span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="w"> </span><span class="k" data-group-id="8845954777-2">do</span><span class="w">
+</span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="w"> </span><span class="k" data-group-id="4619356143-2">do</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w">
-</span><span class="k" data-group-id="8845954777-2">end</span></code></pre>
+</span><span class="k" data-group-id="4619356143-2">end</span></code></pre>
 <p>and we run <code class="inline">$ mix phx.routes</code>, we get this output:</p>
 <pre><code class="nohighlight makeup elixir"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
 </span><span class="n">review_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">reviews</span><span class="w"> </span><span class="nc">HelloWeb.ReviewController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
@@ -386,16 +386,16 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
              </span><span class="nc">PUT</span><span class="w">     </span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">reviews</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w"> </span><span class="ss">:update</span><span class="w">
 </span><span class="n">review_path</span><span class="w">  </span><span class="nc">DELETE</span><span class="w">  </span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">reviews</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w"> </span><span class="ss">:delete</span></code></pre>
 <p>The actual routes we get all look right, except for the path helper <code class="inline">review_path</code> at the beginning of each line. We are getting the same helper for both the user facing review routes and the admin ones, which is not correct. We can fix this problem by adding an <code class="inline">as: :admin</code> option to our admin scope.</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="7750029792-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="4389738031-1">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
   </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ReviewController</span><span class="w">
   </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-</span><span class="k" data-group-id="7750029792-1">end</span><span class="w">
+</span><span class="k" data-group-id="4389738031-1">end</span><span class="w">
 
-</span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:admin</span><span class="w"> </span><span class="k" data-group-id="7750029792-2">do</span><span class="w">
+</span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:admin</span><span class="w"> </span><span class="k" data-group-id="4389738031-2">do</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w">
-</span><span class="k" data-group-id="7750029792-2">end</span></code></pre>
+</span><span class="k" data-group-id="4389738031-2">end</span></code></pre>
 <p><code class="inline">$ mix phx.routes</code> now shows us we have what we are looking for.</p>
 <pre><code class="nohighlight makeup elixir"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
       </span><span class="n">review_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">reviews</span><span class="w"> </span><span class="nc">HelloWeb.ReviewController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
@@ -416,19 +416,19 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
                    </span><span class="nc">PUT</span><span class="w">     </span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">reviews</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w"> </span><span class="ss">:update</span><span class="w">
 </span><span class="n">admin_review_path</span><span class="w">  </span><span class="nc">DELETE</span><span class="w">  </span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">reviews</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w"> </span><span class="ss">:delete</span></code></pre>
 <p>The path helpers now return what we want them to as well. Run <code class="inline">$ iex -S mix</code> and give it a try yourself.</p>
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex(1)&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">review_path</span><span class="p" data-group-id="9075466252-1">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p" data-group-id="9075466252-1">)</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex(1)&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">review_path</span><span class="p" data-group-id="3297895244-1">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p" data-group-id="3297895244-1">)</span><span class="w">
 </span><span class="s">&quot;/reviews&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex(2)&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">admin_review_path</span><span class="p" data-group-id="9075466252-2">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="mi">1234</span><span class="p" data-group-id="9075466252-2">)</span><span class="w">
+</span><span class="gp unselectable">iex(2)&gt;</span><span class="w"> </span><span class="nc">HelloWeb.Router.Helpers</span><span class="o">.</span><span class="n">admin_review_path</span><span class="p" data-group-id="3297895244-2">(</span><span class="nc">HelloWeb.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="ss">:show</span><span class="p">,</span><span class="w"> </span><span class="mi">1234</span><span class="p" data-group-id="3297895244-2">)</span><span class="w">
 </span><span class="s">&quot;/admin/reviews/1234&quot;</span></code></pre>
 <p>What if we had a number of resources that were all handled by admins? We could put all of them inside the same scope like this:</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:admin</span><span class="w"> </span><span class="k" data-group-id="9285349178-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:admin</span><span class="w"> </span><span class="k" data-group-id="5596383264-1">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/images&quot;</span><span class="p">,</span><span class="w">  </span><span class="nc">HelloWeb.Admin.ImageController</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ReviewController</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/users&quot;</span><span class="p">,</span><span class="w">   </span><span class="nc">HelloWeb.Admin.UserController</span><span class="w">
-</span><span class="k" data-group-id="9285349178-1">end</span></code></pre>
+</span><span class="k" data-group-id="5596383264-1">end</span></code></pre>
 <p>Here’s what <code class="inline">$ mix phx.routes</code> tells us:</p>
 <pre><code class="nohighlight makeup elixir"><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
  </span><span class="n">admin_image_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">images</span><span class="w"> </span><span class="nc">HelloWeb.Admin.ImageController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
@@ -456,27 +456,27 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
                    </span><span class="nc">PUT</span><span class="w">     </span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Admin.UserController</span><span class="w"> </span><span class="ss">:update</span><span class="w">
   </span><span class="n">admin_user_path</span><span class="w">  </span><span class="nc">DELETE</span><span class="w">  </span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Admin.UserController</span><span class="w"> </span><span class="ss">:delete</span></code></pre>
 <p>This is great, exactly what we want, but we can make it even better. Notice that for each resource, we needed to fully qualify the controller name by prefixing it with <code class="inline">HelloWeb.Admin</code>. That’s tedious and error prone. Assuming that the name of each controller begins with <code class="inline">HelloWeb.Admin</code>, then we can add a <code class="inline">HelloWeb.Admin</code> option to our scope declaration just after the scope path, and all of our routes will have the correct, fully qualified controller name.</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Admin</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:admin</span><span class="w"> </span><span class="k" data-group-id="7506596917-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Admin</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:admin</span><span class="w"> </span><span class="k" data-group-id="6939064126-1">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/images&quot;</span><span class="p">,</span><span class="w">  </span><span class="nc">ImageController</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ReviewController</span><span class="w">
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/users&quot;</span><span class="p">,</span><span class="w">   </span><span class="nc">UserController</span><span class="w">
-</span><span class="k" data-group-id="7506596917-1">end</span></code></pre>
+</span><span class="k" data-group-id="6939064126-1">end</span></code></pre>
 <p>Now run <code class="inline">$ mix phx.routes</code> again and you can see that we get the same result as above when we qualified each controller name individually.</p>
 <p>This doesn’t just apply to nested routes, we can even nest all of the routes for our application inside a scope that simply has an alias for the name of our Phoenix app, and eliminate the duplication of our application name in our controller names.</p>
 <p>Phoenix already does this for us in the generated router for a new application (see beginning of this section). Notice here the use of <code class="inline">HelloWeb.Router</code> in the <code class="inline">defmodule</code> declaration:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="6915284662-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="5719427426-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="6915284662-2">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="5719427426-2">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
     </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/images&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ImageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ReviewController</span><span class="w">
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/users&quot;</span><span class="p">,</span><span class="w">   </span><span class="nc">UserController</span><span class="w">
-  </span><span class="k" data-group-id="6915284662-2">end</span><span class="w">
-</span><span class="k" data-group-id="6915284662-1">end</span></code></pre>
+  </span><span class="k" data-group-id="5719427426-2">end</span><span class="w">
+</span><span class="k" data-group-id="5719427426-1">end</span></code></pre>
 <p>Again <code class="inline">$ mix phx.routes</code> tells us that all of our controllers now have the correct, fully-qualified names.</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">image_path</span><span class="w">   </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">images</span><span class="w"> </span><span class="nc">HelloWeb.ImageController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
 </span><span class="n">review_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">reviews</span><span class="w"> </span><span class="nc">HelloWeb.ReviewController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
@@ -496,15 +496,15 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
              </span><span class="nc">PUT</span><span class="w">     </span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.UserController</span><span class="w"> </span><span class="ss">:update</span><span class="w">
   </span><span class="n">user_path</span><span class="w">  </span><span class="nc">DELETE</span><span class="w">  </span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.UserController</span><span class="w"> </span><span class="ss">:delete</span></code></pre>
 <p>Although technically scopes can also be nested (just like resources), the use of nested scopes is generally discouraged because it can sometimes make our code confusing and less clear. With that said, suppose that we had a versioned API with resources defined for images, reviews and users. Then technically we could  setup routes for the versioned API like this:</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/api&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Api</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="2989735894-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/api&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.Api</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="5931650405-1">do</span><span class="w">
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:api</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">V1</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:v1</span><span class="w"> </span><span class="k" data-group-id="2989735894-2">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/v1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">V1</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="ss">:v1</span><span class="w"> </span><span class="k" data-group-id="5931650405-2">do</span><span class="w">
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/images&quot;</span><span class="p">,</span><span class="w">  </span><span class="nc">ImageController</span><span class="w">
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ReviewController</span><span class="w">
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/users&quot;</span><span class="p">,</span><span class="w">   </span><span class="nc">UserController</span><span class="w">
-  </span><span class="k" data-group-id="2989735894-2">end</span><span class="w">
-</span><span class="k" data-group-id="2989735894-1">end</span></code></pre>
+  </span><span class="k" data-group-id="5931650405-2">end</span><span class="w">
+</span><span class="k" data-group-id="5931650405-1">end</span></code></pre>
 <p><code class="inline">$ mix phx.routes</code> tells us that we have the routes we’re looking for.</p>
 <pre><code class="nohighlight makeup elixir"><span class="w"> </span><span class="n">api_v1_image_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">images</span><span class="w"> </span><span class="nc">HelloWeb.Api.V1.ImageController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
  </span><span class="n">api_v1_image_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="ss">:id</span><span class="o">/</span><span class="n">edit</span><span class="w"> </span><span class="nc">HelloWeb.Api.V1.ImageController</span><span class="w"> </span><span class="ss">:edit</span><span class="w">
@@ -531,24 +531,24 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
                     </span><span class="nc">PUT</span><span class="w">     </span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Api.V1.UserController</span><span class="w"> </span><span class="ss">:update</span><span class="w">
   </span><span class="n">api_v1_user_path</span><span class="w">  </span><span class="nc">DELETE</span><span class="w">  </span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="ss">:id</span><span class="w"> </span><span class="nc">HelloWeb.Api.V1.UserController</span><span class="w"> </span><span class="ss">:delete</span></code></pre>
 <p>Interestingly, we can use multiple scopes with the same path as long as we are careful not to duplicate routes. If we do duplicate a route, we’ll get this familiar warning.</p>
-<pre><code class="nohighlight makeup console">warning: this clause cannot match because a previous clause at line 16 always matches</code></pre>
+<pre><code class="console">warning: this clause cannot match because a previous clause at line 16 always matches</code></pre>
 <p>This router is perfectly fine with two scopes defined for the same path.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="9206303399-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="1481057261-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Router</span><span class="w">
   </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="9206303399-2">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="1481057261-2">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="w">
-  </span><span class="k" data-group-id="9206303399-2">end</span><span class="w">
+  </span><span class="k" data-group-id="1481057261-2">end</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">AnotherAppWeb</span><span class="w"> </span><span class="k" data-group-id="9206303399-3">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">AnotherAppWeb</span><span class="w"> </span><span class="k" data-group-id="1481057261-3">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/posts&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PostController</span><span class="w">
-  </span><span class="k" data-group-id="9206303399-3">end</span><span class="w">
+  </span><span class="k" data-group-id="1481057261-3">end</span><span class="w">
   </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w">
-</span><span class="k" data-group-id="9206303399-1">end</span></code></pre>
+</span><span class="k" data-group-id="1481057261-1">end</span></code></pre>
 <p>And when we run <code class="inline">$ mix phx.routes</code>, we see the following output.</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">user_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">users</span><span class="w">           </span><span class="nc">HelloWeb.UserController</span><span class="w"> </span><span class="ss">:index</span><span class="w">
 </span><span class="n">user_path</span><span class="w">  </span><span class="nc">GET</span><span class="w">     </span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="ss">:id</span><span class="o">/</span><span class="n">edit</span><span class="w">  </span><span class="nc">HelloWeb.UserController</span><span class="w"> </span><span class="ss">:edit</span><span class="w">
@@ -607,126 +607,126 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 <p>The router invokes a pipeline on a route defined within a scope. If no scope is defined, the router will invoke the pipeline on all the routes in the router. Although the use of nested scopes is discouraged (see above), if we call <code class="inline">pipe_through</code> within a nested scope, the router will invoke all <code class="inline">pipe_through</code>’s from parent scopes, followed by the nested one.</p>
 <p>Those are a lot of words bunched up together. Let’s take a look at some examples to untangle their meaning.</p>
 <p>Here’s another look at the router from a newly generated Phoenix application, this time with the api scope uncommented back in and a route added.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="1194445727-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="3370574791-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="1194445727-2">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1194445727-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="1194445727-3">]</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="3370574791-2">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3370574791-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="3370574791-3">]</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_flash</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:protect_from_forgery</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_secure_browser_headers</span><span class="w">
-  </span><span class="k" data-group-id="1194445727-2">end</span><span class="w">
+  </span><span class="k" data-group-id="3370574791-2">end</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="1194445727-4">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1194445727-5">[</span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="1194445727-5">]</span><span class="w">
-  </span><span class="k" data-group-id="1194445727-4">end</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="3370574791-4">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3370574791-5">[</span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="3370574791-5">]</span><span class="w">
+  </span><span class="k" data-group-id="3370574791-4">end</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="1194445727-6">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="3370574791-6">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
     </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
-  </span><span class="k" data-group-id="1194445727-6">end</span><span class="w">
+  </span><span class="k" data-group-id="3370574791-6">end</span><span class="w">
 
   </span><span class="c1"># Other scopes may use custom stacks.</span><span class="w">
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/api&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="1194445727-7">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/api&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="3370574791-7">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:api</span><span class="w">
 
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ReviewController</span><span class="w">
-  </span><span class="k" data-group-id="1194445727-7">end</span><span class="w">
-</span><span class="k" data-group-id="1194445727-1">end</span></code></pre>
+  </span><span class="k" data-group-id="3370574791-7">end</span><span class="w">
+</span><span class="k" data-group-id="3370574791-1">end</span></code></pre>
 <p>When the server accepts a request, the request will always first pass through the plugs in our Endpoint, after which it will attempt to match on the path and HTTP verb.</p>
 <p>Let’s say that the request matches our first route: a GET to <code class="inline">/</code>. The router will first pipe that request through the <code class="inline">:browser</code> pipeline - which will fetch the session data, fetch the flash, and execute forgery protection - before it dispatches the request to the <code class="inline">PageController</code> <code class="inline">index</code> action.</p>
 <p>Conversely, if the request matches any of the routes defined by the <code class="inline">resources/2</code> macro, the router will pipe it through the <code class="inline">:api</code> pipeline - which currently does nothing - before it dispatches further to the correct action of the <code class="inline">HelloWeb.ReviewController</code>.</p>
 <p>If we know that our application only renders views for the browser, we can simplify our router quite a bit by removing the <code class="inline">api</code> stuff as well as the scopes:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="2146625071-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="2333309986-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="2146625071-2">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2146625071-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="2146625071-3">]</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="2333309986-2">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2333309986-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="2333309986-3">]</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_flash</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:protect_from_forgery</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_secure_browser_headers</span><span class="w">
-  </span><span class="k" data-group-id="2146625071-2">end</span><span class="w">
+  </span><span class="k" data-group-id="2333309986-2">end</span><span class="w">
 
   </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
   </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
 
   </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.ReviewController</span><span class="w">
-</span><span class="k" data-group-id="2146625071-1">end</span></code></pre>
+</span><span class="k" data-group-id="2333309986-1">end</span></code></pre>
 <p>Removing all scopes forces the router to invoke the <code class="inline">:browser</code> pipeline on all routes.</p>
 <p>Let’s stretch these ideas out a little bit more. What if we need to pipe requests through both <code class="inline">:browser</code> and one or more custom pipelines? We simply <code class="inline">pipe_through</code> a list of pipelines, and Phoenix will invoke them in order.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="0760572437-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="3040742878-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="0760572437-2">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0760572437-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="0760572437-3">]</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="3040742878-2">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3040742878-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="3040742878-3">]</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_flash</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:protect_from_forgery</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_secure_browser_headers</span><span class="w">
-  </span><span class="k" data-group-id="0760572437-2">end</span><span class="w">
+  </span><span class="k" data-group-id="3040742878-2">end</span><span class="w">
   </span><span class="n">...</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="w"> </span><span class="k" data-group-id="0760572437-4">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="w"> </span><span class="k" data-group-id="3040742878-4">do</span><span class="w">
     </span><span class="c1"># Use the default browser stack.</span><span class="w">
-    </span><span class="n">pipe_through</span><span class="w"> </span><span class="p" data-group-id="0760572437-5">[</span><span class="ss">:browser</span><span class="p">,</span><span class="w"> </span><span class="ss">:review_checks</span><span class="p">,</span><span class="w"> </span><span class="ss">:other_great_stuff</span><span class="p" data-group-id="0760572437-5">]</span><span class="w">
+    </span><span class="n">pipe_through</span><span class="w"> </span><span class="p" data-group-id="3040742878-5">[</span><span class="ss">:browser</span><span class="p">,</span><span class="w"> </span><span class="ss">:review_checks</span><span class="p">,</span><span class="w"> </span><span class="ss">:other_great_stuff</span><span class="p" data-group-id="3040742878-5">]</span><span class="w">
 
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.ReviewController</span><span class="w">
-  </span><span class="k" data-group-id="0760572437-4">end</span><span class="w">
-</span><span class="k" data-group-id="0760572437-1">end</span></code></pre>
+  </span><span class="k" data-group-id="3040742878-4">end</span><span class="w">
+</span><span class="k" data-group-id="3040742878-1">end</span></code></pre>
 <p>Here’s another example with two scopes that have different pipelines:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="4428942026-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="9638382622-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="4428942026-2">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4428942026-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="4428942026-3">]</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="9638382622-2">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9638382622-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="9638382622-3">]</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_flash</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:protect_from_forgery</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_secure_browser_headers</span><span class="w">
-  </span><span class="k" data-group-id="4428942026-2">end</span><span class="w">
+  </span><span class="k" data-group-id="9638382622-2">end</span><span class="w">
   </span><span class="n">...</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="4428942026-4">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="9638382622-4">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w">
 
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/posts&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PostController</span><span class="w">
-  </span><span class="k" data-group-id="4428942026-4">end</span><span class="w">
+  </span><span class="k" data-group-id="9638382622-4">end</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="4428942026-5">do</span><span class="w">
-    </span><span class="n">pipe_through</span><span class="w"> </span><span class="p" data-group-id="4428942026-6">[</span><span class="ss">:browser</span><span class="p">,</span><span class="w"> </span><span class="ss">:review_checks</span><span class="p" data-group-id="4428942026-6">]</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="9638382622-5">do</span><span class="w">
+    </span><span class="n">pipe_through</span><span class="w"> </span><span class="p" data-group-id="9638382622-6">[</span><span class="ss">:browser</span><span class="p">,</span><span class="w"> </span><span class="ss">:review_checks</span><span class="p" data-group-id="9638382622-6">]</span><span class="w">
 
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ReviewController</span><span class="w">
-  </span><span class="k" data-group-id="4428942026-5">end</span><span class="w">
-</span><span class="k" data-group-id="4428942026-1">end</span></code></pre>
+  </span><span class="k" data-group-id="9638382622-5">end</span><span class="w">
+</span><span class="k" data-group-id="9638382622-1">end</span></code></pre>
 <p>In general, the scoping rules for pipelines behave as you might expect. In this example, all routes will pipe through the <code class="inline">:browser</code> pipeline. However, only the <code class="inline">reviews</code> resources routes will  pipe through the <code class="inline">:review_checks</code> pipeline. Since we declared both pipes <code class="inline">pipe_through [:browser, :review_checks]</code> in a list of pipelines, Phoenix will <code class="inline">pipe_through</code> each of them as it invokes them in order.</p>
 <h4>Creating New Pipelines</h4>
 <p>Phoenix allows us to create our own custom pipelines anywhere in the router. To do so, we call the <code class="inline">pipeline/2</code> macro with these arguments: an atom for the name of our new pipeline and a block with all the plugs we want in it.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="4407252926-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="4507893651-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="4407252926-2">do</span><span class="w">
-    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4407252926-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="4407252926-3">]</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="k" data-group-id="4507893651-2">do</span><span class="w">
+    </span><span class="n">plug</span><span class="w"> </span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4507893651-3">[</span><span class="s">&quot;html&quot;</span><span class="p" data-group-id="4507893651-3">]</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_session</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:fetch_flash</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:protect_from_forgery</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:put_secure_browser_headers</span><span class="w">
-  </span><span class="k" data-group-id="4407252926-2">end</span><span class="w">
+  </span><span class="k" data-group-id="4507893651-2">end</span><span class="w">
 
-  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:review_checks</span><span class="w"> </span><span class="k" data-group-id="4407252926-4">do</span><span class="w">
+  </span><span class="n">pipeline</span><span class="w"> </span><span class="ss">:review_checks</span><span class="w"> </span><span class="k" data-group-id="4507893651-4">do</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:ensure_authenticated_user</span><span class="w">
     </span><span class="n">plug</span><span class="w"> </span><span class="ss">:ensure_user_owns_review</span><span class="w">
-  </span><span class="k" data-group-id="4407252926-4">end</span><span class="w">
+  </span><span class="k" data-group-id="4507893651-4">end</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="4407252926-5">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/reviews&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="w"> </span><span class="k" data-group-id="4507893651-5">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:review_checks</span><span class="w">
 
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">ReviewController</span><span class="w">
-  </span><span class="k" data-group-id="4407252926-5">end</span><span class="w">
-</span><span class="k" data-group-id="4407252926-1">end</span></code></pre>
+  </span><span class="k" data-group-id="4507893651-5">end</span><span class="w">
+</span><span class="k" data-group-id="4507893651-1">end</span></code></pre>
 <h2 id="channel-routes" class="section-heading">
   <a href="#channel-routes" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Channel Routes
@@ -734,24 +734,24 @@ page_path  GET  /  HelloWeb.PageController :index</code></pre>
 
 <p>Channels are a very exciting, real-time component of the Phoenix framework. Channels handle incoming and outgoing messages broadcast over a socket for a given topic. Channel routes, then, need to match requests by socket and topic in order to dispatch to the correct channel. (For a more detailed description of channels and their behavior, please see the <a href="channels.html">Channel Guide</a>.)</p>
 <p>We mount socket handlers in our endpoint at <code class="inline">lib/hello_web/endpoint.ex</code>. Socket handlers take care of authentication callbacks and channel routes.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Endpoint</span><span class="w"> </span><span class="k" data-group-id="8222288809-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Endpoint</span><span class="w"> </span><span class="k" data-group-id="1736424885-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Endpoint</span><span class="w">
 
   </span><span class="n">socket</span><span class="w"> </span><span class="s">&quot;/socket&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.UserSocket</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="8222288809-1">end</span></code></pre>
+</span><span class="k" data-group-id="1736424885-1">end</span></code></pre>
 <p>Next, we need to open our <code class="inline">lib/hello_web/channels/user_socket.ex</code> file and use the <code class="inline">channel/3</code> macro to define our channel routes. The routes will match a topic pattern to a channel to handle events. If we have a channel module called <code class="inline">RoomChannel</code> and a topic called <code class="inline">&quot;rooms:*&quot;</code>, the code to do this is straightforward.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.UserSocket</span><span class="w"> </span><span class="k" data-group-id="6371705560-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.UserSocket</span><span class="w"> </span><span class="k" data-group-id="4836759421-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Socket</span><span class="w">
 
   </span><span class="n">channel</span><span class="w"> </span><span class="s">&quot;rooms:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.RoomChannel</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="6371705560-1">end</span></code></pre>
+</span><span class="k" data-group-id="4836759421-1">end</span></code></pre>
 <p>Topics are just string identifiers. The form we are using here is a convention which allows us to define topics and subtopics in the same string - “topic:subtopic”. The <code class="inline">*</code> is a wildcard character which allows us to match on any subtopic, so <code class="inline">&quot;rooms:lobby&quot;</code> and <code class="inline">&quot;rooms:kitchen&quot;</code> would both match this route.</p>
 <p>Phoenix abstracts the socket transport layer and includes two transport mechanisms out of the box - WebSockets and Long-Polling. If we wanted to make sure that our channel is handled by only one type of transport, we could specify that using the <code class="inline">via</code> option, like this.</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">channel</span><span class="w"> </span><span class="s">&quot;rooms:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.RoomChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5494889985-1">[</span><span class="nc">Phoenix.TransportsWebSocket</span><span class="p" data-group-id="5494889985-1">]</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="n">channel</span><span class="w"> </span><span class="s">&quot;rooms:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.RoomChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9810562111-1">[</span><span class="nc">Phoenix.TransportsWebSocket</span><span class="p" data-group-id="9810562111-1">]</span></code></pre>
 <p>Each socket can handle requests for multiple channels.</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">channel</span><span class="w"> </span><span class="s">&quot;rooms:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.RoomChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5661724368-1">[</span><span class="nc">Phoenix.TransportsWebSocket</span><span class="p" data-group-id="5661724368-1">]</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="n">channel</span><span class="w"> </span><span class="s">&quot;rooms:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.RoomChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7746104699-1">[</span><span class="nc">Phoenix.TransportsWebSocket</span><span class="p" data-group-id="7746104699-1">]</span><span class="w">
 </span><span class="n">channel</span><span class="w"> </span><span class="s">&quot;foods:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.FoodChannel</span></code></pre>
 <p>We can mount multiple socket handlers in our endpoint:</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">socket</span><span class="w"> </span><span class="s">&quot;/socket&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWeb.UserSocket</span><span class="w">

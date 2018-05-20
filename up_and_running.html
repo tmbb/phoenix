@@ -80,12 +80,12 @@
 <p>At this point, we should have Elixir, Erlang, Hex, and the Phoenix archive installed. We should also have PostgreSQL and node.js installed to build a default application.</p>
 <p>Ok, we’re ready to go!</p>
 <p>We can run <code class="inline">mix phx.new</code> from any directory in order to bootstrap our Phoenix application. Phoenix will accept either an absolute or relative path for the directory of our new project. Assuming that the name of our application is <code class="inline">hello</code>, let’s run the following command:</p>
-<pre><code class="nohighlight makeup console">$ mix phx.new hello</code></pre>
+<pre><code class="console">$ mix phx.new hello</code></pre>
 <blockquote><p>A note about <a href="http://brunch.io/">Brunch.io</a> before we begin: Phoenix will use Brunch.io for asset management by default. Brunch.io’s dependencies are installed via the node package manager, not mix. Phoenix will prompt us to install them at the end of the <code class="inline">mix phx.new</code> task. If we say “no” at that point, and if we don’t install those dependencies later with <code class="inline">npm install</code>, our application will raise errors when we try to start it, and our assets may not load properly. If we don’t want to use Brunch.io at all, we can simply pass <code class="inline">--no-brunch</code> to <code class="inline">mix phx.new</code>.</p>
 </blockquote>
 <blockquote><p>A note about <a href="https://hexdocs.pm/phoenix/ecto.html">Ecto</a>: Ecto allows our Phoenix application to communicate with a data store, such as PostgreSQL or MongoDB. If our application will not require this component we can skip this dependency by passing the <code class="inline">--no-ecto</code> flag to the <code class="inline">mix phx.new</code>. This flag may also be combined with <code class="inline">--no-brunch</code> to create a skeleton application.</p>
 </blockquote>
-<pre><code class="nohighlight makeup console">mix phx.new hello
+<pre><code class="console">mix phx.new hello
 * creating hello/config/config.exs
 * creating hello/config/dev.exs
 * creating hello/config/prod.exs
@@ -95,7 +95,7 @@
 
 Fetch and install dependencies? [Yn]</code></pre>
 <p>Phoenix generates the directory structure and all the files we will need for our application. When it’s done, it will ask us if we want it to install our dependencies for us. Let’s say yes to that.</p>
-<pre><code class="nohighlight makeup console">Fetch and install dependencies? [Yn] Y
+<pre><code class="console">Fetch and install dependencies? [Yn] Y
 * running mix deps.get
 * running mix deps.compile
 * running cd assets &amp;&amp; npm install &amp;&amp; node node_modules/brunch/bin/brunch build
@@ -125,11 +125,11 @@ You can also run your app inside IEx (Interactive Elixir) as:
 <blockquote><p>Note: if this is the first time you are running this command, Phoenix may also ask to install Rebar. Go ahead with the installation as Rebar is used to build Erlang packages.</p>
 </blockquote>
 <p>And finally, we’ll start the Phoenix server:</p>
-<pre><code class="nohighlight makeup console">$ mix phx.server
+<pre><code class="console">$ mix phx.server
 [info] Running HelloWeb.Endpoint with Cowboy using http://0.0.0.0:4000
 19:30:43 - info: compiled 6 files into 2 files, copied 3 in 2.1 sec</code></pre>
 <p>If we choose not to have Phoenix install our dependencies when we generate a new application, the <code class="inline">phx.new</code> task will prompt us to take the necessary steps when we do want to install them.</p>
-<pre><code class="nohighlight makeup console">Fetch and install dependencies? [Yn] n
+<pre><code class="console">Fetch and install dependencies? [Yn] n
 
 We are almost there! The following steps are missing:
 
