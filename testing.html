@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Introduction to Testing – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
+    <link rel="stylesheet" href="dist/app-01f6330ade.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
-    <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
+    
     
     
   </head>
@@ -112,51 +112,51 @@ Randomized with seed 652656</code></pre>
 <p>The test cases we get for free include <code class="inline">test/hello_web/controllers/page_controller_test.exs</code>, <code class="inline">test/hello_web/views/error_view_test.exs</code>, and <code class="inline">test/hello_web/views/page_view_test.exs</code>. Nice.</p>
 <p>We’re going to look at test cases in detail throughout the testing guides, but let’s take a quick look at these three, just to get our feet wet.</p>
 <p>The first test case we’ll look at is <code class="inline">test/hello_web/controllers/page_controller_test.exs</code>.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageControllerTest</span><span class="w"> </span><span class="k" data-group-id="3332340699-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageControllerTest</span><span class="w"> </span><span class="k" data-group-id="7406007486-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb.ConnCase</span><span class="w">
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;GET /&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3332340699-2">%{</span><span class="ss">conn</span><span class="p">:</span><span class="w"> </span><span class="n">conn</span><span class="p" data-group-id="3332340699-2">}</span><span class="w"> </span><span class="k" data-group-id="3332340699-3">do</span><span class="w">
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;GET /&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7406007486-2">%{</span><span class="ss">conn</span><span class="p">:</span><span class="w"> </span><span class="n">conn</span><span class="p" data-group-id="7406007486-2">}</span><span class="w"> </span><span class="k" data-group-id="7406007486-3">do</span><span class="w">
     </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">html_response</span><span class="p" data-group-id="3332340699-4">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="3332340699-4">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;Welcome to Phoenix!&quot;</span><span class="w">
-  </span><span class="k" data-group-id="3332340699-3">end</span><span class="w">
-</span><span class="k" data-group-id="3332340699-1">end</span></code></pre>
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">html_response</span><span class="p" data-group-id="7406007486-4">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p" data-group-id="7406007486-4">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;Welcome to Phoenix!&quot;</span><span class="w">
+  </span><span class="k" data-group-id="7406007486-3">end</span><span class="w">
+</span><span class="k" data-group-id="7406007486-1">end</span></code></pre>
 <p>There are a couple of interesting things happening here.</p>
 <p>The <code class="inline">get/2</code> function gives us a connection struct set up as if it had been used for a get request to “/“. This saves us a considerable amount of tedious setup.</p>
 <p>The assertion actually tests three things - that we got an HTML response (by checking for a content-type of “text/html”), that our response code was 200, and that the body of our response contains the string “Welcome to Phoenix!”</p>
 <p>The error view test case, <code class="inline">test/hello_web/views/error_view_test.exs</code>, illustrates a few interesting things of its own.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.ErrorViewTest</span><span class="w"> </span><span class="k" data-group-id="8390349076-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.ErrorViewTest</span><span class="w"> </span><span class="k" data-group-id="0209981451-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb.ConnCase</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
 
   </span><span class="c1"># Bring render/3 and render_to_string/3 for testing custom views</span><span class="w">
   </span><span class="kn">import</span><span class="w"> </span><span class="nc">Phoenix.View</span><span class="w">
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;renders 404.html&quot;</span><span class="w"> </span><span class="k" data-group-id="8390349076-2">do</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="8390349076-3">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;404.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8390349076-4">[</span><span class="p" data-group-id="8390349076-4">]</span><span class="p" data-group-id="8390349076-3">)</span><span class="w"> </span><span class="o">==</span><span class="w">
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;renders 404.html&quot;</span><span class="w"> </span><span class="k" data-group-id="0209981451-2">do</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="0209981451-3">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;404.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0209981451-4">[</span><span class="p" data-group-id="0209981451-4">]</span><span class="p" data-group-id="0209981451-3">)</span><span class="w"> </span><span class="o">==</span><span class="w">
            </span><span class="s">&quot;Page not found&quot;</span><span class="w">
-  </span><span class="k" data-group-id="8390349076-2">end</span><span class="w">
+  </span><span class="k" data-group-id="0209981451-2">end</span><span class="w">
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;render 500.html&quot;</span><span class="w"> </span><span class="k" data-group-id="8390349076-5">do</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="8390349076-6">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;500.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8390349076-7">[</span><span class="p" data-group-id="8390349076-7">]</span><span class="p" data-group-id="8390349076-6">)</span><span class="w"> </span><span class="o">==</span><span class="w">
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;render 500.html&quot;</span><span class="w"> </span><span class="k" data-group-id="0209981451-5">do</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="0209981451-6">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;500.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0209981451-7">[</span><span class="p" data-group-id="0209981451-7">]</span><span class="p" data-group-id="0209981451-6">)</span><span class="w"> </span><span class="o">==</span><span class="w">
            </span><span class="s">&quot;Internal server error&quot;</span><span class="w">
-  </span><span class="k" data-group-id="8390349076-5">end</span><span class="w">
+  </span><span class="k" data-group-id="0209981451-5">end</span><span class="w">
 
-  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;render any other&quot;</span><span class="w"> </span><span class="k" data-group-id="8390349076-8">do</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="8390349076-9">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;505.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8390349076-10">[</span><span class="p" data-group-id="8390349076-10">]</span><span class="p" data-group-id="8390349076-9">)</span><span class="w"> </span><span class="o">==</span><span class="w">
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;render any other&quot;</span><span class="w"> </span><span class="k" data-group-id="0209981451-8">do</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="0209981451-9">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;505.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0209981451-10">[</span><span class="p" data-group-id="0209981451-10">]</span><span class="p" data-group-id="0209981451-9">)</span><span class="w"> </span><span class="o">==</span><span class="w">
            </span><span class="s">&quot;Internal server error&quot;</span><span class="w">
-  </span><span class="k" data-group-id="8390349076-8">end</span><span class="w">
-</span><span class="k" data-group-id="8390349076-1">end</span></code></pre>
+  </span><span class="k" data-group-id="0209981451-8">end</span><span class="w">
+</span><span class="k" data-group-id="0209981451-1">end</span></code></pre>
 <p><code class="inline">HelloWeb.ErrorViewTest</code> sets <code class="inline">async: true</code> which means that each individual test will run in parallel, greatly speeding up the test run. This works because none of the tests access any resources which share state, such as a database. If we set <code class="inline">async: true</code> for a test case which does access a database, different test processes might modify the same data, corrupting the test results.</p>
 <p>It also imports <a href="Phoenix.View.html"><code class="inline">Phoenix.View</code></a> in order to use the <code class="inline">render_to_string/3</code> function. With that, all the assertions can be simple string equality tests.</p>
 <p>The page view case, <code class="inline">test/hello_web/views/page_view_test.exs</code>, does not contain any tests by default, but it is here for us when we need to add functions to our <code class="inline">HelloWeb.PageView</code> module.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageViewTest</span><span class="w"> </span><span class="k" data-group-id="9625999581-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.PageViewTest</span><span class="w"> </span><span class="k" data-group-id="3348066597-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb.ConnCase</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
-</span><span class="k" data-group-id="9625999581-1">end</span></code></pre>
+</span><span class="k" data-group-id="3348066597-1">end</span></code></pre>
 <p>Let’s also take a look at the support and helper files Phoenix provides us.</p>
 <p>The default test helper file, <code class="inline">test/test_helper.exs</code>, creates and migrates our test database for us. It also starts a transaction for each test to run in. This will “clean” the database by rolling back the transaction as each test completes.</p>
 <p>The test helper can also hold any testing-specific configuration our application might need.</p>
 <pre><code class="nohighlight makeup elixir"><span class="nc">ExUnit</span><span class="o">.</span><span class="n">start</span><span class="w">
 
-</span><span class="nc">Ecto.Adapters.SQL.Sandbox</span><span class="o">.</span><span class="n">mode</span><span class="p" data-group-id="7995063860-1">(</span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w"> </span><span class="ss">:manual</span><span class="p" data-group-id="7995063860-1">)</span></code></pre>
+</span><span class="nc">Ecto.Adapters.SQL.Sandbox</span><span class="o">.</span><span class="n">mode</span><span class="p" data-group-id="6628056488-1">(</span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w"> </span><span class="ss">:manual</span><span class="p" data-group-id="6628056488-1">)</span></code></pre>
 <p>The files in <code class="inline">test/support</code> are there to help us get our modules into a testable state. They provide convenience functions for tasks like setting up a connection struct and finding errors on an Ecto changeset. We’ll take a closer look at them in action throughout the rest of the testing guides.</p>
 <h3 id="running-tests" class="section-heading">
   <a href="#running-tests" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -209,19 +209,19 @@ Randomized with seed 288117</code></pre>
 <p>ExUnit allows us to tag our tests at the case level or on the individual test level. We can then choose to run only the tests with a specific tag, or we can exclude tests with that tag and run everything else.</p>
 <p>Let’s experiment with how this works.</p>
 <p>First, we’ll add a <code class="inline">@moduletag</code> to <code class="inline">test/hello_web/views/error_view_test.exs</code>.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.ErrorViewTest</span><span class="w"> </span><span class="k" data-group-id="3775467477-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.ErrorViewTest</span><span class="w"> </span><span class="k" data-group-id="9113104722-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb.ConnCase</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
 
   </span><span class="na">@moduletag</span><span class="w"> </span><span class="ss">:error_view_case</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="3775467477-1">end</span></code></pre>
+</span><span class="k" data-group-id="9113104722-1">end</span></code></pre>
 <p>If we use only an atom for our module tag, ExUnit assumes that it has a value of <code class="inline">true</code>. We could also specify a different value if we wanted.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.ErrorViewTest</span><span class="w"> </span><span class="k" data-group-id="6917379532-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.ErrorViewTest</span><span class="w"> </span><span class="k" data-group-id="6810251539-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb.ConnCase</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
 
   </span><span class="na">@moduletag</span><span class="w"> </span><span class="ss">error_view_case</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;some_interesting_value&quot;</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="6917379532-1">end</span></code></pre>
+</span><span class="k" data-group-id="6810251539-1">end</span></code></pre>
 <p>For now, let’s leave it as a simple atom <code class="inline">@moduletag :error_view_case</code>.</p>
 <p>We can run only the tests from the error view case by passing <code class="inline">--only error_view_case</code> into <code class="inline">mix test</code>.</p>
 <pre><code class="console">$ mix test --only error_view_case
@@ -280,7 +280,7 @@ Finished in 0.2 seconds
 Randomized with seed 682868</code></pre>
 <p>Specifying values for a tag works the same way for <code class="inline">--exclude</code> as it does for <code class="inline">--only</code>.</p>
 <p>We can tag individual tests as well as full test cases. Let’s tag a few tests in the error view case to see how this works.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.ErrorViewTest</span><span class="w"> </span><span class="k" data-group-id="5722744875-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.ErrorViewTest</span><span class="w"> </span><span class="k" data-group-id="2826071208-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb.ConnCase</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
 
   </span><span class="na">@moduletag</span><span class="w"> </span><span class="ss">:error_view_case</span><span class="w">
@@ -289,18 +289,18 @@ Randomized with seed 682868</code></pre>
   </span><span class="kn">import</span><span class="w"> </span><span class="nc">Phoenix.View</span><span class="w">
 
   </span><span class="na">@tag</span><span class="w"> </span><span class="ss">individual_test</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;yup&quot;</span><span class="w">
-  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;renders 404.html&quot;</span><span class="w"> </span><span class="k" data-group-id="5722744875-2">do</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="5722744875-3">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;404.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5722744875-4">[</span><span class="p" data-group-id="5722744875-4">]</span><span class="p" data-group-id="5722744875-3">)</span><span class="w"> </span><span class="o">==</span><span class="w">
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;renders 404.html&quot;</span><span class="w"> </span><span class="k" data-group-id="2826071208-2">do</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="2826071208-3">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;404.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2826071208-4">[</span><span class="p" data-group-id="2826071208-4">]</span><span class="p" data-group-id="2826071208-3">)</span><span class="w"> </span><span class="o">==</span><span class="w">
            </span><span class="s">&quot;Page not found&quot;</span><span class="w">
-  </span><span class="k" data-group-id="5722744875-2">end</span><span class="w">
+  </span><span class="k" data-group-id="2826071208-2">end</span><span class="w">
 
   </span><span class="na">@tag</span><span class="w"> </span><span class="ss">individual_test</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nope&quot;</span><span class="w">
-  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;render 500.html&quot;</span><span class="w"> </span><span class="k" data-group-id="5722744875-5">do</span><span class="w">
-    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="5722744875-6">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;500.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5722744875-7">[</span><span class="p" data-group-id="5722744875-7">]</span><span class="p" data-group-id="5722744875-6">)</span><span class="w"> </span><span class="o">==</span><span class="w">
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;render 500.html&quot;</span><span class="w"> </span><span class="k" data-group-id="2826071208-5">do</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">render_to_string</span><span class="p" data-group-id="2826071208-6">(</span><span class="nc">HelloWeb.ErrorView</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;500.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2826071208-7">[</span><span class="p" data-group-id="2826071208-7">]</span><span class="p" data-group-id="2826071208-6">)</span><span class="w"> </span><span class="o">==</span><span class="w">
            </span><span class="s">&quot;Server internal error&quot;</span><span class="w">
-  </span><span class="k" data-group-id="5722744875-5">end</span><span class="w">
+  </span><span class="k" data-group-id="2826071208-5">end</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="5722744875-1">end</span></code></pre>
+</span><span class="k" data-group-id="2826071208-1">end</span></code></pre>
 <p>If we would like to run only tests tagged as <code class="inline">individual_test</code>, regardless of their value, this will work.</p>
 <pre><code class="console">$ mix test --only individual_test
 Including tags: [:individual_test]
@@ -359,9 +359,9 @@ Randomized with seed 61472</code></pre>
 <p>Finally, we can configure ExUnit to exclude tags by default. Let’s configure it to always exclude tests with the <code class="inline">error_view_case</code> tag in <code class="inline">test/test_helper.exs</code>.</p>
 <pre><code class="nohighlight makeup elixir"><span class="nc">ExUnit</span><span class="o">.</span><span class="n">start</span><span class="w">
 
-</span><span class="nc">Ecto.Adapters.SQL.Sandbox</span><span class="o">.</span><span class="n">mode</span><span class="p" data-group-id="6612872275-1">(</span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w"> </span><span class="ss">:manual</span><span class="p" data-group-id="6612872275-1">)</span><span class="w">
+</span><span class="nc">Ecto.Adapters.SQL.Sandbox</span><span class="o">.</span><span class="n">mode</span><span class="p" data-group-id="1227561679-1">(</span><span class="nc">Hello.Repo</span><span class="p">,</span><span class="w"> </span><span class="ss">:manual</span><span class="p" data-group-id="1227561679-1">)</span><span class="w">
 
-</span><span class="nc">ExUnit</span><span class="o">.</span><span class="n">configure</span><span class="p" data-group-id="6612872275-2">(</span><span class="ss">exclude</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6612872275-3">[</span><span class="ss">error_view_case</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6612872275-3">]</span><span class="p" data-group-id="6612872275-2">)</span></code></pre>
+</span><span class="nc">ExUnit</span><span class="o">.</span><span class="n">configure</span><span class="p" data-group-id="1227561679-2">(</span><span class="ss">exclude</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1227561679-3">[</span><span class="ss">error_view_case</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="1227561679-3">]</span><span class="p" data-group-id="1227561679-2">)</span></code></pre>
 <p>Now when we run <code class="inline">mix test</code>, it only runs one spec from our <code class="inline">page_controller_test.exs</code>.</p>
 <pre><code class="console">$ mix test
 Excluding tags: [error_view_case: true]
@@ -434,23 +434,23 @@ Remember to update your repository by running migrations:
 
     $ mix ecto.migrate</code></pre>
 <p>Now let’s follow the directions and add the new resources route to our <code class="inline">lib/hello_web/router.ex</code> file.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="2619753776-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">HelloWeb.Router</span><span class="w"> </span><span class="k" data-group-id="2853501397-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">HelloWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:router</span><span class="w">
 
   </span><span class="n">...</span><span class="w">
 
-  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Hello</span><span class="w"> </span><span class="k" data-group-id="2619753776-2">do</span><span class="w">
+  </span><span class="n">scope</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Hello</span><span class="w"> </span><span class="k" data-group-id="2853501397-2">do</span><span class="w">
     </span><span class="n">pipe_through</span><span class="w"> </span><span class="ss">:browser</span><span class="w"> </span><span class="c1"># Use the default browser stack</span><span class="w">
 
     </span><span class="n">get</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">PageController</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="w">
     </span><span class="n">resources</span><span class="w"> </span><span class="s">&quot;/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">UserController</span><span class="w">
-  </span><span class="k" data-group-id="2619753776-2">end</span><span class="w">
+  </span><span class="k" data-group-id="2853501397-2">end</span><span class="w">
 
   </span><span class="c1"># Other scopes may use custom stacks.</span><span class="w">
   </span><span class="c1"># scope &quot;/api&quot;, Hello do</span><span class="w">
   </span><span class="c1">#   pipe_through :api</span><span class="w">
   </span><span class="c1"># end</span><span class="w">
-</span><span class="k" data-group-id="2619753776-1">end</span></code></pre>
+</span><span class="k" data-group-id="2853501397-1">end</span></code></pre>
 <p>When we run <code class="inline">mix test</code> again, we see that we already have twenty tests!</p>
 <pre><code class="console">$ mix test
 ................
@@ -477,9 +477,9 @@ Randomized with seed 537537</code></pre>
   </div>
 </section>
 </div>
-  <script src="dist/app-b2d0635bae.js"></script>
+  <script src="dist/app-0684e614ed.js"></script>
   
-  <script src="dist/ex_doc_makeup-js.js"></script>
+  
   
   
   </body>

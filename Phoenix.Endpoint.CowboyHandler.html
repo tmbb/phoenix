@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Endpoint.CowboyHandler – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
+    <link rel="stylesheet" href="dist/app-01f6330ade.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
-    <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
+    
     
     
   </head>
@@ -110,12 +110,12 @@ including the socket transports.</p>
 <li><p>Per websocket transport:</p>
 <p>{“/socket/websocket”, Phoenix.Endpoint.CowboyWebSocket,
   {Phoenix.Transports.WebSocket,</p>
-<pre><code class="nohighlight makeup elixir"><span class="p" data-group-id="3407802823-1">{</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="p">,</span><span class="w"> </span><span class="ss">:websocket</span><span class="p" data-group-id="3407802823-1">}</span><span class="err">}</span><span class="err">}</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="p" data-group-id="1608407229-1">{</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="p">,</span><span class="w"> </span><span class="ss">:websocket</span><span class="p" data-group-id="1608407229-1">}</span><span class="err">}</span><span class="err">}</span></code></pre>
 </li>
 <li><p>Per longpoll transport:</p>
 <p>{“/socket/long_poll”, Plug.Adapters.Cowboy.Handler,
   {Phoenix.Transports.LongPoll,</p>
-<pre><code class="nohighlight makeup elixir"><span class="p" data-group-id="8932147527-1">{</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="p">,</span><span class="w"> </span><span class="ss">:longpoll</span><span class="p" data-group-id="8932147527-1">}</span><span class="err">}</span><span class="err">}</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="p" data-group-id="1360737338-1">{</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="p">,</span><span class="w"> </span><span class="ss">:longpoll</span><span class="p" data-group-id="1360737338-1">}</span><span class="err">}</span><span class="err">}</span></code></pre>
 </li>
 <li><p>For the endpoint:</p>
 <p>{:_, Plug.Adapters.Cowboy.Handler, {MyApp.Endpoint, []}}</p>
@@ -123,12 +123,12 @@ including the socket transports.</p>
 </ul>
 <p>For example:</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:myapp</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w">
-  </span><span class="ss">http</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4854034093-1">[</span><span class="ss">dispatch</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4854034093-2">[</span><span class="w">
-          </span><span class="p" data-group-id="4854034093-3">{</span><span class="ss">:_</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4854034093-4">[</span><span class="w">
-              </span><span class="p" data-group-id="4854034093-5">{</span><span class="s">&quot;/foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.CustomHandler</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4854034093-6">[</span><span class="p" data-group-id="4854034093-6">]</span><span class="p" data-group-id="4854034093-5">}</span><span class="p">,</span><span class="w">
-              </span><span class="p" data-group-id="4854034093-7">{</span><span class="s">&quot;/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.AnotherHandler</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4854034093-8">[</span><span class="p" data-group-id="4854034093-8">]</span><span class="p" data-group-id="4854034093-7">}</span><span class="p">,</span><span class="w">
-              </span><span class="p" data-group-id="4854034093-9">{</span><span class="ss">:_</span><span class="p">,</span><span class="w"> </span><span class="nc">Plug.Adapters.Cowboy.Handler</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4854034093-10">{</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4854034093-11">[</span><span class="p" data-group-id="4854034093-11">]</span><span class="p" data-group-id="4854034093-10">}</span><span class="p" data-group-id="4854034093-9">}</span><span class="w">
-            </span><span class="p" data-group-id="4854034093-4">]</span><span class="p" data-group-id="4854034093-3">}</span><span class="p" data-group-id="4854034093-2">]</span><span class="p" data-group-id="4854034093-1">]</span></code></pre>
+  </span><span class="ss">http</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5597785351-1">[</span><span class="ss">dispatch</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5597785351-2">[</span><span class="w">
+          </span><span class="p" data-group-id="5597785351-3">{</span><span class="ss">:_</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5597785351-4">[</span><span class="w">
+              </span><span class="p" data-group-id="5597785351-5">{</span><span class="s">&quot;/foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.CustomHandler</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5597785351-6">[</span><span class="p" data-group-id="5597785351-6">]</span><span class="p" data-group-id="5597785351-5">}</span><span class="p">,</span><span class="w">
+              </span><span class="p" data-group-id="5597785351-7">{</span><span class="s">&quot;/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.AnotherHandler</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5597785351-8">[</span><span class="p" data-group-id="5597785351-8">]</span><span class="p" data-group-id="5597785351-7">}</span><span class="p">,</span><span class="w">
+              </span><span class="p" data-group-id="5597785351-9">{</span><span class="ss">:_</span><span class="p">,</span><span class="w"> </span><span class="nc">Plug.Adapters.Cowboy.Handler</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5597785351-10">{</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5597785351-11">[</span><span class="p" data-group-id="5597785351-11">]</span><span class="p" data-group-id="5597785351-10">}</span><span class="p" data-group-id="5597785351-9">}</span><span class="w">
+            </span><span class="p" data-group-id="5597785351-4">]</span><span class="p" data-group-id="5597785351-3">}</span><span class="p" data-group-id="5597785351-2">]</span><span class="p" data-group-id="5597785351-1">]</span></code></pre>
 <p>It is also important to specify your handlers first, otherwise
 Phoenix will intercept the requests before they get to your handler.</p>
 
@@ -256,9 +256,9 @@ Phoenix will intercept the requests before they get to your handler.</p>
   </div>
 </section>
 </div>
-  <script src="dist/app-b2d0635bae.js"></script>
+  <script src="dist/app-0684e614ed.js"></script>
   
-  <script src="dist/ex_doc_makeup-js.js"></script>
+  
   
   
   </body>

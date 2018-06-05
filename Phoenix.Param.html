@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Param – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
+    <link rel="stylesheet" href="dist/app-01f6330ade.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
-    <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
+    
     
     
   </head>
@@ -90,7 +90,7 @@
           <p>A protocol that converts data structures into URL parameters.</p>
 <p>This protocol is used by URL helpers and other parts of the
 Phoenix stack. For example, when you write:</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">user_path</span><span class="p" data-group-id="9816775898-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:edit</span><span class="p">,</span><span class="w"> </span><span class="na">@user</span><span class="p" data-group-id="9816775898-1">)</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="n">user_path</span><span class="p" data-group-id="5019110679-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:edit</span><span class="p">,</span><span class="w"> </span><span class="na">@user</span><span class="p" data-group-id="5019110679-1">)</span></code></pre>
 <p>Phoenix knows how to extract the <code class="inline">:id</code> from <code class="inline">@user</code> thanks
 to this protocol.</p>
 <p>By default, Phoenix implements this protocol for integers, binaries, atoms,
@@ -106,22 +106,22 @@ specific implementation.</p>
 one can simply implement this protocol.</p>
 <p>However, for convenience, this protocol can also be
 derivable. For example:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="9012909060-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="3577433979-1">do</span><span class="w">
   </span><span class="na">@derive</span><span class="w"> </span><span class="nc">Phoenix.Param</span><span class="w">
-  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="9012909060-2">[</span><span class="ss">:id</span><span class="p">,</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="9012909060-2">]</span><span class="w">
-</span><span class="k" data-group-id="9012909060-1">end</span></code></pre>
+  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="3577433979-2">[</span><span class="ss">:id</span><span class="p">,</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="3577433979-2">]</span><span class="w">
+</span><span class="k" data-group-id="3577433979-1">end</span></code></pre>
 <p>By default, the derived implementation will also use
 the <code class="inline">:id</code> key. In case the user does not contain an
 <code class="inline">:id</code> key, the key can be specified with an option:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="5198852275-1">do</span><span class="w">
-  </span><span class="na">@derive</span><span class="w"> </span><span class="p" data-group-id="5198852275-2">{</span><span class="nc">Phoenix.Param</span><span class="p">,</span><span class="w"> </span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="5198852275-2">}</span><span class="w">
-  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="5198852275-3">[</span><span class="ss">:username</span><span class="p" data-group-id="5198852275-3">]</span><span class="w">
-</span><span class="k" data-group-id="5198852275-1">end</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="2044064744-1">do</span><span class="w">
+  </span><span class="na">@derive</span><span class="w"> </span><span class="p" data-group-id="2044064744-2">{</span><span class="nc">Phoenix.Param</span><span class="p">,</span><span class="w"> </span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="2044064744-2">}</span><span class="w">
+  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="2044064744-3">[</span><span class="ss">:username</span><span class="p" data-group-id="2044064744-3">]</span><span class="w">
+</span><span class="k" data-group-id="2044064744-1">end</span></code></pre>
 <p>will automatically use <code class="inline">:username</code> in URLs.</p>
 <p>When using Ecto, you must call <code class="inline">@derive</code> before
 your <code class="inline">schema</code> call:</p>
-<pre><code class="nohighlight makeup elixir"><span class="na">@derive</span><span class="w"> </span><span class="p" data-group-id="1349416311-1">{</span><span class="nc">Phoenix.Param</span><span class="p">,</span><span class="w"> </span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="1349416311-1">}</span><span class="w">
-</span><span class="n">schema</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="k" data-group-id="1349416311-2">do</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="na">@derive</span><span class="w"> </span><span class="p" data-group-id="3274143005-1">{</span><span class="nc">Phoenix.Param</span><span class="p">,</span><span class="w"> </span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="ss">:username</span><span class="p" data-group-id="3274143005-1">}</span><span class="w">
+</span><span class="n">schema</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="k" data-group-id="3274143005-2">do</span></code></pre>
 
         </section>
       
@@ -271,9 +271,9 @@ your <code class="inline">schema</code> call:</p>
   </div>
 </section>
 </div>
-  <script src="dist/app-b2d0635bae.js"></script>
+  <script src="dist/app-0684e614ed.js"></script>
   
-  <script src="dist/ex_doc_makeup-js.js"></script>
+  
   
   
   </body>

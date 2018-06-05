@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Socket.Transport – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
+    <link rel="stylesheet" href="dist/app-01f6330ade.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
-    <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
+    
     
     
   </head>
@@ -173,7 +173,7 @@ and represents the channel terminating against its will. The
 <a href="#on_exit_message/3"><code class="inline">on_exit_message/3</code></a> function aids in constructing the <code class="inline">&quot;phx_error&quot;</code> message.</p>
 <p>For graceful exits, the channel will notify the transort it is
 gracefully terminating via the following message:</p>
-<pre><code class="nohighlight makeup elixir"><span class="p" data-group-id="9895396487-1">{</span><span class="ss">:graceful_exit</span><span class="p">,</span><span class="w"> </span><span class="n">channel_pid</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9895396487-2">%</span><span class="nc" data-group-id="9895396487-2">Phoenix.Socket.Message</span><span class="p" data-group-id="9895396487-2">{</span><span class="p" data-group-id="9895396487-2">}</span><span class="p" data-group-id="9895396487-1">}</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="p" data-group-id="7055276255-1">{</span><span class="ss">:graceful_exit</span><span class="p">,</span><span class="w"> </span><span class="n">channel_pid</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7055276255-2">%</span><span class="nc" data-group-id="7055276255-2">Phoenix.Socket.Message</span><span class="p" data-group-id="7055276255-2">{</span><span class="p" data-group-id="7055276255-2">}</span><span class="p" data-group-id="7055276255-1">}</span></code></pre>
 <p>The <code class="inline">%Phoenix.Socket.Message{}</code> is the leave message for the transport
 to relay to the client.</p>
 <h2 id="module-duplicate-join-subscriptions" class="section-heading">
@@ -441,7 +441,7 @@ must be sent as result
 <p>When logging parameters, Phoenix can filter out sensitive parameters
 such as passwords and tokens. Parameters to be filtered can be added
 via the <code class="inline">:filter_parameters</code> option:</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:filter_parameters</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4741722059-1">[</span><span class="s">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;secret&quot;</span><span class="p" data-group-id="4741722059-1">]</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:phoenix</span><span class="p">,</span><span class="w"> </span><span class="ss">:filter_parameters</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2075885131-1">[</span><span class="s">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;secret&quot;</span><span class="p" data-group-id="2075885131-1">]</span></code></pre>
 <p>With the configuration above, Phoenix will filter any parameter
 that contains the terms <code class="inline">password</code> or <code class="inline">secret</code>. The match is
 case sensitive.</p>
@@ -605,9 +605,9 @@ noop if the connection has been halted.</p>
   </div>
 </section>
 </div>
-  <script src="dist/app-b2d0635bae.js"></script>
+  <script src="dist/app-0684e614ed.js"></script>
   
-  <script src="dist/ex_doc_makeup-js.js"></script>
+  
   
   
   </body>

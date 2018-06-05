@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Socket – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
+    <link rel="stylesheet" href="dist/app-01f6330ade.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
-    <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
+    
     
     
   </head>
@@ -123,21 +123,21 @@ For sockets requiring no authentication, <code class="inline">nil</code> can be 
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="w"> </span><span class="k" data-group-id="3071300055-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="w"> </span><span class="k" data-group-id="3261030422-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Socket</span><span class="w">
 
   </span><span class="n">transport</span><span class="w"> </span><span class="ss">:websocket</span><span class="p">,</span><span class="w"> </span><span class="nc">Phoenix.Transports.WebSocket</span><span class="w">
   </span><span class="n">channel</span><span class="w"> </span><span class="s">&quot;room:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.RoomChannel</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">connect</span><span class="p" data-group-id="3071300055-2">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3071300055-2">)</span><span class="w"> </span><span class="k" data-group-id="3071300055-3">do</span><span class="w">
-    </span><span class="p" data-group-id="3071300055-4">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="3071300055-5">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user_id</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="3071300055-6">[</span><span class="s">&quot;user_id&quot;</span><span class="p" data-group-id="3071300055-6">]</span><span class="p" data-group-id="3071300055-5">)</span><span class="p" data-group-id="3071300055-4">}</span><span class="w">
-  </span><span class="k" data-group-id="3071300055-3">end</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">connect</span><span class="p" data-group-id="3261030422-2">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="3261030422-2">)</span><span class="w"> </span><span class="k" data-group-id="3261030422-3">do</span><span class="w">
+    </span><span class="p" data-group-id="3261030422-4">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="3261030422-5">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user_id</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="3261030422-6">[</span><span class="s">&quot;user_id&quot;</span><span class="p" data-group-id="3261030422-6">]</span><span class="p" data-group-id="3261030422-5">)</span><span class="p" data-group-id="3261030422-4">}</span><span class="w">
+  </span><span class="k" data-group-id="3261030422-3">end</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">id</span><span class="p" data-group-id="3071300055-7">(</span><span class="n">socket</span><span class="p" data-group-id="3071300055-7">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;users_socket:</span><span class="si" data-group-id="3071300055-8">#{</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">user_id</span><span class="si" data-group-id="3071300055-8">}</span><span class="s">&quot;</span><span class="w">
-</span><span class="k" data-group-id="3071300055-1">end</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">id</span><span class="p" data-group-id="3261030422-7">(</span><span class="n">socket</span><span class="p" data-group-id="3261030422-7">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;users_socket:</span><span class="si" data-group-id="3261030422-8">#{</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">user_id</span><span class="si" data-group-id="3261030422-8">}</span><span class="s">&quot;</span><span class="w">
+</span><span class="k" data-group-id="3261030422-1">end</span><span class="w">
 
 </span><span class="c1"># Disconnect all user&#39;s socket connections and their multiplexed channels</span><span class="w">
-</span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="3071300055-9">(</span><span class="s">&quot;users_socket:&quot;</span><span class="w"> </span><span class="p">&gt;&gt;</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;disconnect&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3071300055-10">%{</span><span class="p" data-group-id="3071300055-10">}</span><span class="p" data-group-id="3071300055-9">)</span></code></pre>
+</span><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="3261030422-9">(</span><span class="s">&quot;users_socket:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;disconnect&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3261030422-10">%{</span><span class="p" data-group-id="3261030422-10">}</span><span class="p" data-group-id="3261030422-9">)</span></code></pre>
 <h2 id="module-socket-fields" class="section-heading">
   <a href="#module-socket-fields" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Socket Fields
@@ -374,11 +374,11 @@ writing your own transports.</p>
   Examples
 </h2>
 
-<pre><code class="iex elixir">iex&gt; socket.assigns[:token]
-nil
-iex&gt; socket = assign(socket, :token, &quot;bar&quot;)
-iex&gt; socket.assigns[:token]
-&quot;bar&quot;</code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="2841946517-1">[</span><span class="ss">:token</span><span class="p" data-group-id="2841946517-1">]</span><span class="w">
+</span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="2841946517-2">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:token</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="2841946517-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="p" data-group-id="2841946517-3">[</span><span class="ss">:token</span><span class="p" data-group-id="2841946517-3">]</span><span class="w">
+</span><span class="s">&quot;bar&quot;</span></code></pre>
 
   </section>
 </div>
@@ -432,8 +432,8 @@ Defaults <code class="inline">[:websocket, :longpoll]</code>
 </h2>
 
 <pre><code class="nohighlight makeup elixir"><span class="n">channel</span><span class="w"> </span><span class="s">&quot;topic1:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyChannel</span><span class="w">
-</span><span class="n">channel</span><span class="w"> </span><span class="s">&quot;topic2:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2500556172-1">[</span><span class="ss">:websocket</span><span class="p" data-group-id="2500556172-1">]</span><span class="w">
-</span><span class="n">channel</span><span class="w"> </span><span class="s">&quot;topic&quot;</span><span class="p">,</span><span class="w">    </span><span class="nc">MyChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2500556172-2">[</span><span class="ss">:longpoll</span><span class="p" data-group-id="2500556172-2">]</span></code></pre>
+</span><span class="n">channel</span><span class="w"> </span><span class="s">&quot;topic2:*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">MyChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7930375667-1">[</span><span class="ss">:websocket</span><span class="p" data-group-id="7930375667-1">]</span><span class="w">
+</span><span class="n">channel</span><span class="w"> </span><span class="s">&quot;topic&quot;</span><span class="p">,</span><span class="w">    </span><span class="nc">MyChannel</span><span class="p">,</span><span class="w"> </span><span class="ss">via</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7930375667-2">[</span><span class="ss">:longpoll</span><span class="p" data-group-id="7930375667-2">]</span></code></pre>
 <h2 id="channel/3-topic-patterns" class="section-heading">
   <a href="#channel/3-topic-patterns" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Topic Patterns
@@ -536,7 +536,7 @@ scoping.</p>
 be used to verify and authenticate a user. After
 verification, you can put default assigns into
 the socket that will be set for all channels, ie</p>
-<pre><code class="nohighlight makeup elixir"><span class="p" data-group-id="6843232467-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="6843232467-2">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user_id</span><span class="p">,</span><span class="w"> </span><span class="n">verified_user_id</span><span class="p" data-group-id="6843232467-2">)</span><span class="p" data-group-id="6843232467-1">}</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="p" data-group-id="0979001945-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="0979001945-2">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user_id</span><span class="p">,</span><span class="w"> </span><span class="n">verified_user_id</span><span class="p" data-group-id="0979001945-2">)</span><span class="p" data-group-id="0979001945-1">}</span></code></pre>
 <p>To deny connection, return <code class="inline">:error</code>.</p>
 <p>See <a href="Phoenix.Token.html"><code class="inline">Phoenix.Token</code></a> documentation for examples in
 performing token verification on connect.</p>
@@ -570,10 +570,10 @@ performing token verification on connect.</p>
   <section class="docstring">
     <p>Identifies the socket connection.</p>
 <p>Socket IDs are topics that allow you to identify all sockets for a given user:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">id</span><span class="p" data-group-id="7998777684-1">(</span><span class="n">socket</span><span class="p" data-group-id="7998777684-1">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;users_socket:</span><span class="si" data-group-id="7998777684-2">#{</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">user_id</span><span class="si" data-group-id="7998777684-2">}</span><span class="s">&quot;</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">id</span><span class="p" data-group-id="1806725201-1">(</span><span class="n">socket</span><span class="p" data-group-id="1806725201-1">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;users_socket:</span><span class="si" data-group-id="1806725201-2">#{</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">user_id</span><span class="si" data-group-id="1806725201-2">}</span><span class="s">&quot;</span></code></pre>
 <p>Would allow you to broadcast a “disconnect” event and terminate
 all active sockets and channels for a given user:</p>
-<pre><code class="nohighlight makeup elixir"><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="4009981518-1">(</span><span class="s">&quot;users_socket:&quot;</span><span class="w"> </span><span class="p">&gt;&gt;</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;disconnect&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4009981518-2">%{</span><span class="p" data-group-id="4009981518-2">}</span><span class="p" data-group-id="4009981518-1">)</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="nc">MyApp.Endpoint</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="6449630070-1">(</span><span class="s">&quot;users_socket:&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;disconnect&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6449630070-2">%{</span><span class="p" data-group-id="6449630070-2">}</span><span class="p" data-group-id="6449630070-1">)</span></code></pre>
 <p>Returning <code class="inline">nil</code> makes this socket anonymous.</p>
 
   </section>
@@ -597,9 +597,9 @@ all active sockets and channels for a given user:</p>
   </div>
 </section>
 </div>
-  <script src="dist/app-b2d0635bae.js"></script>
+  <script src="dist/app-0684e614ed.js"></script>
   
-  <script src="dist/ex_doc_makeup-js.js"></script>
+  
   
   
   </body>

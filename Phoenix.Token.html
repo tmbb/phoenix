@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
     <title>Phoenix.Token – Phoenix v1.4.0-dev</title>
-    <link rel="stylesheet" href="dist/app-f81cbf3cc2.css" />
+    <link rel="stylesheet" href="dist/app-01f6330ade.css" />
     
     <script src="dist/sidebar_items-88fb2d3f91.js"></script>
     
-    <link rel="stylesheet" href="dist/ex_doc_makeup-css.css"/>
+    
     
     
   </head>
@@ -101,10 +101,10 @@ confidential information (such as credit card numbers).</p>
 <p>When generating a unique token for use in an API or Channel
 it is advised to use a unique identifier for the user, typically
 the id from a database. For example:</p>
-<pre><code class="iex elixir">iex&gt; user_id = 1
-iex&gt; token = Phoenix.Token.sign(MyApp.Endpoint, &quot;user salt&quot;, user_id)
-iex&gt; Phoenix.Token.verify(MyApp.Endpoint, &quot;user salt&quot;, token, max_age: 86400)
-{:ok, 1}</code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="8732959264-1">(</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="8732959264-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="8732959264-2">(</span><span class="nc">MyApp.Endpoint</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="8732959264-2">)</span><span class="w">
+</span><span class="p" data-group-id="8732959264-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="8732959264-3">}</span></code></pre>
 <p>In that example we have a user’s id, we generate a token and
 verify it using the secret key base configured in the given
 <code class="inline">endpoint</code>. We guarantee the token will only be valid for one day
@@ -139,30 +139,30 @@ this same term will be extracted from the token.</p>
 
 <p>Once a token is signed, we can send it to the client in multiple ways.</p>
 <p>One is via the meta tag:</p>
-<pre><code class="nohighlight makeup elixir"><span class="o">&gt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="ss">:meta</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;channel_token&quot;</span><span class="p">,</span><span class="w">
-               </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="4409352801-1">(</span><span class="na">@conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="na">@current_user</span><span class="o">.</span><span class="n">id</span><span class="p" data-group-id="4409352801-1">)</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="ss">:meta</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;channel_token&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="9821988123-1">(</span><span class="na">@conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="na">@current_user</span><span class="o">.</span><span class="n">id</span><span class="p" data-group-id="9821988123-1">)</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span></code></pre>
 <p>Or an endpoint that returns it:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">create</span><span class="p" data-group-id="4720733872-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="4720733872-1">)</span><span class="w"> </span><span class="k" data-group-id="4720733872-2">do</span><span class="w">
-  </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="4720733872-3">(</span><span class="n">params</span><span class="p" data-group-id="4720733872-3">)</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">create</span><span class="p" data-group-id="8533395135-1">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="8533395135-1">)</span><span class="w"> </span><span class="k" data-group-id="8533395135-2">do</span><span class="w">
+  </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">User</span><span class="o">.</span><span class="n">create</span><span class="p" data-group-id="8533395135-3">(</span><span class="n">params</span><span class="p" data-group-id="8533395135-3">)</span><span class="w">
   </span><span class="n">render</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user.json&quot;</span><span class="p">,</span><span class="w">
-         </span><span class="p" data-group-id="4720733872-4">%{</span><span class="ss">token</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="4720733872-5">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p" data-group-id="4720733872-5">)</span><span class="p">,</span><span class="w"> </span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="4720733872-4">}</span><span class="w">
-</span><span class="k" data-group-id="4720733872-2">end</span></code></pre>
+         </span><span class="p" data-group-id="8533395135-4">%{</span><span class="ss">token</span><span class="p">:</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="8533395135-5">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p" data-group-id="8533395135-5">)</span><span class="p">,</span><span class="w"> </span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="8533395135-4">}</span><span class="w">
+</span><span class="k" data-group-id="8533395135-2">end</span></code></pre>
 <p>Once the token is sent, the client may now send it back to the server
 as an authentication mechanism. For example, we can use it to authenticate
 a user on a Phoenix channel:</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="w"> </span><span class="k" data-group-id="9774061565-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.UserSocket</span><span class="w"> </span><span class="k" data-group-id="9501583842-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Socket</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">connect</span><span class="p" data-group-id="9774061565-2">(</span><span class="p" data-group-id="9774061565-3">%{</span><span class="s">&quot;token&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">token</span><span class="p" data-group-id="9774061565-3">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9774061565-2">)</span><span class="w"> </span><span class="k" data-group-id="9774061565-4">do</span><span class="w">
-    </span><span class="k">case</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="9774061565-5">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="9774061565-5">)</span><span class="w"> </span><span class="k" data-group-id="9774061565-6">do</span><span class="w">
-      </span><span class="p" data-group-id="9774061565-7">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="9774061565-7">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-        </span><span class="n">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="9774061565-8">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user</span><span class="p">,</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9774061565-9">(</span><span class="nc">User</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="9774061565-9">)</span><span class="p" data-group-id="9774061565-8">)</span><span class="w">
-        </span><span class="p" data-group-id="9774061565-10">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9774061565-10">}</span><span class="w">
-      </span><span class="p" data-group-id="9774061565-11">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="9774061565-11">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">connect</span><span class="p" data-group-id="9501583842-2">(</span><span class="p" data-group-id="9501583842-3">%{</span><span class="s">&quot;token&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">token</span><span class="p" data-group-id="9501583842-3">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9501583842-2">)</span><span class="w"> </span><span class="k" data-group-id="9501583842-4">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="9501583842-5">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user salt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="9501583842-5">)</span><span class="w"> </span><span class="k" data-group-id="9501583842-6">do</span><span class="w">
+      </span><span class="p" data-group-id="9501583842-7">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="9501583842-7">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="9501583842-8">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:user</span><span class="p">,</span><span class="w"> </span><span class="nc">Repo</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9501583842-9">(</span><span class="nc">User</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="9501583842-9">)</span><span class="p" data-group-id="9501583842-8">)</span><span class="w">
+        </span><span class="p" data-group-id="9501583842-10">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9501583842-10">}</span><span class="w">
+      </span><span class="p" data-group-id="9501583842-11">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="9501583842-11">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
         </span><span class="ss">:error</span><span class="w">
-    </span><span class="k" data-group-id="9774061565-6">end</span><span class="w">
-  </span><span class="k" data-group-id="9774061565-4">end</span><span class="w">
-</span><span class="k" data-group-id="9774061565-1">end</span></code></pre>
+    </span><span class="k" data-group-id="9501583842-6">end</span><span class="w">
+  </span><span class="k" data-group-id="9501583842-4">end</span><span class="w">
+</span><span class="k" data-group-id="9501583842-1">end</span></code></pre>
 <p>In this example, the phoenix.js client will send the token in the
 <code class="inline">connect</code> command which is then validated by the server.</p>
 <p><a href="Phoenix.Token.html#content"><code class="inline">Phoenix.Token</code></a> can also be used for validating APIs, handling
@@ -300,27 +300,27 @@ Defaults to <code class="inline">System.system_time(:seconds)</code>
 application. The client will then use this token to authenticate requests for
 resources from the server. (See <a href="Phoenix.Token.html#content"><code class="inline">Phoenix.Token</code></a> summary for more info about
 creating tokens.)</p>
-<pre><code class="iex elixir">iex&gt; user_id    = 99
-iex&gt; secret     = &quot;kjoy3o1zeidquwy1398juxzldjlksahdk3&quot;
-iex&gt; user_salt  = &quot;user salt&quot;
-iex&gt; token      = Phoenix.Token.sign(secret, user_salt, user_id)</code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">99</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">secret</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;kjoy3o1zeidquwy1398juxzldjlksahdk3&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">user_salt</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;user salt&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="n">token</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">sign</span><span class="p" data-group-id="7133495298-1">(</span><span class="n">secret</span><span class="p">,</span><span class="w"> </span><span class="n">user_salt</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p" data-group-id="7133495298-1">)</span></code></pre>
 <p>The mechanism for passing the token to the client is typically through a
 cookie, a JSON response body, or HTTP header. For now, assume the client has
 received a token it can use to validate requests for protected resources.</p>
 <p>When the server receives a request, it can use <a href="#verify/4"><code class="inline">verify/4</code></a> to determine if it
 should provide the requested resources to the client:</p>
-<pre><code class="iex elixir">iex&gt; Phoenix.Token.verify(secret, user_salt, token, max_age: 86400)
-{:ok, 99}</code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="3468718516-1">(</span><span class="n">secret</span><span class="p">,</span><span class="w"> </span><span class="n">user_salt</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="3468718516-1">)</span><span class="w">
+</span><span class="p" data-group-id="3468718516-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="mi">99</span><span class="p" data-group-id="3468718516-2">}</span></code></pre>
 <p>In this example, we know the client sent a valid token because <a href="#verify/4"><code class="inline">verify/4</code></a>
 returned a tuple of type <code class="inline">{:ok, user_id}</code>. The server can now proceed with
 the request.</p>
 <p>However, if the client had sent an expired or otherwise invalid token
 <a href="#verify/4"><code class="inline">verify/4</code></a> would have returned an error instead:</p>
-<pre><code class="iex elixir">iex&gt; Phoenix.Token.verify(secret, user_salt, expired, max_age: 86400)
-{:error, :expired}
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="9048210922-1">(</span><span class="n">secret</span><span class="p">,</span><span class="w"> </span><span class="n">user_salt</span><span class="p">,</span><span class="w"> </span><span class="n">expired</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="9048210922-1">)</span><span class="w">
+</span><span class="p" data-group-id="9048210922-2">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:expired</span><span class="p" data-group-id="9048210922-2">}</span><span class="w">
 
-iex&gt; Phoenix.Token.verify(secret, user_salt, invalid, max_age: 86400)
-{:error, :invalid}</code></pre>
+</span><span class="gp unselectable">iex&gt;</span><span class="w"> </span><span class="nc">Phoenix.Token</span><span class="o">.</span><span class="n">verify</span><span class="p" data-group-id="9048210922-3">(</span><span class="n">secret</span><span class="p">,</span><span class="w"> </span><span class="n">user_salt</span><span class="p">,</span><span class="w"> </span><span class="n">invalid</span><span class="p">,</span><span class="w"> </span><span class="ss">max_age</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p" data-group-id="9048210922-3">)</span><span class="w">
+</span><span class="p" data-group-id="9048210922-4">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:invalid</span><span class="p" data-group-id="9048210922-4">}</span></code></pre>
 <h2 id="verify/4-options" class="section-heading">
   <a href="#verify/4-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Options
@@ -365,9 +365,9 @@ when generating the encryption and signing keys. Defaults to <code class="inline
   </div>
 </section>
 </div>
-  <script src="dist/app-b2d0635bae.js"></script>
+  <script src="dist/app-0684e614ed.js"></script>
   
-  <script src="dist/ex_doc_makeup-js.js"></script>
+  
   
   
   </body>
